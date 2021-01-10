@@ -43,8 +43,8 @@
       <div class="form-group">
         <label for="statusBanner" class="col-form-label">Hoạt động(<span class="text-danger">*</span>)</label>
         <select name="statusBanner" class="form-control">
-            <option value="active" {{(($infoBanner->status=='active') ? 'selected' : '')}}>Active</option>
-            <option value="inactive" {{(($infoBanner->status=='inactive') ? 'selected' : '')}}>Inactive</option>
+            <option value="active" {{(($infoBanner->status=='active') ? 'selected' : '')}}>Hoạt động</option>
+            <option value="inactive" {{(($infoBanner->status=='inactive') ? 'selected' : '')}}>Không hoạt động</option>
         </select>
       
      

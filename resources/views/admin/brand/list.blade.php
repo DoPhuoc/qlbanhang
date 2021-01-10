@@ -3,23 +3,30 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="row">
-                <div class="col-md-6">
-                    <h2>Danh mục Thương hiệu</h2>
+                <div class="col-md-4">
+                    <h4 class="m-0 font-weight-bold text-primary float-left">Danh mục Thương hiệu</h4>
                 </div>
-            
+    
                 <div class="col-md-4">
                     <form>
                         <div class="input-group">
-                            <input type="search" name="search" class="form-control">
-                            <span class="input-group-prepend">
-                                <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
-                            </span>
+    
+                            <input type="text" class="form-control bg-light border small js-keyword-brand"
+                                placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" value="">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary js-search-brand" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
                         </div>
                     </form>
+    
                 </div>
-                <div class="col-md-2 text-right">
-                    <a href="{{ route('admin.add.brand') }}" class="d-none d-sm-inline-block btn btn-primary shadow-sm"><i
-                            class="fas fa-plus-circle fa-sm text-white-50"></i> Thêm</a>
+                <div class="col-md-4 ">
+                    <a href="{{ route('admin.add.brand') }}"
+                        class="d-none d-sm-inline-block btn btn-primary shadow-sm float-right" data-toggle="tooltip"
+                        data-placement="bottom" title="Add User"><i
+                        class="fas fa-plus-circle fa-sm text-white-50"></i>  Thêm sản phẩm</a>
                 </div>
             </div>
         </div>

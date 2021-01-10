@@ -2,24 +2,27 @@
 @section('content')
 
 <div class="card">
-    <h5 class="card-header">Add Product</h5>
+    <h5 class="card-header">Thêm sản phẩm</h5>
     <div class="card-body">
       <form method="post" action="">
         <div class="form-group">
-          <label for="inputTitle" class="col-form-label">Title <span class="text-danger">*</span></label>
-          <input id="inputTitle" type="text" name="title" placeholder="Enter title"  value="" class="form-control">
-       
+          <label for="inputTitle" class="col-form-label">Tên sản phẩm  <span class="text-danger">*</span></label>
+          <input id="inputTitle" type="text" name="title" placeholder="Enter title"  value="" class="form-control">   
+        </div>
+        <div class="form-group">
+          <label for="inputTitle" class="col-form-label">Mã sản phẩm  <span class="text-danger">*</span></label>
+          <input id="inputTitle" type="text" name="title" placeholder="Enter title"  value="" class="form-control">   
         </div>
 
         <div class="form-group">
-          <label for="summary" class="col-form-label">Summary <span class="text-danger">*</span></label>
+          <label for="summary" class="col-form-label">Tiêu đề<span class="text-danger">*</span></label>
           <textarea class="form-control" id="summary" name="summary"></textarea>
        
         </div>
 
         <div class="form-group">
     
-          <label for="description" class="col-form-label">Description</label>
+          <label for="description" class="col-form-label">Mô tả</label>
           <textarea class="form-control" id="description" name="description"></textarea>
       
         </div>
@@ -27,31 +30,31 @@
 
 
         <div class="form-group">
-          <label for="cat_id">Category <span class="text-danger">*</span></label>
+          <label for="cat_id">Tên danh mục <span class="text-danger">*</span></label>
           <select name="cat_id" id="cat_id" class="form-control">
               <option value="">--Select any category--</option>
          
           </select>
         </div>
 
-        <div class="form-group d-none" id="child_cat_div">
+       {{--   <div class="form-group d-none" id="child_cat_div">
           <label for="child_cat_id">Sub Category</label>
           <select name="child_cat_id" id="child_cat_id" class="form-control">
               <option value="">--Select any category--</option>
               {{-- @foreach($parent_cats as $key=>$parent_cat)
                   <option value='{{$parent_cat->id}}'>{{$parent_cat->title}}</option>
-              @endforeach --}}
+              @endforeach 
           </select>
-        </div>
+        </div> --}}
 
         <div class="form-group">
-          <label for="price" class="col-form-label">Price(NRS) <span class="text-danger">*</span></label>
+          <label for="price" class="col-form-label">Giá sản phẩm <span class="text-danger">*</span></label>
           <input id="price" type="number" name="price" placeholder="Enter price"  value="" class="form-control">
    
         </div>
 
         <div class="form-group">
-          <label for="discount" class="col-form-label">Discount(%)</label>
+          <label for="discount" class="col-form-label">Mã giảm giá(%)</label>
           <input id="discount" type="number" name="discount" min="0" max="100" placeholder="Enter discount"  value="" class="form-control">
   
         </div>
@@ -67,7 +70,7 @@
         </div>
 
         <div class="form-group">
-          <label for="brand_id">Brand</label>
+          <label for="brand_id">Tên Thương hiệu</label>
           {{-- {{$brands}} --}}
 
           <select name="brand_id" class="form-control">
@@ -77,7 +80,7 @@
         </div>
 
         <div class="form-group">
-          <label for="condition">Condition</label>
+          <label for="condition">Tình trạng</label>
           <select name="condition" class="form-control">
               <option value="">--Select Condition--</option>
               <option value="default">Default</option>
@@ -87,13 +90,13 @@
         </div>
 
         <div class="form-group">
-          <label for="stock">Quantity <span class="text-danger">*</span></label>
+          <label for="stock">Số lượng <span class="text-danger">*</span></label>
           <input id="quantity" type="number" name="stock" min="0" placeholder="Enter quantity"  value="" class="form-control">
  
         </div>
         <div class="form-group">
       
-            <label for="imageProducts">Images of Product <span class="text-danger">*</span></label>
+            <label for="imageProducts">Ảnh sản phẩm<span class="text-danger">*</span></label>
             <div class="input-images" type="text" name="imageProducts" id="imageProducts"></div>
         </div>
      
@@ -101,7 +104,7 @@
 
         
         <div class="form-group">
-          <label for="status" class="col-form-label">Status <span class="text-danger">*</span></label>
+          <label for="status" class="col-form-label">Tình trạng <span class="text-danger">*</span></label>
           <select name="status" class="form-control">
               <option value="active">Active</option>
               <option value="inactive">Inactive</option>
@@ -109,8 +112,8 @@
          
         </div>
         <div class="form-group mb-3">
-          <button type="reset" class="btn btn-warning">Reset</button>
-           <button class="btn btn-success" type="submit">Submit</button>
+          <button type="reset" class="btn btn-warning">Quay lại</button>
+           <button class="btn btn-success" type="submit">Cập nhập</button>
         </div>
       </form>
     </div>

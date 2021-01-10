@@ -8,8 +8,7 @@
                     <!-- Top Left -->
                     <div class="top-left">
                         <ul class="list-main">
-                            <li><i class="ti-headphone-alt"></i> +060 (800) 801-582</li>
-                            <li><i class="ti-email"></i> support@shophub.com</li>
+                            <li><i class="ti-headphone-alt"></i> +84 (222) 222-222</li>
                         </ul>
                     </div>
                     <!--/ End Top Left -->
@@ -18,8 +17,7 @@
                     <!-- Top Right -->
                     <div class="right-content">
                         <ul class="list-main">
-                            <li><i class="ti-location-pin"></i> Store location</li>
-                            <li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li>
+           
                             <li><i class="ti-user"></i> <a href="#">My account</a></li>
                             <li><i class="ti-power-off"></i><a href="login.html#">Login</a></li>
                         </ul>
@@ -36,7 +34,7 @@
                 <div class="col-lg-2 col-md-2 col-12">
                     <!-- Logo -->
                     <div class="logo">
-                        <a href="index.html"><img src="images/logo.png" alt="logo"></a>
+                        <a href="index.html"><img src="{{asset('uploads/images/banners/logo.png')}}" alt="logo"></a>
                     </div>
                     <!--/ End Logo -->
                     <!-- Search Form -->
@@ -59,9 +57,10 @@
                         <div class="search-bar">
                             <select>
                                 <option selected="selected">All Category</option>
-                                <option>watch</option>
-                                <option>mobile</option>
-                                <option>kid’s item</option>
+                                <option>Category 01</option>
+                                <option>Category 02</option>
+                                <option>Category 03</option>
+                               
                             </select>
                             <form>
                                 <input name="search" placeholder="Search Products Here....." type="search">
@@ -76,9 +75,7 @@
                         <div class="sinlge-bar">
                             <a href="#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
                         </div>
-                        <div class="sinlge-bar">
-                            <a href="#" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
-                        </div>
+                        
                         <div class="sinlge-bar shopping">
                             <a href="#" class="single-icon"><i class="ti-bag"></i> <span class="total-count">2</span></a>
                             <!-- Shopping Item -->
@@ -121,7 +118,29 @@
         <div class="container">
             <div class="cat-nav-head">
                 <div class="row">
-                
+                  {{--    <div class="col-lg-3">
+                        <div class="all-category">
+                            <h3 class="cat-heading"><i class="fa fa-bars" aria-hidden="true"></i>Danh mục</h3>
+                            <ul class="main-category">
+                                <li><a href="#">Báo cháy HOCHIKI <i class="fa fa-angle-right" ></i></a>
+                                    <ul class="sub-category dropdown">
+                                        <li><a href="#"> TRUNG TÂM BÁO CHÁY ĐỊA CHỈ HOCHIKI</a></li>
+                                        <li><a href="#"> TRUNG TÂM BÁO CHÁY ĐỊA CHỈ HOCHIKI</a></li>
+                                        <li><a href="#"> TRUNG TÂM BÁO CHÁY ĐỊA CHỈ HOCHIKI</a></li>
+                                        <li><a href="#"> TRUNG TÂM BÁO CHÁY ĐỊA CHỈ HOCHIKI</a></li>
+                                        <li><a href="#"> TRUNG TÂM BÁO CHÁY ĐỊA CHỈ HOCHIKI</a></li>
+                                        <li><a href="#"> TRUNG TÂM BÁO CHÁY ĐỊA CHỈ HOCHIKI</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Báo cháy HOCHIKI</a></li>
+                                <li><a href="#">Báo cháy HOCHIKI</a></li>
+                                <li><a href="#">Báo cháy HOCHIKI</a></li>
+                                <li><a href="#">Báo cháy HOCHIKI</a></li>
+                                <li><a href="#">Báo cháy HOCHIKI</a></li>
+                                <li><a href="#">Báo cháy HOCHIKI</a></li>
+                            </ul>
+                        </div>
+                    </div>  --}}
                     <div class="col-lg-9 col-12">
                         <div class="menu-area">
                             <!-- Main Menu -->
@@ -129,23 +148,20 @@
                                 <div class="navbar-collapse">	
                                     <div class="nav-inner">	
                                         <ul class="nav main-menu menu navbar-nav">
-                                                <li class="active"><a href="#">Home</a></li>
-                                                <li><a href="#">Product</a></li>												
-                                                <li><a href="#">Service</a></li>
+                                                <li class="active"><a href="{{route('fr.home')}}">TRANG CHỦ</a></li>
+                                                <li><a href="{{route('fr.detail',['slug','id'])}}">SẢN PHẨM</a></li>												
+                                                <li><a href="#">BÀI VIẾT</a></li>
+                                            
                                                 <li><a href="#">Shop<i class="ti-angle-down"></i><span class="new">New</span></a>
                                                     <ul class="dropdown">
                                                         <li><a href="shop-grid.html">Shop Grid</a></li>
-                                                        <li><a href="cart.html">Cart</a></li>
+                                                        <li><a href="{{route('fr.cart')}}">Cart</a></li>
                                                         <li><a href="checkout.html">Checkout</a></li>
                                                     </ul>
                                                 </li>
-                                                <li><a href="#">Pages</a></li>									
-                                                <li><a href="#">Blog<i class="ti-angle-down"></i></a>
-                                                    <ul class="dropdown">
-                                                        <li><a href="blog-single-sidebar.html">Blog Single Sidebar</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="contact.html">Contact Us</a></li>
+                                                <li><a href="#">GIỚI THIỆU</a></li>									
+                                            
+                                                <li><a href="contact.html">ĐỊA CHỈ</a></li>
                                             </ul>
                                     </div>
                                 </div>

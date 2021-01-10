@@ -30,7 +30,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Banner Options:</h6>
             <a class="collapse-item" href="{{route('admin.banner')}}">Banners</a>
-            <a class="collapse-item" href="{{route('admin.add.banner')}}">Add Banners</a>
+            <a class="collapse-item" href="{{route('admin.add.banner')}}">Thêm Banners</a>
           </div>
         </div>
       </li>
@@ -62,13 +62,13 @@
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#categoryCollapse" aria-expanded="true" aria-controls="categoryCollapse">
       <i class="fas fa-sitemap"></i>
-      <span>Category</span>
+      <span>Quản lý danh mục</span>
     </a>
     <div id="categoryCollapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Category Options:</h6>
-        <a class="collapse-item" href="">Category</a>
-        <a class="collapse-item" href="">Add Category</a>
+        <h6 class="collapse-header">Nghiệp vụ:</h6>
+        <a class="collapse-item" href="{{route('admin.category')}}">Danh mục </a>
+        <a class="collapse-item" href="{{route('admin.add.category')}}">Thêm danh mục </a>
       </div>
     </div>
 </li>
@@ -76,13 +76,13 @@
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#productCollapse" aria-expanded="true" aria-controls="productCollapse">
       <i class="fas fa-cubes"></i>
-      <span>Products</span>
+      <span>Quản lý sản phẩm </span>
     </a>
     <div id="productCollapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Product Options:</h6>
-        <a class="collapse-item" href="">Products</a>
-        <a class="collapse-item" href="">Add Product</a>
+        <h6 class="collapse-header">Nghiệp vụ :</h6>
+        <a class="collapse-item" href="{{route('admin.list.product')}}">Sản phẩm </a>
+        <a class="collapse-item" href="{{route('admin.add.product')}}">Thêm sản phẩm</a>
       </div>
     </div>
 </li>
@@ -96,25 +96,25 @@
     <div id="shippingCollapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Shipping Options:</h6>
-        <a class="collapse-item" href="">Shipping</a>
-        <a class="collapse-item" href="">Add Shipping</a>
+        <a class="collapse-item" href="{{route('admin.shipping')}}">Shipping</a>
+        <a class="collapse-item" href="{{route('admin.add.shipping')}}">Thêm Shipping</a>
       </div>
     </div>
 </li>
 
 <!--Orders -->
 <li class="nav-item">
-    <a class="nav-link" href="">
+    <a class="nav-link" href="{{route('admin.order')}}">
         <i class="fas fa-hammer fa-chart-area"></i>
-        <span>Orders</span>
+        <span>Đặt hàng</span>
     </a>
 </li>
 
 <!-- Reviews -->
 <li class="nav-item">
-    <a class="nav-link" href="">
+    <a class="nav-link" href="{{route('admin.review')}}">
         <i class="fas fa-comments"></i>
-        <span>Reviews</span></a>
+        <span>Đánh giá sản phẩm </span></a>
 </li>
 
 
@@ -130,13 +130,13 @@
 <li class="nav-item">
   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#postCollapse" aria-expanded="true" aria-controls="postCollapse">
     <i class="fas fa-fw fa-folder"></i>
-    <span>Posts</span>
+    <span>Bài viết</span>
   </a>
   <div id="postCollapse" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
-      <h6 class="collapse-header">Post Options:</h6>
-      <a class="collapse-item" href="">Posts</a>
-      <a class="collapse-item" href="">Add Post</a>
+      <h6 class="collapse-header">Nghiệp vụ:</h6>
+      <a class="collapse-item" href="{{route('admin.post')}}">Bài viết</a>
+      <a class="collapse-item" href="{{route('admin.add.post')}}">Thêm bài viết</a>
     </div>
   </div>
 </li>
@@ -145,13 +145,13 @@
  <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#postCategoryCollapse" aria-expanded="true" aria-controls="postCategoryCollapse">
       <i class="fas fa-sitemap fa-folder"></i>
-      <span>Category</span>
+      <span>Danh mục bài viết</span>
     </a>
     <div id="postCategoryCollapse" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Category Options:</h6>
-        <a class="collapse-item" href="">Category</a>
-        <a class="collapse-item" href="">Add Category</a>
+        <h6 class="collapse-header">Nghiệp vụ:</h6>
+        <a class="collapse-item" href="{{route('admin.postCategory')}}">Danh mục</a>
+        <a class="collapse-item" href="{{route('admin.add.postCategory')}}">Thêm danh mục</a>
       </div>
     </div>
   </li>
@@ -165,8 +165,8 @@
     <div id="tagCollapse" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Tag Options:</h6>
-        <a class="collapse-item" href="">Tag</a>
-        <a class="collapse-item" href="">Add Tag</a>
+        <a class="collapse-item" href="{{route('admin.tag')}}">Tag</a>
+        <a class="collapse-item" href="{{route('admin.add.tag')}}">Thêm Tag</a>
         </div>
     </div>
 </li>
@@ -193,7 +193,7 @@
 </li>
  <!-- Users -->
  <li class="nav-item">
-    <a class="nav-link" href="">
+    <a class="nav-link" href="{{route('admin.users')}}">
         <i class="fas fa-users"></i>
         <span>Users</span></a>
 </li>

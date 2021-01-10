@@ -1,7 +1,7 @@
 @extends('admin.admin-layout')
 @section('content')
 <div class="card">
-    <h5 class="card-header">Add Banner</h5>
+    <h5 class="card-header">Thêm  Banner</h5>
     
     @if ($errors->any())
     <div class="alert alert-danger">
@@ -41,8 +41,8 @@
         <div class="form-group">
           <label for="status" class="col-form-label">Hoạt động(<span class="text-danger">*</span>)</label>
           <select name="status" class="form-control">
-              <option value="active">Active</option>
-              <option value="inactive">Inactive</option>
+              <option value="active">Hoạt động</option>
+              <option value="inactive">Không hoạt động</option>
           </select>
         
        

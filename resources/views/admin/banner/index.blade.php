@@ -7,7 +7,7 @@
         </div>
     </div>
    <div class="card-header py-3">
-     <h6 class="m-0 font-weight-bold text-primary float-left">Banners List</h6>
+     <h6 class="m-0 font-weight-bold text-primary float-left">Danh sách  Banner</h6>
      <a href="{{route('admin.add.banner')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add Banner</a>
    </div>
    <div class="card-body">
@@ -16,19 +16,19 @@
          <thead>
            <tr>
              <th>STT</th>
-             <th>Title</th>
-             <th width="50%">Photo</th>
-             <th>Status</th>
-             <th>Action</th>
+             <th>Tên </th>
+             <th width="50%">Ảnh</th>
+             <th>Tráng thái</th>
+             <th width="20%">Hành động</th>
            </tr>
          </thead>
          <tfoot>
            <tr>
              <th>STT</th>
-             <th>Title</th>
-             <th>Photo</th>
-             <th>Status</th>
-             <th>Action</th>
+             <th>Tên</th>
+             <th>Ảnh</th>
+             <th>Trạng thái</th>
+             <th>Hoạt động</th>
              </tr>
          </tfoot>
          <tbody>
@@ -37,13 +37,13 @@
                     <td>{{$banner->id}}</td>
                     <td>{{$banner->title}}</td>
                     <td>
-                        <img class="img-fluid zoom img-thumbnail w-25" style="max-width:100%" src="{{asset('uploads/images/banners')}}/{{$banner->photo}}">
+                        <img class="img-fluid zoom img-thumbnail w-20" style="max-width:100%" src="{{asset('uploads/images/banners')}}/{{$banner->photo}}">
                     </td>
                     <td>
                         @if($banner->status=='active')
-                            <span class="badge badge-success">{{$banner->status}}</span>
+                            <span class="badge badge-success">Hoạt động</span>
                         @else
-                            <span class="badge badge-warning">{{$banner->status}}</span>
+                            <span class="badge badge-warning">Không hoạt động</span>
                         @endif
                     </td>
                     <td>

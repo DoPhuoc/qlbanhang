@@ -8,8 +8,8 @@
          </div>
      </div>
     <div class="card-header py-3">
-      <h4 class="m-0 font-weight-bold text-primary float-left">Danh mục sản phẩm</h4>
-      <a href="{{route('admin.add.category')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Thêm danh mục</a>
+      <h6 class="m-0 font-weight-bold text-primary float-left">Danh mục  Bài viết </h6>
+      <a href="{{route('admin.add.postCategory')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Thêm bài viết</a>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -38,7 +38,7 @@
                   Bán các loại sản phẩm hochiki 
               </td>
               <td>
-                <a class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" href="{{route('admin.edit.category',['slug','id'])}}" data-placement="bottom"><i class="fas fa-edit"></i></a>
+                <a class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" href="{{route('admin.edit.postCategory',['slug','id'])}}" data-placement="bottom"><i class="fas fa-edit"></i></a>
                 <button class="btn btn-danger btn-sm dltBtn" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
         
               </td>

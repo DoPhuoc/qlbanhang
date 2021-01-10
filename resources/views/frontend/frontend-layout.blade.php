@@ -7,7 +7,7 @@
     
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <title>Electro - @yield('title')</title>
+    <title>Bán hàng -@yield('title')</title>
 
     <link rel="icon" type="image/png" href="images/favicon.png">
     <!-- Web Font -->

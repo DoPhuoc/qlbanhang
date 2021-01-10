@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="card">
-    <h5 class="card-header">Sửa danh mục </h5>
+    <h5 class="card-header">Sửa phí ship </h5>
     <div class="card-body">
       <form method="post" action="">
  
@@ -13,8 +13,8 @@
         </div>
 
         <div class="form-group">
-          <label for="summary" class="col-form-label">Mô tả</label>
-          <textarea class="form-control" id="summary" name="summary"></textarea>
+          <label for="summary" class="col-form-label">giá</label>
+          <input id="price" type="number" name="price" placeholder="Enter price"  value="{{old('price')}}" class="form-control">
      
         </div>
 
@@ -38,35 +38,3 @@
 
 @endsection
 
-@push('styles')
-<link rel="stylesheet" href="{{asset('backend/summernote/summernote.min.css')}}">
-@endpush
-@push('scripts')
-<script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
-<script src="{{asset('backend/summernote/summernote.min.js')}}"></script>
-<script>
-    
-
-    $(document).ready(function() {
-      $('#summary').summernote({
-        placeholder: "Write short description.....",
-          tabsize: 2,
-          height: 120
-      });
-    });
-</script>
-
-<script>
-  $('#is_parent').change(function(){
-    var is_checked=$('#is_parent').prop('checked');
-    // alert(is_checked);
-    if(is_checked){
-      $('#parent_cat_div').addClass('d-none');
-      $('#parent_cat_div').val('');
-    }
-    else{
-      $('#parent_cat_div').removeClass('d-none');
-    }
-  })
-</script>
-@endpush

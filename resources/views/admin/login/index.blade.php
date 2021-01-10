@@ -32,53 +32,55 @@
             <div class="card o-hidden border-0 shadow-lg my-5">
                 <div class="card-body p-0">
                     <!-- Nested Row within Card Body -->
-                    <div class="row">
-                        <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                        <div class="col-lg-6">
-                            <div class="p-5">
-                                <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
-                                </div>
-
-                                @if ($errors->any())
-                                    <div class="alert alert-danger">
-                                        <ul>
-                                            @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
+              
+                                <div class="row">
+                                    <div class="col-lg-4 d-none d-lg-block "><img src="{{asset('uploads/images/banners/fire.jpg')}}"></div>
+                                    <div class="col-lg-8">
+                                      <div class="p-5">
+                                        <div class="text-center">
+                                          <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                        </div>
+                                        @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
+    
+                                    @if(!empty($msgErr))
+                                        <div class="alert alert-danger">
+                                            <p>{{$msgErr}}</p>
+                                        </div>
+                                    @endif
+                                        <form class="user"  method="POST" action="{{ route('admin.login.post')}}">
+                                          @csrf
+                                          <div class="form-group">
+                                            <input type="text" class="form-control form-control-user @error('email') is-invalid @enderror" name="username" value="{{ old('email') }}" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter username..."  required autocomplete="email" autofocus>
+                                            
+                                          </div>
+                                          <div class="form-group">
+                                            <input type="password" class="form-control form-control-user @error('password') is-invalid @enderror" id="exampleInputPassword" placeholder="Password"  name="password" required autocomplete="current-password">
+                                         
+                                          
+                                          </div>
+                                          <div class="form-group">
+                                          
+                                          </div>
+                                          <button type="submit" class="btn btn-primary btn-user btn-block">
+                                            Login
+                                          </button>
+                                        </form>
+                                        <hr>
+                                         
+                                   
+                                      </div>
                                     </div>
-                                @endif
-
-                                @if(!empty($msgErr))
-                                    <div class="alert alert-danger">
-                                        <p>{{$msgErr}}</p>
-                                    </div>
-                                @endif
-
-                                <form class="users" method="post" action="{{ route('admin.login.post')}}">
-                                    @csrf                       
-                                    <div class="form-group">
-                                        <input type="text" class="form-control form-control-user" aria-describedby="emailHelp" placeholder="Enter username..." name="username">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" class="form-control form-control-user" placeholder="Password" name="password">
-                                    </div>
-
-                                    <button type="submit" class="btn btn-primary btn-user btn-block">
-                                        Login
-                                    </button>
-                                    <hr>
-                                    <a href="index.html" class="btn btn-google btn-user btn-block">
-                                        <i class="fab fa-google fa-fw"></i> Login with Google
-                                    </a>
-                                    <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                        <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                                    </a>
-                                </form>
+                                  </div>
                             </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
 

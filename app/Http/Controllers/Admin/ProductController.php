@@ -15,5 +15,8 @@ class ProductController extends Controller
     {
         return view('admin.product.add-product');
     }
+    public function Editproduct(){
+        return view('admin.product.edit-product');
+    }
 
 }
