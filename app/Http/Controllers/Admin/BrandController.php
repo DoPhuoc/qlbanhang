@@ -9,6 +9,7 @@ use App\Http\Requests\StoreBrandPost;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\UpdateStoreBrandPost;
+use App\Model\Brand;
 class BrandController extends Controller
 {
     const LIMITED_ROW =5; 
@@ -17,6 +18,7 @@ class BrandController extends Controller
         $data =[];
         $data['listBrands'] = DB::table('brands')
         ->paginate(self::LIMITED_ROW);
+       
         /* $keyword = $request->q;
         $keyword = xss_clean($keyword);
         $data['message'] = $request->session()->get('brands');
@@ -64,7 +66,7 @@ class BrandController extends Controller
                         ->where('id', $id)
                         ->first();
         //$infoBrand = json_decode(json_encode($infoBrand), true);
-        //dd($infoBrand);
+    
         if($infoBrand){
             $message = $request->session()->get('brand');
             return view('admin.brand.edit', compact('id', 'infoBrand', 'message'));
@@ -81,7 +83,6 @@ class BrandController extends Controller
         $status= $request->status;
         $id = $request->hddIdBrand;
         $id = is_numeric($id) && $id > 0 ? $id : 0;
-
         $update = DB::table('brands')
                     ->where('id', $id)
                     ->update([

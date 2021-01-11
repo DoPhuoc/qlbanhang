@@ -15,6 +15,7 @@ class BannerController extends Controller
     public function index()
     {
         $banner=Banner::orderBy('id')->paginate(10);
+        //dd($banner);
         return view('admin.banner.index')->with('banners',$banner);
     }
     public  function addBanner(Request $request)
@@ -38,6 +39,7 @@ class BannerController extends Controller
                 $upload = $file->move('uploads/images/banners', $nameFile);
             }
         }
+        
         if($upload && $nameFile){
             // tien hanh insert du lieu vao db
             $dataInsert = [
@@ -100,6 +102,7 @@ class BannerController extends Controller
                     $uploadPhoto = $file->move('uploads/images/banners', $newPhoto);
                 }
             }
+            dd($newPhoto);
             if($uploadPhoto && $newPhoto){
                 // xoa anh cu
                 //unlink(public_path('uploads/images/brands') ."/".$logoBrand);
@@ -137,19 +140,15 @@ class BannerController extends Controller
         }
     } 
     
-    public function deleteBanner(Request $request)
+    public function deleteBanner(Banner $banner)
     {
-        $id = $request->id;
-        $id = is_numeric($id) && $id > 0 ? $id : 0;
-        $status = DB::table('banners')->where('id',$id);
-        dd($status);
-       /*  $status =$banner->delete();
-        if($status){
+        $banner->delete();
+        if($banner){
             request()->session()->flash('success','Banner successfully deleted');
         }
         else{
             request()->session()->flash('error','Error occurred while deleting banner');
         }
-        return redirect()->route('admin.banner');  */
+        return redirect()->route('admin.banner');  
     }
 }

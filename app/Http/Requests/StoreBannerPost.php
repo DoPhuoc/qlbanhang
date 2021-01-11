@@ -24,17 +24,19 @@ class StoreBannerPost extends FormRequest
     public function rules()
     {
         return [
-            'titleBanner'=> 'required|max:100',
+            'titleBanner'=> 'required|unique:banners,title|max:100|min:3',
             'photoBanner' => 'required|mimes:jpeg,bmp,png,jpg'
         ];
     }
     public function messages()
     {
         return [
-            'titleBanner.required' => 'Ten banner khong duoc trong',
-            'titleBanner.max' => 'Ten banner khong vuot qua :max ky tu',
-            'photoBanner.required' => 'Nhap anh ',
-            'photoBanner.mimes' => 'Dinh dang banner la anh: jpeg,bmp,png,jpg'
+            'titleBanner.required' => 'Tên banner không được để trống',
+            'titleBanner.unique' => 'Tên banner đã tồn tại, vui lòng chọn tên khác',
+            'titleBanner.max' => 'Tên banner không vượt quá :max ký tự',
+            'titleBanner.min' => 'Tên banner phải nhiều hơn :min ký tự',
+            'photoBanner.required' => 'Trường này không được để trống',
+            'photoBanner.mimes' => 'Định dạng banner là ảnh: jpeg,bmp,png,jpg'
         ];
     }
 }

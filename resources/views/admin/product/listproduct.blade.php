@@ -38,13 +38,11 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Mã sản phẩm</th>
-                    <th width="15%">Tên sản phẩm </th>
-                    <th width="15%">Ảnh sản phẩm</th>
+                    <th>Tên sản phẩm </th>
+                    <th width="50%">Ảnh sản phẩm</th>
                     <th width="10%">Số lượng</th>
                     <th width="10%">Giá sản phẩm</th>
                     <th width="10%">Giảm giá</th>
-                    <th> Tình trạng</th>
                     <th width="10%">Trạng thái</th>
                     <th width="10%">Mô tả</th>
                     <th colspan="2" width="20%">Hành động</th>
@@ -52,38 +50,47 @@
             </thead>
             <tfoot>
                 <tr>
-                    <th width="5%">ID</th>
-                    <th>Mã sản phẩm</th>
-                    <th width="5%">Tên sản phẩm </th>
-                    <th width="5%">Ảnh sản phẩm</th>
+                    <th>ID</th>
+                    <th>Tên sản phẩm </th>
+                    <th width="50%">Ảnh sản phẩm</th>
                     <th width="10%">Số lượng</th>
                     <th width="10%">Giá sản phẩm</th>
                     <th width="10%">Giảm giá</th>
-                    <th>Tình trạng</th>
                     <th width="10%">Trạng thái</th>
                     <th width="10%">Mô tả</th>
                     <th colspan="2" width="20%">Hành động</th>
                 </tr>
             </tfoot>
-            <tr>
-                <td>1</td>
-                <td>FN-LCD-N</td>
-                <td>ĐẦU BÁO NHIỆT ATJ-EA</td>
+           
+                @foreach($products as $product) 
+                <tr>
+                <td>{{$product->id}}</td>
+                <td>{{$product->name_product}}</td>
                 <td>
-                    <img src="./img/product01.png"></img>
+                    <img class="img-fluid zoom " 
+                    style="max-width:100%" 
+                    src="{{asset('uploads/images/products')}}/{{$product->image}}">
                 </td>
-                <td>100.000VNĐ</td>
-                <td>10</td>
-                <td>10%</td>
-                <td>Mặc định</td>
-                <td>Hoạt động</td>
-                <td>Sản phẩm hãn abcxyz</td>
+                <td>
+                    {{$product->quantity}}
+                </td>
+                <td>{{number_format($product->price).''.'VNĐ'}}</td>
+                <td>{{$product->sale_off}}</td>
+                <td>
+                    @if($product->status=='1')
+                    <span class="badge badge-success">Hoạt động</span>
+                    @else
+                    <span class="badge badge-warning">Không hoạt động</span>
+                    @endif
+                </td>
+                <td>{{$product->description}}</td>
                 <td>
                   <a class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" href="{{route('admin.edit.product',['slug','id'])}}" data-placement="bottom"><i class="fas fa-edit"></i></a>
                   <button class="btn btn-danger btn-sm dltBtn" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
           
                 </td>
-           
+            </tr>
+            @endforeach
         </table>
        
     </div>
@@ -91,3 +98,15 @@
 </div>
 
 @endsection
+@push('stylesheets')
+  <style>
+
+    .zoom {
+      transition: transform .2s; /* Animation */
+    }
+
+    .zoom:hover {
+      transform: scale(3.2);
+    }
+  </style>
+@endpush

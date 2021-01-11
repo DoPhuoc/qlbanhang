@@ -42,14 +42,14 @@ Route::group([
     Route::post('/add-banner','BannerController@handleBanner')->name('handle.add.banner');
     Route::get('/banner/{slug}~{id}','BannerController@editBanner')->name('edit.banner');
     Route::post('/banner/handle-edit/{id}','BannerController@handleEditBanner')->name('handle.edit.banner');
-    Route::post('/banner/delete-brand','BannerController@deleteBanner')->name('delete.banner');
+    Route::post('/banner/delete-banner','BannerController@deleteBanner')->name('delete.banner');
 
     /*Category*/
     Route::get('/category','CategoryController@index')->name('category');
     Route::get('/add-category','CategoryController@addCategory')->name('add.category');
     Route::post('/add-category','CategoryController@handleCategory')->name('handle.add.category');
     Route::get('/category/{slug}~{id}','CategoryController@editCategory')->name('edit.category');
-    Route::post('/category/handle-edit/{id}','CategoryController@handleEditCategory')->name('handle.edit.category');
+    Route::post('/category/handle-edit','CategoryController@handleEditCategory')->name('handle.edit.category');
     Route::post('/category/delete-category','CategoryController@deleteCaegory')->name('delete.category');
 
     /*Shipping*/

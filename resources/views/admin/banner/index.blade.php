@@ -10,6 +10,20 @@
      <h6 class="m-0 font-weight-bold text-primary float-left">Danh sách  Banner</h6>
      <a href="{{route('admin.add.banner')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add Banner</a>
    </div>
+   @if(session('success'))
+   <div class="alert alert-success alert-dismissable fade show">
+          <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+          {{session('success')}}
+      </div>
+  @endif
+
+
+  @if(session('error'))
+      <div class="alert alert-danger alert-dismissable fade show">
+          <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+          {{session('error')}}
+      </div>
+  @endif
    <div class="card-body">
      <div class="table-responsive">
        <table class="table table-bordered" id="banner-dataTable" width="100%" cellspacing="0">
@@ -48,10 +62,7 @@
                     </td>
                     <td>
                       <a href="{{route('admin.edit.banner',['slug' => $banner->slug, 'id' => $banner->id])}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
-                      <form method="POST" action="{{route('admin.delete.banner',[$banner->id])}}">
-                        @csrf 
-                        <button class="btn btn-danger btn-sm dltBtn" data-id={{$banner->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
-                      </form>
+                      <button class="btn btn-danger btn-sm "  style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
                     </td>
                 </tr>  
             @endforeach

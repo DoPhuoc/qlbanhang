@@ -29,7 +29,7 @@ class UpdateStoreBannerPost extends FormRequest
         $id = $request->id;
         $id = is_numeric($id) && $id > 0 ? $id : 0;
         return [
-            'titleBanner' => 'required|unique:brands,name,'.$id,
+            'titleBanner' => 'required|unique:banners,title|max:100'.$id,
             'statusBanner' => 'required'
         ];
     }
@@ -39,6 +39,7 @@ class UpdateStoreBannerPost extends FormRequest
         return [
             'titleBanner.required' => 'Ten thuong hieu khong duoc trong',
             'titleBanner.unique' => 'Ten thuong hieu da ton tai, vui long chon ten khac',
+            'titleBanner.max' => 'Tên banner không vượt quá :max ký tự',
             'statusBanner.required' => 'Vui long chon trang thai thuong hieu',
         ];
     }

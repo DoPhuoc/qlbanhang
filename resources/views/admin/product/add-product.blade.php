@@ -4,110 +4,106 @@
 <div class="card">
     <h5 class="card-header">Thêm sản phẩm</h5>
     <div class="card-body">
-      <form method="post" action="">
+      <form method="post" action="{{ route('admin.handle.add.product')}}" enctype="multipart/form-data">
+        @csrf
         <div class="form-group">
-          <label for="inputTitle" class="col-form-label">Tên sản phẩm  <span class="text-danger">*</span></label>
-          <input id="inputTitle" type="text" name="title" placeholder="Enter title"  value="" class="form-control">   
+          <label for="product_id" class="col-form-label">Tên sản phẩm  <span class="text-danger">*</span></label>
+          <input id="product_id" type="text" name="product_id" placeholder="Enter title"  value="" class="form-control">   
+          @error('product_id')
+          <span class="text-danger">{{ $message }}</span>
+          @enderror
         </div>
         <div class="form-group">
-          <label for="inputTitle" class="col-form-label">Mã sản phẩm  <span class="text-danger">*</span></label>
-          <input id="inputTitle" type="text" name="title" placeholder="Enter title"  value="" class="form-control">   
+          <label for="nameProduct" class="col-form-label">Tên sản phẩm  <span class="text-danger">*</span></label>
+          <input id="nameProduct" type="text" name="nameProduct" placeholder="Enter title"  value="" class="form-control">   
+          @error('nameProduct')
+          <span class="text-danger">{{ $message }}</span>
+          @enderror
         </div>
-
         <div class="form-group">
-          <label for="summary" class="col-form-label">Tiêu đề<span class="text-danger">*</span></label>
-          <textarea class="form-control" id="summary" name="summary"></textarea>
-       
+          <label for="desProduct" class="col-form-label">Mô tả</label>
+          <textarea class="form-control" id="description" name="desProduct"></textarea>
+          @error('desProduct')
+          <span class="text-danger">{{ $message }}</span>
+          @enderror
         </div>
-
         <div class="form-group">
-    
-          <label for="description" class="col-form-label">Mô tả</label>
-          <textarea class="form-control" id="description" name="description"></textarea>
-      
-        </div>
-
-
-
-        <div class="form-group">
-          <label for="cat_id">Tên danh mục <span class="text-danger">*</span></label>
-          <select name="cat_id" id="cat_id" class="form-control">
+          <label for="categoryProduct">Tên danh mục <span class="text-danger">*</span></label>
+          <select name="categoryProduct" id="categoryProduct" class="form-control">
               <option value="">--Select any category--</option>
-         
+              @foreach($category as $key => $item)
+              <option value="{{$item->id}}"> {{$item->name}} </option>
+              @endforeach
           </select>
+          @error('categoryProduct')
+          <span class="text-danger">{{ $message }}</span>
+          @enderror
         </div>
-
-       {{--   <div class="form-group d-none" id="child_cat_div">
-          <label for="child_cat_id">Sub Category</label>
-          <select name="child_cat_id" id="child_cat_id" class="form-control">
-              <option value="">--Select any category--</option>
-              {{-- @foreach($parent_cats as $key=>$parent_cat)
-                  <option value='{{$parent_cat->id}}'>{{$parent_cat->title}}</option>
-              @endforeach 
-          </select>
-        </div> --}}
-
         <div class="form-group">
-          <label for="price" class="col-form-label">Giá sản phẩm <span class="text-danger">*</span></label>
-          <input id="price" type="number" name="price" placeholder="Enter price"  value="" class="form-control">
-   
+          <label for="priceProduct" class="col-form-label">Giá sản phẩm <span class="text-danger">*</span></label>
+          <input id="priceProduct" type="number" name="priceProduct" placeholder="Enter price"  value="" class="form-control">
+          @error('priceProduct')
+          <span class="text-danger">{{ $message }}</span>
+          @enderror
         </div>
 
         <div class="form-group">
-          <label for="discount" class="col-form-label">Mã giảm giá(%)</label>
-          <input id="discount" type="number" name="discount" min="0" max="100" placeholder="Enter discount"  value="" class="form-control">
-  
+          <label for="saleOffProduct" class="col-form-label">Mã giảm giá(%)</label>
+          <input id="saleOffProduct" type="number" name="saleOffProduct" min="0" max="100" placeholder="Enter sale"  value="" class="form-control">
+          @error('saleOffProduct')
+          <span class="text-danger">{{ $message }}</span>
+          @enderror
         </div>
         <div class="form-group">
-          <label for="size">Size</label>
-          <select name="size[]" class="form-control selectpicker"  multiple data-live-search="true">
-              <option value="">--Select any size--</option>
-              <option value="S">Small (S)</option>
-              <option value="M">Medium (M)</option>
-              <option value="L">Large (L)</option>
-              <option value="XL">Extra Large (XL)</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="brand_id">Tên Thương hiệu</label>
-          {{-- {{$brands}} --}}
-
-          <select name="brand_id" class="form-control">
+          <label for="brandProduct">Tên Thương hiệu</label>
+          <select name="brandProduct" class="form-control">
               <option value="">--Select Brand--</option>
-          
+                @foreach($brands as $brand)
+                <option value="{{$brand->id}}">{{$brand->name}}</option>
+                @endforeach
           </select>
         </div>
-
         <div class="form-group">
-          <label for="condition">Tình trạng</label>
-          <select name="condition" class="form-control">
-              <option value="">--Select Condition--</option>
-              <option value="default">Default</option>
-              <option value="new">New</option>
-              <option value="hot">Hot</option>
+          <label for="hotProduct">Tình trạng (*)</label>
+          <select class="form-control" name="hotProduct" id="hotProduct">
+              <option value="0"> No </option>
+              <option value="1"> Yes </option>
           </select>
-        </div>
-
+      </div>
         <div class="form-group">
-          <label for="stock">Số lượng <span class="text-danger">*</span></label>
-          <input id="quantity" type="number" name="stock" min="0" placeholder="Enter quantity"  value="" class="form-control">
- 
+          <label for="qtyProduct">Số lượng <span class="text-danger">*</span></label>
+          <input id="qtyProduct" type="number" name="qtyProduct" min="0" placeholder="Enter quantity"  value="" class="form-control">
+          @error('qtyProduct')
+          <span class="text-danger">{{ $message }}</span>
+          @enderror
         </div>
-        <div class="form-group">
-      
-            <label for="imageProducts">Ảnh sản phẩm<span class="text-danger">*</span></label>
-            <div class="input-images" type="text" name="imageProducts" id="imageProducts"></div>
+        {{-- <div class="imput-field">
+            <label for="images"></label>
+            <div class="input-images" type="file" name="images" id="images"></div>
         </div>
-     
+        @error('images')
+        <span class="text-danger">{{ $message }}</span>
+        @enderror
+         --}}
+        <div class="row border p-2">
+          <div class="col">
+              <div class="input-field">
+                  <label for="imageProducts">Ảnh sản phẩm<span class="text-danger">*</span></label>
+                  <div class="input-images" 
+                  type="file" 
+                  name="imageProducts" 
+                  id="imageProducts"></div>
+              </div>
+          </div>
+        </div>
      
 
         
         <div class="form-group">
           <label for="status" class="col-form-label">Tình trạng <span class="text-danger">*</span></label>
           <select name="status" class="form-control">
-              <option value="active">Active</option>
-              <option value="inactive">Inactive</option>
+              <option value="1">Hoạt động</option>
+              <option value="0">Không hoạt động</option>
           </select>
          
         </div>
