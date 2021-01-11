@@ -24,5 +24,7 @@ Route::group([
     Route::get('/{slug}~{id}','ProductController@index')->name('detail');
     Route::get('/brand/{slug}','BrandController@index')->name('brand');
     Route::get('/cart', 'CartController@index')->name('cart');
-    Route::get('/check-out', 'CheckOutController@index')->name('check.out');
+    Route::get('/check-out', 'CheckoutController@index')->name('check.out');
+    Route::get('/login', 'LoginController@index')->name('login');
+    Route::get('/register', 'RegisterController@index')->name('register');
 });

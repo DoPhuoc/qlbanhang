@@ -42,7 +42,7 @@
     <link rel="stylesheet" href="{{asset('frontend/css/reset.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/responsive.css')}}">
-
+    @stack('stylesheets')
 </head>
 <body>
 @include('frontend.commons.header')

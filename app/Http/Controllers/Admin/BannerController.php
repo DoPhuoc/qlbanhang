@@ -102,7 +102,7 @@ class BannerController extends Controller
                     $uploadPhoto = $file->move('uploads/images/banners', $newPhoto);
                 }
             }
-            dd($newPhoto);
+            
             if($uploadPhoto && $newPhoto){
                 // xoa anh cu
                 //unlink(public_path('uploads/images/brands') ."/".$logoBrand);
