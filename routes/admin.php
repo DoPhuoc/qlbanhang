@@ -32,8 +32,8 @@ Route::group([
     Route::get('/product','ProductController@index')->name('list.product');
     Route::get('/add-product', 'ProductController@Addproduct')->name('add.product');
     Route::post('/add-product', 'ProductController@handleAddproduct')->name('handle.add.product');
-    Route::get('/product/{slug}~{id}', 'ProductController@Editproduct')->name('edit.product');
-    Route::post('/product/handle-edit/{id}', 'ProductController@handleEditproduct')->name('handle.edit.product');
+    Route::get('/product/{id}', 'ProductController@Editproduct')->name('edit.product');
+    Route::post('/edit-product', 'ProductController@handleEditproduct')->name('handle.edit.product');
 
 
     /*Banner*/
@@ -42,7 +42,7 @@ Route::group([
     Route::post('/add-banner','BannerController@handleBanner')->name('handle.add.banner');
     Route::get('/banner/{slug}~{id}','BannerController@editBanner')->name('edit.banner');
     Route::post('/banner/handle-edit/{id}','BannerController@handleEditBanner')->name('handle.edit.banner');
-    Route::post('/banner/delete-banner','BannerController@deleteBanner')->name('delete.banner');
+    Route::get('/banner/delete-banner/{id}','BannerController@deleteBanner')->name('delete.banner');
 
     /*Category*/
     Route::get('/category','CategoryController@index')->name('category');
@@ -79,10 +79,10 @@ Route::group([
     /*PostCategory*/
     Route::get('/postCategory','PostCategoryController@index')->name('postCategory');
     Route::get('/add-postCategory','PostCategoryController@addPostCategory')->name('add.postCategory');
-    Route::post('/add-postCategory','PostCategory@handleAddPostCategory')->name('handle.add.postCategory');
-    Route::get('/postCategory/{slug}~{id}','PostCategory@editPostCategory')->name('edit.postCategory');
-    Route::post('/postCategory/handle-edit/{id}','PostCategory@handleEditPostCategory')->name('handle.edit.postCategory');
-    Route::post('/postCategory/delete-post','PostCategory@deletePostCategory')->name('delete.postCategory');
+    Route::post('/add-postCategory','PostCategoryController@handleAddPostCategory')->name('handle.add.postCategory');
+    Route::get('/postCategory/{id}','PostCategoryController@editPostCategory')->name('edit.postCategory');
+    Route::post('/postCategory/handle-edit','PostCategoryController@handleEditPostCategory')->name('handle.edit.postCategory');
+    Route::post('/postCategory/delete-post','PostCategoryController@deletePostCategory')->name('delete.postCategory');
 
     /*Order*/
     Route::get('/order','OrderController@index')->name('order');

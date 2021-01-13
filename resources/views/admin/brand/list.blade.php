@@ -14,7 +14,7 @@
                             <input type="text" class="form-control bg-light border small js-keyword-brand"
                                 placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" value="">
                             <div class="input-group-append">
-                                <button class="btn btn-primary js-search-brand" type="button">
+                                <button class="btn btn-primary js-search-brand" type="button" value="">
                                     <i class="fas fa-search fa-sm"></i>
                                 </button>
                             </div>
@@ -114,7 +114,7 @@
 @push('javascripts')
   <script type="text/javascript">
     var urlAjax = "{{ route('admin.delete.brand') }}";
-    //var urlSearch = "{{ route('admin.brand') }}";
+   
 </script>
     <script type="text/javascript" src="{{ asset('backend/js/admin-brands.js') }}"></script>
 

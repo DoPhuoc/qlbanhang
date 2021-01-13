@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 class CategoryController extends Controller
 {
     public function index(){
-        $categories= Categories::orderBy('id')->paginate(5);
+        $categories= Categories::orderBy('id')->paginate(3);
         return view('admin.category.list',compact('categories'));
     }
     public function addCategory(){
@@ -20,7 +20,7 @@ class CategoryController extends Controller
         return view('admin.category.add');
     }
     public function handleCategory(StoreCategoriesPost $request){
-        return $request->all();
+        //return $request->all();
 
         $name = $request->nameCate;
         $slug = Str::slug($name, '-');
@@ -41,6 +41,7 @@ class CategoryController extends Controller
         }
         return redirect(route('admin.category'));
     }
+    
     public function editCategory($slug,$id){
         $categories = DB::table('categories')
                         ->where('id', $id)
@@ -52,7 +53,7 @@ class CategoryController extends Controller
         }
     }
     public function handleEditCategory(EditCategories $request ){
-        return $request->all();
+        //return $request->all();
         $id = $request->id;
         $id = is_numeric($id) && $id > 0 ? $id : 0;
         $name = $request->nameCate;
@@ -65,16 +66,16 @@ class CategoryController extends Controller
                         'name' => $name,
                         'slug' => $slug,
                         'description' => $description,
-                        'status' => 1,
+                        'status' => $status,
                         'created_at' => date('Y-m-d H:i:s'),
                         'updated_at' => null
                     ]);
         
         if($update){
-            $request->session()->flash('success', 'Add success');
+            $request->session()->flash('success', 'Sửa thành công');
           
         } else {
-            $request->session()->flash('error', 'Add Fail');
+            $request->session()->flash('error', 'Sửa thất bại');
             
         }
         return redirect(route('admin.category'));

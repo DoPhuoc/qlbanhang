@@ -4,8 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
-
-class UpdateStoreBannerPost extends FormRequest
+class UpdateStorePostCategory extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -17,7 +16,7 @@ class UpdateStoreBannerPost extends FormRequest
         return true;
     }
 
-    /**
+     /**
      * Get the validation rules that apply to the request.
      *
      * @param Request $request
@@ -26,22 +25,19 @@ class UpdateStoreBannerPost extends FormRequest
      */
     public function rules(Request $request)
     {
-        $id = $request->id;
+        $id = $request->hddIDCategory;
         $id = is_numeric($id) && $id > 0 ? $id : 0;
         return [
-            'titleBanner' => 'required|max:100|unique:banners,title,'.$id,
-            'statusBanner' => 'required'
+            'nameCate' => 'required|unique:post_categories,title,'.$id,
+            'descCate' => 'required'
         ];
     }
-
     public function messages()
     {
         return [
-            'titleBanner.required' => 'Ten thuong hieu khong duoc trong',
-            'titleBanner.unique' => 'Ten thuong hieu da ton tai, vui long chon ten khac',
-            'titleBanner.max' => 'Tên banner không vượt quá :max ký tự',
-            'statusBanner.required' => 'Vui long chon trang thai thuong hieu',
+            'nameCate.required' =>'Tên danh mục không được để trống',
+            'nameCate.unique' => 'Ten danh muc bai viet da ton tai, vui long chon ten khac',
+            'descCate.required'=>"Trường này không được để trông",
         ];
     }
-
 }

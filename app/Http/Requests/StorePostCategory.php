@@ -3,8 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Request;
-class EditCategories extends FormRequest
+
+class StorePostCategory extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,13 +21,11 @@ class EditCategories extends FormRequest
      *
      * @return array
      */
-    public function rules(Request $request )
+    public function rules()
     {
-        $id = $request->id;
-        $id = is_numeric($id) && $id > 0 ? $id : 0;
         return [
-            'nameCate' => 'required|max:100|unique:categories,name,'.$id,
-            'descCate' => 'required',
+            'nameCate' => 'required|max:100|unique:post_categories,title',
+            'descCate' => 'required'
         ];
     }
     public function messages()
@@ -35,7 +33,7 @@ class EditCategories extends FormRequest
         return [
             'nameCate.required' => 'Tên danh mục không được để trống',
             'nameCate.max' => 'Tên danh mục không lớn hơn :max ký tự',
-            'nameCate.unique' => 'Ten danh mục đã tồn tại, vui lòng nhập lại ',
+            'nameCate.unique' => 'Ten danh mục đã tồn tại',
             'descCate.required'=>"Trường này không được để trông",
         ];
     }

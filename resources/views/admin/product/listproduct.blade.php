@@ -38,7 +38,7 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Tên sản phẩm </th>
+                    <th width="5%">Tên sản phẩm </th>
                     <th width="50%">Ảnh sản phẩm</th>
                     <th width="10%">Số lượng</th>
                     <th width="10%">Giá sản phẩm</th>
@@ -52,7 +52,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Tên sản phẩm </th>
-                    <th width="50%">Ảnh sản phẩm</th>
+                    <th width="5">Ảnh sản phẩm</th>
                     <th width="10%">Số lượng</th>
                     <th width="10%">Giá sản phẩm</th>
                     <th width="10%">Giảm giá</th>
@@ -85,7 +85,7 @@
                 </td>
                 <td>{{$product->description}}</td>
                 <td>
-                  <a class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" href="{{route('admin.edit.product',['slug','id'])}}" data-placement="bottom"><i class="fas fa-edit"></i></a>
+                <a class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" href="{{route('admin.edit.product',['id' => $product->id])}}" data-placement="bottom"><i class="fas fa-edit"></i></a>
                   <button class="btn btn-danger btn-sm dltBtn" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
           
                 </td>

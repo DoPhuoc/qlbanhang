@@ -4,7 +4,20 @@
  <div class="card shadow mb-4">
      <div class="row">
          <div class="col-md-12">
-       
+          @if(session('success'))
+   <div class="alert alert-success alert-dismissable fade show">
+          <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+          {{session('success')}}
+      </div>
+  @endif
+
+
+  @if(session('error'))
+      <div class="alert alert-danger alert-dismissable fade show">
+          <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+          {{session('error')}}
+      </div>
+  @endif
          </div>
      </div>
     <div class="card-header py-3">
@@ -19,7 +32,8 @@
               <th>STT</th>
               <th>Tên danh mục</th>
               <th>Mô tả</th>
-              <th>Hoạt động</th>
+              <th>Trạng thai</th>
+              <th>Hành động</th>
             </tr>
           </thead>
           <tfoot>
@@ -27,23 +41,38 @@
               <th>STT</th>
               <th>Tên danh mục</th>
               <th>Mô tả</th>
-              <th>Hoạt động</th>    
+              <th>Trạng thái</th>
+              <th>Hành động</th>
             </tr>
           </tfoot>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>Báo và chữa cháy HOCHIKI</td>
-              <td>
-                  Bán các loại sản phẩm hochiki 
-              </td>
-              <td>
-                <a class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" href="{{route('admin.edit.postCategory',['slug','id'])}}" data-placement="bottom"><i class="fas fa-edit"></i></a>
-                <button class="btn btn-danger btn-sm dltBtn" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
-        
-              </td>
-          </tr>  
-           
+          <tbody> 
+          @foreach($postCategory as $key => $item) 
+          <tr>
+          <td>{{$item->id}}</td>
+          <td>   
+            {{ $item->title }}
+          </td>
+          <td>
+            {!! $item->description !!}
+          </td>
+          <td>
+            @if($item->status=='1')
+            <span class="badge badge-success">Hoạt động</span>
+            @else
+            <span class="badge badge-warning">Không hoạt động</span>
+            @endif
+          </td>
+          <td>
+            <a class="btn btn-primary btn-sm float-left mr-1" 
+            style="height:30px; width:30px;border-radius:50%" 
+            data-toggle="tooltip" title="edit"
+             href="{{route('admin.edit.postCategory',[ 'id' => $item->id])}}" data-placement="bottom"><i class="fas fa-edit"></i></a>
+            
+            <button class="btn btn-danger btn-sm dltBtn" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
+    
+          </td>
+        </tr>
+          @endforeach
           </tbody>
         </table>
         <span style="float:right"></span>

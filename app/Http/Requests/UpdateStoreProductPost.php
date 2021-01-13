@@ -3,8 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
-class StoreProductPost extends FormRequest
+use Illuminate\Http\Request;
+class UpdateStoreProductPost extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,17 +21,18 @@ class StoreProductPost extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(Request $request)
     {
+        $id = $request->id;
+        $id = is_numeric($id) && $id > 0 ? $id : 0;
         return [
-            'product_id' =>'required|unique:products,product_id|numeric',
+            'product_id' =>'|numeric|required|unique:products,product_id,' .$id,
             'nameProduct' => 'required|max:180',
             'priceProduct' => 'required',
             'qtyProduct' => 'required|numeric',
             'categoryProduct' => 'required|numeric',
             'brandProduct' => 'required|numeric',
             'images' => 'required',
-            
         ];
     }
     public function messages()

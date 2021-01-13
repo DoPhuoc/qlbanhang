@@ -4,8 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
-
-class UpdateStoreBannerPost extends FormRequest
+class UpdateStoreTagPost extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -20,8 +19,6 @@ class UpdateStoreBannerPost extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @param Request $request
-     *
      * @return array
      */
     public function rules(Request $request)
@@ -29,19 +26,18 @@ class UpdateStoreBannerPost extends FormRequest
         $id = $request->id;
         $id = is_numeric($id) && $id > 0 ? $id : 0;
         return [
-            'titleBanner' => 'required|max:100|unique:banners,title,'.$id,
-            'statusBanner' => 'required'
+            'titleTag' => 'required|max:100|unique:tags,title,'.$id,
+            'descTag' => 'required'
         ];
     }
-
     public function messages()
     {
         return [
-            'titleBanner.required' => 'Ten thuong hieu khong duoc trong',
-            'titleBanner.unique' => 'Ten thuong hieu da ton tai, vui long chon ten khac',
-            'titleBanner.max' => 'Tên banner không vượt quá :max ký tự',
-            'statusBanner.required' => 'Vui long chon trang thai thuong hieu',
+            'titleTag.required' => 'Tên tag không được để trống',
+            'titleTag.max' => 'Tên tag không lớn hơn :max ký tự',
+            'titleTag.unique' => 'Tên Tag đã tồn tại',
+            'descTag.required'=>"Trường này không được để trống",
         ];
     }
-
+    
 }

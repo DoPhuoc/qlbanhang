@@ -39,12 +39,12 @@
         <div class="carousel-inner" role="listbox">
             @foreach($newBanner as $key=>$banner)
                 <div class="carousel-item  {{(($key==0)? 'active' : '')}}">
-                    <img class="first-slide" src="{{asset('uploads/images/banners')}}/{{$banner->photo}}" alt="First slide">
-                    <div class="carousel-caption d-none d-md-block text-left">
+                    <img class="first-slide" src="{{asset('uploads/images/banners')}}/{{$banner->photo}}" style="width:100%"; alt="First slide">
+                  {{--   <div class="carousel-caption d-none d-md-block text-left">
                         <h1 class="wow fadeInDown">{{$banner->title}}</h1>
                         <p>{!! html_entity_decode($banner->description) !!}</p>
                         <a class="btn btn-lg ws-btn wow fadeInUpBig" href="" role="button">Shop Now<i class="far fa-arrow-alt-circle-right"></i></i></a>
-                    </div>
+                    </div> --}}
                 </div>  
             @endforeach   
         </div>
@@ -204,6 +204,7 @@
                     </div>
                 </div>
                 <div class="row">
+                @if(count($newProduct)>0)
                     @foreach($newProduct as $key => $item)
                     <div class="col-lg-4 col-md-6 col-12">
                          
@@ -239,6 +240,7 @@
                         
                     </div>
                     @endforeach
+                @endif
                  
                 </div>
             </div>
@@ -260,14 +262,17 @@
         #Gslider .carousel-inner {
         background: #000000;
         color:black;
+
         }
 
         #Gslider .carousel-inner{
         height: 550px;
+        position: relative;
+        width: 100%;
+
         }
         #Gslider .carousel-inner img{
             
-            width: 100% ;
             opacity: .8;
            
         }
