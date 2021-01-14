@@ -22,7 +22,7 @@
 <!-- Shop Login -->
 		<section class="shop login section">
 			<div class="container">
-				<div class="row"> 
+				<div class="row">
 					<div class="col-lg-6 offset-lg-3 col-12">
 						<div class="login-form">
 							<h2>Login</h2>
@@ -45,7 +45,7 @@
 									<div class="col-12">
 										<div class="form-group login-btn">
 											<button class="btn" type="submit">Login</button>
-											<a href="register.html" class="btn">Register</a>
+											<a href="{{ route('fr.auth.register') }}" class="btn">Register</a>
 										</div>
 										<div class="checkbox">
 											<label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox">Remember me</label>
