@@ -15,14 +15,15 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
 //    return view('welcome');
-//}); 
+//});
 Route::group([
     'as' => 'fr.',
     'namespace' => 'Frontend',
 ],function (){
     Route::get('/', 'FrontendController@index')->name('home');
-    Route::get('/{slug}~{id}','ProductController@index')->name('detail');
-    Route::get('/brand/{slug}','BrandController@index')->name('brand');
+    Route::get('/{slug-product}~{id}','ProductController@index')->name('product.detail');
+    Route::get('/{slug}~{id}','ProductController@getProductBelongCategory')->name('category.product');
+    Route::get('/brand/{slug}','BrandController@getProductBelongBrand')->name('brand.product');
     Route::get('/cart', 'CartController@index')->name('cart');
     Route::get('/check-out', 'CheckoutController@index')->name('check.out');
     Route::get('/login', 'LoginController@index')->name('login');

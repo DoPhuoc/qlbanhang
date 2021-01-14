@@ -22,6 +22,10 @@ class FrontendController extends Controller
                         ->offset(0)
                         ->limit(8)
                         ->get();
-        return view('frontend.home.index',compact('newProduct','newBanner'));    
-    }    
+        $categories = DB::table('categories')
+            ->get();
+        $brands = DB::table('brands')->where('status',0)
+            ->get();
+        return view('frontend.home.index',compact('newProduct','newBanner','categories','brands'));
+    }
 }

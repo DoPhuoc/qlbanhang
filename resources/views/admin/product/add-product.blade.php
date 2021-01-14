@@ -7,15 +7,22 @@
       <form method="post" action="{{ route('admin.handle.add.product')}}" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-          <label for="product_id" class="col-form-label">Tên sản phẩm  <span class="text-danger">*</span></label>
-          <input id="product_id" type="text" name="product_id" placeholder="Enter title"  value="" class="form-control">   
+          <label for="product_id" class="col-form-label">Mã sản phẩm <span class="text-danger">*</span></label>
+          <input id="product_id" type="text" name="product_id" placeholder="Enter title"  value="" class="form-control">
           @error('product_id')
           <span class="text-danger">{{ $message }}</span>
           @enderror
         </div>
+          <div class="form-group">
+              <label for="product_id" class="col-form-label">Mã danh mục <span class="text-danger">*</span></label>
+              <input id="category_id" type="text" name="category_id" placeholder="Enter Category_id"  value="" class="form-control">
+              @error('category_id')
+              <span class="text-danger">{{ $message }}</span>
+              @enderror
+          </div>
         <div class="form-group">
           <label for="nameProduct" class="col-form-label">Tên sản phẩm  <span class="text-danger">*</span></label>
-          <input id="nameProduct" type="text" name="nameProduct" placeholder="Enter title"  value="" class="form-control">   
+          <input id="nameProduct" type="text" name="nameProduct" placeholder="Enter title"  value="" class="form-control">
           @error('nameProduct')
           <span class="text-danger">{{ $message }}</span>
           @enderror
@@ -31,7 +38,7 @@
           <label for="categoryProduct">Tên danh mục <span class="text-danger">*</span></label>
           <select name="categoryProduct" id="categoryProduct" class="form-control">
               <option value="">--Select any category--</option>
-              @foreach($category as $key => $item)
+              @foreach($categories as $key => $item)
               <option value="{{$item->id}}"> {{$item->name}} </option>
               @endforeach
           </select>
@@ -89,23 +96,23 @@
           <div class="col">
               <div class="input-field">
                   <label for="imageProducts">Ảnh sản phẩm<span class="text-danger">*</span></label>
-                  <div class="input-images" 
-                  type="file" 
-                  name="imageProducts" 
+                  <div class="input-images"
+                  type="file"
+                  name="imageProducts"
                   id="imageProducts"></div>
               </div>
           </div>
         </div>
-     
 
-        
+
+
         <div class="form-group">
           <label for="status" class="col-form-label">Tình trạng <span class="text-danger">*</span></label>
           <select name="status" class="form-control">
               <option value="1">Hoạt động</option>
               <option value="0">Không hoạt động</option>
           </select>
-         
+
         </div>
         <div class="form-group mb-3">
           <button type="reset" class="btn btn-warning">Quay lại</button>

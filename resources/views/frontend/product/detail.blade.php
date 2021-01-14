@@ -19,11 +19,11 @@
     </div>
 </div>
 <!-- End Breadcrumbs -->
-        
+
 <!-- Shop Single -->
 <section class="shop single section">
             <div class="container">
-                <div class="row"> 
+                <div class="row">
                     <div class="col-12">
                         <div class="row">
                             <div class="col-lg-6 col-12">
@@ -70,7 +70,7 @@
                                     </div>
                                     <!--/ End Description -->
                                     <!-- Color -->
-                              
+
                                     <!--/ End Color -->
                                     <!-- Size -->
                                     <div class="size">
@@ -105,7 +105,7 @@
                                             <!--/ End Input Order -->
                                         </div>
                                         <div class="add-to-cart">
-                                            <a href="#" class="btn">Add to cart</a>
+                                            <a href="{{route('fr.cart')}}" class="btn">Add to cart</a>
                                             <a href="#" class="btn min"><i class="ti-heart"></i></a>
                                             <a href="#" class="btn min"><i class="fa fa-compress"></i></a>
                                         </div>
@@ -248,7 +248,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-lg-12 col-12">
-                                                                    <div class="form-group button5">	
+                                                                    <div class="form-group button5">
                                                                         <button type="submit" class="btn">Submit</button>
                                                                     </div>
                                                                 </div>

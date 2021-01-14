@@ -18,21 +18,23 @@ class ProductController extends Controller
     }
     public function Addproduct()
     {
-        $category = Categories::where('status',1)->get();
+        $categories = Categories::where('status',1)->get();
         //dd($category);
         $brands = Brands::where('status',1)->get();
         //dd($brands);
-        return view('admin.product.add-product',compact('category','brands'));
+        return view('admin.product.add-product',compact('categories','brands'));
     }
     public function handleAddproduct(Product $request)
     {
         $product_id = $request->product_id;
+        $category= $request->categoty_id;
+        $brand_id = $request->brandProduct;
         $nameProduct = $request->nameProduct;
         $slug = Str::slug($nameProduct, '-');
         $price = $request->priceProduct;
         //$price = trim(str_replace(',','', $price));
-        $quality = $request->qtyProduct;
-        $quality = is_numeric($quality) && $quality > 0 ? $quality: 1;
+        $quantity = $request->qtyProduct;
+        $quantity = is_numeric($quantity) && $quantity > 0 ? $quantity: 1;
         $saleOff = $request->saleOffProduct;
         $saleOff = is_numeric($saleOff) ? $saleOff : 0;
         $category = $request->categoryProduct;
@@ -51,6 +53,7 @@ class ProductController extends Controller
                 }
             }
         }
+
         $imageProduct = array_pop($arrImages);
         $dataInsert = [
             'product_id'=> $product_id,
@@ -61,25 +64,28 @@ class ProductController extends Controller
             'description'  =>$description,
             'image' => $imageProduct,
             'hot_product'=>$hotProduct,
-            'quantity' => $quality,
+            'quantity' => $quantity,
             'price' => $price,
             'status' => $status,
             'sale_off' => $saleOff,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => null
         ];
+
         $insertShoes = Products::create($dataInsert);
+
         if($insertShoes){
             $request->session()->flash('success', 'Them thanh cong');
+
             return redirect()->route('admin.list.product');
         } else {
             // loi - van o lai form add brand
             $request->session()->flash('error', 'Them that bai');
             return redirect()->route('admin.add.product');
-        } 
+        }
     }
     public function Editproduct(){
         return view('admin.product.edit-product');
     }
- 
+
 }

@@ -26,14 +26,14 @@ $(function () {
                         } else {
                             alert('Thao tac thanh cong');
                             window.location.reload(true);
-                        } 
+                        }
 
-                       
+
                     }
                 })
-            }
+           }
         }
     });
 
-  
+
 });

@@ -17,7 +17,7 @@
                     <!-- Top Right -->
                     <div class="right-content">
                         <ul class="list-main">
-           
+
                             <li><i class="ti-user"></i> <a href="#">My account</a></li>
                             <li><i class="ti-power-off"></i><a href="login.html#">Login</a></li>
                         </ul>
@@ -60,7 +60,7 @@
                                 <option>Category 01</option>
                                 <option>Category 02</option>
                                 <option>Category 03</option>
-                               
+
                             </select>
                             <form>
                                 <input name="search" placeholder="Search Products Here....." type="search">
@@ -75,7 +75,7 @@
                         <div class="sinlge-bar">
                             <a href="#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
                         </div>
-                        
+
                         <div class="sinlge-bar shopping">
                             <a href="#" class="single-icon"><i class="ti-bag"></i> <span class="total-count">2</span></a>
                             <!-- Shopping Item -->
@@ -145,13 +145,22 @@
                         <div class="menu-area">
                             <!-- Main Menu -->
                             <nav class="navbar navbar-expand-lg">
-                                <div class="navbar-collapse">	
-                                    <div class="nav-inner">	
+                                <div class="navbar-collapse">
+                                    <div class="nav-inner">
                                         <ul class="nav main-menu menu navbar-nav">
                                                 <li class="active"><a href="{{route('fr.home')}}">TRANG CHỦ</a></li>
-                                                <li><a href="{{route('fr.detail',['slug','id'])}}">SẢN PHẨM</a></li>												
-                                                <li><a href="#">BÀI VIẾT</a></li>
-                                            
+                                            <li><a href="#">DANH MỤC</a>
+
+                                                <ul class="dropdown">
+                                                    @foreach($categories as $category)
+                                                    <li><a href="{{ route('fr.category.product', [$category->slug,$category->id]) }}">{{$category->name}}</a></li>
+                                                    @endforeach
+                                                </ul>
+
+                                            </li>
+                                            </li>
+                                               <li><a href="#">BÀI VIẾT</a></li>
+
                                                 <li><a href="#">Shop<i class="ti-angle-down"></i><span class="new">New</span></a>
                                                     <ul class="dropdown">
                                                         <li><a href="shop-grid.html">Shop Grid</a></li>
@@ -159,14 +168,14 @@
                                                         <li><a href="checkout.html">Checkout</a></li>
                                                     </ul>
                                                 </li>
-                                                <li><a href="#">GIỚI THIỆU</a></li>									
-                                            
+                                                <li><a href="#">GIỚI THIỆU</a></li>
+
                                                 <li><a href="contact.html">ĐỊA CHỈ</a></li>
                                             </ul>
                                     </div>
                                 </div>
                             </nav>
-                            <!--/ End Main Menu -->	
+                            <!--/ End Main Menu -->
                         </div>
                     </div>
                 </div>

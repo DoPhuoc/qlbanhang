@@ -34,7 +34,7 @@ Route::group([
     Route::post('/add-product', 'ProductController@handleAddproduct')->name('handle.add.product');
     Route::get('/product/{slug}~{id}', 'ProductController@Editproduct')->name('edit.product');
     Route::post('/product/handle-edit/{id}', 'ProductController@handleEditproduct')->name('handle.edit.product');
-
+//    Route::post('brand/delete-brand', 'BrandController@deleteBrand')->name('delete.brand');
 
     /*Banner*/
     Route::get('/banner','BannerController@index')->name('banner');
@@ -67,7 +67,7 @@ Route::group([
     Route::get('/post/{slug}~{id}','PostController@editPost')->name('edit.post');
     Route::post('/post/handle-edit/{id}','PostController@handleEditPost')->name('handle.edit.post');
     Route::post('/post/delete-post','PostController@deletePost')->name('delete.post');
-    
+
     /*Tags*/
     Route::get('/tag','TagController@index')->name('tag');
     Route::get('/add-tag','TagController@addTag')->name('add.tag');
@@ -99,9 +99,9 @@ Route::group([
     Route::post('/review/delete-review','ReviewController@deleteTag')->name('delete.review');
 
     /*Coupon*/
-    
+
     /*Users*/
-    Route::get('/users','UsersController@index')->name('users');
+    Route::get('C','UsersController@index')->name('users');
     Route::get('/add-users','UsersController@addUsers')->name('add.users');
     Route::post('/add-users','UsersController@handleUsers')->name('handle.add.users');
     Route::get('/users/{slug}~{id}','UsersController@editUsers')->name('edit.users');

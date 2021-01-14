@@ -14,14 +14,14 @@
             @foreach($newBanner as $key => $item)
             <!-- Single Banner  -->
             <div class="col-lg-4 col-md-6 col-12">
-               
+
                 <div class="single-banner">
                     <img src="{{asset('uploads/images/banners')}}/{{$item->photo}}" alt="#">
                     <div class="content">
-           
+
                     </div>
                 </div>
-             
+
             </div>
             @endforeach
         </div>
@@ -45,8 +45,8 @@
                         <p>{!! html_entity_decode($banner->description) !!}</p>
                         <a class="btn btn-lg ws-btn wow fadeInUpBig" href="" role="button">Shop Now<i class="far fa-arrow-alt-circle-right"></i></i></a>
                     </div>
-                </div>  
-            @endforeach   
+                </div>
+            @endforeach
         </div>
         <a class="carousel-control-prev" href="#Gslider" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -60,7 +60,7 @@
 @endif
 <!-- End Small Banner -->
 
-		
+
 
 
 <!-- Product Style -->
@@ -71,17 +71,13 @@
                 <div class="shop-sidebar">
                         <!-- Single Widget -->
                         <div class="single-widget category">
-                            
+
                             <h3 class="title">DANH MỤC</h3>
+                            @foreach($categories as $category)
                             <ul class="categor-list">
-                                <li><a href="#">BÌNH CHỮA CHÁY</a></li>
-                                <li><a href="#">QUẦN ÁO</a></li>
-                                <li><a href="#">HỆ THỐNG CHỮA CHÁY</a></li>
-                                <li><a href="#">THIẾT BỊ HOCHIKI</a></li>
-                                <li><a href="#">THIẾT BỊ HOCHIKI</a></li>
-                                <li><a href="#">THIẾT BỊ HOCHIKI</a></li>
-                          
+                                <li><a href="{{route('fr.category.product',[$category->slug,$category->id])}}}">{{$category->name}}</a></li>
                             </ul>
+                            @endforeach
                         </div>
                         <!--/ End Single Widget -->
                         <!-- Shop By Price -->
@@ -97,7 +93,7 @@
                                         </div>
                                     </div>
                                 </div>
-                         
+
                             </div>
                             <!--/ End Shop By Price -->
                         <!-- Single Widget -->
@@ -153,7 +149,7 @@
                                 </div>
                             </div>
                             <!-- End Single Post -->
-                          
+
                             <!-- End Single Post -->
                         </div>
                         <!--/ End Single Widget -->
@@ -161,11 +157,9 @@
                         <div class="single-widget category">
                             <h3 class="title">Thương hiệu</h3>
                             <ul class="categor-list">
-                                <li><a href="#">Forever</a></li>
-                                <li><a href="#">giordano</a></li>
-                                <li><a href="#">abercrombie</a></li>
-                                <li><a href="#">ecko united</a></li>
-                                <li><a href="#">zara</a></li>
+                                @foreach($brands as $brand)
+                                <li><a href="{{route('fr.brand.product',$brand->slug)}}">{{$brand->name}}</a></li>
+                                @endforeach
                             </ul>
                         </div>
                         <!--/ End Single Widget -->
@@ -206,15 +200,15 @@
                 <div class="row">
                     @foreach($newProduct as $key => $item)
                     <div class="col-lg-4 col-md-6 col-12">
-                         
+
                         <div class="single-product">
                             <div class="product-img">
-                               
+
                                 <a href="product-details.html">
                                     <img class="default-img"  src="{{asset('uploads/images/products')}}/{{$item->image}}" alt="#">
                                     <img class="hover-img" src="{{asset('uploads/images/products')}}/{{$item->image}}" alt="#">
                                 </a>
-                              
+
                                 <div class="button-head">
                                     <div class="product-action">
                                         <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
@@ -233,19 +227,19 @@
                                     </span>
                                 </div>
                             </div>
-                            
+
 
                         </div>
-                        
+
                     </div>
                     @endforeach
-                 
+
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!--/ End Product Style 1  -->	
+<!--/ End Product Style 1  -->
 
 
 
@@ -266,10 +260,10 @@
         height: 550px;
         }
         #Gslider .carousel-inner img{
-            
+
             width: 100% ;
             opacity: .8;
-           
+
         }
 
         #Gslider .carousel-inner .carousel-caption {

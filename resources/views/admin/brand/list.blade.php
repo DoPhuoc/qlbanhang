@@ -6,11 +6,11 @@
                 <div class="col-md-4">
                     <h4 class="m-0 font-weight-bold text-primary float-left">Danh mục Thương hiệu</h4>
                 </div>
-    
+
                 <div class="col-md-4">
                     <form>
                         <div class="input-group">
-    
+
                             <input type="text" class="form-control bg-light border small js-keyword-brand"
                                 placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" value="">
                             <div class="input-group-append">
@@ -20,18 +20,18 @@
                             </div>
                         </div>
                     </form>
-    
+
                 </div>
                 <div class="col-md-4 ">
                     <a href="{{ route('admin.add.brand') }}"
                         class="d-none d-sm-inline-block btn btn-primary shadow-sm float-right" data-toggle="tooltip"
                         data-placement="bottom" title="Add User"><i
-                        class="fas fa-plus-circle fa-sm text-white-50"></i>  Thêm sản phẩm</a>
-                </div>
+                        class="fas fa-plus-circle fa-sm text-white-50"></i>  Thêm thương hiệu</a>
+             </div>
             </div>
         </div>
         <!--table-->
-      
+
 
         @if(session('success'))
         <div class="alert alert-success alert-dismissable fade show">
@@ -79,7 +79,7 @@
                             <td>{!! $item->description !!}</td>
                             <td>
                                {{--   {{ $item->status == 1 ? 'Hoạt động' : 'Không hoạt động' }}  --}}
-                            
+
                                 @if($item->status== 1)
                                 <span class="badge badge-success">Hoat dong</span>
                                 @else

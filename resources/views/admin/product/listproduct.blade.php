@@ -1,7 +1,7 @@
 @extends('admin.admin-layout')
 @section('content')
 <div class="card shadow mb-4">
-   
+
 
     <div class="card-header py-3">
         <div class="row">
@@ -38,6 +38,9 @@
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th>Mã sản phẩm</th>
+                    <th>Mã danh mục<th>
+                    <th>Mã thương hiệu</th>
                     <th>Tên sản phẩm </th>
                     <th width="50%">Ảnh sản phẩm</th>
                     <th width="10%">Số lượng</th>
@@ -51,6 +54,9 @@
             <tfoot>
                 <tr>
                     <th>ID</th>
+                    <th>Mã sản phẩm</th>
+                    <th>Mã danh mục<th>
+                    <th>Mã thương hiệu</th>
                     <th>Tên sản phẩm </th>
                     <th width="50%">Ảnh sản phẩm</th>
                     <th width="10%">Số lượng</th>
@@ -61,14 +67,16 @@
                     <th colspan="2" width="20%">Hành động</th>
                 </tr>
             </tfoot>
-           
-                @foreach($products as $product) 
+
+                @foreach($products as $product)
                 <tr>
-                <td>{{$product->id}}</td>
-                <td>{{$product->name_product}}</td>
+                    <td>{{$product->id}}</td>
+                    <td>{{$product->product_id}}</td>
+                    <td>{{$product->categories_id}}</td>
+                    <td>{{$product->brand_}}</td>
                 <td>
-                    <img class="img-fluid zoom " 
-                    style="max-width:100%" 
+                    <img class="img-fluid zoom "
+                    style="max-width:100%"
                     src="{{asset('uploads/images/products')}}/{{$product->image}}">
                 </td>
                 <td>
@@ -87,12 +95,12 @@
                 <td>
                   <a class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" href="{{route('admin.edit.product',['slug','id'])}}" data-placement="bottom"><i class="fas fa-edit"></i></a>
                   <button class="btn btn-danger btn-sm dltBtn" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
-          
+
                 </td>
             </tr>
             @endforeach
         </table>
-       
+
     </div>
 
 </div>
