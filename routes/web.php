@@ -19,13 +19,48 @@ use Illuminate\Support\Facades\Route;
 Route::group([
     'as' => 'fr.',
     'namespace' => 'Frontend',
-],function (){
+], function () {
+    Route::get('/category/{slug}~{id}', 'ProductController@getProductsBelongCategory')
+        ->name('category.product');
+    Route::get('/{slug}~{id}', 'ProductController@show')
+        ->name('product.show');
     Route::get('/', 'FrontendController@index')->name('home');
-    Route::get('/{slug-product}~{id}','ProductController@index')->name('product.detail');
-    Route::get('/{slug}~{id}','ProductController@getProductBelongCategory')->name('category.product');
-    Route::get('/brand/{slug}','BrandController@getProductBelongBrand')->name('brand.product');
-    Route::get('/cart', 'CartController@index')->name('cart');
+    Route::get('/brand/{slug}', 'BrandController@getProductBelongBrand')
+        ->name('brand.product');
+    Route::get('/bill', 'BillController@show')
+        ->name('bill');
+    Route::get('/bill/detail', 'BillController@showDetail')
+        ->name('bill.detail');
+    Route::get('/cart', 'CartController@index')
+        ->middleware('auth')
+        ->name('cart');
+    Route::post('/cart/add-product', 'CartController@addProduct')
+        ->middleware('auth')
+        ->name('cart.add_product');
+    Route::post('/cart/increase', 'CartController@increaseProduct')
+        ->middleware('auth')
+        ->name('cart.increase_product');
+    Route::post('/cart/decrease', 'CartController@decreaseProduct')
+        ->middleware('auth')
+        ->name('cart.decrease_product');
+    Route::delete('/cart/delete', 'CartController@deleteProduct')
+        ->middleware('auth')
+        ->name('cart.delete_product');
+    Route::post('/cart/checkout', 'CartController@checkout')
+        ->middleware('auth')
+        ->name('cart.checkout');
     Route::get('/check-out', 'CheckoutController@index')->name('check.out');
-    Route::get('/login', 'LoginController@index')->name('login');
     Route::get('/register', 'RegisterController@index')->name('register');
+    Route::group(['namespace' => 'Auth', 'as' => 'auth.'], function () {
+        Route::get('/login', 'LoginController@showLoginForm')
+            ->name('login');
+        Route::post('/login', 'LoginController@login')
+            ->name('login');
+        Route::get('/logout', 'LoginController@logout')
+            ->name('logout');
+        Route::get('/register', 'RegisterController@showRegistrationForm')
+            ->name('register');
+        Route::post('/register', 'RegisterController@register')
+            ->name('register');
+    });
 });

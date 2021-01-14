@@ -3,28 +3,27 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Model\Brands;
-use App\Model\Categories;
-use App\Model\Products;
+use App\Http\Requests\StoreProductRequest;
+use App\Model\Brand;
+use App\Model\Category;
+use App\Model\Product;
 use Illuminate\Support\Str;
-use App\Http\Requests\StoreProductPost as Product;
+use RealRashid\SweetAlert\Facades\Alert;
+
 class ProductController extends Controller
 {
     public function index()
     {
-        $products=Products::latest()->paginate(10);
-        return view('admin.product.listproduct')->with('products',$products);
+        $products=Product::latest()->paginate(10);
+        return view('admin.products.list')->with('products',$products);
     }
-    public function Addproduct()
+    public function create()
     {
-        $categories = Categories::where('status',1)->get();
-        //dd($category);
-        $brands = Brands::where('status',1)->get();
-        //dd($brands);
-        return view('admin.product.add-product',compact('categories','brands'));
+        $categories = Category::where('status',1)->get();
+        $brands = Brand::where('status',1)->get();
+        return view('admin.products.add',compact('categories','brands'));
     }
-    public function handleAddproduct(Product $request)
+    public function store(StoreProductRequest $request)
     {
         $product_id = $request->product_id;
         $category= $request->categoty_id;
@@ -40,7 +39,7 @@ class ProductController extends Controller
         $category = $request->categoryProduct;
         $brand = $request->brandProduct;
         $description= $request->desProduct;
-        $hotProduct = $request->hotProduct;
+        $hotProduct = $request->bestSell;
         $status = $request->status;
         $arrImages = [];
         if($request->hasFile('images')){
@@ -57,13 +56,13 @@ class ProductController extends Controller
         $imageProduct = array_pop($arrImages);
         $dataInsert = [
             'product_id'=> $product_id,
-            'categories_id' => $category,
-            'brands_id' => $brand,
-            'name_product' => $nameProduct,
-            'slug_product' => $slug,
+            'category_id' => $category,
+            'brand_id' => $brand,
+            'name' => $nameProduct,
+            'slug' => $slug,
             'description'  =>$description,
             'image' => $imageProduct,
-            'hot_product'=>$hotProduct,
+            'best_selling'=>$hotProduct,
             'quantity' => $quantity,
             'price' => $price,
             'status' => $status,
@@ -72,20 +71,18 @@ class ProductController extends Controller
             'updated_at' => null
         ];
 
-        $insertShoes = Products::create($dataInsert);
-
+        $insertShoes = Product::create($dataInsert);
         if($insertShoes){
-            $request->session()->flash('success', 'Them thanh cong');
-
+            Alert::success('Thêm thành công');
             return redirect()->route('admin.list.product');
         } else {
-            // loi - van o lai form add brand
-            $request->session()->flash('error', 'Them that bai');
+            Alert::error('Thêm thất bại');
             return redirect()->route('admin.add.product');
         }
     }
     public function Editproduct(){
-        return view('admin.product.edit-product');
+        return view('admin.products.edit-product');
     }
+
 
 }

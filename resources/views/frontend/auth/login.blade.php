@@ -22,30 +22,46 @@
 <!-- Shop Login -->
 		<section class="shop login section">
 			<div class="container">
-				<div class="row"> 
+				<div class="row">
 					<div class="col-lg-6 offset-lg-3 col-12">
 						<div class="login-form">
 							<h2>Login</h2>
 							<p>Please register in order to checkout more quickly</p>
 							<!-- Form -->
-							<form class="form" method="post" action="#">
+							<form class="form" method="post"
+                                  action="{{ route('fr.auth.login') }}">
+                                @csrf
 								<div class="row">
 									<div class="col-12">
 										<div class="form-group">
 											<label>Your Email<span>*</span></label>
-											<input type="email" name="email" placeholder="" required="required">
+											<input type="email"
+                                                   class="@error('email') is-invalid @enderror"
+                                                   name="email"
+                                                   placeholder=""
+                                                   required="required">
+                                            @error('email')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
 										</div>
 									</div>
 									<div class="col-12">
 										<div class="form-group">
 											<label>Your Password<span>*</span></label>
-											<input type="password" name="password" placeholder="" required="required">
+											<input type="password"
+                                                   name="password"
+                                                   class="@error('password') is-invalid @enderror"
+                                                   placeholder=""
+                                                   required="required">
+                                            @error('password')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
 										</div>
 									</div>
 									<div class="col-12">
 										<div class="form-group login-btn">
 											<button class="btn" type="submit">Login</button>
-											<a href="register.html" class="btn">Register</a>
+											<a href="{{ route('fr.auth.register') }}" class="btn">Register</a>
 										</div>
 										<div class="checkbox">
 											<label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox">Remember me</label>

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <title>Bán hàng -@yield('title')</title>
@@ -12,9 +12,9 @@
     <link rel="icon" type="image/png" href="images/favicon.png">
     <!-- Web Font -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
-    
+
     <!-- StyleSheet -->
-    
+
     <!-- Bootstrap -->
     <link rel="stylesheet" href="{{asset('frontend/css/bootstrap.css')}}">
     <!-- Magnific Popup -->
@@ -37,7 +37,7 @@
     <link rel="stylesheet" href="{{asset('frontend/css/slicknav.min.css')}}">
     <!-- Jquery Ui -->
     <link rel="stylesheet" href="{{asset('frontend/css/jquery-ui.css')}}">
-    
+
     <!-- Eshop StyleSheet -->
     <link rel="stylesheet" href="{{asset('frontend/css/reset.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
@@ -46,15 +46,12 @@
 </head>
 <body>
 @include('frontend.commons.header')
-
-
-
 @yield('content')
 
 @include('frontend.commons.newsletter')
 
 @include('frontend.commons.footer')
-
+@include('sweetalert::alert')
 <!-- jQuery Plugins -->
 <script src="{{asset('frontend/js/jquery.min.js')}}"></script>
 <script src="{{asset('frontend/js/jquery-migrate-3.0.0.js')}}"></script>
@@ -75,8 +72,8 @@
 <script src="{{asset('frontend/js/waypoints.min.js')}}"></script>
 <!-- Countdown JS -->
 <script src="{{asset('frontend/js/finalcountdown.min.js')}}"></script>
-<!-- Nice Select JS -->
-<script src="{{asset('frontend/js/nicesellect.js')}}"></script>
+{{--<!-- Nice Select JS -->--}}
+{{--<script src="{{asset('frontend/js/nicesellect.js')}}"></script>--}}
 <!-- Flex Slider JS -->
 <script src="{{asset('frontend/js/flex-slider.js')}}"></script>
 <!-- ScrollUp JS -->

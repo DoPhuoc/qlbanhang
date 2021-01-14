@@ -4,13 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreProductPost extends FormRequest
+class StoreProductRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
     public function authorize()
     {
         return true;
@@ -31,7 +26,7 @@ class StoreProductPost extends FormRequest
             'categoryProduct' => 'required|numeric',
             'brandProduct' => 'required|numeric',
             'images' => 'required',
-            
+
         ];
     }
     public function messages()
@@ -49,7 +44,6 @@ class StoreProductPost extends FormRequest
             'categoryProduct.numeric' => 'ID của danh mục phải là số',
             'brandProduct.required' => 'Hãy chọn thương hiệu sản phẩm',
             'images.required' => 'Vui lòng nhập ảnh sản phẩm',
-           
         ];
     }
 }

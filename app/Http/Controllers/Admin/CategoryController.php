@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Model\Categories;
+use App\Model\Category;
 use App\Http\Requests\StoreCategoriesPost;
 use App\Http\Requests\EditCategories;
 use Illuminate\Support\Str;
@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 class CategoryController extends Controller
 {
     public function index(){
-        $categories= Categories::orderBy('id')->paginate(5);
+        $categories= Category::orderBy('id')->paginate(5);
         return view('admin.category.list',compact('categories'));
     }
     public function addCategory(){
@@ -23,7 +23,7 @@ class CategoryController extends Controller
         $name = $request->nameCate;
         $slug = Str::slug($name, '-');
         $descCate= $request->descCate;
-        $dataInsert = Categories::create([
+        $dataInsert = Category::create([
             'name' => $name,
             'slug' => $slug,
             'description' => $descCate,

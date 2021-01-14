@@ -3,15 +3,34 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Model\Category;
+use App\Model\Product;
 
 class ProductController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view('frontend.product.detail');
     }
-    public function getProductBelongCategory(){
-        DB::table('products')->where('categories_id',id);
-        return view('admin.product.listproduct');
+
+    public function getProductsBelongCategory()
+    {
+        $products = Category::findOrFail(request()->id)->products;
+        return view(
+            'frontend.products.list',
+            [
+                'products' => $products
+            ]
+        );
+    }
+
+    public function show()
+    {
+        return view(
+        'frontend.products.show',
+        [
+            'product' => Product::findOrFail(request()->id)
+        ]
+    );
     }
 }
