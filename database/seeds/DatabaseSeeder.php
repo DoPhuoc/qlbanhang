@@ -7,7 +7,7 @@ class DatabaseSeeder extends Seeder
     /**
      * Seed the application's database.
      *
-     * @return void
+     * @return voidProductController
      */
     public function run()
     {

@@ -30,8 +30,8 @@ Route::group([
 
     /*Product*/
     Route::get('/product','ProductController@index')->name('list.product');
-    Route::get('/add-product', 'ProductController@Addproduct')->name('add.product');
-    Route::post('/add-product', 'ProductController@handleAddproduct')->name('handle.add.product');
+    Route::get('/add-product', 'ProductController@create')->name('add.product');
+    Route::post('/add-product', 'ProductController@store')->name('handle.add.product');
     Route::get('/product/{slug}~{id}', 'ProductController@Editproduct')->name('edit.product');
     Route::post('/product/handle-edit/{id}', 'ProductController@handleEditproduct')->name('handle.edit.product');
 //    Route::post('brand/delete-brand', 'BrandController@deleteBrand')->name('delete.brand');
@@ -79,10 +79,10 @@ Route::group([
     /*PostCategory*/
     Route::get('/postCategory','PostCategoryController@index')->name('postCategory');
     Route::get('/add-postCategory','PostCategoryController@addPostCategory')->name('add.postCategory');
-    Route::post('/add-postCategory','PostCategory@handleAddPostCategory')->name('handle.add.postCategory');
-    Route::get('/postCategory/{slug}~{id}','PostCategory@editPostCategory')->name('edit.postCategory');
-    Route::post('/postCategory/handle-edit/{id}','PostCategory@handleEditPostCategory')->name('handle.edit.postCategory');
-    Route::post('/postCategory/delete-post','PostCategory@deletePostCategory')->name('delete.postCategory');
+    Route::post('/add-postCategory','PostCategoryController@handleAddPostCategory')->name('handle.add.postCategory');
+    Route::get('/postCategory/{slug}~{id}','PostCategoryController@editPostCategory')->name('edit.postCategory');
+    Route::post('/postCategory/handle-edit/{id}','PostCategoryController@handleEditPostCategory')->name('handle.edit.postCategory');
+    Route::post('/postCategory/delete-post','PostCategoryController@deletePostCategory')->name('delete.postCategory');
 
     /*Order*/
     Route::get('/order','OrderController@index')->name('order');

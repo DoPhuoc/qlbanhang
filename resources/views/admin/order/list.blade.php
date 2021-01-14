@@ -1,8 +1,6 @@
 @extends('admin.admin-layout')
 @section('content')
 <div class="card shadow mb-4">
-   
-
     <div class="card-header py-3">
         <div class="row">
             <div class="col-md-4">
@@ -42,12 +40,10 @@
                     <th width="10%">Tên khách hàng </th>
                     <th width="10%">Email</th>
                     <th width="10%">Phone</th>
-                    <th width="10%">Số lượng</th>
+                    <th width="10%">Tổng Tiền</th>
                     <th width="10%">Ghi chú</th>
                     <th>Phí ship</th>
-                    <th width="10%">Giá sản phẩm</th>
                     <th width="10%">Phương thức thanh toán</th>
-                    <th width="10%">Trạng thái</th>
                     <th width="15%">Hành động</th>
                 </tr>
             </thead>
@@ -58,34 +54,38 @@
                     <th width="10%">Tên khách hàng </th>
                     <th width="10%">Email</th>
                     <th width="10%">Phone</th>
-                    <th width="10%">Số lượng</th>
+                    <th width="10%">Tổng Tiền</th>
                     <th width="10%">Ghi chú</th>
                     <th>Phí ship</th>
-                    <th width="10%">Giá sản phẩm</th>
                     <th width="10%">Phương thức thanh toán</th>
                     <th width="10%">Trạng thái</th>
                     <th  width="15%">Hành động</th>
                 </tr>
             </tfoot>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>              
-                <td >
-                  <a class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" href="" data-placement="bottom"><i class="fas fa-edit"></i></a>
-                  <a href="" class="btn btn-warning btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="view" data-placement="bottom"><i class="fas fa-eye"></i></a>
-                </td>
-           
+            @forelse($orders as $order)
+                @php
+                    $cart = $order->cart;
+                @endphp
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $order->id }}</td>
+                    <td>{{ $cart->user->name }}</td>
+                    <td>{{ $cart->user->email }}</td>
+                    <td>{{ $cart->user->phone }}</td>
+                    <td>{{ $cart->totalMoney() }} VND</td>
+                    <td></td>
+                    <td>0 VND</td>
+                    <td>Thanh toán Khi nhận hàng</td>
+                    <td>{!! $order->status_label !!}</td>
+                    <td >
+                        <a class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" href="" data-placement="bottom"><i class="fas fa-edit"></i></a>
+                        <a href="" class="btn btn-warning btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="view" data-placement="bottom"><i class="fas fa-eye"></i></a>
+                    </td>
+            @empty
+                Không tồn tại đơn đặt hàng
+            @endforelse
         </table>
-       
+
     </div>
 
 </div>

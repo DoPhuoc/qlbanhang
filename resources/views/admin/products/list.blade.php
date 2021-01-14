@@ -39,8 +39,8 @@
                 <tr>
                     <th>ID</th>
                     <th>Mã sản phẩm</th>
-                    <th>Mã danh mục<th>
-                    <th>Mã thương hiệu</th>
+                    <th>Danh mục</th>
+                    <th>Thương hiệu</th>
                     <th>Tên sản phẩm </th>
                     <th width="50%">Ảnh sản phẩm</th>
                     <th width="10%">Số lượng</th>
@@ -55,8 +55,8 @@
                 <tr>
                     <th>ID</th>
                     <th>Mã sản phẩm</th>
-                    <th>Mã danh mục<th>
-                    <th>Mã thương hiệu</th>
+                    <th>Danh mục</th>
+                    <th>Thương hiệu</th>
                     <th>Tên sản phẩm </th>
                     <th width="50%">Ảnh sản phẩm</th>
                     <th width="10%">Số lượng</th>
@@ -72,8 +72,9 @@
                 <tr>
                     <td>{{$product->id}}</td>
                     <td>{{$product->product_id}}</td>
-                    <td>{{$product->categories_id}}</td>
-                    <td>{{$product->brand_}}</td>
+                    <td>{{$product->brand->name}}</td>
+                    <td>{{$product->category->name}}</td>
+                    <td>{{$product->name}}</td>
                 <td>
                     <img class="img-fluid zoom "
                     style="max-width:100%"
@@ -91,7 +92,7 @@
                     <span class="badge badge-warning">Không hoạt động</span>
                     @endif
                 </td>
-                <td>{{$product->description}}</td>
+                <td>{!! $product->description !!}</td>
                 <td>
                   <a class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" href="{{route('admin.edit.product',['slug','id'])}}" data-placement="bottom"><i class="fas fa-edit"></i></a>
                   <button class="btn btn-danger btn-sm dltBtn" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
