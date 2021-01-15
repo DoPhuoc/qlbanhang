@@ -80,4 +80,17 @@ class CategoryController extends Controller
         }
         return redirect(route('admin.category'));
     }
+    public function deleteCategory($id)
+    {
+        $category=Categories::find($id);
+        $category->delete();
+        if($category){
+            request()->session()->flash('success','Xóa thành công danh mục');
+        }
+        else{
+            request()->session()->flash('error','Lỗi xóa');
+        }
+        return redirect()->route('admin.category');  
+    }
+ 
 }

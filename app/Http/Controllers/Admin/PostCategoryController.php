@@ -73,4 +73,16 @@ class PostCategoryController extends Controller
         }
         return redirect(route('admin.postCategory'));
     }
+    public function deletePostCategory($id)
+    {
+        $Category=PostCategory::find($id);
+        $status=$Category->delete();
+        if($Category){
+            request()->session()->flash('success','Banner successfully deleted');
+        }
+        else{
+            request()->session()->flash('error','Error occurred while deleting banner');
+        }
+        return redirect()->route('admin.postCategory');  
+    }
 }

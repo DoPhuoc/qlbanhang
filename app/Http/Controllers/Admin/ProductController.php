@@ -8,7 +8,7 @@ use App\Model\Brands;
 use App\Model\Categories;
 use App\Model\Products;
 use Illuminate\Support\Str;
-use App\Http\Requests\StoreProductPost as Product;
+use App\Http\Requests\StoreProductPost;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\UpdateStoreProductPost;
 class ProductController extends Controller
@@ -26,7 +26,7 @@ class ProductController extends Controller
         //dd($brands);
         return view('admin.product.add-product',compact('category','brands'));
     }
-    public function handleAddproduct(Product $request)
+    public function handleAddproduct(StoreProductPost $request)
     {
         $product_id = $request->product_id;
         $nameProduct = $request->nameProduct;
@@ -185,6 +185,19 @@ class ProductController extends Controller
             return view('admin.partials.not-found-page');
         }
         
+    }    
+    public function deleteProduct($id)
+    {
+        $product=Products::find($id);
+        $status=$product->delete();
+        if($product){
+            request()->session()->flash('success','Xoa thanh cong san pham');
+        }
+        else{
+            request()->session()->flash('error','Loi xoa');
+        }
+        return redirect()->route('admin.list.product');  
     }
+    
  
 }

@@ -34,7 +34,7 @@ Route::group([
     Route::post('/add-product', 'ProductController@handleAddproduct')->name('handle.add.product');
     Route::get('/product/{id}', 'ProductController@Editproduct')->name('edit.product');
     Route::post('/edit-product', 'ProductController@handleEditproduct')->name('handle.edit.product');
-
+    Route::get('/product/delete-product/{id}','ProductController@deleteProduct')->name('delete.product');
 
     /*Banner*/
     Route::get('/banner','BannerController@index')->name('banner');
@@ -50,7 +50,8 @@ Route::group([
     Route::post('/add-category','CategoryController@handleCategory')->name('handle.add.category');
     Route::get('/category/{slug}~{id}','CategoryController@editCategory')->name('edit.category');
     Route::post('/category/handle-edit','CategoryController@handleEditCategory')->name('handle.edit.category');
-    Route::post('/category/delete-category','CategoryController@deleteCaegory')->name('delete.category');
+    //Route::post('/category/delete-category','CategoryController@deleteCaegory')->name('delete.category');
+    Route::get('/category/delete-category/{id}','CategoryController@deleteCategory')->name('delete.category');
 
     /*Shipping*/
     Route::get('/shipping','ShippingController@index')->name('shipping');
