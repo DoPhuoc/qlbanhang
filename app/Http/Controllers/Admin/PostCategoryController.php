@@ -78,10 +78,10 @@ class PostCategoryController extends Controller
         $Category=PostCategory::find($id);
         $status=$Category->delete();
         if($Category){
-            request()->session()->flash('success','Banner successfully deleted');
+            request()->session()->flash('success','Xóa thành công');
         }
         else{
-            request()->session()->flash('error','Error occurred while deleting banner');
+            request()->session()->flash('error','Xóa thất bại');
         }
         return redirect()->route('admin.postCategory');  
     }

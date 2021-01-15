@@ -16,13 +16,10 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('slug')->unique();
-            $table->text('summary');
+            $table->string('slug');
             $table->longText('description')->nullable();
-            $table->text('quote')->nullable();
-            $table->string('photo')->nullable();
-            $table->string('tags')->nullable();
-            $table->Integer('added_by')->nullable();
+            $table->text('quote')->nullable();//trích dẫn
+            $table->string('image')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->Integer('post_cat_id')->nullable();
             $table->Integer('post_tag_id')->nullable();

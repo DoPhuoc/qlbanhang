@@ -15,16 +15,27 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
 //    return view('welcome');
-//}); 
+//});
 Route::group([
     'as' => 'fr.',
     'namespace' => 'Frontend',
-],function (){
+], function () {
     Route::get('/', 'FrontendController@index')->name('home');
-    Route::get('/{slug}~{id}','ProductController@index')->name('detail');
-    Route::get('/brand/{slug}','BrandController@index')->name('brand');
+    Route::get('/{slug-product}~{id}', 'ProductController@index')->name('product.detail');
+    //Route::get('product-detail/{slug}','FrontendController@productDetail')->name('product-detail');
+    Route::get('/{slug}~{id}', 'ProductController@getProductBelongCategory')->name('category.product');
+    Route::get('/brand/{slug}', 'BrandController@getProductBelongBrand')->name('brand.product');
     Route::get('/cart', 'CartController@index')->name('cart');
     Route::get('/check-out', 'CheckoutController@index')->name('check.out');
-    Route::get('/login', 'LoginController@index')->name('login');
     Route::get('/register', 'RegisterController@index')->name('register');
+    Route::group(['namespace' => 'Auth', 'as' => 'auth.'], function () {
+        Route::get('/login', 'LoginController@showLoginForm')
+            ->name('login');
+        Route::get('/register', 'RegisterController@showRegistrationForm')
+            ->name('register');
+        Route::post('/register', 'RegisterController@register')
+            ->name('register');
+    });
 });
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -16,7 +16,7 @@ class CategoryController extends Controller
         return view('admin.category.list',compact('categories'));
     }
     public function addCategory(){
-    
+
         return view('admin.category.add');
     }
     public function handleCategory(StoreCategoriesPost $request){
@@ -33,7 +33,7 @@ class CategoryController extends Controller
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => null
         ]);
-      
+
         if($dataInsert){
             $request->session()->flash('success', 'Add success');
         } else {
@@ -70,7 +70,7 @@ class CategoryController extends Controller
                         'created_at' => date('Y-m-d H:i:s'),
                         'updated_at' => null
                     ]);
-        
+
         if($update){
             $request->session()->flash('success', 'Sửa thành công');
           

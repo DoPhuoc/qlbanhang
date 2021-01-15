@@ -73,4 +73,16 @@ class TagController extends Controller
         }
         return redirect(route('admin.tag'));
     }
+    public function deleteTag($id)
+    {
+        $tag=Tag::find($id);
+        $status=$tag->delete();
+        if($tag){
+            request()->session()->flash('success','Xoa thanh cong');
+        }
+        else{
+            request()->session()->flash('error','Xoa that bai');
+        }
+        return redirect()->route('admin.tag');  
+    }
 }

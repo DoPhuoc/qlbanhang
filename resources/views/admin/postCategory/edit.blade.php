@@ -4,7 +4,7 @@
 <div class="card">
     <h5 class="card-header">Sửa danh mục </h5>
     <div class="card-body">
-      <form method="post" action="{{route('admin.handle.edit.postCategory')}}">
+      <form method="post" action="{{route('admin.handle.edit.postCategory',['id' => $postCategory->id])}}">
         @csrf
       <div class="form-group">
         <label for="nameCate" class="col-form-label">Title <span class="text-danger">*</span></label>

@@ -24,7 +24,26 @@ class StorePosts extends FormRequest
     public function rules()
     {
         return [
-            
+            'title'=>'required',
+            'description'=>'required',
+            'images'=>'required',
+            'quote'=>'required',
+            'tagPost'=>'required',
+            'catePost'=>'required',
+            'status'=>'required'
+        ];
+    }
+    public function messages()
+    {
+        // thong bao loi ra ngoai view
+        return [
+            'title.required' => 'Trường này không được để trống ',
+            'description.required' => 'Trường này không được để trống',
+            'images.required' => 'Vui lòng nhập ảnh sản phẩm',
+            'quote.required'=>'Truong nay khong duoc de trong',
+            'post_tag_id'=>'Trường này không được để trống',
+            'post_cat_id'=>'Trường này không được để trống',
+            'status.required' => 'Trường này không được để trống'
         ];
     }
 }

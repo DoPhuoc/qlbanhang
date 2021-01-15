@@ -1,7 +1,7 @@
 @extends('admin.admin-layout')
 @section('content')
 <div class="card shadow mb-4">
-   
+
 
     <div class="card-header py-3">
         <div class="row">
@@ -10,7 +10,7 @@
             </div>
 
             <div class="col-md-4">
-                <form>
+               {{--   <form>
                     <div class="input-group">
 
                         <input type="text" class="form-control bg-light border small js-keyword-brand"
@@ -21,8 +21,16 @@
                             </button>
                         </div>
                     </div>
-                </form>
+                </form>  --}}
 
+                <form action="{{route('admin.search.product')}}" method="get">
+                    <div class="input-group">
+                      <input type="search" name="search" class="form-control">
+                      <span class="input-group-prepend">
+                        <button type="submit" class="btn btn-primary" ><i class="fas fa-search"></i></button>
+                      </span>
+                    </div>
+                  </form>
             </div>
             <div class="col-md-4 ">
                 <a href="{{route('admin.add.product')}}"
@@ -34,72 +42,80 @@
     </div>
     <!--table-->
     <div class="card-body">
-        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th width="5%">Tên sản phẩm </th>
-                    <th width="50%">Ảnh sản phẩm</th>
-                    <th width="10%">Số lượng</th>
-                    <th width="10%">Giá sản phẩm</th>
-                    <th width="10%">Giảm giá</th>
-                    <th width="10%">Trạng thái</th>
-                    <th width="10%">Mô tả</th>
-                    <th colspan="2" width="20%">Hành động</th>
+        <div class="table-responsive">
+            <table class="table table-bordered" id="product-dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Mã sản phẩm</th>
+                        <th>Tên sản phẩm </th>
+                        <th width="50%">Ảnh sản phẩm</th>
+                        <th width="10%">Số lượng</th>
+                        <th width="10%">Giá sản phẩm</th>
+                        <th width="10%">Giảm giá</th>
+                        <th width="10%">Trạng thái</th>
+                        <th width="10%">Mô tả</th>
+                        <th colspan="2" width="20%">Hành động</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>ID</th>
+                        <th>Mã sản phẩm</th>
+                        <th>Tên sản phẩm </th>
+                        <th width="5">Ảnh sản phẩm</th>
+                        <th width="10%">Số lượng</th>
+                        <th width="10%">Giá sản phẩm</th>
+                        <th width="10%">Giảm giá</th>
+                        <th width="10%">Trạng thái</th>
+                        <th width="10%">Mô tả</th>
+                        <th colspan="2" width="20%">Hành động</th>
+                    </tr>
+                </tfoot>
+    
+                    @foreach($products as $product)
+                    <tr>
+                        <td>{{$product->id}}</td>
+                        <td>{{$product->product_id}}</td>
+                        <td>{{$product->name_product}}
+                    <td>
+                        <img class="img-fluid zoom "
+                        style="max-width:100%"
+                        src="{{asset('uploads/images/products')}}/{{$product->image}}">
+                    </td>
+                    <td>
+                        {{$product->quantity}}
+                    </td>
+                    <td>{{number_format($product->price).''.'VNĐ'}}</td>
+                    <td>{{$product->sale_off}}</td>
+                    <td>
+                        @if($product->status=='1')
+                        <span class="badge badge-success">Hoạt động</span>
+                        @else
+                        <span class="badge badge-warning">Không hoạt động</span>
+                        @endif
+                    </td>
+                    <td>{{$product->description}}</td>
+                    <td>
+                    <a class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" href="{{route('admin.edit.product',['id' => $product->id])}}" data-placement="bottom"><i class="fas fa-edit"></i></a>
+                    <a class="btn btn-danger btn-sm" href="{{route('admin.delete.product',['id'=>$product->id])}}" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></a>
+                    </td>
                 </tr>
-            </thead>
-            <tfoot>
-                <tr>
-                    <th>ID</th>
-                    <th>Tên sản phẩm </th>
-                    <th width="5">Ảnh sản phẩm</th>
-                    <th width="10%">Số lượng</th>
-                    <th width="10%">Giá sản phẩm</th>
-                    <th width="10%">Giảm giá</th>
-                    <th width="10%">Trạng thái</th>
-                    <th width="10%">Mô tả</th>
-                    <th colspan="2" width="20%">Hành động</th>
-                </tr>
-            </tfoot>
-           
-                @foreach($products as $product) 
-                <tr>
-                <td>{{$product->id}}</td>
-                <td>{{$product->name_product}}</td>
-                <td>
-                    <img class="img-fluid zoom " 
-                    style="max-width:100%" 
-                    src="{{asset('uploads/images/products')}}/{{$product->image}}">
-                </td>
-                <td>
-                    {{$product->quantity}}
-                </td>
-                <td>{{number_format($product->price).''.'VNĐ'}}</td>
-                <td>{{$product->sale_off}}</td>
-                <td>
-                    @if($product->status=='1')
-                    <span class="badge badge-success">Hoạt động</span>
-                    @else
-                    <span class="badge badge-warning">Không hoạt động</span>
-                    @endif
-                </td>
-                <td>{{$product->description}}</td>
-                <td>
-                <a class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" href="{{route('admin.edit.product',['id' => $product->id])}}" data-placement="bottom"><i class="fas fa-edit"></i></a>
-                <a class="btn btn-danger btn-sm" href="{{route('admin.delete.product',['id'=>$product->id])}}" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></a>
-                </td>
-            </tr>
-            @endforeach
-        </table>
-       
+                @endforeach
+            </table>
+
+        </div>
     </div>
 
 </div>
 
 @endsection
 @push('stylesheets')
-  <style>
 
+  <style>
+    div.dataTables_wrapper div.dataTables_paginate{
+        display: none;
+    }
     .zoom {
       transition: transform .2s; /* Animation */
     }
@@ -109,3 +125,4 @@
     }
   </style>
 @endpush
+

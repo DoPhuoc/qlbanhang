@@ -20,15 +20,17 @@ class ProductController extends Controller
     }
     public function Addproduct()
     {
-        $category = Categories::where('status',1)->get();
+        $categories = Categories::where('status',1)->get();
         //dd($category);
         $brands = Brands::where('status',1)->get();
         //dd($brands);
-        return view('admin.product.add-product',compact('category','brands'));
+        return view('admin.product.add-product',compact('categories','brands'));
     }
     public function handleAddproduct(StoreProductPost $request)
     {
         $product_id = $request->product_id;
+        $category= $request->categoty_id;
+        $brand_id = $request->brandProduct;
         $nameProduct = $request->nameProduct;
         $slug = Str::slug($nameProduct, '-');
         $price = $request->priceProduct;
@@ -59,7 +61,7 @@ class ProductController extends Controller
             }
         }
         //truyen du lieu mang 
-        $imageProduct = array_pop($arrImages);
+       
         //tien hanh luu thong vao db
         $dataInsert = [
             'product_id'=> $product_id,
@@ -70,22 +72,25 @@ class ProductController extends Controller
             'description'  =>$description,
             'image' => $imageProduct,
             'hot_product'=>$hotProduct,
-            'quantity' => $quality,
+            'quantity' =>  $quality,
             'price' => $price,
             'status' => $status,
             'sale_off' => $saleOff,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => null
         ];
+
         $insertShoes = Products::create($dataInsert);
+
         if($insertShoes){
             $request->session()->flash('success', 'Them thanh cong');
+
             return redirect()->route('admin.list.product');
         } else {
             
             $request->session()->flash('error', 'Them that bai');
             return redirect()->route('admin.add.product');
-        } 
+        }
     }
     public function Editproduct($id){
         $category = Categories::where('status',1)->get();
@@ -198,6 +203,14 @@ class ProductController extends Controller
         }
         return redirect()->route('admin.list.product');  
     }
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+        $product = Products::where('name_product','like','%' . $search . '%')
+        ->orWhere('price', 'like', '%' . $search . '%')
+        ->orWhere('status', 'like', '%' . $search . '%');
+        return view('admin.product.listproduct',compact('product'));
+        
+    }
     
- 
 }

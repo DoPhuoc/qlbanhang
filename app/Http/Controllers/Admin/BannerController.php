@@ -39,6 +39,7 @@ class BannerController extends Controller
                 $upload = $file->move('uploads/images/banners', $nameFile);
             }
         }
+       
         if($upload && $nameFile){
             // tien hanh insert du lieu vao db
             $dataInsert = [

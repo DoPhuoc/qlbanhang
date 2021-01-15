@@ -135,8 +135,8 @@
   <div id="postCollapse" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
       <h6 class="collapse-header">Nghiệp vụ:</h6>
-      <a class="collapse-item" href="{{route('admin.post')}}">Bài viết</a>
-      <a class="collapse-item" href="{{route('admin.add.post')}}">Thêm bài viết</a>
+      <a class="collapse-item" href="{{route('admin.posts')}}">Bài viết</a>
+      <a class="collapse-item" href="{{route('admin.add.posts')}}">Thêm bài viết</a>
     </div>
   </div>
 </li>
