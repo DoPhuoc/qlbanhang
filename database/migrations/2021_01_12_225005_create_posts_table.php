@@ -21,8 +21,8 @@ class CreatePostsTable extends Migration
             $table->text('quote')->nullable();//trích dẫn
             $table->string('image')->nullable();
             $table->tinyInteger('status')->default(1);
-            $table->Integer('post_cat_id')->nullable();
-            $table->Integer('post_tag_id')->nullable();
+            $table->string('post_cat_id')->nullable();
+            $table->string('post_tag_id')->nullable();
             $table->timestamps();
         });
     }

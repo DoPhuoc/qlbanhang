@@ -10,27 +10,16 @@
             </div>
 
             <div class="col-md-4">
-               {{--   <form>
-                    <div class="input-group">
+          
 
-                        <input type="text" class="form-control bg-light border small js-keyword-brand"
-                            placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" value="">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary js-search-brand" type="button">
-                                <i class="fas fa-search fa-sm"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>  --}}
-
-                <form action="{{route('admin.search.product')}}" method="get">
+                <form action="{{route('admin.search.product')}}">
                     <div class="input-group">
                       <input type="search" name="search" class="form-control">
                       <span class="input-group-prepend">
                         <button type="submit" class="btn btn-primary" ><i class="fas fa-search"></i></button>
                       </span>
                     </div>
-                  </form>
+                </form>
             </div>
             <div class="col-md-4 ">
                 <a href="{{route('admin.add.product')}}"
@@ -74,6 +63,7 @@
                 </tfoot>
     
                     @foreach($products as $product)
+        
                     <tr>
                         <td>{{$product->id}}</td>
                         <td>{{$product->product_id}}</td>

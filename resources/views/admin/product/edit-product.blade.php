@@ -7,7 +7,8 @@
    {{--  <form method="post" action="{{ route('admin.handle.edit.product')}}" enctype="multipart/form-data">
       @csrf
       <input type="submit" value="hello">
-    </form> --}}
+    </form>
+      --}}
     <form method="post" action="{{ route('admin.handle.edit.product',['id' => $products->id])}}" enctype="multipart/form-data">
       @csrf
       <div class="form-group">

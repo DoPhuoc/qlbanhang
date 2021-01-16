@@ -15,19 +15,23 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products=Products::latest()->paginate(10);
-        return view('admin.product.listproduct')->with('products',$products);
+
+        $products=Products::latest()->paginate(5);
+       
+        return view('admin.product.listproduct',compact('products'));
     }
     public function Addproduct()
     {
         $categories = Categories::where('status',1)->get();
-        //dd($category);
+    
         $brands = Brands::where('status',1)->get();
         //dd($brands);
         return view('admin.product.add-product',compact('categories','brands'));
     }
     public function handleAddproduct(StoreProductPost $request)
     {
+        //dd($StoreProductPost); 
+    
         $product_id = $request->product_id;
         $category= $request->categoty_id;
         $brand_id = $request->brandProduct;
@@ -60,8 +64,10 @@ class ProductController extends Controller
                 }
             }
         }
-        //truyen du lieu mang 
-       
+      
+        //$imageProduct =$arrImages[0];
+        $imageProduct = array_pop($arrImages);
+        //dd($imageProduct);
         //tien hanh luu thong vao db
         $dataInsert = [
             'product_id'=> $product_id,
@@ -70,7 +76,7 @@ class ProductController extends Controller
             'name_product' => $nameProduct,
             'slug_product' => $slug,
             'description'  =>$description,
-            'image' => $imageProduct,
+            'image' => $imageProduct ,
             'hot_product'=>$hotProduct,
             'quantity' =>  $quality,
             'price' => $price,
@@ -80,11 +86,11 @@ class ProductController extends Controller
             'updated_at' => null
         ];
 
-        $insertShoes = Products::create($dataInsert);
 
+        $insertShoes = Products::create($dataInsert);
+        
         if($insertShoes){
             $request->session()->flash('success', 'Them thanh cong');
-
             return redirect()->route('admin.list.product');
         } else {
             
@@ -97,13 +103,12 @@ class ProductController extends Controller
         //dd($category);
         $brands = Brands::where('status',1)->get();
         $products = Products::find($id);
-        //dd($products);
+      
         return view('admin.product.edit-product',compact('products','category','brands'));
     }
-    public function testProduct(Request $request){
-        die();
-    }
+
     public function handleEditproduct(Request $request){
+
         $id = $request->id;
         $id = is_numeric($id) && $id > 0 ? $id : 0;
         $infoProduct = DB::table('products')
@@ -191,26 +196,30 @@ class ProductController extends Controller
         }
         
     }    
-    public function deleteProduct($id)
+/*     public function deleteProduct($id)
     {
         $product=Products::find($id);
         $status=$product->delete();
+        
         if($product){
             request()->session()->flash('success','Xoa thanh cong san pham');
         }
         else{
             request()->session()->flash('error','Loi xoa');
         }
-        return redirect()->route('admin.list.product');  
+        return redirect()->route('admin.list.product',compact('product'));  
     }
-    public function search(Request $request)
+ */
+    /* public function searchProducts(Request $request)
     {
+        return $request->all();
         $search = $request->get('search');
-        $product = Products::where('name_product','like','%' . $search . '%')
+        $products = Products::where('name_product','like','%' . $search . '%')
         ->orWhere('price', 'like', '%' . $search . '%')
-        ->orWhere('status', 'like', '%' . $search . '%');
-        return view('admin.product.listproduct',compact('product'));
+        ->orWhere('status', 'like', '%' . $search . '%')->get();
+     
+        return view('admin.product.listproduct',compact('products'));
         
-    }
+    } */
     
 }

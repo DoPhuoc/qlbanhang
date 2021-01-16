@@ -6,7 +6,7 @@
     <div class="card-body">
       <form method="post" action="{{route('admin.handle.add')}}" enctype="multipart/form-data">
         @csrf
-      
+
         <div class="form-group">
           <label for="title" class="col-form-label">Tiêu đề <span class="text-danger">*</span></label>
           <input id="title" type="text" name="title" placeholder="Enter title"  value="" class="form-control">
@@ -20,7 +20,7 @@
           <select name="catePost" class="form-control">
             <option value="">--Select any category--</option>
             @foreach($catePosts as $key=>$data)
-            <option value="{{$data->id}}">{{$data->title}}</option>
+            <option value="{{$data->title}}">{{$data->title}}</option>
             @endforeach
             </select>
         </div>
@@ -41,7 +41,7 @@
           <select name="tagPost" class="form-control">
             <option>
               @foreach($tags  as $key=>$data)
-              <option value='{{$data->id}}'>{{$data->title}}</option>
+              <option value="{{$data->title}}">{{$data->title}}</option>
               @endforeach </option>
             </select>
         </div>

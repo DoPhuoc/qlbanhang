@@ -18,7 +18,7 @@ class PostController extends Controller
     public function addpost(){
         $tags = Tag::where('status',1)->get();
         $catePosts  = PostCategory::where('status',1)->get();
-        //dd($postCategory);
+        //dd($catePosts);
         return view('admin.posts.add',compact('tags','catePosts'));
         
     }
@@ -29,9 +29,14 @@ class PostController extends Controller
         $description = $request->description;
         $quote=$request->quote;
         $status = $request->status;
-        $tagPost = $request->tagPost;
-        $catePost = $request->catePost;
- 
+        $tagPost = $request->tagPost;//Tag::where('id',$request->tagPost)->get();
+        //dd($tagPost);
+        //dd($tagPost[0]);
+
+        $catePost = $request->catePost;#PostCategory::where('id',$request->catePost)->get('title');
+         
+        //$abc  = PostCategory::where('id',$catePost)->get('title');    
+    
        $arrImages = [];
        //thuc hien upload file
        //kiem tra xem nguoi co chon file ko

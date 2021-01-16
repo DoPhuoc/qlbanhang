@@ -34,8 +34,8 @@ Route::group([
     Route::post('/add-product', 'ProductController@handleAddproduct')->name('handle.add.product');
     Route::get('/product/{id}', 'ProductController@Editproduct')->name('edit.product');
     Route::post('/edit-product', 'ProductController@handleEditproduct')->name('handle.edit.product');
-    Route::get('/product/delete-product/{id}','ProductController@deleteProduct')->name('delete.product');
-    Route::get('product/search','ProductController@search')->name('search.product');
+    Route::get('/product/delete-product','ProductController@deleteProduct')->name('delete.product');
+    Route::get('/product/search','ProductController@searchProducts')->name('search.product');
     /*Banner*/
     Route::get('/banner','BannerController@index')->name('banner');
     Route::get('/add-banner','BannerController@addBanner')->name('add.banner');

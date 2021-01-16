@@ -42,9 +42,9 @@
                         <tr>
                             <th>STT</th>
                             <th>Tiêu đề</th>
-                          {{--    <th>Tên danh mục</th>
-                            <th>Tagz</th>  --}}
-                            <th>Ảnh</th>
+                            <th>Tên danh mục</th>
+                            <th>Tagz</th>
+                            <th>Ảnh widht="50%"</th>
                             <th>Mô tả</th>
                             <th>Tình trạng</th>
                             <th style="width:10%">Hành động</th>
@@ -54,8 +54,8 @@
                         <tr>
                             <th>STT</th>
                             <th>Tiêu đề</th>
-                           {{--   <th>Tên danh mục</th>
-                            <th>Tagz</th>  --}}
+                            <th>Tên danh mục</th>
+                            <th>Tagz</th>
                             <th>Ảnh</th>
                             <th>Mô tả</th>
                             <th>Tình trạng</th>
@@ -68,10 +68,10 @@
                         <tr>
                             <td>{{$item->id}}</td>
                             <td>{{$item->title}}</td>
-                          {{--    <td>
+                            <td>
                                 {{$item->post_tag_id}}
                             </td>
-                            <td>{{$item->post_cat_id}}</td>  --}}
+                            <td>{{$item->post_cat_id}}</td>
                             <td>
                                 <img class="img-fluid zoom img-thumbnail w-20" style="max-width:100%" src="{{asset('uploads/images/posts')}}/{{$item->image}}">
                             </td>
@@ -100,3 +100,19 @@
         </div>
     </div>
 @endsection
+
+@push('stylesheets')
+
+  <style>
+    div.dataTables_wrapper div.dataTables_paginate{
+        display: none;
+    }
+    .zoom {
+      transition: transform .2s; /* Animation */
+    }
+
+    .zoom:hover {
+      transform: scale(3.2);
+    }
+  </style>
+@endpush

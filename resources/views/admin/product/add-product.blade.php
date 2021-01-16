@@ -4,7 +4,7 @@
 <div class="card">
     <h5 class="card-header">Thêm sản phẩm</h5>
     <div class="card-body">
-      <form method="post" action="{{route('admin.handle.add')}}" enctype="multipart/form-data">
+      <form method="post" action="{{route('admin.handle.add.product')}}" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
           <label for="product_id" class="col-form-label">Mã sản phẩm <span class="text-danger">*</span></label>
