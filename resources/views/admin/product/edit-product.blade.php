@@ -13,7 +13,7 @@
       @csrf
       <div class="form-group">
         <label for="product_id" class="col-form-label">Mã sản phẩm  <span class="text-danger">*</span></label>
-        <input id="product_id" type="text" name="product_id" value="{{$products->id}}" placeholder="Enter title"  value="" class="form-control">   
+        <input id="product_id" type="text" name="product_id" value="{{$products->product_id}}" placeholder="Enter title"  value="" class="form-control">   
         @error('product_id')
         <span class="text-danger">{{ $message }}</span>
         @enderror

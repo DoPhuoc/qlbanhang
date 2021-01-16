@@ -33,7 +33,7 @@ Route::group([
     Route::get('/add-product', 'ProductController@Addproduct')->name('add.product');
     Route::post('/add-product', 'ProductController@handleAddproduct')->name('handle.add.product');
     Route::get('/product/{id}', 'ProductController@Editproduct')->name('edit.product');
-    Route::post('/edit-product', 'ProductController@handleEditproduct')->name('handle.edit.product');
+    Route::post('/edit-product/{id}', 'ProductController@handleEditproduct')->name('handle.edit.product');
     Route::get('/product/delete-product','ProductController@deleteProduct')->name('delete.product');
     Route::get('/product/search','ProductController@searchProducts')->name('search.product');
     /*Banner*/
