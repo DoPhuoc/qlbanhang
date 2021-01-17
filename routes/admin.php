@@ -26,6 +26,7 @@ Route::group([
     Route::get('/brand/{slug}~{id}','BrandController@editBrand')->name('edit.brand');
     Route::post('/brand/update-brand','BrandController@handleUpdate')->name('update.brand');
     Route::post('brand/delete-brand', 'BrandController@deleteBrand')->name('delete.brand');
+    Route::get('brand/search','BrandController@search')->name('search.brand');
 
 
     /*Product*/

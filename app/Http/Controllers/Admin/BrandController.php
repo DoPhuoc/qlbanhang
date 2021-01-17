@@ -12,15 +12,11 @@ use App\Http\Requests\UpdateStoreBrandPost;
 use App\Model\Brand;
 class BrandController extends Controller
 {
-    const LIMITED_ROW =5; 
-    public function index(Request $request, AntiXSS $antiXSS)
+    //const LIMITED_ROW =5; 
+    public function index()
     {
-        $data =[];
-        $data['listBrands'] = DB::table('brands')
-        ->paginate(self::LIMITED_ROW);
-       
-      
-        return view('admin.brand.list',$data);
+        $listBrands= Brand::latest()->paginate(3);
+        return view('admin.brand.list',compact('listBrands'));
     }
     public function addBrand()
     {
@@ -118,5 +114,13 @@ class BrandController extends Controller
                 echo 'err';
             }
         }
+    }
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+        $listBrands = Brand::where('name','like','%' . $search . '%')
+        ->orWhere('status','like','%' . $search . '%')
+        ->paginate(5);
+        return view('admin.brand.list',compact('listBrands'));
     }
 }

@@ -33,9 +33,8 @@ class ProductController extends Controller
         $nameProduct = $request->nameProduct;
         $slug = Str::slug($nameProduct, '-');
         $price = $request->priceProduct;
-
-        $quality = $request->qtyProduct;
-        $quality = is_numeric($quality) && $quality > 0 ? $quality: 1;
+        $quantity = $request->qtyProduct;
+        $quantity = is_numeric($quantity) && $quantity > 0 ? $quantity: 1;
         $saleOff = $request->saleOffProduct;
         $saleOff = is_numeric($saleOff) ? $saleOff : 0;
         $category = $request->categoryProduct;

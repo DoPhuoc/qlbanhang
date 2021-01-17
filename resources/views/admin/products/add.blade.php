@@ -117,9 +117,9 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="qtyProduct">Số lượng <span
+                    <label for="quatity">Số lượng <span
                             class="text-danger">*</span></label>
-                    <input id="qtyProduct" type="number"
+                    <input id="quatity" type="number"
                            name="qtyProduct"
                            min="0"
                            placeholder="Enter quantity"
