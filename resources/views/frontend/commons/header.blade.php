@@ -117,6 +117,7 @@
                                         Cart</a>
                                 </div>
                                 <ul class="shopping-list">
+<<<<<<< HEAD
                                     @forelse($cart->products as $product)
                                         <li>
                                             <a class="cart-img" href="{{ route('fr.product.show',
@@ -135,12 +136,40 @@
                                     @empty
                                         Không có sản phẩm trong giỏ hàng
                                     @endforelse
+=======
+                                    <li>
+                                        <a href="#" class="remove"
+                                           title="Remove this item"><i
+                                                class="fa fa-remove"></i></a>
+                                        <a class="cart-img" href="#"><img
+                                                src="https://via.placeholder.com/70x70"
+                                                alt="#"></a>
+                                        <h4><a href="#">Woman Ring</a></h4>
+                                        <p class="quantity">1x - <span
+                                                class="amount">$99.00</span></p>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="remove"
+                                           title="Remove this item"><i
+                                                class="fa fa-remove"></i></a>
+                                        <a class="cart-img" href="#"><img
+                                                src="https://via.placeholder.com/70x70"
+                                                alt="#"></a>
+                                        <h4><a href="#">Woman Necklace</a></h4>
+                                        <p class="quantity">1x - <span
+                                                class="amount">$35.00</span></p>
+                                    </li>
+>>>>>>> 3dda139bc49053507fd1815e1aecf27361f4867c
                                 </ul>
                                 <div class="bottom">
                                     <div class="total">
                                         <span>Total</span>
                                         <span
+<<<<<<< HEAD
                                             class="total-amount">{{ $cart->totalMoney() }} VND</span>
+=======
+                                            class="total-amount">$134.00</span>
+>>>>>>> 3dda139bc49053507fd1815e1aecf27361f4867c
                                     </div>
                                     <form
                                         action="{{ route('fr.cart.checkout') }}"

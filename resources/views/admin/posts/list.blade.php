@@ -29,7 +29,7 @@
 
                 </div>
                 <div class="col-md-4 ">
-                    <a href="{{ route('admin.add.post') }}"
+                    <a href="{{route('admin.add.post')}}"
                         class="d-none d-sm-inline-block btn btn-primary shadow-sm float-right" data-toggle="tooltip"
                         data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Thêm bài viết</a>
                 </div>
@@ -90,3 +90,19 @@
         </div>
     </div>
 @endsection
+
+@push('stylesheets')
+
+  <style>
+    div.dataTables_wrapper div.dataTables_paginate{
+        display: none;
+    }
+    .zoom {
+      transition: transform .2s; /* Animation */
+    }
+
+    .zoom:hover {
+      transform: scale(3.2);
+    }
+  </style>
+@endpush

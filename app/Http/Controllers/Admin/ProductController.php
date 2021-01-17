@@ -25,15 +25,17 @@ class ProductController extends Controller
     }
     public function store(StoreProductRequest $request)
     {
+        //dd($StoreProductPost); 
+    
         $product_id = $request->product_id;
         $category= $request->categoty_id;
         $brand_id = $request->brandProduct;
         $nameProduct = $request->nameProduct;
         $slug = Str::slug($nameProduct, '-');
         $price = $request->priceProduct;
-        //$price = trim(str_replace(',','', $price));
-        $quantity = $request->qtyProduct;
-        $quantity = is_numeric($quantity) && $quantity > 0 ? $quantity: 1;
+
+        $quality = $request->qtyProduct;
+        $quality = is_numeric($quality) && $quality > 0 ? $quality: 1;
         $saleOff = $request->saleOffProduct;
         $saleOff = is_numeric($saleOff) ? $saleOff : 0;
         $category = $request->categoryProduct;
@@ -42,9 +44,14 @@ class ProductController extends Controller
         $hotProduct = $request->bestSell;
         $status = $request->status;
         $arrImages = [];
+        //thuc hien upload file
+        //kiem tra xem nguoi co chon file ko
         if($request->hasFile('images')){
+            //Lay thong tin cua file
             $image = $request->file('images');
+            
             foreach ($image as $key => $i) {
+                //lay ra duoc ten file va duong dan luu tam thoi file
                 if($i->isValid()){
                     $nameImage = $i->getClientOriginalName();
                     $i->move('uploads/images/products',$nameImage);
@@ -52,8 +59,11 @@ class ProductController extends Controller
                 }
             }
         }
-
+      
+        //$imageProduct =$arrImages[0];
         $imageProduct = array_pop($arrImages);
+        //dd($imageProduct);
+        //tien hanh luu thong vao db
         $dataInsert = [
             'product_id'=> $product_id,
             'category_id' => $category,

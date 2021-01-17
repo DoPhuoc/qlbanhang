@@ -60,3 +60,5 @@ Route::group([
             ->name('register');
     });
 });
+
+Route::get('/home', 'HomeController@index')->name('home');

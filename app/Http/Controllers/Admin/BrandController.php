@@ -19,14 +19,7 @@ class BrandController extends Controller
         $data['listBrands'] = DB::table('brands')
         ->paginate(self::LIMITED_ROW);
        
-        /* $keyword = $request->q;
-        $keyword = xss_clean($keyword);
-        $data['message'] = $request->session()->get('brands');
-        $data['listBrands']= DB::table('brands')
-        ->where('name','like',$key)
-        ->orderBy('status')
-        ->paginate(self::LIMITED_ROW);
-        $data['keyword'] = $keyword; */
+      
         return view('admin.brand.list',$data);
     }
     public function addBrand()

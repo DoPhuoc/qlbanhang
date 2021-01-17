@@ -35,25 +35,8 @@
     </div>
 </div>
 
+
 @endsection
 
-@push('stylesheets')
-<link rel="stylesheet" href="{{asset('backend/summernote-0.8.18-dist/summernote.min.css')}}">
-@endpush
-@push('javascripts')
-<script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
-<script src="{{asset('backend/summernote-0.8.18-dist/summernote.min.js')}}"></script>
-<script>
-    $('#lfm').filemanager('image');
-
-    $(document).ready(function() {
-      $('#summary').summernote({
-        placeholder: "Write short description.....",
-          tabsize: 2,
-          height: 120
-      });
-    });
-</script>
 
 
-@endpush

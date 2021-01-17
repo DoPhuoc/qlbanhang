@@ -47,6 +47,7 @@
         <span class="text-danger">{{ $message }}</span>
         @enderror
 
+<<<<<<< HEAD
         <div class="form-group">
             <label for="summary" class="col-form-label">Mô tả tóm tắt</label>
             <textarea class="form-control" id="summary" name="summary"></textarea>
@@ -55,6 +56,8 @@
         <span class="text-danger">{{ $message }}</span>
         @enderror
 
+=======
+>>>>>>> 3dda139bc49053507fd1815e1aecf27361f4867c
         <div class="form-group">
             <label for="description" class="col-form-label">Mô tả</label>
             <textarea class="form-control" id="description" name="description"></textarea>
@@ -72,6 +75,22 @@
                   id="imagePost"></div>
               </div>
           </div>
+<<<<<<< HEAD
+=======
+          @error('description')
+        <span class="text-danger">{{ $message }}</span>
+        @enderror
+        <div class="row border p-2">
+          <div class="col">
+              <div class="input-field">
+                  <label for="imagePost">Ảnh sản phẩm<span class="text-danger">*</span></label>
+                  <div class="input-images"
+                  type="file"
+                  name="imagePost"
+                  id="imagePost"></div>
+              </div>
+          </div>
+>>>>>>> 3dda139bc49053507fd1815e1aecf27361f4867c
         </div>
         <div class="form-group">
           <label for="status" class="col-form-label">Status <span class="text-danger">*</span></label>
@@ -89,8 +108,11 @@
         </div>
       </form>
 
+<<<<<<< HEAD
     
 
+=======
+>>>>>>> 3dda139bc49053507fd1815e1aecf27361f4867c
     </div>
 </div>
 @endsection

@@ -58,7 +58,7 @@ Route::group([
     Route::post('/add-shipping','ShippingController@postaddShipping')->name('handle.add.shipping');
     Route::get('/shipping/{id}','ShippingController@editShipping')->name('edit.shipping');
     Route::post('/shipping/handle-edit/{id}','ShippingController@postEditShipping')->name('handle.edit.shipping');
-    Route::get('/shipping/delete-shipping/{id}','ShippingController@deleteShipping')->name('delete.shipping');
+    Route::post('/shipping/delete-shipping/{id}','ShippingController@deleteShipping')->name('delete.shipping');
 
     /*Post*/
     Route::get('/post','PostController@index')->name('post');

@@ -4,7 +4,20 @@
  <div class="card shadow mb-4">
      <div class="row">
          <div class="col-md-12">
+          @if(session('success'))
+          <div class="alert alert-success alert-dismissable fade show">
+                 <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                 {{session('success')}}
+             </div>
+         @endif
        
+       
+         @if(session('error'))
+             <div class="alert alert-danger alert-dismissable fade show">
+                 <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                 {{session('error')}}
+             </div>
+         @endif
          </div>
      </div>
 
@@ -44,6 +57,7 @@
             </tr>
           </thead>
           <tbody>
+            
             <tr>
 
               @foreach($tags as $key => $item) 

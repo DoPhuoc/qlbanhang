@@ -87,7 +87,50 @@
   </style>
 @endpush
 
+
+
+@push('styles')
+  <link href="{{asset('backend/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+  <style>
+      div.dataTables_wrapper div.dataTables_paginate{
+          display: none;
+      }
+      .zoom {
+        transition: transform .2s; /* Animation */
+      }
+
+      .zoom:hover {
+        transform: scale(3.2);
+      }
+  </style>
+@endpush
+
 @push('javascripts')
+
+  <!-- Page level plugins -->
+  <script src="{{asset('backend/vendor/datatables/jquery.dataTables.min.js')}}"></script>
+  <script src="{{asset('backend/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-  <script type="text/javascript" src="{{ asset('backend/js/admin-banners.js') }}"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="{{asset('backend/js/demo/datatables-demo.js')}}"></script>
+  <script>
+      
+      $('#banner-dataTable').DataTable( {
+            "columnDefs":[
+                {
+                    "orderable":false,
+                    "targets":[3,4,5]
+                }
+            ]
+        } );
+
+        // Sweet alert
+
+        function deleteData(id){
+            
+        }
+  </script>
+
 @endpush
