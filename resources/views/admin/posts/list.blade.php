@@ -41,54 +41,46 @@
                     <thead>
                         <tr>
                             <th>STT</th>
-                            <th>Tiêu đề</th>
-                            <th>Tên danh mục</th>
-                            <th>Tagz</th>
+                            <th with="20%">Tiêu đề</th>
+                            <th with="20%">Tên danh mục</th>
+                            <th with="20%">Tag</th>
                             <th>Ảnh</th>
                             <th>Mô tả</th>
                             <th>Tình trạng</th>
                             <th style="width:10%">Hành động</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>STT</th>
-                            <th>Tiêu đề</th>
-                            <th>Tên danh mục</th>
-                            <th>Tagz</th>
-                            <th>Ảnh</th>
-                            <th>Mô tả</th>
-                            <th>Tình trạng</th>
-                            <th>Hành động
-                            </th>
-                        </tr>
-                    </tfoot>
+              
                     <tbody>
+                  
+                            @foreach($posts as $key => $item) 
                         <tr>
-                            <td>1</td>
-                            <td>Phòng cháy chữa cháy</td>
+                            <td>{{$item->id}}</td>
+                            <td>{{$item->title}}</td>
                             <td>
-                                Báo và chữa cháy HOCHIKI
+                                {{$item->post_tag_id}}
                             </td>
-                            <td>PCCC</td>
+                            <td>{{$item->post_cat_id}}</td>
                             <td>
-                                <img src="/img/product01.png">
+                                <img class="img-fluid zoom img-thumbnail w-20" style="max-width:100%" src="{{asset('uploads/images/posts')}}/{{$item->image}}">
                             </td>
-                            <td>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam quos nesciunt quam
-                                commodi dicta mollitia vitae ratione nobis minus totam debitis, quis eaque sed nisi
-                                laboriosam enim dolores aliquid est.</td>
-                            <td>Hoạt động</td>
+                            <td>{{$item->description}}</td>
+                            <td>   @if($item->status=='1')
+                                <span class="badge badge-success">Hoạt động</span>
+                                @else
+                                <span class="badge badge-warning">Không hoạt động</span>
+                                @endif</td>
                             <td>
                                 <a class="btn btn-primary btn-sm float-left mr-1"
                                     style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit"
-                                    href="{{ route('admin.edit.post', ['slug', 'id']) }}" data-placement="bottom"><i
+                                    href="{{ route('admin.edit.post', ['slug'=> $item->slug, 'id'=> $item->id]) }}" data-placement="bottom"><i
                                         class="fas fa-edit"></i></a>
-                                <button class="btn btn-danger btn-sm dltBtn"
-                                    style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip"
-                                    data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
-
+                                    <a class="btn btn-danger btn-sm" href="{{route('admin.delete.post',['id'=>$item->id])}}" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></a>
                             </td>
                         </tr>
+                            @endforeach
+                  
+                    
 
                     </tbody>
                 </table>

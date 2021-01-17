@@ -4,11 +4,11 @@
 <div class="card">
     <h5 class="card-header">Thêm phí ship</h5>
     <div class="card-body">
-      <form method="post" action="">
- 
+      <form method="post" action="{{route('admin.handle.add.shipping')}}">
+        @csrf
         <div class="form-group">
-          <label for="inputTitle" class="col-form-label">Tên <span class="text-danger">*</span></label>
-          <input id="inputTitle" type="text" name="title" placeholder="Enter title"  value="" class="form-control">
+          <label for="title" class="col-form-label">Tên <span class="text-danger">*</span></label>
+          <input id="title" type="text" name="title" placeholder="Enter title"  value="{{old('title')}}" class="form-control">
        
         </div>
 
@@ -23,8 +23,8 @@
         <div class="form-group">
           <label for="status" class="col-form-label">Tình trạng <span class="text-danger">*</span></label>
           <select name="status" class="form-control">
-              <option value="active">Hoạt động</option>
-              <option value="inactive">Không hoạt động</option>
+              <option value="1">Hoạt động</option>
+              <option value="0">Không hoạt động</option>
           </select>
      
         </div>

@@ -67,9 +67,7 @@
               </td>
               <td>
                 <a class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" href="{{route('admin.edit.category',['slug' =>  $category->slug, 'id' =>  $category->id])}}" data-placement="bottom"><i class="fas fa-edit"></i></a>
-                
-                <button class="btn btn-danger btn-sm dltBtn" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
-        
+                <a class="btn btn-danger btn-sm" href="{{route('admin.delete.category',['id'=>$category->id])}}" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></a>
               </td>
             </tr>
               @endforeach

@@ -17,33 +17,39 @@
           <thead>
             <tr>
               <th>STT</th>
-              <th>Tên danh mục</th>
+              <th >Tên danh mục</th>
               <th>Mô tả</th>
-              <th>Hoạt động</th>
+              <th>Tình trạng</th>
+              <th>Hành động</th>
             </tr>
           </thead>
-          <tfoot>
-            <tr>
-              <th>STT</th>
-              <th>Tên danh mục</th>
-              <th>Mô tả</th>
-              <th>Hoạt động</th>    
-            </tr>
-          </tfoot>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>Báo và chữa cháy HOCHIKI</td>
-              <td>
-                  Bán các loại sản phẩm hochiki 
-              </td>
-              <td>
-                <a class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" href="{{route('admin.edit.postCategory',['slug','id'])}}" data-placement="bottom"><i class="fas fa-edit"></i></a>
-                <button class="btn btn-danger btn-sm dltBtn" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
         
-              </td>
-          </tr>  
-           
+          <tbody>
+          @foreach($postCategory as $key => $item) 
+          <tr>
+          <td>{{$item->id}}</td>
+          <td>   
+              {{ $item->title }}
+          </td>
+          <td>
+              {!! $item->description !!}
+          </td>
+          <td>
+              @if($item->status=='1')
+              <span class="badge badge-success">Hoạt động</span>
+              @else
+              <span class="badge badge-warning">Không hoạt động</span>
+              @endif
+          </td>
+          <td>
+              <a class="btn btn-primary btn-sm float-left mr-1" 
+              style="height:30px; width:30px;border-radius:50%" 
+              data-toggle="tooltip" title="edit"
+              href="{{route('admin.edit.postCategory',['slug' => $item->slug,'id' => $item->id])}}" data-placement="bottom"><i class="fas fa-edit"></i></a>
+          
+              <a class="btn btn-danger btn-sm" href="{{route('admin.delete.postCategory',['id'=>$item->id])}}" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></a>
+          </td>
+          @endforeach
           </tbody>
         </table>
         <span style="float:right"></span>

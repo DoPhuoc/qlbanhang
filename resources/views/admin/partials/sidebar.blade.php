@@ -110,13 +110,13 @@
     </a>
 </li>
 
-<!-- Reviews -->
+{{--  <!-- Reviews -->
 <li class="nav-item">
     <a class="nav-link" href="{{route('admin.review')}}">
         <i class="fas fa-comments"></i>
         <span>Đánh giá sản phẩm </span></a>
 </li>
-
+  --}}
 
 <!-- Divider -->
 <hr class="sidebar-divider">
@@ -171,13 +171,13 @@
     </div>
 </li>
 
-  <!-- Comments -->
+{{--    <!-- Comments -->
   <li class="nav-item">
     <a class="nav-link" href="">
         <i class="fas fa-comments fa-chart-area"></i>
         <span>Comments</span>
     </a>
-  </li>
+  </li>  --}}
 
 
 <!-- Divider -->
@@ -186,10 +186,19 @@
 <div class="sidebar-heading">
     General Settings
 </div>
+
 <li class="nav-item">
-  <a class="nav-link" href="">
-      <i class="fas fa-table"></i>
-      <span>Coupon</span></a>
+  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#couponCollapse" aria-expanded="true" aria-controls="tagCollapse">
+      <i class="fas fa-tags fa-folder"></i>
+      <span>Coupon</span>
+  </a>
+  <div id="couponCollapse" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+      <h6 class="collapse-header">Tag Options:</h6>
+      <a class="collapse-item" href="{{route('admin.coupon')}}">Danh mục Mã giảm giá</a>
+      <a class="collapse-item" href="{{route('admin.add.coupon')}}">Thêm mã giảm giá</a>
+      </div>
+  </div>
 </li>
  <!-- Users -->
  <li class="nav-item">

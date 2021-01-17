@@ -3,8 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Request;
-class EditCategories extends FormRequest
+
+class StorePostCategories extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,12 +21,10 @@ class EditCategories extends FormRequest
      *
      * @return array
      */
-    public function rules(Request $request )
+    public function rules()
     {
-        $id = $request->id;
-        $id = is_numeric($id) && $id > 0 ? $id : 0;
         return [
-            'nameCate' => 'unique:categories,name,'.$id,
+            'nameCate' => 'required|max:100|unique:post_categories,title',
             'descCate' => 'required'
         ];
     }

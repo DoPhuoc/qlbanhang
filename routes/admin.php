@@ -50,39 +50,39 @@ Route::group([
     Route::post('/add-category','CategoryController@handleCategory')->name('handle.add.category');
     Route::get('/category/{slug}~{id}','CategoryController@editCategory')->name('edit.category');
     Route::post('/category/handle-edit','CategoryController@handleEditCategory')->name('handle.edit.category');
-    Route::post('/category/delete-category','CategoryController@deleteCaegory')->name('delete.category');
+    Route::get('/category/delete-category/{id}','CategoryController@deleteCategory')->name('delete.category');
 
     /*Shipping*/
     Route::get('/shipping','ShippingController@index')->name('shipping');
     Route::get('/add-shipping','ShippingController@addShipping')->name('add.shipping');
-    Route::post('/add-shipping','ShippingController@handleShipping')->name('handle.add.shipping');
-    Route::get('/shipping/{slug}~{id}','ShippingController@editShipping')->name('edit.shipping');
-    Route::post('/shipping/handle-edit/{id}','ShippingController@handleEditShipping')->name('handle.edit.shipping');
-    Route::post('/shipping/delete-shipping','ShippingController@deleteShipping')->name('delete.shipping');
+    Route::post('/add-shipping','ShippingController@postaddShipping')->name('handle.add.shipping');
+    Route::get('/shipping/{id}','ShippingController@editShipping')->name('edit.shipping');
+    Route::post('/shipping/handle-edit/{id}','ShippingController@postEditShipping')->name('handle.edit.shipping');
+    Route::get('/shipping/delete-shipping/{id}','ShippingController@deleteShipping')->name('delete.shipping');
 
     /*Post*/
     Route::get('/post','PostController@index')->name('post');
-    Route::get('/add-post','PostController@addPost')->name('add.post');
-    Route::post('/add-post','PostController@handleAddPost')->name('handle.add.post');
-    Route::get('/post/{slug}~{id}','PostController@editPost')->name('edit.post');
-    Route::post('/post/handle-edit/{id}','PostController@handleEditPost')->name('handle.edit.post');
-    Route::post('/post/delete-post','PostController@deletePost')->name('delete.post');
+    Route::get('/add-post','PostController@getaddPosts')->name('add.post');
+    Route::post('/add-post','PostController@handlePosts')->name('handle.add.post');
+    Route::get('/post/{slug}~{id}','PostController@geteditPosts')->name('edit.post');
+    Route::post('/post/handle-edit/{id}','PostController@postEditPosts')->name('handle.edit.post');
+    Route::get('/post/delete-post/{id}','PostController@deletePost')->name('delete.post');
 
     /*Tags*/
     Route::get('/tag','TagController@index')->name('tag');
-    Route::get('/add-tag','TagController@addTag')->name('add.tag');
-    Route::post('/add-tag','TagController@handleAddTag')->name('handle.add.tag');
-    Route::get('/tag/{slug}~{id}','TagController@editTag')->name('edit.tag');
-    Route::post('/tag/handle-edit/{id}','TagController@handleEditTag')->name('handle.edit.tag');
-    Route::post('/tag/delete-post','TagController@deleteTag')->name('delete.tag');
+    Route::get('/add-tag','TagController@getaddTag')->name('add.tag');
+    Route::post('/add-tag','TagController@postaddTag')->name('handle.add.tag');
+    Route::get('/tag/{slug}~{id}','TagController@geteditTag')->name('edit.tag');
+    Route::post('/tag/handle-edit/{id}','TagController@posteditTag')->name('handle.edit.tag');
+    Route::get('/tag/delete-post/{id}','TagController@deleteTag')->name('delete.tag');
 
     /*PostCategory*/
     Route::get('/postCategory','PostCategoryController@index')->name('postCategory');
-    Route::get('/add-postCategory','PostCategoryController@addPostCategory')->name('add.postCategory');
-    Route::post('/add-postCategory','PostCategoryController@handleAddPostCategory')->name('handle.add.postCategory');
-    Route::get('/postCategory/{slug}~{id}','PostCategoryController@editPostCategory')->name('edit.postCategory');
-    Route::post('/postCategory/handle-edit/{id}','PostCategoryController@handleEditPostCategory')->name('handle.edit.postCategory');
-    Route::post('/postCategory/delete-post','PostCategoryController@deletePostCategory')->name('delete.postCategory');
+    Route::get('/add-postCategory','PostCategoryController@getaddPostCategory')->name('add.postCategory');
+    Route::post('/add-postCategory','PostCategoryController@postaddPostCategory')->name('handle.add.postCategory');
+    Route::get('/postCategory/{slug}~{id}','PostCategoryController@geteditPostCategory')->name('edit.postCategory');
+    Route::post('/postCategory/handle-edit/{id}','PostCategoryController@posteditPostCategory')->name('handle.edit.postCategory');
+    Route::get('/postCategory/delete-post/{id}','PostCategoryController@deletePostCategory')->name('delete.postCategory');
 
     /*Order*/
     Route::get('/order','OrderController@index')->name('order');
@@ -99,7 +99,12 @@ Route::group([
     Route::post('/review/delete-review','ReviewController@deleteTag')->name('delete.review');
 
     /*Coupon*/
-
+    Route::get('/coupon','CouponController@index')->name('coupon');
+    Route::get('/add-coupon','CouponController@addCoupon')->name('add.coupon');
+    Route::post('/add-coupon','CouponController@postaddCoupon')->name('handle.add.coupon');
+    Route::get('/coupon/{id}','CouponController@geteditCoupon')->name('edit.coupon');
+    Route::post('/coupon/handle-edit/{id}','CouponController@posteditCoupon')->name('handle.edit.coupon');
+    Route::get('/coupon/delete-coupon/{id}','CouponController@deleteCoupon')->name('delete.coupon');
     /*Users*/
     Route::get('C','UsersController@index')->name('users');
     Route::get('/add-users','UsersController@addUsers')->name('add.users');

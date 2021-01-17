@@ -43,30 +43,30 @@
               <th>Hoạt động</th>
             </tr>
           </thead>
-          <tfoot>
-            <tr>
-              <th>STT</th>
-              <th>Tên </th>
-              <th>Giá </th>
-              <th>Tình trạng</th>
-              <th>Hành động</th>    
-            </tr>
-          </tfoot>
+       
           <tbody>
+            @foreach($shippings as $key => $item)  
             <tr>
-              <td>1</td>
-              <td>Hà nội</td>
+              <td>{{$item->id}}</td>
+              <td>{{$item->title}}</td>
               <td>
-                  50.000VNĐ 
+                {{number_format($item->price).''.'VNĐ'}}
               </td>
-              <td>Hoạt động</td>
               <td>
-                <a class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" href="{{route('admin.edit.shipping',['slug','id'])}}" data-placement="bottom"><i class="fas fa-edit"></i></a>
-                <button class="btn btn-danger btn-sm dltBtn" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                @if($item->status=='1')
+                        <span class="badge badge-success">Hoạt động</span>
+                        @else
+                        <span class="badge badge-warning">Không hoạt động</span>
+                        @endif
+              </td>
+              <td>
+                <a class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" href="{{route('admin.edit.shipping',['id'=> $item->id])}}" data-placement="bottom"><i class="fas fa-edit"></i></a>
+                <a class="btn btn-danger btn-sm dltBtn" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip"
+                href="{{route('admin.delete.shipping',['id'=> $item->id])}}" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></a>
         
               </td>
           </tr>  
-           
+           @endforeach
           </tbody>
         </table>
         <span style="float:right"></span>

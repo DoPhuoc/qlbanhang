@@ -50,7 +50,7 @@ class CategoryController extends Controller
         }
     }
     public function handleEditCategory(EditCategories $request ){
-        return $request->all();
+    
         $id = $request->id;
         $id = is_numeric($id) && $id > 0 ? $id : 0;
         $name = $request->nameCate;
@@ -77,4 +77,18 @@ class CategoryController extends Controller
         }
         return redirect(route('admin.category'));
     }
+      
+    public function deleteCategory($id)
+    {
+        $category=Category::find($id);
+        $status=$category->delete();
+        if($category){
+            request()->session()->flash('success','Xóa thành công');
+        }
+        else{
+            request()->session()->flash('error','Xóa thất bại');
+        }
+        return redirect()->route('admin.category'); 
+    }
+
 }
