@@ -161,6 +161,16 @@ class PostController extends Controller
             return redirect(route('admin.post'));
         }
     }
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+        $posts = Posts::where('title','like','%' . $search . '%')
+        ->orWhere('description','like','%' . $search . '%')
+        ->orWhere('status','like','%' . $search . '%')
+        ->paginate(5);
+        /* dd($categories); */
+        return view('admin.posts.list',compact('posts'));
+    }
    
 }
 

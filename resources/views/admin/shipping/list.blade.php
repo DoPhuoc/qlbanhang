@@ -15,14 +15,7 @@
           </div>
       
           <div class="col-md-4">
-              <form>
-                  <div class="input-group">
-                      <input type="search" name="search" class="form-control">
-                      <span class="input-group-prepend">
-                          <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
-                      </span>
-                  </div>
-              </form>
+            
           </div>
           <div class="col-md-4">
               <a href="{{ route('admin.add.shipping') }}" class="d-none d-sm-inline-block btn btn-primary shadow-sm float-right"><i

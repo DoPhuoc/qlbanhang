@@ -88,4 +88,16 @@ class TagController extends Controller
             return redirect()->route('admin.tag');
         }     
     }
+    public function search(Request $request)
+    {   
+     
+        $search = $request->get('search');
+        $tags = Tag::where('title','like',
+        '%' . $search . '%')
+        ->orWhere('description','like','%' . $search . '%')
+        ->orWhere('status','like','%' . $search . '%')
+        ->paginate(5);
+        
+        return view('admin.tags.list',compact('tags'));
+    }
 }

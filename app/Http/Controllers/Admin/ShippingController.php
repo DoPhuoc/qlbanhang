@@ -73,11 +73,21 @@ class ShippingController extends Controller
         $status=$shipping->delete();
         if($shipping){
             Alert::success('Xóa thành công');
-            return redirect()->route('admin.tag');
+            return redirect()->route('admin.shipping');
            
         } else {
             Alert::error('Xóa thất bại');
-            return redirect()->route('admin.tag');
+            return redirect()->route('admin.shipping');
         }     
+    }
+    public function searchShipping(Request $request)
+    {   
+        $search = $request->get('search');
+        $shippings = Shipping::where('price','like','%' . $search . '%')
+        ->orWhere('price','like','%' . $search . '%')
+        ->orWhere('status','like','%' . $search . '%')
+        ->paginate(5);
+        dd($shippings);
+        return view('admin.shipping.list',compact('shippings'));
     }
 }

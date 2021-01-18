@@ -90,4 +90,14 @@ class PostCategoryController extends Controller
             return redirect()->route('admin.postCategory');
         }
     }
+    public function search(Request $request)
+    {   
+        $search = $request->get('search');
+        $postCategory = PostCategories::where('title','like','%' . $search . '%')
+        ->orWhere('description','like','%' . $search . '%')
+        ->orWhere('status','like','%' . $search . '%')
+        ->paginate(5);
+       
+        return view('admin.postCategory.list',compact('postCategory'));
+    }
 }

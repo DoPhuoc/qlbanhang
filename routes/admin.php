@@ -43,7 +43,7 @@ Route::group([
     Route::post('/add-banner','BannerController@handleBanner')->name('handle.add.banner');
     Route::get('/banner/{slug}~{id}','BannerController@editBanner')->name('edit.banner');
     Route::post('/banner/handle-edit/{id}','BannerController@handleEditBanner')->name('handle.edit.banner');
-    Route::post('/banner/delete-banner','BannerController@deleteBanner')->name('delete.banner');
+    Route::get('/banner/delete-banner/{id}','BannerController@deleteBanner')->name('delete.banner');
 
     /*Category*/
     Route::get('/category','CategoryController@index')->name('category');
@@ -52,14 +52,15 @@ Route::group([
     Route::get('/category/{slug}~{id}','CategoryController@editCategory')->name('edit.category');
     Route::post('/category/handle-edit','CategoryController@handleEditCategory')->name('handle.edit.category');
     Route::get('/category/delete-category/{id}','CategoryController@deleteCategory')->name('delete.category');
-
+    Route::get('/category/search','CategoryController@search')->name('search.category');
     /*Shipping*/
     Route::get('/shipping','ShippingController@index')->name('shipping');
     Route::get('/add-shipping','ShippingController@addShipping')->name('add.shipping');
     Route::post('/add-shipping','ShippingController@postaddShipping')->name('handle.add.shipping');
     Route::get('/shipping/{id}','ShippingController@editShipping')->name('edit.shipping');
     Route::post('/shipping/handle-edit/{id}','ShippingController@postEditShipping')->name('handle.edit.shipping');
-    Route::post('/shipping/delete-shipping/{id}','ShippingController@deleteShipping')->name('delete.shipping');
+    Route::get('/shipping/delete-shipping/{id}','ShippingController@deleteShipping')->name('delete.shipping');
+    Route::get('/shipping/search','ShippingController@searchShipping')->name('search.shippings');
 
     /*Post*/
     Route::get('/post','PostController@index')->name('post');
@@ -68,7 +69,7 @@ Route::group([
     Route::get('/post/{slug}~{id}','PostController@geteditPosts')->name('edit.post');
     Route::post('/post/handle-edit/{id}','PostController@postEditPosts')->name('handle.edit.post');
     Route::get('/post/delete-post/{id}','PostController@deletePost')->name('delete.post');
-
+    Route::get('/post/search','PostController@search')->name('search.post');
     /*Tags*/
     Route::get('/tag','TagController@index')->name('tag');
     Route::get('/add-tag','TagController@getaddTag')->name('add.tag');
@@ -76,7 +77,7 @@ Route::group([
     Route::get('/tag/{slug}~{id}','TagController@geteditTag')->name('edit.tag');
     Route::post('/tag/handle-edit/{id}','TagController@posteditTag')->name('handle.edit.tag');
     Route::get('/tag/delete-post/{id}','TagController@deleteTag')->name('delete.tag');
-
+    Route::get('/tag/search','TagController@search')->name('search.tag');
     /*PostCategory*/
     Route::get('/postCategory','PostCategoryController@index')->name('postCategory');
     Route::get('/add-postCategory','PostCategoryController@getaddPostCategory')->name('add.postCategory');
@@ -84,7 +85,7 @@ Route::group([
     Route::get('/postCategory/{slug}~{id}','PostCategoryController@geteditPostCategory')->name('edit.postCategory');
     Route::post('/postCategory/handle-edit/{id}','PostCategoryController@posteditPostCategory')->name('handle.edit.postCategory');
     Route::get('/postCategory/delete-post/{id}','PostCategoryController@deletePostCategory')->name('delete.postCategory');
-
+    Route::get('/postCategory/search','PostCategoryController@search')->name('search.postCategory');
     /*Order*/
     Route::get('/order','OrderController@index')->name('order');
     Route::get('/add-order','OrderController@addOrder')->name('add.order');

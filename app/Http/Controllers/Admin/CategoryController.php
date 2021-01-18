@@ -93,5 +93,16 @@ class CategoryController extends Controller
         }
         return redirect()->route('admin.category'); 
     }
-
+    public function search(Request $request)
+    {
+        
+        $search = $request->get('search');
+        $categories = Category::where('name','like','%' . $search . '%')
+        ->orWhere('status','like','%' . $search . '%')
+        ->orWhere('description','like','%' . $search . '%')
+        ->paginate(5);
+        /* dd($categories); */
+        return view('admin.category.list',compact('categories'));
+    }
+    
 }
