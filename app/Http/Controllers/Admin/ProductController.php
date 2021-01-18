@@ -21,6 +21,7 @@ class ProductController extends Controller
     {
         $categories = Category::where('status',1)->get();
         $brands = Brand::where('status',1)->get();
+
         return view('admin.products.add',compact('categories','brands'));
     }
     public function store(StoreProductRequest $request)

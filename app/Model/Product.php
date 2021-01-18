@@ -55,4 +55,5 @@ class Product extends Model
         }
         return number_format($this->pivot->price * $this->pivot->quantity)  . ' VND';
     }
+
 }

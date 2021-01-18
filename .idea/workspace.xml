@@ -2,20 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="839161cd-1e65-46ea-811d-005a32118e43" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Frontend/BrandController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/CategoryController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/frontend/products/search.list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/qlbanhang.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/qlbanhang.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Frontend/FrontendController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Frontend/FrontendController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Frontend/BillController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Frontend/BillController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Frontend/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Frontend/ProductController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/backend/js/admin-brands.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/backend/js/admin-brands.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/brand/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/brand/list.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/product/add-product.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/product/add-product.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/product/listproduct.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/product/listproduct.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Model/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/Product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/frontend/bills/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/bills/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/frontend/bills/showDetail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/bills/showDetail.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/frontend/commons/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/commons/header.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/home/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/home/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/product/detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/product/detail.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -141,11 +138,14 @@
       <path value="$PROJECT_DIR$/vendor/phpspec/prophecy" />
       <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
       <path value="$PROJECT_DIR$/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/vendor/laravel/ui" />
+      <path value="$PROJECT_DIR$/vendor/realrashid/sweet-alert" />
     </include_path>
   </component>
   <component name="ProjectId" id="1mssjN0bu2Zz80oLrNeYrlEo336" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
@@ -153,13 +153,20 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/frontend/products" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views/frontend/products" />
+      <recent name="$PROJECT_DIR$/resources/views/frontend/bills" />
       <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Http/Controllers/Frontend" />
+      <recent name="$PROJECT_DIR$/app/Model" />
     </key>
   </component>
   <component name="RunManager">
@@ -187,6 +194,11 @@
       <workItem from="1610518012465" duration="3824000" />
       <workItem from="1610540330852" duration="20163000" />
       <workItem from="1610616621337" duration="2252000" />
+      <workItem from="1610775289338" duration="1726000" />
+      <workItem from="1610846041084" duration="11147000" />
+      <workItem from="1610861474130" duration="6084000" />
+      <workItem from="1610869386889" duration="17753000" />
+      <workItem from="1610895611783" duration="11517000" />
     </task>
     <servers />
   </component>
@@ -217,6 +229,16 @@
           <url>file://$PROJECT_DIR$/app/Http/Controllers/Admin/LoginController.php</url>
           <line>14</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/frontend/commons/header.blade.php</url>
+          <line>171</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/frontend/bills/show.blade.php</url>
+          <line>1</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

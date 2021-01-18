@@ -15,8 +15,8 @@ class BillController extends Controller
         return view('frontend.bills.show',compact('carts'));
     }
     public function showDetail(){
-        $carts = Cart::where('user_id', Auth::id())->whereHas('bill')->get();
-
-        return view('frontend.bill.showDetail',compact('carts'));
+//        dd(Cart::findOrFail('id',request()->id));
+        $cart = Cart::findOrFail(request()->id);
+        return view('frontend.bills.showDetail',compact('cart'));
     }
 }

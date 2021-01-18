@@ -20,33 +20,33 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @forelse($bills as $bill)
+                        @foreach($cart->products as $product)
                             <tr>
                                     <td class="product-id" data-title="id">
-                                        {{ $bill->name}}
+                                        {{ $product->name}}
                                     </td>
-                            </tr>
                                 <td class="product-id" data-title="id">
-                                    <?php
-                                    $totalProduct = $cart->products->count() ;
-                                    if($totalProduct==1) echo $cart->products->first()->name;
-                                    else echo $cart->products->first()->name." và ".(--$totalProduct)." sản phẩm khác";
-                                    ?>
+                                    {{ $product->price}}
+                                </td>
+                                <td class="product-id" data-title="id">
+                                    {{ $product->quantity}}
+                                </td>
+                                <td class="product-id" data-title="id">
+                                    {{ $product->sale_off}}%
                                 </td>
                                 <td class="price" data-title="Price">
-                                        {{$cart->created_at}}
-                                </td>
-
-                                <td class="total-amount" data-title="Total">
                                     {{$cart->totalMoney()}}
                                 </td>
-{{--                                <td class="qty" data-title="Qty">--}}
-{{--                                    {{$cart->bill->price}}--}}
-{{--                                </td>--}}
-                        @empty
-                            Bạn không có đơn hàng nào!!
-                        @endforelse
+
+                            </tr>
                         </tbody>
+                        @endforeach
+                        <tfoot><tr><td colspan="4"><span>Tạm tính</span></td><td>{{$cart->totalMoney()}} VND</td></tr>
+                        <tr><td colspan="4"><span>Phí vận chuyển</span></td><td>25.000 ₫</td></tr>
+                        <tr><td colspan="4"><span>Tổng cộng</span></td><td><span class="sum">252.000 ₫</span></td></tr>
+                        </tfoot>
+
+
                     </table>
                     <!--/ End Shopping Summery -->
                 </div>

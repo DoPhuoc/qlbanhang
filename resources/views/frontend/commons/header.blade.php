@@ -78,17 +78,9 @@
                 <div class="col-lg-8 col-md-7 col-12">
                     <div class="search-bar-top">
                         <div class="search-bar">
-                            <select>
-                                <option selected="selected">All Category
-                                </option>
-                                <option>Category 01</option>
-                                <option>Category 02</option>
-                                <option>Category 03</option>
-
-                            </select>
-                            <form>
+                            <form role="search" method="GET" id="searchform" action="{{route('fr.searchproduct')}}">
                                 <input name="search"
-                                       placeholder="Search Products Here....."
+                                       placeholder="Search Name of Products Here....."
                                        type="search">
                                 <button class="btnn"><i class="ti-search"></i>
                                 </button>

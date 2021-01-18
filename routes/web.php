@@ -29,8 +29,10 @@ Route::group([
         ->name('brand.product');
     Route::get('/bill', 'BillController@show')
         ->name('bill');
-    Route::get('/bill/detail', 'BillController@showDetail')
+    Route::get('/bill/detail/{id}', 'BillController@showDetail')
         ->name('bill.detail');
+    Route::get('/search', 'ProductController@getSearch')
+        ->name('searchproduct');
     Route::get('/cart', 'CartController@index')
         ->middleware('auth')
         ->name('cart');

@@ -33,4 +33,9 @@ class ProductController extends Controller
         ]
     );
     }
+    public function getSearch(){
+        $products = Product::where('name','like','%'.request()->search.'%')
+            ->get();
+        return view('frontend.products.search.list')->with('products',$products);
+    }
 }

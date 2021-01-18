@@ -22,9 +22,10 @@
                         @forelse($carts as $cart)
                             <tr>
                                     <td class="product-id" data-title="id">
-                                        <a href="fr.bill.detail">
+                                        <a href="{{route('fr.bill.detail',$cart->id)}}">
+                                            {{ $cart->id}}
                                         </a>
-                                        {{ $cart->id}}
+
                                     </td>
                                 <td class="product-id" data-title="id">
                                    {{$cart->productName()}}
