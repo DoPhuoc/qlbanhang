@@ -39,7 +39,7 @@ class BannerController extends Controller
                 $upload = $file->move('uploads/images/banners', $nameFile);
             }
         }
-        
+       
         if($upload && $nameFile){
             // tien hanh insert du lieu vao db
             $dataInsert = [
@@ -92,7 +92,6 @@ class BannerController extends Controller
             $desBanner = $request->desBanner;
             $photoBanner = $infoBanner->photo; // anh truoc khi thay doi
             $status = $request->statusBanner;
-
             $uploadPhoto = null;
             $newPhoto = null;
             if($request->hasFile('photoBanner')) {
@@ -102,9 +101,10 @@ class BannerController extends Controller
                     $uploadPhoto = $file->move('uploads/images/banners', $newPhoto);
                 }
             }
+            //dd($uploadPhoto,$newPhoto);
             
             if($uploadPhoto && $newPhoto){
-                // xoa anh cu
+                // xoa anh cu cap nhap anh moi
                 //unlink(public_path('uploads/images/brands') ."/".$logoBrand);
                 $update = DB::table('banners')
                             ->where('id', $id)
@@ -116,13 +116,15 @@ class BannerController extends Controller
                                 'status' => $status,
                                 'updated_at' => date('Y-m-d H:i:s')
                             ]);
+                           
             } else {
+                // giu nguyen anh cu
                 $update = DB::table('banners')
                     ->where('id', $id)
                     ->update([
                         'title' => $titleBanner,
                         'slug' => $slugBanner,
-                        'photo' => $newPhoto,
+                        'photo' =>  $photoBanner,
                         'description' => $desBanner,
                         'status' => $status,
                         'updated_at' => date('Y-m-d H:i:s')
@@ -140,9 +142,10 @@ class BannerController extends Controller
         }
     } 
     
-    public function deleteBanner(Banner $banner)
+    public function deleteBanner($id)
     {
-        $banner->delete();
+        $banner=Banner::find($id);
+        $status=$banner->delete();
         if($banner){
             request()->session()->flash('success','Banner successfully deleted');
         }

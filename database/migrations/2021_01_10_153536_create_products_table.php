@@ -24,9 +24,9 @@ class CreateProductsTable extends Migration
             $table->string('image',200);
             $table->tinyInteger('best_selling')->nullable();
             $table->integer('quantity');
-            $table->integer('price');
+            $table->double('price');
             $table->tinyInteger('status')->default(1);
-            $table->integer('sale_off')->nullable();
+            $table->double('sale_off')->nullable();
             $table->dateTime('created_at')->nullable();
             $table->dateTime('updated_at')->nullable();
         });

@@ -4,7 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Product extends Base
 {
 
     protected $table = 'products';
@@ -26,18 +26,17 @@ class Product extends Model
         'created_at',
         'updated_at'
     ];
-
     const BEST_SELLING = 1;
     const NOT_BEST_SELLING = 0;
 
     public function brand()
     {
-        return $this->belongsTo('App\Model\Brand', 'brand_id', 'id');
+        return $this->belongsTo(Brand::class, 'brand_id', 'id');
     }
 
     public function category()
     {
-        return $this->belongsTo('App\Model\Category', 'category_id', 'id');
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
     public function getImageFullPathAttribute(): string
@@ -55,5 +54,4 @@ class Product extends Model
         }
         return number_format($this->pivot->price * $this->pivot->quantity)  . ' VND';
     }
-
 }

@@ -70,7 +70,7 @@ class CartController extends Controller
             DB::rollBack();
         }
         Alert::success('Thành công!!');
-        return redirect()->route('fr.cart');
+        return back();
     }
 
     public function increaseProduct()

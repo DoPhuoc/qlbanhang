@@ -70,7 +70,6 @@
 <script src="{{asset('backend/js/select2.min.js')}}"></script>
 <!-- Custom scripts for all pages-->
 <script src="{{asset('backend/js/sb-admin-2.min.js')}}"></script>
-
 <script>
     $(function () {
         $.ajaxSetup({

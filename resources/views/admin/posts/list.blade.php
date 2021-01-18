@@ -29,7 +29,7 @@
 
                 </div>
                 <div class="col-md-4 ">
-                    <a href="{{ route('admin.add.post') }}"
+                    <a href="{{route('admin.add.post')}}"
                         class="d-none d-sm-inline-block btn btn-primary shadow-sm float-right" data-toggle="tooltip"
                         data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Thêm bài viết</a>
                 </div>
@@ -44,7 +44,7 @@
                             <th>Tiêu đề</th>
                             <th>Tên danh mục</th>
                             <th>Tagz</th>
-                            <th>Ảnh</th>
+                            <th>Ảnh widht="50%"</th>
                             <th>Mô tả</th>
                             <th>Tình trạng</th>
                             <th style="width:10%">Hành động</th>
@@ -64,32 +64,34 @@
                         </tr>
                     </tfoot>
                     <tbody>
+                        @foreach($posts as $key => $item)
                         <tr>
-                            <td>1</td>
-                            <td>Phòng cháy chữa cháy</td>
+                            <td>{{$item->id}}</td>
+                            <td>{{$item->title}}</td>
                             <td>
-                                Báo và chữa cháy HOCHIKI
+                                {{$item->post_tag_id}}
                             </td>
-                            <td>PCCC</td>
+                            <td>{{$item->post_cat_id}}</td>
                             <td>
-                                <img src="/img/product01.png">
+                                <img class="img-fluid zoom img-thumbnail w-20" style="max-width:100%" src="{{asset('uploads/images/posts')}}/{{$item->image}}">
                             </td>
-                            <td>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam quos nesciunt quam
-                                commodi dicta mollitia vitae ratione nobis minus totam debitis, quis eaque sed nisi
-                                laboriosam enim dolores aliquid est.</td>
-                            <td>Hoạt động</td>
+                            <td>{{$item->description}}</td>
+                            <td>   @if($item->status=='1')
+                                <span class="badge badge-success">Hoạt động</span>
+                                @else
+                                <span class="badge badge-warning">Không hoạt động</span>
+                                @endif</td>
                             <td>
                                 <a class="btn btn-primary btn-sm float-left mr-1"
                                     style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit"
-                                    href="{{ route('admin.edit.post', ['slug', 'id']) }}" data-placement="bottom"><i
+                                    href="{{ route('admin.edit.posts', ['slug', 'id']) }}" data-placement="bottom"><i
                                         class="fas fa-edit"></i></a>
-                                <button class="btn btn-danger btn-sm dltBtn"
-                                    style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip"
-                                    data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
 
+                                    <a class="btn btn-danger btn-sm" href="{{route('admin.delete.posts',['id'=>$item->id])}}" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></a>
                             </td>
                         </tr>
 
+                        @endforeach
                     </tbody>
                 </table>
                 <span style="float:right"></span>
@@ -98,3 +100,19 @@
         </div>
     </div>
 @endsection
+
+@push('stylesheets')
+
+  <style>
+    div.dataTables_wrapper div.dataTables_paginate{
+        display: none;
+    }
+    .zoom {
+      transition: transform .2s; /* Animation */
+    }
+
+    .zoom:hover {
+      transform: scale(3.2);
+    }
+  </style>
+@endpush

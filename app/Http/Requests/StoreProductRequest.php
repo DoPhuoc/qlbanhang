@@ -2,48 +2,19 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
-
-class StoreProductRequest extends FormRequest
+class StoreProductRequest extends ProductRequest
 {
-    public function authorize()
-    {
-        return true;
-    }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
     public function rules()
     {
         return [
-            'product_id' =>'required|unique:products,product_id|numeric',
-            'nameProduct' => 'required|max:180',
-            'priceProduct' => 'required',
-            'qtyProduct' => 'required|numeric',
-            'categoryProduct' => 'required|numeric',
-            'brandProduct' => 'required|numeric',
+            'product_id' => 'required|unique:products,product_id|numeric',
+            'name' => 'required|max:180',
+            'price' => 'required|numeric|digits_between:1,10',
+            'sale_off' => 'nullable|numeric|digits_between:0,10',
+            'quantity' => 'required|numeric',
+            'category_id' => 'required|numeric',
+            'brand_id' => 'required|numeric',
             'images' => 'required',
-
-        ];
-    }
-    public function messages()
-    {
-        return [
-            'product_id.required' => 'Max sarn pham khong duoc de trong',
-            'product_id.unique' => 'Ma san pham la duy nhat',
-            'product_id.numeric' =>' Ma san pham phai la so ',
-            'nameProduct.required' => 'Tên sản phẩm không được trống',
-            'nameProduct.max' => 'Tên sản phẩm không vượt quá  :max ký tự',
-            'priceProduct.required' => 'Giá sản phẩm không được trống',
-            'qtyProduct.required' => 'Số lượng sản phẩm không được trống',
-            'qtyProduct.numeric' => 'Số lượng sản phẩm phải là số',
-            'categoryProduct.required' => 'Hãy chọn danh mục sản phẩm',
-            'categoryProduct.numeric' => 'ID của danh mục phải là số',
-            'brandProduct.required' => 'Hãy chọn thương hiệu sản phẩm',
-            'images.required' => 'Vui lòng nhập ảnh sản phẩm',
         ];
     }
 }

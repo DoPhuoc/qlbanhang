@@ -4,52 +4,87 @@
 <div class="card">
     <h5 class="card-header">Thêm bài viết</h5>
     <div class="card-body">
-      <form method="post" action="">
- 
+      <form method="post" action="{{route('admin.handle.add.post')}}" enctype="multipart/form-data">
+        @csrf
+
         <div class="form-group">
-          <label for="inputTitle" class="col-form-label">Tiêu đề <span class="text-danger">*</span></label>
-          <input id="inputTitle" type="text" name="title" placeholder="Enter title"  value="" class="form-control">
-       
+          <label for="title" class="col-form-label">Tiêu đề <span class="text-danger">*</span></label>
+          <input id="title" type="text" name="title" placeholder="Enter title"  value="" class="form-control">
+          @error('title')
+          <span class="text-danger">{{ $message }}</span>
+          @enderror
         </div>
 
         <div class="form-group">
-          <label for="summary" class="col-form-label">Tên danh mục</label>
-          <select name="danhmuc" class="form-control">
-            <option> danh mục 1 </option>
+          <label for="catePost" class="col-form-label">Tên danh mục</label>
+          <select name="catePost" class="form-control">
+            <option value="">--Select any category--</option>
+            @foreach($catePosts as $key=>$data)
+            <option value="{{$data->title}}">{{$data->title}}</option>
+            @endforeach
             </select>
         </div>
+        @error('catePost')
+        <span class="text-danger">{{ $message }}</span>
+        @enderror
+
         <div class="form-group">
-          <label for="tagz" class="col-form-label">Tag</label>
-          <select name="status" class="form-control">
-            <option>tag 1 </option>
+          <label for="quote" class="col-form-label">Quote</label>
+          <textarea class="form-control" id="quote" name="quote">{{old('quote')}}</textarea>
+          @error('quote')
+          <span class="text-danger">{{$message}}</span>
+          @enderror
+        </div>
+
+        <div class="form-group">
+          <label for="tagPost" class="col-form-label">Tag</label>
+          <select name="tagPost" class="form-control">
+            <option>
+              @foreach($tags  as $key=>$data)
+              <option value="{{$data->title}}">{{$data->title}}</option>
+              @endforeach </option>
             </select>
         </div>
+        @error('tagPost')
+        <span class="text-danger">{{ $message }}</span>
+        @enderror
+
         <div class="form-group">
-    
+
             <label for="description" class="col-form-label">Mô tả</label>
             <textarea class="form-control" id="description" name="description"></textarea>
-        
+
           </div>
-     
-          <div class="form-group">
-      
-            <label for="imageProducts">Ảnh sản phẩm<span class="text-danger">*</span></label>
-            <div class="input-images" type="text" name="imageProducts" id="imageProducts"></div>
+          @error('description')
+        <span class="text-danger">{{ $message }}</span>
+        @enderror
+        <div class="row border p-2">
+          <div class="col">
+              <div class="input-field">
+                  <label for="imagePost">Ảnh sản phẩm<span class="text-danger">*</span></label>
+                  <div class="input-images"
+                  type="file"
+                  name="imagePost"
+                  id="imagePost"></div>
+              </div>
+          </div>
         </div>
-     
         <div class="form-group">
           <label for="status" class="col-form-label">Status <span class="text-danger">*</span></label>
           <select name="status" class="form-control">
-              <option value="active">Hoạt động</option>
-              <option value="inactive">Không hoạt động</option>
+              <option value="1">Hoạt động</option>
+              <option value="0">Không hoạt động</option>
           </select>
-     
+          @error('status')
+          <span class="text-danger">{{ $message }}</span>
+          @enderror
         </div>
         <div class="form-group mb-3">
           <button type="reset" class="btn btn-warning">Quay lại</button>
            <button class="btn btn-success" type="submit">Cập nhập </button>
         </div>
       </form>
+
     </div>
 </div>
 @endsection

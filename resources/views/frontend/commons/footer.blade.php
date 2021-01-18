@@ -7,10 +7,22 @@
                     <!-- Single Widget -->
                     <div class="single-footer about">
                         <div class="logo">
-                            <a href="index.html"><img src="images/logo2.png" alt="#"></a>
+                            <a href="{{ route('fr.home') }}">
+                                <img src="{{ asset('frontend/img/logo2.png') }}"
+                                     alt="#">
+                            </a>
                         </div>
                         <div class="is-divider small"></div>
-                        <p class="text"> Thietbipccc.net là chuyên trang cung cấp bình chữa cháy nhập khẩu chính hãng, nguồn gốc rõ ràng, đạt tiêu chuẩn kiểm định an toàn thiết bị PCCC tại Việt Nam. Ngoài ra, chúng tôi có dịch vụ nhận gia công kỹ thuật cao theo yêu cầu các mẫu bảng biển báo an toàn phòng cháy chữa cháy cho các đơn vị thi công công trình hệ thống cứu hỏa. Chúng tôi luôn mong muốn phục vụ mọi nhu cầu của bạn và luôn sẵn sàng lắng nghe điện thoại giải quyết khó khắn của bạn bất kỳ lúc nào.</p>
+                        <p class="text"> Thietbipccc.net là chuyên trang cung
+                            cấp bình chữa cháy nhập khẩu chính hãng, nguồn gốc
+                            rõ ràng, đạt tiêu chuẩn kiểm định an toàn thiết bị
+                            PCCC tại Việt Nam. Ngoài ra, chúng tôi có dịch vụ
+                            nhận gia công kỹ thuật cao theo yêu cầu các mẫu bảng
+                            biển báo an toàn phòng cháy chữa cháy cho các đơn vị
+                            thi công công trình hệ thống cứu hỏa. Chúng tôi luôn
+                            mong muốn phục vụ mọi nhu cầu của bạn và luôn sẵn
+                            sàng lắng nghe điện thoại giải quyết khó khắn của
+                            bạn bất kỳ lúc nào.</p>
 
                     </div>
                     <!-- End Single Widget -->
@@ -43,26 +55,32 @@
                     </div>
                     <!-- End Single Widget -->
                 </div>
+            </div>
         </div>
-    </div>
-    <!-- End Footer Top -->
-    <div class="copyright">
-        <div class="container">
-            <div class="inner">
-                <div class="row">
-                    <div class="col-lg-6 col-12">
-                        <div class="left">
-                            <p>Copyright © 2020 <a href="http://www.wpthemesgrid.com" target="_blank">Wpthemesgrid</a>  -  All Rights Reserved.</p>
+        <!-- End Footer Top -->
+        <div class="copyright">
+            <div class="container">
+                <div class="inner">
+                    <div class="row">
+                        <div class="col-lg-6 col-12">
+                            <div class="left">
+                                <p>Copyright © 2020 <a
+                                        href="{{ route('fr.home') }}"
+                                        target="_blank">
+                                        Nhóm thực tập chuyên ngành HVNN</a>
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6 col-12">
-                        <div class="right">
-                            <img src="images/payments.png" alt="#">
+                        <div class="col-lg-6 col-12">
+                            <div class="right">
+                                <img
+                                    src="{{ asset('frontend/img/payments.png') }}"
+                                    alt="#">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 </footer>
 <!-- /End Footer Area -->

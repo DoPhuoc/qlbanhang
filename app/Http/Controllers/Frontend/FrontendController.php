@@ -17,7 +17,6 @@ class FrontendController extends Controller
                         ->offset(0)
                         ->limit(8)
                         ->get();
-
         return view('frontend.home.index',compact('newProduct'));
     }
 }

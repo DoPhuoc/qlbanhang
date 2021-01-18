@@ -19,83 +19,83 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="nameProduct"
+                    <label for="name"
                            class="col-form-label">
                         Tên sản phẩm <span class="text-danger">*</span>
                     </label>
-                    <input id="nameProduct"
+                    <input id="name"
                            type="text"
-                           name="nameProduct"
+                           name="name"
                            placeholder="Enter product name"
-                           value="{{ old('nameProduct') }}"
+                           value="{{ old('name') }}"
                            class="form-control">
-                    @error('nameProduct')
+                    @error('name')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="desProduct"
+                    <label for="description"
                            class="col-form-label">Mô tả</label>
                     <textarea class="form-control"
                               id="description"
-                              name="desProduct">{{ old('desProduct') }}</textarea>
-                    @error('desProduct')
+                              name="description">{{ old('description') }}</textarea>
+                    @error('description')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="categoryProduct">Tên danh mục <span
+                    <label for="category_id">Tên danh mục <span
                             class="text-danger">*</span></label>
-                    <select name="categoryProduct" id="categoryProduct"
+                    <select name="category_id" id="category_id"
                             class="form-control">
                         <option value="">--Select any category--</option>
                         @foreach($categories as $key => $item)
                             <option value="{{$item->id}}"
-                                    @if(old('categoryProduct') == $item->id) selected @endif>
+                                    @if(old('category_id') == $item->id) selected @endif>
                                 {{$item->name}}
                             </option>
                         @endforeach
                     </select>
-                    @error('categoryProduct')
+                    @error('category_id')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="priceProduct" class="col-form-label">
+                    <label for="price" class="col-form-label">
                         Giá sản phẩm <span class="text-danger">*</span>
                     </label>
-                    <input id="priceProduct"
-                           type="number" name="priceProduct"
+                    <input id="price"
+                           type="number" name="price"
                            placeholder="Enter price"
-                           value="{{ old('priceProduct') }}"
+                           value="{{ old('price') }}"
                            class="form-control">
-                    @error('priceProduct')
+                    @error('price')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
 
                 <div class="form-group">
-                    <label for="saleOffProduct" class="col-form-label">Mã giảm
+                    <label for="sale_off" class="col-form-label">Mã giảm
                         giá(%)</label>
-                    <input id="saleOffProduct"
+                    <input id="sale_off"
                            type="number"
-                           name="saleOffProduct"
+                           name="sale_off"
                            min="0" max="100"
                            placeholder="Enter sale"
-                           value="{{ old('saleOffProduct') }}"
+                           value="{{ old('sale_off') }}"
                            class="form-control">
-                    @error('saleOffProduct')
+                    @error('sale_off')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="brandProduct">Tên Thương hiệu <span
+                    <label for="brand_id">Tên Thương hiệu <span
                             class="text-danger">*</span></label>
-                    <select name="brandProduct" class="form-control">
+                    <select name="brand_id" class="form-control">
                         <option value="">--Select Brand--</option>
                         @foreach($brands as $brand)
                             <option value="{{$brand->id}}"
-                                    @if(old('brandProduct') == $brand->id) selected @endif>
+                                    @if(old('brand_id') == $brand->id) selected @endif>
                                 {{$brand->name}}
                             </option>
                         @endforeach
@@ -117,35 +117,30 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="qtyProduct">Số lượng <span
+                    <label for="quantity">Số lượng <span
                             class="text-danger">*</span></label>
-                    <input id="qtyProduct" type="number"
-                           name="qtyProduct"
+                    <input id="quantity" type="number"
+                           name="quantity"
                            min="0"
                            placeholder="Enter quantity"
-                           value="{{ old('qtyProduct') }}"
+                           value="{{ old('quantity') }}"
                            class="form-control">
-                    @error('qtyProduct')
+                    @error('quantity')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-                {{-- <div class="imput-field">
-                    <label for="images"></label>
-                    <div class="input-images" type="file" name="images" id="images"></div>
-                </div>
-                @error('images')
-                <span class="text-danger">{{ $message }}</span>
-                @enderror
-                 --}}
                 <div class="row border p-2">
                     <div class="col">
                         <div class="input-field">
-                            <label for="imageProducts">Ảnh sản phẩm<span
+                            <label for="image">Ảnh sản phẩm<span
                                     class="text-danger">*</span></label>
                             <div class="input-images"
                                  type="file"
-                                 name="imageProducts"
-                                 id="imageProducts"></div>
+                                 name="image"
+                                 id="image"></div>
+                            @error('image')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -194,7 +189,9 @@
                 height: 150
             });
         });
-        $('.input-images').imageUploader();
+        $('.input-images').imageUploader({
+            maxFiles: 1
+        });
     </script>
 
 

@@ -26,15 +26,18 @@ Route::group([
     Route::get('/brand/{slug}~{id}','BrandController@editBrand')->name('edit.brand');
     Route::post('/brand/update-brand','BrandController@handleUpdate')->name('update.brand');
     Route::post('brand/delete-brand', 'BrandController@deleteBrand')->name('delete.brand');
-
+    Route::get('brand/search','BrandController@search')->name('search.brand');
 
     /*Product*/
-    Route::get('/product','ProductController@index')->name('list.product');
+    Route::get('/product','ProductController@index')->name('product.index');
     Route::get('/add-product', 'ProductController@create')->name('add.product');
     Route::post('/add-product', 'ProductController@store')->name('handle.add.product');
-    Route::get('/product/{slug}~{id}', 'ProductController@Editproduct')->name('edit.product');
-    Route::post('/product/handle-edit/{id}', 'ProductController@handleEditproduct')->name('handle.edit.product');
-//    Route::post('brand/delete-brand', 'BrandController@deleteBrand')->name('delete.brand');
+    Route::delete('/product/{product}', 'ProductController@destroy')->name('product.destroy');
+    Route::get('/product/{product}', 'ProductController@edit')->name('product.edit');
+    Route::post('/product/{product}', 'ProductController@update')->name('product.update');
+    Route::post('/product/handle-edit/{id}', 'ProductController@handleEditproduct')
+        ->name('handle.edit.product');
+
 
     /*Banner*/
     Route::get('/banner','BannerController@index')->name('banner');
@@ -74,7 +77,9 @@ Route::group([
     Route::post('/add-tag','TagController@handleAddTag')->name('handle.add.tag');
     Route::get('/tag/{slug}~{id}','TagController@editTag')->name('edit.tag');
     Route::post('/tag/handle-edit/{id}','TagController@handleEditTag')->name('handle.edit.tag');
-    Route::post('/tag/delete-post','TagController@deleteTag')->name('delete.tag');
+    Route::get('/tag/delete-post/{id}','TagController@deleteTag')->name('delete.tag');
+    Route::get('/tag/delete-post/{id}','TagController@deleteTag')->name('delete.tag');
+    Route::get('/tag/search','TagController@search')->name('search.tag');
 
     /*PostCategory*/
     Route::get('/postCategory','PostCategoryController@index')->name('postCategory');
@@ -83,13 +88,17 @@ Route::group([
     Route::get('/postCategory/{slug}~{id}','PostCategoryController@editPostCategory')->name('edit.postCategory');
     Route::post('/postCategory/handle-edit/{id}','PostCategoryController@handleEditPostCategory')->name('handle.edit.postCategory');
     Route::post('/postCategory/delete-post','PostCategoryController@deletePostCategory')->name('delete.postCategory');
-
+    Route::post('/postCategory/search','PostCategoryController@search')->name('search.postCategory');
     /*Order*/
-    Route::get('/order','OrderController@index')->name('order');
+    Route::post('/order/{bill}','OrderController@update')->name('order.update');
+    Route::get('/order','OrderController@getNewOrders')->name('order.new');
+    Route::get('/order/delivery','OrderController@getDeliveryOrders')->name('order.delivery');
+    Route::get('/order/done','OrderController@getDoneOrders')->name('order.done');
     Route::get('/add-order','OrderController@addOrder')->name('add.order');
     Route::post('/add-order','OrderController@handleOrder')->name('handle.add.order');
     Route::get('/order/{slug}~{id}','OrderController@editOrder')->name('edit.order');
     Route::post('/order/handle-edit/{id}','OrderController@handleEditOrder')->name('handle.edit.order');
+    Route::get('/order/{bill}','OrderController@edit')->name('order.edit');
 
     /*Review*/
     Route::get('/review','ReviewController@index')->name('review');
@@ -101,9 +110,13 @@ Route::group([
     /*Coupon*/
 
     /*Users*/
-    Route::get('C','UsersController@index')->name('users');
+    Route::get('/user','UserController@index')->name('users.index');
     Route::get('/add-users','UsersController@addUsers')->name('add.users');
     Route::post('/add-users','UsersController@handleUsers')->name('handle.add.users');
     Route::get('/users/{slug}~{id}','UsersController@editUsers')->name('edit.users');
     Route::post('/users/handle-edit/{id}','UsersController@handleEditUsers')->name('handle.edit.users');
+
+    Route::group(['as' => 'statistic.'], function () {
+        Route::get('/sale/{date?}', 'StatisticController@sale')->name('sale');
+    });
 });

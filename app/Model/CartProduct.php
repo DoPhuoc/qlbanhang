@@ -2,8 +2,10 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Model\Cart;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class CartProduct extends Model
+class CartProduct extends Pivot
 {
+    protected $table = 'cart_products';
 }

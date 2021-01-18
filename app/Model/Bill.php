@@ -31,4 +31,31 @@ class Bill extends Model
         return self::STATUS[$this->status];
     }
 
+    public function getOrderDateAttribute()
+    {
+        if (!$this->created_at) {
+            return '';
+        }
+        return $this->created_at->format('d/m/Y H:i');
+    }
+
+    public static function sendDeliveryEmail()
+    {
+
+    }
+
+    public static function sendDoneEmail()
+    {
+
+    }
+
+    public function isDelivery()
+    {
+        return $this->status == self::DELIVERY;
+    }
+
+    public function isDone()
+    {
+        return $this->status == self::DONE;
+    }
 }

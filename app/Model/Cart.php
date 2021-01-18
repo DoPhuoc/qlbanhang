@@ -26,7 +26,6 @@ class Cart extends Model
         return $this->belongsTo(User::class);
     }
 
-
     public function totalMoney()
     {
         $total = 0;
@@ -34,6 +33,11 @@ class Cart extends Model
             $total += $product->pivot->quantity * $product->price;
         }
         return number_format($total);
+    }
+
+    public function countProducts()
+    {
+        return $this->products()->sum('cart_products.quantity');
     }
 
     public function productName(){

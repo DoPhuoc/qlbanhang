@@ -2,18 +2,67 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="839161cd-1e65-46ea-811d-005a32118e43" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/frontend/products/search.list.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/qlbanhang.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/qlbanhang.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/StoreAdmin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/StorePostCategory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/StorePosts.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/StoreTagPost.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/UpdateStorePostCategory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/UpdateStorePosts.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/UpdateStoreProductPost.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/UpdateStoreTagPost.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Model/Admin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Model/Post.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Model/PostCategory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Model/Tag.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_01_12_151030_create_post_categories_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_01_12_214453_create_tags_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_01_12_225005_create_posts_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/banners/EbfjSg5U8AIhs4f.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/banners/EbfmdTcXgAAFTKw.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/banners/EgaMP8LUwAAA7G5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/banners/b41d83aa5977ff46e5e7c3df6760356e-1024x1024.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/banners/fire-extinguishers-online-range.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/banners/original (1).jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/posts/1-TE9100-TX01-1-1024x1024.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/posts/1-TE9100-TX01-2-1024x1024.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/posts/11-TE9405-TX01-1-1024x1024.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/posts/3-TE9100-TX01-2-1024x1024.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/posts/6-TE9100-TX01-1-1024x1024.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/posts/fire-safety-kits-banner.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/products/1-TE9100-TX01-1-1024x1024.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/products/11-TE925-TX01-1-1024x1024.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/products/15095608_798143216992330_6090376782802669928_n.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/products/60103892_1033082256889461_4487180564398342144_n.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/products/76688987_446390999348616_5931701469043490816_n.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/products/EiuEc55VoAAdoza.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/products/EnW_vAEWMAcMkqu.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/products/fire-safety-kits-banner.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/images/products/mobile-fire-extinguishers-online-car.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Frontend/BillController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Frontend/BillController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Frontend/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Frontend/ProductController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Model/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/Product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/bills/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/bills/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/bills/showDetail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/bills/showDetail.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/commons/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/commons/header.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/BannerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/BannerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/BrandController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/BrandController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/PostCategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/PostCategoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/PostController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/PostController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/TagController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/TagController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/UsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/EditCategories.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/EditCategories.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/StoreProductRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/StoreProductRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/UpdateStoreBannerPost.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/UpdateStoreBannerPost.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/banner/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/banner/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/brand/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/brand/list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/category/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/category/list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/partials/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/partials/sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/postCategory/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/postCategory/add.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/postCategory/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/postCategory/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/postCategory/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/postCategory/list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/posts/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/posts/add.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/posts/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/posts/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/posts/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/posts/list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/products/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/products/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/tags/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/tags/add.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/tags/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/tags/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/tags/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/tags/list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,6 +248,7 @@
       <workItem from="1610861474130" duration="6084000" />
       <workItem from="1610869386889" duration="17753000" />
       <workItem from="1610895611783" duration="11517000" />
+      <workItem from="1610954226287" duration="3030000" />
     </task>
     <servers />
   </component>

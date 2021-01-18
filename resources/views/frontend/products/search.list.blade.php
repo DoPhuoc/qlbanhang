@@ -29,7 +29,7 @@
                     <div class="row">
                         @foreach($products as $product)
                             <div class="col-lg-4 col-md-6 col-12">
-                                @include('frontend.products.single', ['product' => $product])
+                                @include('frontend.products.components.single', ['product' => $product])
                             </div>
                         @endforeach
                     </div>
