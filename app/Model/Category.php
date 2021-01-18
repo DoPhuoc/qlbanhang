@@ -2,9 +2,10 @@
 
 namespace App\Model;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Category extends Base
 {
     public $fillable = [
         'name',
@@ -15,6 +16,12 @@ class Category extends Model
 
     public function products()
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Product::class)
+            ->where('status', Product::ACTIVE);
+    }
+
+    public function scopeActive(Builder $builder)
+    {
+        return $builder->where('status', self::ACTIVE);
     }
 }

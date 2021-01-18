@@ -1,6 +1,5 @@
 <div class="single-product">
     <div class="product-img">
-
         <a href="{{ route('fr.product.show', ['slug' => $product->slug, 'id' => $product->id]) }}">
             <img class="default-img"
                  src="{{asset('uploads/images/products')}}/{{$product->image}}"
@@ -23,17 +22,33 @@
                         class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
             </div>
             <div class="product-action-2">
-                <a title="Add to cart" href="#">Add
-                    to cart</a>
+                <form
+                    action="{{ route('fr.cart.add_product') }}"
+                    method="post">
+                    @csrf
+                    <input type="hidden"
+                           value="{{ $product->id }}"
+                           name="product_id">
+                    <button class="bg-transparent border-0"
+                        title="Add to cart"
+                        type="submit">
+                        Add to cart
+                    </button>
+                </form>
             </div>
         </div>
     </div>
     <div class="product-content">
         <h3>
-            <a href="product-details.html">{{$product->name}}</a>
+            <a href="{{ route('fr.product.show', ['slug' => $product->slug, 'id' => $product->id]) }}">
+                {{$product->name}}
+            </a>
         </h3>
         <div class="product-price">
-            <span>{{number_format($product->price).''.'VNĐ'}}</span>
+            <span>{{number_format($product->price)}} đ</span>
         </div>
     </div>
 </div>
+@push('javascripts')
+    <script src="{{asset('frontend/js/active.js')}}"></script>
+@endpush

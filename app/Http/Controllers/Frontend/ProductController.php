@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Model\Brand;
 use App\Model\Category;
 use App\Model\Product;
 
@@ -24,18 +25,34 @@ class ProductController extends Controller
         );
     }
 
+    public function getProductsBelongBrand()
+    {
+        $products = Brand::findOrFail(request()->id)->products;
+        return view(
+            'frontend.products.list',
+            [
+                'products' => $products
+            ]
+        );
+    }
+
     public function show()
     {
+        $selectedProduct = Product::findOrFail(request()->id);
+        $relatedProducts = Category::findOrFail($selectedProduct->category_id)
+            ->products
+            ->except(['id' => $selectedProduct->id]);
         return view(
         'frontend.products.show',
         [
-            'product' => Product::findOrFail(request()->id)
+            'product' => $selectedProduct,
+            'relatedProducts' => $relatedProducts
         ]
     );
     }
     public function getSearch(){
         $products = Product::where('name','like','%'.request()->search.'%')
             ->get();
-        return view('frontend.products.search.list')->with('products',$products);
+        return view('frontend.products.list')->with('products',$products);
     }
 }

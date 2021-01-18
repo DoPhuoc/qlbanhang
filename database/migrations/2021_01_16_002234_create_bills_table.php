@@ -11,6 +11,8 @@ class CreateBillsTable extends Migration
         Schema::create('bills', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('cart_id');
+            $table->string('phone');
+            $table->text('shipping_address');
             $table->bigInteger('shipping_price')->default(0)->nullable();
             $table->tinyInteger('status');
             $table->timestamps();

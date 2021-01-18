@@ -13,8 +13,8 @@ class CreateCartProductsTable extends Migration
             $table->bigInteger('product_id');
             $table->bigInteger('cart_id');
             $table->bigInteger('quantity');
-            $table->float('price')->default(0)->nullable();
-            $table->float('discount')->default(0)->nullable();
+            $table->double('price')->default(0)->nullable();
+            $table->double('discount')->default(0)->nullable();
             $table->timestamps();
         });
     }

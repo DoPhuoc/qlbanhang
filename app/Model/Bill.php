@@ -13,10 +13,12 @@ class Bill extends Model
         'shipping_price',
         'status',
         'cart_id',
+        'shipping_address',
+        'phone'
     ];
 
     const STATUS = [
-        self::NEW => '<strong class="text-success">Mới</strong>',
+        self::NEW => '<strong class="text-success">Tiếp nhận đơn hàng</strong>',
         self::DELIVERY => '<strong class="text-warning">Đang giao hàng</strong>',
         self::DONE => '<strong>Hoàn thành</strong>'
     ];
@@ -31,4 +33,31 @@ class Bill extends Model
         return self::STATUS[$this->status];
     }
 
+    public function getOrderDateAttribute()
+    {
+        if (!$this->created_at) {
+            return '';
+        }
+        return $this->created_at->format('d/m/Y H:i');
+    }
+
+    public static function sendDeliveryEmail()
+    {
+
+    }
+
+    public static function sendDoneEmail()
+    {
+
+    }
+
+    public function isDelivery()
+    {
+        return $this->status == self::DELIVERY;
+    }
+
+    public function isDone()
+    {
+        return $this->status == self::DONE;
+    }
 }

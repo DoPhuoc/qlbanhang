@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\CartProduct;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Model\Brand;
 use App\Model\Category;
 use App\Model\Product;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -14,76 +17,99 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products=Product::latest()->paginate(10);
-        return view('admin.products.list')->with('products',$products);
+        $searchKeyword = trim(request()->search_keyword);
+        $products = Product::query();
+        if ($searchKeyword) {
+            $products->where('name', 'like', "%$searchKeyword%")
+                ->orWhereHas('category', function ($query) use ($searchKeyword) {
+                    $query->where('name', 'like', "%$searchKeyword%");
+                });
+        }
+        $products = $products->latest()->paginate(10);
+        return view('admin.products.list')->with('products', $products);
     }
+
     public function create()
     {
-        $categories = Category::where('status',1)->get();
-        $brands = Brand::where('status',1)->get();
-
-        return view('admin.products.add',compact('categories','brands'));
+        $categories = Category::where('status', Category::ACTIVE)->get();
+        $brands = Brand::where('status', Category::ACTIVE)->get();
+        return view('admin.products.add', compact('categories', 'brands'));
     }
+
     public function store(StoreProductRequest $request)
     {
-        $product_id = $request->product_id;
-        $category= $request->categoty_id;
-        $brand_id = $request->brandProduct;
-        $nameProduct = $request->nameProduct;
-        $slug = Str::slug($nameProduct, '-');
-        $price = $request->priceProduct;
-        //$price = trim(str_replace(',','', $price));
-        $quantity = $request->qtyProduct;
-        $quantity = is_numeric($quantity) && $quantity > 0 ? $quantity: 1;
-        $saleOff = $request->saleOffProduct;
-        $saleOff = is_numeric($saleOff) ? $saleOff : 0;
-        $category = $request->categoryProduct;
-        $brand = $request->brandProduct;
-        $description= $request->desProduct;
-        $hotProduct = $request->bestSell;
-        $status = $request->status;
-        $arrImages = [];
-        if($request->hasFile('images')){
-            $image = $request->file('images');
-            foreach ($image as $key => $i) {
-                if($i->isValid()){
-                    $nameImage = $i->getClientOriginalName();
-                    $i->move('uploads/images/products',$nameImage);
-                    $arrImages[] = $nameImage;
-                }
+        $data = $request->all();
+        $imageName = '';
+        if ($request->hasFile('images')) {
+            $image = $request->file('images')[0];
+            if ($image->isValid()) {
+                $imageName = $image->getClientOriginalName();
+                $image->move('uploads/images/products', $imageName);
             }
         }
-
-        $imageProduct = array_pop($arrImages);
-        $dataInsert = [
-            'product_id'=> $product_id,
-            'category_id' => $category,
-            'brand_id' => $brand,
-            'name' => $nameProduct,
-            'slug' => $slug,
-            'description'  =>$description,
-            'image' => $imageProduct,
-            'best_selling'=>$hotProduct,
-            'quantity' => $quantity,
-            'price' => $price,
-            'status' => $status,
-            'sale_off' => $saleOff,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => null
-        ];
-
-        $insertShoes = Product::create($dataInsert);
-        if($insertShoes){
+        unset($data['images']);
+        $data['image'] = $imageName;
+        $data['slug'] = Str::slug($data['name']);
+        $isInserted = Product::create($data);
+        if ($isInserted) {
             Alert::success('Thêm thành công');
-            return redirect()->route('admin.list.product');
+            return redirect()->route('admin.product.index');
         } else {
             Alert::error('Thêm thất bại');
             return redirect()->route('admin.add.product');
         }
     }
-    public function Editproduct(){
-        return view('admin.products.edit-product');
+
+    public function edit(Request $request, Product $product)
+    {
+        $categories = Category::where('status', Category::ACTIVE)->get();
+        $brands = Brand::where('status', Category::ACTIVE)->get();
+        return view(
+            'admin.products.edit',
+            [
+                'product' => $product,
+                'categories' => $categories,
+                'brands' => $brands
+            ]
+        );
     }
 
+    public function update(UpdateProductRequest $request, Product $product)
+    {
 
+        $data = $request->all();
+        $imageName = '';
+        if ($request->hasFile('images')) {
+            $image = $request->file('images')[0];
+            if ($image->isValid()) {
+                $imageName = $image->getClientOriginalName();
+                $image->move('uploads/images/products', $imageName);
+            }
+        }
+        unset($data['images']);
+        if ($imageName) {
+            $data['image'] = $imageName;
+        }
+        $data['slug'] = Str::slug($data['name']);
+        $isUpdated = $product->update($data);
+        if ($isUpdated) {
+            Alert::success('Cập nhật thành công');
+            return redirect()->route('admin.product.index');
+        } else {
+            Alert::error('Cập nhật thất bại');
+            return redirect()->back();
+        }
+    }
+
+    public function destroy(Product $product)
+    {
+        $isPurchased = CartProduct::where('product_id', $product->id)->exists();
+        if ($isPurchased) {
+            Alert::error('Bạn không thể xóa vì sản phẩm đã được mua !!');
+            return back();
+        }
+        $product->delete();
+        Alert::success('Xóa thành công');
+        return back();
+    }
 }

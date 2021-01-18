@@ -29,7 +29,7 @@ class UpdateStoreBannerPost extends FormRequest
         $id = $request->id;
         $id = is_numeric($id) && $id > 0 ? $id : 0;
         return [
-            'titleBanner' => 'required|unique:banners,title|max:100'.$id,
+            'titleBanner' => 'required|max:100|unique:banners,title,'.$id,
             'statusBanner' => 'required'
         ];
     }

@@ -52,7 +52,7 @@
                 <div class="col-lg-2 col-md-2 col-12">
                     <!-- Logo -->
                     <div class="logo">
-                        <a href="index.html"><img
+                        <a href="{{ route('fr.home') }}"><img
                                 src="{{asset('uploads/images/banners/logo.png')}}"
                                 alt="logo"></a>
                     </div>
@@ -80,7 +80,8 @@
                         <div class="search-bar">
                             <form role="search" method="GET" id="searchform" action="{{route('fr.searchproduct')}}">
                                 <input name="search"
-                                       placeholder="Search Name of Products Here....."
+                                       value="{{ request('search') }}"
+                                       placeholder="Tìm kiếm sản phẩm....."
                                        type="search">
                                 <button class="btnn"><i class="ti-search"></i>
                                 </button>
@@ -90,17 +91,15 @@
                 </div>
                 <div class="col-lg-2 col-md-3 col-12">
                     <div class="right-bar">
-                        <!-- Search Form -->
                         <div class="sinlge-bar">
                             <a href="#" class="single-icon"><i
                                     class="fa fa-heart-o"
                                     aria-hidden="true"></i></a>
                         </div>
-
                         <div class="sinlge-bar shopping">
                             <a href="#" class="single-icon"><i
                                     class="ti-bag"></i> <span
-                                    class="total-count">2</span></a>
+                                    class="total-count">{{ $cart->countProducts() }}</span></a>
                             <!-- Shopping Item -->
                             <div class="shopping-item">
                                 <div class="dropdown-cart-header">
@@ -121,7 +120,7 @@
                                             </h4>
                                             <p class="quantity">{{ $product->pivot->quantity }}
                                                 - <span class="amount">
-                                                  {{ $product->getTotalPrice() }} VND
+                                                  {{ $product->getTotalPrice() }} ₫
                                                 </span></p>
                                         </li>
                                     @empty
@@ -132,7 +131,7 @@
                                     <div class="total">
                                         <span>Total</span>
                                         <span
-                                            class="total-amount">{{ $cart->totalMoney() }} VND</span>
+                                            class="total-amount">{{ number_format($cart->subTotal()) }} ₫</span>
                                     </div>
                                     <form
                                         action="{{ route('fr.cart.checkout') }}"
@@ -140,25 +139,16 @@
                                         @csrf
                                         <input type="hidden" name="cart_id"
                                                value="{{ $cart->id }}">
-                                        <button type="submit"
-                                                @if(!$cart->products->count())
-                                                disabled
-                                                @endif
-                                                class="btn animate">Checkout
-                                        </button>
                                     </form>
                                 </div>
                             </div>
                         </div>
-                        <!--/ End Shopping Item -->
                         <div class="sinlge-bar">
-                            <a href="{{route('fr.bill')}}" class="single-icon" data-toggle="tooltip" data-placement="top" title="Đơn hàng của bạn">
-                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M13 12h7v1.5h-7zm0-2.5h7V11h-7zm0 5h7V16h-7zM21 4H3c-1.1 0-2 .9-2 2v13c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 15h-9V6h9v13z">
-                                    </path>
-
-                                </svg>
-                            </a>
+                            @auth
+                                <a href="{{route('fr.bill')}}" class="single-icon" data-toggle="tooltip" data-placement="top" title="Đơn hàng của bạn">
+                                    <i class="fa fa-money"></i>
+                                </a>
+                            @endauth
                         </div>
                     </div>
                 </div>

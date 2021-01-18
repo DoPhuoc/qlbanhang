@@ -18,9 +18,6 @@
                                     <li class="active"><a href="shop-grid.html"><i
                                                 class="fa fa-th-large"></i></a>
                                     </li>
-                                    <li><a href="shop-list.html"><i
-                                                class="fa fa-th-list"></i></a>
-                                    </li>
                                 </ul>
                             </div>
                             <!--/ End Shop Top -->
@@ -29,7 +26,7 @@
                     <div class="row">
                         @foreach($products as $product)
                             <div class="col-lg-4 col-md-6 col-12">
-                                @include('frontend.products.single', ['product' => $product])
+                                @include('frontend.products.components.single', ['product' => $product])
                             </div>
                         @endforeach
                     </div>

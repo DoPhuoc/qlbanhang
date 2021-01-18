@@ -1,4 +1,3 @@
-
 @extends('frontend.frontend-layout')
 
 @section('content')
@@ -21,27 +20,26 @@
                         <tbody>
                         @forelse($carts as $cart)
                             <tr>
-                                    <td class="product-id" data-title="id">
-                                        <a href="{{route('fr.bill.detail',$cart->id)}}">
-                                            {{ $cart->id}}
-                                        </a>
-
-                                    </td>
-                                <td class="product-id" data-title="id">
-                                   {{$cart->productName()}}
+                                <td class="product-id text-center" data-title="id">
+                                    <a href="{{route('fr.bill.detail',$cart->id)}}">
+                                        {{ $cart->id}}
+                                    </a>
+                                </td>
+                                <td class="product-name text-center" data-title="id">
+                                    {{$cart->productName()}}
                                 </td>
                                 <td class="price" data-title="Price">
-                                        {{$cart->created_at}}
+                                    {{$cart->bill->order_date}}
                                 </td>
 
                                 <td class="total-amount" data-title="Total">
-                                    {{$cart->totalMoney()}}
+                                    {{number_format($cart->subTotal())}} ₫
                                 </td>
-                                <td class="status" data-title="status_order">
+                                <td class="status text-center" data-title="status_order">
                                     {!! $cart->bill->status_label !!}
                                 </td>
-                        @empty
-                            Bạn không có đơn hàng nào!!
+                                @empty
+                                    Bạn không có đơn hàng nào!!
                         @endforelse
                         </tbody>
                     </table>
