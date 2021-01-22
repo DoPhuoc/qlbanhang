@@ -53,7 +53,7 @@
                     <!-- Logo -->
                     <div class="logo">
                         <a href="index.html"><img
-                                src="{{asset('uploads/images/banners/logo.png')}}"
+                                src="{{asset('uploads/images/pccchn21.png')}}"
                                 alt="logo"></a>
                     </div>
                     <!--/ End Logo -->
@@ -224,7 +224,7 @@
                                                     </li>
                                                 </ul>
                                             </li>
-                                            <li><a href="#">GIỚI THIỆU</a></li>
+                                            <li><a href="#">Bài viết</a></li>
 
                                             <li><a href="contact.html">ĐỊA
                                                     CHỈ</a></li>

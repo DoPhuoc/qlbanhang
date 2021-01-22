@@ -25,8 +25,15 @@ Route::group([
     Route::get('/{slug}~{id}', 'ProductController@show')
         ->name('product.show');
     Route::get('/', 'FrontendController@index')->name('home');
-    Route::get('/brand/{slug}', 'BrandController@getProductBelongBrand')
+    Route::get('/brand/{slug}~{id}', 'BrandController@getProductBelongBrand')
         ->name('brand.product');
+    // Blog
+    Route::get('/blog','FrontendController@blog')->name('blog');
+    Route::get('/blog-detail/{slug}','FrontendController@blogDetail')->name('blog.detail');
+    Route::get('/blog/search','FrontendController@blogSearch')->name('blog.search');
+    //Route::post('/blog/filter','FrontendController@blogFilter')->name('blog.filter');
+    Route::get('blog-cat/{slug}','FrontendController@blogByCategory')->name('blog.category');
+    Route::get('blog-tag/{slug}','FrontendController@blogByTag')->name('blog.tag');
     Route::get('/bill', 'BillController@show')
         ->name('bill');
     Route::get('/bill/detail/{id}', 'BillController@showDetail')

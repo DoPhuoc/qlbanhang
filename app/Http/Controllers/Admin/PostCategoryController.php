@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\PostCategory;
@@ -29,19 +29,36 @@ class PostCategoryController extends Controller
         $dataInsert = PostCategory::create([
             'title' => $title,
             'slug' => $slug,
+            'description' => $descCate,
+            'status' => $status,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => null
         ]);
-
         if($dataInsert){
+            Alert::success('Thêm thành công');
+            return redirect()->route('admin.postCategory');
+           
+        } else {
+            Alert::error('Thêm thất bại');
+            return redirect()->route('admin.edit.postCategory');
+        }
+        /* if($dataInsert){
             $request->session()->flash('success', 'Them thanh cong');
         } else {
             $request->session()->flash('error', 'Them that bai');
         }
-        return redirect(route('admin.postCategory'));
+        return redirect(route('admin.postCategory')); */
 
     }
-    public function editPostCategory($id){
+  /*   public function editPostCategory($id){
         $postCategory = PostCategory::find($id);
         return view('admin.postCategory.edit', compact('postCategory'));
+    } */
+    public function geteditPostCategory($slug,$id){
+        $postCategory = DB::table('post_categories')
+        ->where('id', $id)
+        ->first();
+        return view('admin.postCategory.edit',compact('postCategory'));
     }
     public function handleEditPostCategory(UpdateStorePostCategory $request){
         $title = $request->nameCate;
@@ -60,33 +77,35 @@ class PostCategoryController extends Controller
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => null
         ]);
-
         if($update){
-            $request->session()->flash('success', 'Sua thanh cong');
-
+            Alert::success('Sửa thành công');
+            return redirect()->route('admin.postCategory');
+           
         } else {
-            $request->session()->flash('error', 'Sua that bai');
-        }
-        return redirect(route('admin.postCategory'));
+            Alert::error('Sửa  thất bại');
+            return redirect()->route('admin.edit.postCategory');
+        }        
+      
     }
     public function deletePostCategory($id)
     {
         $Category=PostCategory::find($id);
         $status=$Category->delete();
         if($Category){
-            request()->session()->flash('success','Xóa thành công');
+            Alert::success('Xóa thành công');
+            return redirect()->route('admin.postCategory');
         }
         else{
-            request()->session()->flash('error','Xóa thất bại');
+            Alert::success('Xóa thất bại');
+            return redirect()->route('admin.postCategory');
         }
-        return redirect()->route('admin.postCategory');
     }
 
     public function search(Request $request){
         $search = $request->get('search');
         $postCategory = PostCategory::where('title','like','%'.'$search'.'%')
-        ->orderWhere('description','like','%'.$search.'%')
-        ->orderWhere('status','like','%'.$search.'%')
+        ->orWhere('description','like','%'.$search.'%')
+        ->orWhere('status','like','%'.$search.'%')
         ->paginate(5);
 
         return view('admin.postCategory.list',compact('postCategory'));

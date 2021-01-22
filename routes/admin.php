@@ -5,7 +5,7 @@ Route::group([
     'as' => 'admin.'
 ],function (){
     Route::get('/', 'LoginController@index')
-        //->middleware('is.logined.admin')
+        ->middleware('is.logined.admin')
         ->name('login');
     Route::post('/login','LoginController@login')->name('login.post');
     Route::post('/logout', 'LoginController@logout')->name('logout');
@@ -19,15 +19,15 @@ Route::group([
 
 ],function (){
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-
+   /*Brand*/
     Route::get('/list-brands', 'BrandController@index')->name('brand');
     Route::get('/brand/add-brand', 'BrandController@addBrand')->name('add.brand');
     Route::post('/brand/handle-add', 'BrandController@handleAddBrand')->name('handle.add.brand');
     Route::get('/brand/{slug}~{id}','BrandController@editBrand')->name('edit.brand');
     Route::post('/brand/update-brand','BrandController@handleUpdate')->name('update.brand');
-    Route::post('brand/delete-brand', 'BrandController@deleteBrand')->name('delete.brand');
+    Route::get('brand/delete-brand/{id}','BrandController@deleteBrand')->name('delete.brand');
     Route::get('brand/search','BrandController@search')->name('search.brand');
-
+   
     /*Product*/
     Route::get('/product','ProductController@index')->name('product.index');
     Route::get('/add-product', 'ProductController@create')->name('add.product');
@@ -45,7 +45,7 @@ Route::group([
     Route::post('/add-banner','BannerController@handleBanner')->name('handle.add.banner');
     Route::get('/banner/{slug}~{id}','BannerController@editBanner')->name('edit.banner');
     Route::post('/banner/handle-edit/{id}','BannerController@handleEditBanner')->name('handle.edit.banner');
-    Route::post('/banner/delete-banner','BannerController@deleteBanner')->name('delete.banner');
+    Route::get('/banner/delete-banner/{id}','BannerController@deleteBanner')->name('delete.banner');
 
     /*Category*/
     Route::get('/category','CategoryController@index')->name('category');
@@ -53,15 +53,17 @@ Route::group([
     Route::post('/add-category','CategoryController@handleCategory')->name('handle.add.category');
     Route::get('/category/{slug}~{id}','CategoryController@editCategory')->name('edit.category');
     Route::post('/category/handle-edit','CategoryController@handleEditCategory')->name('handle.edit.category');
-    Route::post('/category/delete-category','CategoryController@deleteCaegory')->name('delete.category');
-
+    Route::get('/category/delete-category/{id}','CategoryController@deleteCategory')->name('delete.category');
+    Route::get('/category/search','CategoryController@search')->name('search.category');
     /*Shipping*/
+   
     Route::get('/shipping','ShippingController@index')->name('shipping');
     Route::get('/add-shipping','ShippingController@addShipping')->name('add.shipping');
-    Route::post('/add-shipping','ShippingController@handleShipping')->name('handle.add.shipping');
-    Route::get('/shipping/{slug}~{id}','ShippingController@editShipping')->name('edit.shipping');
-    Route::post('/shipping/handle-edit/{id}','ShippingController@handleEditShipping')->name('handle.edit.shipping');
-    Route::post('/shipping/delete-shipping','ShippingController@deleteShipping')->name('delete.shipping');
+    Route::post('/add-shipping','ShippingController@postaddShipping')->name('handle.add.shipping');
+    Route::get('/shipping/{id}','ShippingController@editShipping')->name('edit.shipping');
+    Route::post('/shipping/handle-edit/{id}','ShippingController@postEditShipping')->name('handle.edit.shipping');
+    Route::get('/shipping/delete-shipping/{id}','ShippingController@deleteShipping')->name('delete.shipping');
+    //Route::get('/shipping/search','ShippingController@searchShipping')->name('search.shippings');
 
     /*Post*/
     Route::get('/post','PostController@index')->name('post');
@@ -69,8 +71,8 @@ Route::group([
     Route::post('/add-post','PostController@handleAddPost')->name('handle.add.post');
     Route::get('/post/{slug}~{id}','PostController@editPost')->name('edit.post');
     Route::post('/post/handle-edit/{id}','PostController@handleEditPost')->name('handle.edit.post');
-    Route::post('/post/delete-post','PostController@deletePost')->name('delete.post');
-
+    Route::get('/post/delete-post/{id}','PostController@deletePost')->name('delete.post');
+    Route::get('/post/search','PostController@search')->name('search.post');
     /*Tags*/
     Route::get('/tag','TagController@index')->name('tag');
     Route::get('/add-tag','TagController@addTag')->name('add.tag');
@@ -85,10 +87,10 @@ Route::group([
     Route::get('/postCategory','PostCategoryController@index')->name('postCategory');
     Route::get('/add-postCategory','PostCategoryController@addPostCategory')->name('add.postCategory');
     Route::post('/add-postCategory','PostCategoryController@handleAddPostCategory')->name('handle.add.postCategory');
-    Route::get('/postCategory/{slug}~{id}','PostCategoryController@editPostCategory')->name('edit.postCategory');
+    Route::get('/postCategory/{slug}~{id}','PostCategoryController@geteditPostCategory')->name('edit.postCategory');
     Route::post('/postCategory/handle-edit/{id}','PostCategoryController@handleEditPostCategory')->name('handle.edit.postCategory');
-    Route::post('/postCategory/delete-post','PostCategoryController@deletePostCategory')->name('delete.postCategory');
-    Route::post('/postCategory/search','PostCategoryController@search')->name('search.postCategory');
+    Route::get('/postCategory/delete-post/{id}','PostCategoryController@deletePostCategory')->name('delete.postCategory');
+    Route::get('/postCategory/search','PostCategoryController@search')->name('search.postCategory');
     /*Order*/
     Route::post('/order/{bill}','OrderController@update')->name('order.update');
     Route::get('/order','OrderController@getNewOrders')->name('order.new');
@@ -108,7 +110,12 @@ Route::group([
     Route::post('/review/delete-review','ReviewController@deleteTag')->name('delete.review');
 
     /*Coupon*/
-
+    Route::get('/coupon','CouponController@index')->name('coupon');
+    Route::get('/add-coupon','CouponController@addCoupon')->name('add.coupon');
+    Route::post('/add-coupon','CouponController@postaddCoupon')->name('handle.add.coupon');
+    Route::get('/coupon/{id}','CouponController@geteditCoupon')->name('edit.coupon');
+    Route::post('/coupon/handle-edit/{id}','CouponController@posteditCoupon')->name('handle.edit.coupon');
+    Route::get('/coupon/delete-coupon/{id}','CouponController@deleteCoupon')->name('delete.coupon');
     /*Users*/
     Route::get('/user','UserController@index')->name('users.index');
     Route::get('/add-users','UsersController@addUsers')->name('add.users');

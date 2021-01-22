@@ -90,14 +90,16 @@ class ProductController extends Controller
         if ($imageName) {
             $data['image'] = $imageName;
         }
+        //hàm unset loại bỏ 1 biến truyền hoặc loại bỏ 1 phần tử xác định trong mảng
+
         $data['slug'] = Str::slug($data['name']);
         $isUpdated = $product->update($data);
         if ($isUpdated) {
             Alert::success('Cập nhật thành công');
-            return redirect()->route('admin.list.index');
+            return redirect()->route('admin.product.index');
         } else {
             Alert::error('Cập nhật thất bại');
-            return redirect()->route('admin.add.product');
+            return redirect()->route('admin.edit.product');
         }
     }
 

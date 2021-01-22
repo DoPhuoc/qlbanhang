@@ -8,18 +8,15 @@
                 </div>
 
                 <div class="col-md-4">
-                    <form>
-                        <div class="input-group">
-
-                            <input type="text" class="form-control bg-light border small js-keyword-brand"
-                                placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" value="">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary js-search-brand" type="button" value="">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
+     
+                        <form action="{{route('admin.search.brand')}}" method="get">
+                            <div class="input-group">
+                            <input type="search" name="search" class="form-control">
+                            <span class="input-group-prepend">
+                                <button type="submit" class="btn btn-primary" ><i class="fas fa-search"></i></button>
+                            </span>
                             </div>
-                        </div>
-                    </form>
+                        </form>
 
                 </div>
                 <div class="col-md-4 ">
@@ -81,22 +78,26 @@
                                {{--   {{ $item->status == 1 ? 'Hoạt động' : 'Không hoạt động' }}  --}}
 
                                 @if($item->status== 1)
-                                <span class="badge badge-success">Hoat dong</span>
+                                <span class="badge badge-success">Hoạt động </span>
                                 @else
-                                <span class="badge badge-warning">khong hoat dong</span>
+                                <span class="badge badge-warning">Không hoạt động</span>
                                 @endif
                             </td>
                             <td>
-                                <a href="{{ route('admin.edit.brand', ['slug' => $item->slug, 'id' => $item->id]) }}"
+                               {{--   <a href="{{ route('admin.edit.brand', ['slug' => $item->slug, 'id' => $item->id]) }}"
                                     class="btn btn-info"><i class="fas fa-user-edit fa-1x"></i></a>
 
-                                @if ($item->status == 1)
+                              {{--    @if ($item->status == 1)
                                     <button data-status="0" id="{{ $item->id }}" class="btn btn-danger js-delete-brand"><i
                                             class="fas fa-lock"></i> </button>
                                 @else
                                     <button data-status="1" id="{{ $item->id }}" class="btn btn-primary js-delete-brand"><i
                                             class="fas fa-unlock-alt"></i></button>
-                                @endif
+                                @endif  --}}  
+                            
+                        <a href="{{ route('admin.edit.brand', ['slug' => $item->slug, 'id' => $item->id]) }}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
+                        <a class="btn btn-danger btn-sm" href="{{route('admin.delete.brand',['id'=>$item->id])}}" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></a>
+                  
                             </td>
                         </tr>
                     @endforeach
@@ -111,11 +112,11 @@
 
     </div>
 @endsection
-@push('javascripts')
+{{--  @push('javascripts')
   <script type="text/javascript">
     var urlAjax = "{{ route('admin.delete.brand') }}";
    
 </script>
     <script type="text/javascript" src="{{ asset('backend/js/admin-brands.js') }}"></script>
 
-@endpush
+@endpush  --}}

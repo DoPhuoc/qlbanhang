@@ -9,7 +9,7 @@
 
         <div class="form-group">
           <label for="title" class="col-form-label">Tiêu đề <span class="text-danger">*</span></label>
-          <input id="title" type="text" name="title" placeholder="Enter title"  value="" class="form-control">
+          <input id="title" type="text" name="title" placeholder="Enter title"  value="{{old('title')}}" class="form-control">
           @error('title')
           <span class="text-danger">{{ $message }}</span>
           @enderror
@@ -29,7 +29,7 @@
         @enderror
 
         <div class="form-group">
-          <label for="quote" class="col-form-label">Quote</label>
+          <label for="quote" class="col-form-label">Trích dẫn</label>
           <textarea class="form-control" id="quote" name="quote">{{old('quote')}}</textarea>
           @error('quote')
           <span class="text-danger">{{$message}}</span>

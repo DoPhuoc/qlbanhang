@@ -51,8 +51,8 @@
 
                 </div>
                 <div class="form-group mb-3">
-                    <button type="reset" class="btn btn-warning">Reset</button>
-                    <button class="btn btn-success" type="submit">Submit</button>
+                    <button type="reset" class="btn btn-warning">Quay lại</button>
+                    <button class="btn btn-success" type="submit">Cập nhập</button>
                 </div>
             </form>
 

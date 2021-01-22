@@ -162,7 +162,7 @@
         </div>
     </div>  --}}
 
-    <div class="row">
+ {{--     <div class="row">
 
         <!-- Area Chart -->
         <div class="col-xl-8 col-lg-7">
@@ -195,7 +195,7 @@
           </div>
         </div>
       </div>
-      <!-- Content Row -->
+      <!-- Content Row -->  --}}
 
 <!-- /.container-fluid -->
 @endsection

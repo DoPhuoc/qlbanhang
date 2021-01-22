@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePosts;
@@ -9,6 +9,7 @@ use App\Model\Post;
 use Illuminate\Support\Str;
 use App\Model\Tag;
 use App\Model\PostCategory;
+use RealRashid\SweetAlert\Facades\Alert;
 class PostController extends Controller
 {
     public function index(){
@@ -55,7 +56,7 @@ class PostController extends Controller
        }
        if($arrImages){
             $imagePost = array_pop($arrImages);
-            $dataInsert = Posts::create([
+            $dataInsert = Post::create([
                 'title' => $title,
                 'slug' => $slug,
                 'description' => $description,
@@ -75,15 +76,90 @@ class PostController extends Controller
     } else {
         $request->session()->flash('error', 'Them that bai');
     }
-    return redirect(route('admin.posts'));
+    return redirect(route('admin.post'));
     }
 
-    public function editPost(){
-        return view('admin.posts.edit');
+    public function editPost($slud,$id){
+        $tags = Tag::where('status',1)->get();
+        $catePosts  = PostCategory::where('status',1)->get();
+        $posts =Post::find($id);
+       
+        return view('admin.posts.edit',compact('tags','catePosts','posts'));
     }
+    public function handleEditPost(StorePosts $request){
+        $id = $request->id;
+        $id = is_numeric($id) && $id > 0 ? $id : 0;
+        $infoPosts = DB::table('posts')
+            ->where('id', $id)
+            ->first();
+        if($infoPosts){
+            $title = $request->title;
+            $slug = Str::slug($title, '-');
+       
+            $description = $request->description;
+            $quote=$request->quote;
+            $status = $request->status;
+            $tagPost = $request->tagPost;
+            $catePost = $request->catePost;
+            $imagePosts =$infoPosts->image;//lay du lieu anh truoc
+            $uploadPhoto = [];
+            $arrImages = [];
+            if($request->hasFile('images')) {
+                $image =$request->file('images');
+                foreach($image as $key=>$i)
+                if($i->isValid()) {
+                    $newPhoto = $i->getClientOriginalName();
+                    $uploadPhoto = $i->move('uploads/images/posts', $newPhoto);
+                }
+            }
+            if($uploadPhoto && $newPhoto){
+                $update = DB::table('posts')
+                    ->where('id', $id)
+                    ->update([
+                        'title' => $title,
+                        'slug' => $slug,
+                       
+                        'description' => $description,
+                        'quote' =>$quote,
+                        'image' => $newPhoto,
+                        'status' => $status,
+                        'post_cat_id'=> $catePost,
+                        'post_tag_id'=>$tagPost,
+                        'created_at' => date('Y-m-d H:i:s'),
+                        'updated_at' => null
+                        
+                ]);
+            }else{
+                $update = DB::table('posts')
+                ->where('id', $id)
+                ->update([
+                    'title' => $title,
+                    'slug' => $slug,
+                  
+                        'description' => $description,
+                        'quote' =>$quote,
+                        'image' => $imagePosts,
+                        'status' => $status,
+                        'post_cat_id'=> $catePost,
+                        'post_tag_id'=>$tagPost,
+                        'created_at' => date('Y-m-d H:i:s'),
+                        'updated_at' => null
+                        ]);
+                    }
+            if($update){
+                Alert::success('Sửa thành công');
+                return redirect(route('admin.post'));
+                    } else {  
+                Alert::success('Sửa thất bại');
+                return redirect(route('admin.edit.post'));
+                    }  
+                }else{
+                    return view('admin.partials.not-found-page');
+                }         
+        }
     public function deletePost($id)
     {
-        $posts=Posts::find($id);
+        $posts=Post::find($id);
         $status=$posts->delete();
         if($posts){
             request()->session()->flash('success','Xoa thanh cong');
@@ -91,6 +167,16 @@ class PostController extends Controller
         else{
             request()->session()->flash('error','Xoa that bai');
         }
-        return redirect()->route('admin.posts');
+        return redirect()->route('admin.post');
+    }
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+        $posts = Post::where('title','like','%' . $search . '%')
+        ->orWhere('description','like','%' . $search . '%')
+        ->orWhere('status','like','%' . $search . '%')
+        ->paginate(5);
+        /* dd($categories); */
+        return view('admin.posts.list',compact('posts'));
     }
 }

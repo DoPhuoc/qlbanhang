@@ -8,10 +8,10 @@
                  src="{{asset('uploads/images/products')}}/{{$product->image}}"
                  alt="#">
         </a>
-
+  
         <div class="button-head">
             <div class="product-action">
-                <a data-toggle="modal"
+              {{--   <a data-toggle="modal"
                    data-target="#exampleModal"
                    title="Quick View"
                    href="#"><i
@@ -19,7 +19,7 @@
                 <a title="Wishlist" href="#"><i
                         class=" ti-heart "></i><span>Add to Wishlist</span></a>
                 <a title="Compare" href="#"><i
-                        class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+                        class="ti-bar-chart-alt"></i><span>Add to Compare</span></a> --}}
             </div>
             <div class="product-action-2">
                 <form
@@ -32,7 +32,7 @@
                     <button class="bg-transparent border-0"
                         title="Add to cart"
                         type="submit">
-                        Add to cart
+                        Thêm giỏ hàng
                     </button>
                 </form>
             </div>
@@ -43,7 +43,10 @@
             <a href="product-details.html">{{$product->name}}</a>
         </h3>
         <div class="product-price">
+            <h4 class="product-price">{{($product->price*$product->sale_off)/100}}
             <span>{{number_format($product->price).''.'VNĐ'}}</span>
+            </h4>
         </div>
     </div>
+    
 </div>

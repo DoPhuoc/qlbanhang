@@ -106,7 +106,7 @@
         <ul class="categor-list">
             @foreach($brands as $brand)
                 <li>
-                    <a href="{{route('fr.brand.product',$brand->slug)}}">{{$brand->name}}</a>
+                    <a href="{{route('fr.brand.product',[$brand->slug,$brand->id])}}">{{$brand->name}}</a>
                 </li>
             @endforeach
         </ul>

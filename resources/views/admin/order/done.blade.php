@@ -31,71 +31,75 @@
         </div>
         <!--table-->
         <div class="card-body">
-            <table class="table table-bordered" id="dataTable" width="100%"
-                   cellspacing="0">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Mã đặt hàng</th>
-                    <th width="10%">Tên khách hàng</th>
-                    <th width="10%">Email</th>
-                    <th width="10%">Phone</th>
-                    <th width="10%">Tổng Tiền</th>
-                    <th width="10%">Ghi chú</th>
-                    <th>Phí ship</th>
-                    <th width="10%">Phương thức thanh toán</th>
-                    <th width="10%">Trạng thái</th>
-                    <th width="15%">Hành động</th>
-                </tr>
-                </thead>
-                <tfoot>
-                <tr>
-                    <th>ID</th>
-                    <th>Mã đặt hàng</th>
-                    <th width="10%">Tên khách hàng</th>
-                    <th width="10%">Email</th>
-                    <th width="10%">Phone</th>
-                    <th width="10%">Tổng Tiền</th>
-                    <th width="10%">Ghi chú</th>
-                    <th>Phí ship</th>
-                    <th width="10%">Phương thức thanh toán</th>
-                    <th width="10%">Trạng thái</th>
-                    <th width="15%">Hành động</th>
-                </tr>
-                </tfoot>
-                @forelse($orders as $order)
-                    @php
-                        $cart = $order->cart;
-                    @endphp
-                    <tr>
-                        <td>
-                            {{ $loop->iteration }}
-                        </td>
-                        <td>
-                            <a href="{{ route('admin.order.edit', $order->id) }}">
-                                {{ $order->id }}
-                            </a>
-                        </td>
-                        <td>{{ $cart->user->name }}</td>
-                        <td>{{ $cart->user->email }}</td>
-                        <td>{{ $cart->user->phone }}</td>
-                        <td>{{ $cart->totalMoney() }} VND</td>
-                        <td></td>
-                        <td>0 VND</td>
-                        <td>Thanh toán Khi nhận hàng</td>
-                        <td>{!! $order->status_label !!}</td>
-                        <td class="text-center">
-                            <a href="{{ route('admin.order.edit', $order->id) }}"
-                               class="btn btn-warning btn-sm"
-                               style="height:30px; width:30px;border-radius:50%"
-                               data-toggle="tooltip" title="view"
-                               data-placement="bottom"><i
-                                    class="fas fa-eye"></i></a>
-                        </td>
-                        @empty
-                            Không tồn tại đơn đặt hàng
-                @endforelse
-            </table>
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%"
+                cellspacing="0">
+             <thead>
+             <tr>
+                 <th>ID</th>
+                 <th>Mã đặt hàng</th>
+                 <th width="10%">Tên khách hàng</th>
+                 <th width="10%">Email</th>
+                 <th width="10%">Phone</th>
+                 <th width="10%">Tổng Tiền</th>
+                 <th width="10%">Ghi chú</th>
+                 <th>Phí ship</th>
+                 <th width="10%">Phương thức thanh toán</th>
+                 <th width="10%">Trạng thái</th>
+                 <th width="15%">Hành động</th>
+             </tr>
+             </thead>
+             <tfoot>
+             <tr>
+                 <th>ID</th>
+                 <th>Mã đặt hàng</th>
+                 <th width="10%">Tên khách hàng</th>
+                 <th width="10%">Email</th>
+                 <th width="10%">Phone</th>
+                 <th width="10%">Tổng Tiền</th>
+                 <th width="10%">Ghi chú</th>
+                 <th>Phí ship</th>
+                 <th width="10%">Phương thức thanh toán</th>
+                 <th width="10%">Trạng thái</th>
+                 <th width="15%">Hành động</th>
+             </tr>
+             </tfoot>
+             @forelse($orders as $order)
+                 @php
+                     $cart = $order->cart;
+                 @endphp
+                 <tr>
+                     <td>
+                         {{ $loop->iteration }}
+                     </td>
+                     <td>
+                         <a href="{{ route('admin.order.edit', $order->id) }}">
+                             {{ $order->id }}
+                         </a>
+                     </td>
+                     <td>{{ $cart->user->name }}</td>
+                     <td>{{ $cart->user->email }}</td>
+                     <td>{{ $cart->user->phone }}</td>
+                     <td>{{ $cart->totalMoney() }} VND</td>
+                     <td></td>
+                     <td>0 VND</td>
+                     <td>Thanh toán Khi nhận hàng</td>
+                     <td>{!! $order->status_label !!}</td>
+                     <td class="text-center">
+                         <a href="{{ route('admin.order.edit', $order->id) }}"
+                            class="btn btn-warning btn-sm"
+                            style="height:30px; width:30px;border-radius:50%"
+                            data-toggle="tooltip" title="view"
+                            data-placement="bottom"><i
+                                 class="fas fa-eye"></i></a>
+                     </td>
+                     @empty
+                         Không tồn tại đơn đặt hàng
+             @endforelse
+         </table>
+
+            </div>
+           
 
         </div>
 

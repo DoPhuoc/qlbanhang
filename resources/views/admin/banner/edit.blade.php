@@ -3,16 +3,7 @@
 
 <div class="card">
   <h5 class="card-header">Sửa Banner</h5>
-  
-  @if ($errors->any())
-  <div class="alert alert-danger">
-      <ul>
-          @foreach ($errors->all() as $error)
-              <li>{{ $error }}</li>
-          @endforeach
-      </ul>
-  </div>
-  @endif
+
 
   @if(!empty($errLogo))
   <div class="alert alert-danger">

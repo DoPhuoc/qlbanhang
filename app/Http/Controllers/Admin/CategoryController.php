@@ -9,6 +9,7 @@ use App\Http\Requests\StoreCategoriesPost;
 use App\Http\Requests\EditCategories;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 class CategoryController extends Controller
 {
     public function index(){
@@ -33,11 +34,12 @@ class CategoryController extends Controller
         ]);
 
         if($dataInsert){
-            $request->session()->flash('success', 'Add success');
+            Alert::success('Thêm thành công');
+            return redirect(route('admin.category'));
         } else {
-            $request->session()->flash('error', 'Add Fail');
+            Alert::error('Sửa thất bại');
+            return redirect(route('admin.add.category'));
         }
-        return redirect(route('admin.category'));
     }
     public function editCategory($slug,$id){
         $categories = DB::table('categories')
@@ -50,7 +52,7 @@ class CategoryController extends Controller
         }
     }
     public function handleEditCategory(EditCategories $request ){
-        return $request->all();
+    
         $id = $request->id;
         $id = is_numeric($id) && $id > 0 ? $id : 0;
         $name = $request->nameCate;
@@ -63,7 +65,7 @@ class CategoryController extends Controller
                         'name' => $name,
                         'slug' => $slug,
                         'description' => $description,
-                        'status' => 1,
+                        'status' =>$status,
                         'created_at' => date('Y-m-d H:i:s'),
                         'updated_at' => null
                     ]);
@@ -77,4 +79,29 @@ class CategoryController extends Controller
         }
         return redirect(route('admin.category'));
     }
+    public function deleteCategory($id)
+    {
+        $category=Category::find($id);
+        //dd($category);
+        $status=$category->delete();
+        if($category){
+            request()->session()->flash('success','Xóa thành công');
+        }
+        else{
+            request()->session()->flash('error','Xóa thất bại');
+        }
+        return redirect()->route('admin.category'); 
+    }
+    public function search(Request $request)
+    {
+        
+        $search = $request->get('search');
+        $categories = Category::where('name','like','%' . $search . '%')
+        ->orWhere('status','like','%' . $search . '%')
+        ->orWhere('description','like','%' . $search . '%')
+        ->paginate(5);
+        /* dd($categories); */
+        return view('admin.category.list',compact('categories'));
+    }
+
 }

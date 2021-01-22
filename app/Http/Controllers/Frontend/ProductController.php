@@ -8,11 +8,11 @@ use App\Model\Product;
 
 class ProductController extends Controller
 {
-    public function index()
+    /* public function index()
     {
         return view('frontend.product.detail');
     }
-
+ */
     public function getProductsBelongCategory()
     {
         $products = Category::findOrFail(request()->id)->products;
@@ -30,6 +30,10 @@ class ProductController extends Controller
         $relatedProducts = Category::findOrFail($selectedProduct->category_id)
             ->products
             ->except(['id' => $selectedProduct->id]);
+      /*   $relatedBrands = Brand::findOrFail($selectedBrand->brand_id)
+            ->products
+            ->except(['id' => $selectedBrand->id]); */
+
         return view(
         'frontend.products.show',
         [

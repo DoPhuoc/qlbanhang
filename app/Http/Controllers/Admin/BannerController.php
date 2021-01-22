@@ -10,6 +10,7 @@ use voku\helper\AntiXSS;
 use App\Http\Requests\StoreBannerPost as BannerPost;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\UpdateStoreBannerPost;
+use RealRashid\SweetAlert\Facades\Alert;
 class BannerController extends Controller
 {
     public function index()
@@ -53,18 +54,18 @@ class BannerController extends Controller
             ];
             $insert = $banner->insertDataBanner($dataInsert);
             if($insert){
-                $request->session()->flash('success', 'Them thanh cong');
+                Alert::success('Thêm thành công');
                 return redirect()->route('admin.banner');
             } else {
-                // loi - van o lai form add brand
-                $request->session()->flash('error', 'Them that bai');
+                // loi - van o lai form add banner
+                Alert::error('Thêm thất bại');
                 return redirect()->route('admin.add.banner');
             }
-        } else {
+        }else {
             // khong upload dc file
-            $request->session()->flash('errUploadBrand', 'Khong upload duoc logo thuong hieu');
+            $request->session()->flash('errUploadBanner', 'Không upload được file');
             return redirect()->route('admin.add.banner');
-        } 
+        }
     }
     public function editBanner($slug,$id){
         $id = is_numeric($id) && $id > 0 ? $id : 0;
@@ -131,10 +132,10 @@ class BannerController extends Controller
                     ]);
             }
             if($update){
-                $request->session()->flash('success', 'Update thanh cong');
+                Alert::success('Sửa thành công');
                 return redirect()->route('admin.banner');
             } else {
-                $request->session()->flash('errUpdateBrand', 'Update that bai cong');
+                Alert::error('Sửa thất bại');
                 return redirect()->route('admin.edit.banner',['slug' => $infoBanner->slug, 'id' => $id]);
             }
         } else {
@@ -147,11 +148,13 @@ class BannerController extends Controller
         $banner=Banner::find($id);
         $status=$banner->delete();
         if($banner){
-            request()->session()->flash('success','Banner successfully deleted');
+            Alert::success('Xóa thành công');
+            return redirect()->route('admin.banner');  
         }
         else{
-            request()->session()->flash('error','Error occurred while deleting banner');
+            Alert::error('Xóa thất bại');
+            return redirect()->route('admin.banner');  
         }
-        return redirect()->route('admin.banner');  
+       
     }
 }

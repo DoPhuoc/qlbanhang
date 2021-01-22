@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="section-title">
-                    <h2>Related Products</h2>
+                    <h2>Danh sách Sản phẩm </h2>
                 </div>
             </div>
         </div>
@@ -18,3 +18,4 @@
         </div>
     </div>
 </div>
+

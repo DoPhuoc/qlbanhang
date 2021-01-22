@@ -21,8 +21,34 @@
          </div>
      </div>
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary float-left">Danh mục  Bài viết </h6>
-      <a href="{{route('admin.add.postCategory')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Thêm bài viết</a>
+     {{--   <h6 class="m-0 font-weight-bold text-primary float-left">Danh mục  Bài viết </h6>
+      <form  action="{{route('admin.search.postCategory')}}" method="get">
+        <div class="input-group">
+          <input type="search" name="search" class="form-control">
+          <span class="input-group-prepend">
+              <button type="submit" class="btn btn-primary" ><i class="fas fa-search"></i></button>
+          </span>
+          </div>
+      </form>
+      <a href="{{route('admin.add.postCategory')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Thêm bài viết</a>  --}}
+      <div class="row">
+        <div class="col-md-4">
+        <h6 class="m-0 font-weight-bold text-primary float-left">Danh mục  Bài viết </h6>
+        </div>
+        <div class="col-md-4">
+          <form  action="{{route('admin.search.postCategory')}}" method="get">
+            <div class="input-group">
+              <input type="search" name="search" class="form-control">
+              <span class="input-group-prepend">
+                  <button type="submit" class="btn btn-primary" ><i class="fas fa-search"></i></button>
+              </span>
+              </div>
+          </form>
+  
+      </div>
+      <div class="col-md-4">
+        <a href="{{route('admin.add.postCategory')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Thêm bài viết</a>
+      </div>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -32,7 +58,7 @@
               <th>STT</th>
               <th>Tên danh mục</th>
               <th>Mô tả</th>
-              <th>Trạng thai</th>
+              <th>Trạng thái</th>
               <th>Hành động</th>
             </tr>
           </thead>

@@ -13,8 +13,8 @@ use App\Http\Requests\UpdateStoreTagPost;
 class TagController extends Controller
 {
     public function index(){
-        $tag = Tag::all();
-        return view('admin.tags.list',compact('tag'));
+        $tags = Tag::all();
+        return view('admin.tags.list',compact('tags'));
     }
     public function addTag(){
         return view('admin.tags.add');

@@ -25,8 +25,8 @@
 				<div class="row">
 					<div class="col-lg-6 offset-lg-3 col-12">
 						<div class="login-form">
-							<h2>Login</h2>
-							<p>Please register in order to checkout more quickly</p>
+							<h2>Đăng nhập</h2>
+							<p>Vui lòng đăng ký tài khoản</p>
 							<!-- Form -->
 							<form class="form" method="post"
                                   action="{{ route('fr.auth.login') }}">
@@ -34,7 +34,7 @@
 								<div class="row">
 									<div class="col-12">
 										<div class="form-group">
-											<label>Your Email<span>*</span></label>
+											<label>Nhập email<span>*</span></label>
 											<input type="email"
                                                    class="@error('email') is-invalid @enderror"
                                                    name="email"
@@ -47,7 +47,7 @@
 									</div>
 									<div class="col-12">
 										<div class="form-group">
-											<label>Your Password<span>*</span></label>
+											<label>Nhập password<span>*</span></label>
 											<input type="password"
                                                    name="password"
                                                    class="@error('password') is-invalid @enderror"
@@ -60,13 +60,13 @@
 									</div>
 									<div class="col-12">
 										<div class="form-group login-btn">
-											<button class="btn" type="submit">Login</button>
-											<a href="{{ route('fr.auth.register') }}" class="btn">Register</a>
+											<button class="btn" type="submit">Đăng nhập</button>
+											<a href="{{ route('fr.auth.register') }}" class="btn">Đăng ký</a>
 										</div>
-										<div class="checkbox">
+										{{--  <div class="checkbox">
 											<label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox">Remember me</label>
-										</div>
-										<a href="#" class="lost-pass">Lost your password?</a>
+										</div>  --}}
+										{{--  <a href="#" class="lost-pass">Lost your</a>  --}}
 									</div>
 								</div>
 							</form>

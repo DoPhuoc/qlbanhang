@@ -40,89 +40,77 @@
         </div>
         <!--table-->
         <div class="card-body">
-            <table class="table table-bordered" id="dataTable" width="100%"
-                   cellspacing="0">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Mã sản phẩm</th>
-                    <th>Danh mục</th>
-                    <th>Thương hiệu</th>
-                    <th>Tên sản phẩm</th>
-                    <th width="50%">Ảnh sản phẩm</th>
-                    <th width="10%">Số lượng</th>
-                    <th width="10%">Giá sản phẩm</th>
-                    <th width="10%">Giảm giá</th>
-                    <th width="10%">Trạng thái</th>
-                    <th width="10%">Mô tả</th>
-                    <th colspan="2" width="20%">Hành động</th>
-                </tr>
-                </thead>
-                <tfoot>
-                <tr>
-                    <th>ID</th>
-                    <th>Mã sản phẩm</th>
-                    <th>Danh mục</th>
-                    <th>Thương hiệu</th>
-                    <th>Tên sản phẩm</th>
-                    <th width="50%">Ảnh sản phẩm</th>
-                    <th width="10%">Số lượng</th>
-                    <th width="10%">Giá sản phẩm</th>
-                    <th width="10%">Giảm giá</th>
-                    <th width="10%">Trạng thái</th>
-                    <th width="10%">Mô tả</th>
-                    <th colspan="2" width="20%">Hành động</th>
-                </tr>
-                </tfoot>
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%"
+                cellspacing="0">
+             <thead>
+             <tr>
+                 <th>ID</th>
+                 <th>Mã sản phẩm</th>
+                 <th>Danh mục</th>
+                 <th>Thương hiệu</th>
+                 <th>Tên sản phẩm</th>
+                 <th width="50%">Ảnh sản phẩm</th>
+                 <th width="10%">Số lượng</th>
+                 <th width="10%">Giá sản phẩm</th>
+                 <th width="10%">Giảm giá</th>
+                 <th width="10%">Trạng thái</th>
+                 <th width="10%">Mô tả</th>
+                 <th colspan="2" width="20%">Hành động</th>
+             </tr>
+             </thead>
+             
 
-                @foreach($products as $product)
-                    <tr>
-                        <td>{{$product->id}}</td>
-                        <td>{{$product->product_id}}</td>
-                        <td>{{$product->category->name}}</td>
-                        <td>{{$product->brand->name}}</td>
-                        <td>{{$product->name}}</td>
-                        <td>
-                            <img class="img-fluid zoom "
-                                 style="max-width:100%"
-                                 src="{{asset('uploads/images/products')}}/{{$product->image}}">
-                        </td>
-                        <td>
-                            {{$product->quantity}}
-                        </td>
-                        <td>{{number_format($product->price).''.'VNĐ'}}</td>
-                        <td>{{$product->sale_off}}</td>
-                        <td>
-                            {!! $product->status_label !!}
-                        </td>
-                        <td>{!! $product->description !!}</td>
-                        <td>
-                            <a class="btn btn-primary btn-sm float-left mr-1"
-                               style="height:30px; width:30px;border-radius:50%"
-                               data-toggle="tooltip"
-                               title="edit"
-                               href="{{route('admin.product.edit',$product->id)}}"
-                               data-placement="bottom">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <form
-                                action="{{ route('admin.product.destroy', $product->id) }}"
-                                method="post">
-                                @csrf
-                                @method('delete')
-                                <button class="btn btn-danger btn-sm dltBtn"
-                                        type="submit"
-                                        style="height:30px; width:30px;border-radius:50%"
-                                        data-toggle="tooltip"
-                                        data-placement="bottom"
-                                        title="Delete">
-                                    <i class="fas fa-trash-alt"></i>
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-            </table>
+             @foreach($products as $product)
+                 <tr>
+                     <td>{{$product->id}}</td>
+                     <td>{{$product->product_id}}</td>
+                     <td>{{$product->category->name}}</td>
+                     <td>{{$product->brand->name}}</td>
+                     <td>{{$product->name}}</td>
+                     <td>
+                         <img class="img-fluid zoom "
+                              style="max-width:100%"
+                              src="{{asset('uploads/images/products')}}/{{$product->image}}">
+                     </td>
+                     <td>
+                         {{$product->quantity}}
+                     </td>
+                     <td>{{number_format($product->price).''.'VNĐ'}}</td>
+                     <td>{{$product->sale_off}}</td>
+                     <td>
+                         {!! $product->status_label !!}
+                     </td>
+                     <td>{!! $product->description !!}</td>
+                     <td>
+                         <a class="btn btn-primary btn-sm float-left mr-1"
+                            style="height:30px; width:30px;border-radius:50%"
+                            data-toggle="tooltip"
+                            title="edit"
+                            href="{{route('admin.product.edit',$product->id)}}"
+                            data-placement="bottom">
+                             <i class="fas fa-edit"></i>
+                         </a>
+                         <form
+                             action="{{ route('admin.product.destroy', $product->id) }}"
+                             method="post">
+                             @csrf
+                             @method('delete')
+                             <button class="btn btn-danger btn-sm dltBtn"
+                                     type="submit"
+                                     style="height:30px; width:30px;border-radius:50%"
+                                     data-toggle="tooltip"
+                                     data-placement="bottom"
+                                     title="Delete">
+                                 <i class="fas fa-trash-alt"></i>
+                             </button>
+                         </form>
+                     </td>
+                 </tr>
+             @endforeach
+         </table>
+            </div>
+       
 
         </div>
 

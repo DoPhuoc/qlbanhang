@@ -24,4 +24,5 @@ class Category extends Base
     {
         return $builder->where('status', self::ACTIVE);
     }
+    
 }

@@ -43,6 +43,8 @@
                     </tfoot>
                     <tbody>
                     @foreach($users as $user)
+                    <tr>
+                        
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $user->username }}</td>
                         <td>{{ $user->email }}</td>
@@ -63,6 +65,7 @@
                                     data-placement="bottom" title="Delete"><i
                                     class="fas fa-trash-alt"></i></button>
                         </td>
+                    </tr>
                     @endforeach
                     </tbody>
                 </table>

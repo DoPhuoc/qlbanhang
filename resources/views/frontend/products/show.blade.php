@@ -77,14 +77,17 @@
                                                     Review</a>
                                             </div>
                                             <p class="price"><span
-                                                    class="discount">$70.00</span><s>$80.00</s>
+                                                    class="discount">
+                                                    {{number_format($product->price).''.'VNĐ'}}
+                                                </span>
+                                                <spann> </spann>
                                             </p>
-
+                                            <p>{!! $product->description !!}</p>
                                         </div>
                                         <div class="product-buy">
                                             <div class="d-flex">
                                                 <div class="quantity">
-                                                    <h6>Quantity :</h6>
+                                                    <h6>Số lượng :</h6>
                                                     <!-- Input Order -->
                                                     <div class="input-group">
                                                         <div
@@ -115,6 +118,7 @@
                                                             </button>
                                                         </div>
                                                     </div>
+                                                </br>
                                                     <!--/ End Input Order -->
                                                 </div>
                                                 <div class="add-to-cart d-flex">
@@ -126,20 +130,16 @@
                                                                value="{{ $product->id }}"
                                                                name="product_id">
                                                         <button type="submit"
-                                                                class="btn">Add
-                                                            to cart
+                                                                class="btn">Thêm giỏ hàng
                                                         </button>
                                                     </form>
-                                                    <a href="#" class="btn min"><i
+                                                  {{--    <a href="#" class="btn min"><i
                                                             class="ti-heart"></i></a>
                                                     <a href="#" class="btn min"><i
-                                                            class="fa fa-compress"></i></a>
+                                                            class="fa fa-compress"></i></a>  --}}
                                                 </div>
                                             </div>
-                                            <p class="cat">Category :<a
-                                                    href="#">Clothing</a></p>
-                                            <p class="availability">Availability
-                                                : 180 Products In Stock</p>
+                                          
                                         </div>
                                         <!--/ End Product Buy -->
                                     </div>
@@ -156,7 +156,7 @@
                                                         class="nav-link active"
                                                         data-toggle="tab"
                                                         href="#description"
-                                                        role="tab">Description</a>
+                                                        role="tab">Mô tả</a>
                                                 </li>
                                                 <li class="nav-item"><a
                                                         class="nav-link"

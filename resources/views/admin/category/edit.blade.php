@@ -8,7 +8,7 @@
         @csrf
         <div class="form-group">
       
-          <label for="nameCate" class="col-form-label">Title <span class="text-danger">*</span></label>
+          <label for="nameCate" class="col-form-label">Tên danh mục<span class="text-danger">*</span></label>
           <input id="nameCate" type="text" name="nameCate"   value="{{$categories->name}}" placeholder="Enter title"  value="" class="form-control">
           @error('nameCate')
           <span class="text-danger">{{ $message }}</span>
@@ -24,9 +24,6 @@
           <span class="text-danger">{{ $message }}</span>
           @enderror
         </div>
-
-     
-        
         <div class="form-group">
           <label for="status" class="col-form-label">Tình trạng<span class="text-danger">*</span></label>
           <select name="status" class="form-control">
@@ -36,9 +33,7 @@
      
         </div>
         <input type="hidden" name="hddId" value="{{$categories->id}}"/>
-      
            <button class="btn btn-success" type="submit">Cập nhật</button>
-    
       </form>
     </div>
 </div>

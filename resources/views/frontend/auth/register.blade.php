@@ -7,8 +7,8 @@
         <div class="row">
             <div class="col-lg-6 offset-lg-3 col-12">
                 <div class="login-form">
-                    <h2>Register</h2>
-                    <p>Please register in order to checkout more quickly</p>
+                    <h2>Đăng ký</h2>
+                    <p>Vui lòng đăng ký tài khoản trước khi thanh toán</p>
                     <!-- Form -->
                     <form class="form"
                           method="post"
@@ -17,36 +17,36 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label>Your Name<span>*</span></label>
+                                    <label>Tên<span>*</span></label>
                                     <input type="text" name="name" placeholder="" required="required">
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label>Your Email<span>*</span></label>
+                                    <label>Nhập email<span>*</span></label>
                                     <input type="text" name="email" placeholder="" required="required">
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label>Your Password<span>*</span></label>
+                                    <label>Nhập password<span>*</span></label>
                                     <input type="password" name="password" placeholder="" required="required">
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label>Confirm Password<span>*</span></label>
+                                    <label>Xác nhận lại password<span>*</span></label>
                                     <input type="password" name="password_confirmation" placeholder="" required="required">
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group login-btn">
-                                    <button class="btn" type="submit">Register</button>
+                                    <button class="btn" type="submit">Đăng ký</button>
                                     <a href="{{ route('fr.auth.login') }}" class="btn">Login</a>
                                 </div>
-                                <div class="checkbox">
+                              {{--    <div class="checkbox">
                                     <label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox">Sign Up for Newsletter</label>
-                                </div>
+                                </div>  --}}
                             </div>
                         </div>
                     </form>
