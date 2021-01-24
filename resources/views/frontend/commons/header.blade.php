@@ -224,7 +224,7 @@
                                                     </li>
                                                 </ul>
                                             </li>
-                                            <li><a href="#">Bài viết</a></li>
+                                            <li><a href="{{route('fr.blog')}}">Bài viết</a></li>
 
                                             <li><a href="contact.html">ĐỊA
                                                     CHỈ</a></li>

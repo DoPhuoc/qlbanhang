@@ -87,8 +87,6 @@ class PostController extends Controller
         return view('admin.posts.edit',compact('tags','catePosts','posts'));
     }
     public function postPosts(Request $request){
-        
-
         $id = $request->id;
         $id = is_numeric($id) && $id > 0 ? $id : 0;
         $infoPosts = DB::table('posts')

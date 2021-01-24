@@ -30,9 +30,7 @@ class ProductController extends Controller
         $relatedProducts = Category::findOrFail($selectedProduct->category_id)
             ->products
             ->except(['id' => $selectedProduct->id]);
-      /*   $relatedBrands = Brand::findOrFail($selectedBrand->brand_id)
-            ->products
-            ->except(['id' => $selectedBrand->id]); */
+    
 
         return view(
         'frontend.products.show',

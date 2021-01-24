@@ -9,8 +9,8 @@
 			<div class="col-12">
 				<div class="bread-inner">
 					<ul class="bread-list">
-						<li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
-						<li class="active"><a href="blog-single.html">Blog Grid Sidebar</a></li>
+						<li><a href="{{ route('fr.home') }}">Trang chủ<i class="ti-arrow-right"></i></a></li>
+						<li class="active"><a href="{{ route('fr.blog') }}">Bài viết</a></li>
 					</ul>
 				</div>
 			</div>
@@ -28,11 +28,10 @@
 					<div class="col-lg-6 col-md-6 col-12">
 						<!-- Start Single Blog  -->
 						<div class="shop-single-blog">
-							<img src="images/blog1.jpg" alt="#">
+							<img src="{{-- {{asset('uploads/images/posts')}}/{{$item->image}} --}}" alt="#">
 							<div class="content">
-								<p class="date">22 July , 2020. Monday</p>
-								<a href="#" class="title">Sed adipiscing ornare.</a>
-								<a href="#" class="more-btn">Continue Reading</a>
+								<a href="{{route('fr.blog.detail')}}" class="title">Sed adipiscing ornare.</a>
+								<a href="{{route('fr.blog.detail')}}" class="more-btn">Continue Reading</a>
 							</div>
 						</div>
 						<!-- End Single Blog  -->
@@ -133,53 +132,7 @@
 							<li><a href="#">Sun Glasses</a></li>
 						</ul>
 					</div>
-					<!--/ End Single Widget -->
-					<!-- Single Widget -->
-					<div class="single-widget recent-post">
-						<h3 class="title">Recent post</h3>
-						<!-- Single Post -->
-						<div class="single-post">
-							<div class="image">
-								<img src="images/modal1.png" alt="#">
-							</div>
-							<div class="content">
-								<h5><a href="#">Top 10 Beautyful Women Dress in the world</a></h5>
-								<ul class="comment">
-									<li><i class="fa fa-calendar" aria-hidden="true"></i>Jan 11, 2020</li>
-									<li><i class="fa fa-commenting-o" aria-hidden="true"></i>35</li>
-								</ul>
-							</div>
-						</div>
-						<!-- End Single Post -->
-						<!-- Single Post -->
-						<div class="single-post">
-							<div class="image">
-								<img src="images/modal2.png" alt="#">
-							</div>
-							<div class="content">
-								<h5><a href="#">Top 10 Beautyful Women Dress in the world</a></h5>
-								<ul class="comment">
-									<li><i class="fa fa-calendar" aria-hidden="true"></i>Mar 05, 2019</li>
-									<li><i class="fa fa-commenting-o" aria-hidden="true"></i>59</li>
-								</ul>
-							</div>
-						</div>
-						<!-- End Single Post -->
-						<!-- Single Post -->
-						<div class="single-post">
-							<div class="image">
-								<img src="images/modal3.png" alt="#">
-							</div>
-							<div class="content">
-								<h5><a href="#">Top 10 Beautyful Women Dress in the world</a></h5>
-								<ul class="comment">
-									<li><i class="fa fa-calendar" aria-hidden="true"></i>June 09, 2019</li>
-									<li><i class="fa fa-commenting-o" aria-hidden="true"></i>44</li>
-								</ul>
-							</div>
-						</div>
-						<!-- End Single Post -->
-					</div>
+				
 					<!--/ End Single Widget -->
 					<!-- Single Widget -->
 					<!--/ End Single Widget -->
@@ -196,19 +149,7 @@
 							<li><a href="#">Ecommerce</a></li>
 						</ul>
 					</div>
-					<!--/ End Single Widget -->
-					<!-- Single Widget -->
-					<div class="single-widget newsletter">
-						<h3 class="title">Newslatter</h3>
-						<div class="letter-inner">
-							<h4>Subscribe & get news <br> latest updates.</h4>
-							<div class="form-inner">
-								<input type="email" placeholder="Enter your email">
-								<a href="#">Submit</a>
-							</div>
-						</div>
-					</div>
-					<!--/ End Single Widget -->
+				
 				</div>
 			</div>
 		</div>

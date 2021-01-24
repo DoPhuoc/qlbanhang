@@ -43,9 +43,9 @@
             <a href="product-details.html">{{$product->name}}</a>
         </h3>
         <div class="product-price">
-            <h4 class="product-price">{{($product->price*$product->sale_off)/100}}
+            {{-- <h4 class="product-price">{{($product->price*$product->sale_off)/100}} --}}
             <span>{{number_format($product->price).''.'VNĐ'}}</span>
-            </h4>
+            {{-- </h4> --}}
         </div>
     </div>
     

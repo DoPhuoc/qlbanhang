@@ -42,7 +42,7 @@
                             <th>Tiêu đề</th>
                             <th>Tên danh mục</th>
                             <th>Tag</th>
-                            <th>Ảnh widht="50%"</th>
+                            <th>Ảnh </th>
                             <th>Mô tả</th>
                             <th>Tình trạng</th>
                             <th style="width:10%">Hành động</th>
