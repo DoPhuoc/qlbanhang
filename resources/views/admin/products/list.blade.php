@@ -65,8 +65,8 @@
                  <tr>
                      <td>{{$product->id}}</td>
                      <td>{{$product->product_id}}</td>
-                     <td>{{$product->category->name}}</td>
-                     <td>{{$product->brand->name}}</td>
+                     {{-- <td>{{$product->category->name}}</td> --}}
+                     {{-- <td>{{$product->brand->name}}</td> --}}
                      <td>{{$product->name}}</td>
                      <td>
                          <img class="img-fluid zoom "
