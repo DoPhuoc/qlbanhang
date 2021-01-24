@@ -32,7 +32,7 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::where('status', Category::ACTIVE)->get();
-        $brands = Brand::where('status', Category::ACTIVE)->get();
+        $brands = Brand::where('status', Brand::ACTIVE)->get();
         return view('admin.products.add', compact('categories', 'brands'));
     }
 
@@ -40,11 +40,13 @@ class ProductController extends Controller
     {
         $data = $request->all();
         $imageName = '';
+        //kiểm tra file
         if ($request->hasFile('images')) {
+
             $image = $request->file('images')[0];
             if ($image->isValid()) {
-                $imageName = $image->getClientOriginalName();
-                $image->move('uploads/images/products', $imageName);
+                $imageName = $image->getClientOriginalName(); //lay ten file
+                $image->move('uploads/images/products', $imageName); //uploadfile
             }
         }
         unset($data['images']);
@@ -76,7 +78,6 @@ class ProductController extends Controller
 
     public function update(UpdateProductRequest $request, Product $product)
     {
-
         $data = $request->all();
         $imageName = '';
         if ($request->hasFile('images')) {

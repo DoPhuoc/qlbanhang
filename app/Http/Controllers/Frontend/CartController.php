@@ -25,6 +25,7 @@ class CartController extends Controller
     public function index()
     {
         $userId = Auth::id();
+        dd($userId);
         $cart = Cart::where('user_id', $userId)
             ->whereDoesntHave('bill')->latest()->first();
         return view(

@@ -19,8 +19,6 @@ class BrandController extends Controller
         $data =[];
         $data['listBrands'] = DB::table('brands')
         ->paginate(self::LIMITED_ROW);
-       
-      
         return view('admin.brand.list',$data);
     }
     public function addBrand()
@@ -113,5 +111,4 @@ class BrandController extends Controller
         ->paginate(5);
         return view('admin.brand.list',compact('listBrands'));
     }
-    
 }

@@ -4,7 +4,7 @@
 <div class="card">
     <h5 class="card-header">Sửa bài viết</h5>
     <div class="card-body">
-      <form method="post" action="{{route('admin.handle.edit.post',['id'=> $posts->id])}}" enctype="multipart/form-data">
+      <form method="post" action="{{route('admin.handle.edit.posts',['id'=> $posts->id])}}" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
           <label for="title" class="col-form-label">Tiêu đề <span class="text-danger">*</span></label>
@@ -16,11 +16,11 @@
         <div class="form-group">
           <label for="catePost" class="col-form-label">Tên danh mục</label>
           <select name="catePost" class="form-control">
-            <option value="">--Select any category--</option>
-            @foreach($catePosts as $key=>$data)
-            <option value="{{$data->title}}"
-              {{$data->title == $posts->post_cat_id ? 'selected' : ''}}>{{$data->title}}</option>
-            @endforeach
+            <option>
+            @foreach($catePosts as $key=>$item)
+            <option value="{{$item->title}}"
+              {{$item->title == $posts->post_cat_id ? 'selected' : ''}}>{{$item->title}}</option>
+            @endforeach </option>
             </select>
         </div>
         @error('catePost')

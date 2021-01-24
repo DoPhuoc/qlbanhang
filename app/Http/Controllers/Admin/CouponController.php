@@ -48,9 +48,9 @@ class CouponController extends Controller
         ->where('id', $id)
         ->update([
             'code' => $code,
-            'status' => 1,
+            'status' => $status,
             'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => null
+            'updated_at' => null 
         ]);
         
         if($update){

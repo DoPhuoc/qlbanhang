@@ -38,7 +38,6 @@ Route::group([
     Route::post('/product/handle-edit/{id}', 'ProductController@handleEditproduct')
         ->name('handle.edit.product');
 
-
     /*Banner*/
     Route::get('/banner','BannerController@index')->name('banner');
     Route::get('/add-banner','BannerController@addBanner')->name('add.banner');
@@ -70,7 +69,8 @@ Route::group([
     Route::get('/add-post','PostController@addPost')->name('add.post');
     Route::post('/add-post','PostController@handleAddPost')->name('handle.add.post');
     Route::get('/post/{slug}~{id}','PostController@editPost')->name('edit.post');
-    Route::post('/post/handle-edit/{id}','PostController@handleEditPost')->name('handle.edit.post');
+   /*  Route::post('/post/handle-edit/{id}','PostController@postEditPost')->name('handle.edit.post'); */
+    Route::post('/post/edit/{id}','PostController@postPosts')->name('handle.edit.posts');
     Route::get('/post/delete-post/{id}','PostController@deletePost')->name('delete.post');
     Route::get('/post/search','PostController@search')->name('search.post');
     /*Tags*/

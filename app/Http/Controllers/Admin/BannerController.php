@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Banner;
-use Illuminate\Support\Str;
-use voku\helper\AntiXSS;
+use Illuminate\Support\Str; 
 use App\Http\Requests\StoreBannerPost as BannerPost;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\UpdateStoreBannerPost;
@@ -15,29 +14,31 @@ class BannerController extends Controller
 {
     public function index()
     {
-        $banner=Banner::orderBy('id')->paginate(10);
+        $banners=Banner::orderBy('id')->paginate(5); 
         //dd($banner);
-        return view('admin.banner.index')->with('banners',$banner);
+        return view('admin.banner.index')->with('banners',$banners); 
     }
-    public  function addBanner(Request $request)
+    //chức năng thêm 
+
+    public  function addBanner(Request $request) //get
     {
         $errLogo = $request->session()->get('errUploadBanner');
         return view('admin.banner.create');
     }
-    public  function handleBanner(BannerPost $request,Banner $banner)
+    public  function handleBanner(BannerPost $request,Banner $banner) //post
     {
+        
         $titleBanner = $request->titleBanner;
         $slugBanner = Str::slug($titleBanner,'-');
         $desBanner = $request->desBanner;
-        
-        //upload file laravel
         $upload = false;
-        $nameFile = null;
+        $nameFile = null; 
+         //Kiểm tra file
         if($request->hasFile('photoBanner')){
             if($request->file('photoBanner')->isValid()){
                 $file = $request->file('photoBanner');
-                $nameFile = $file->getClientOriginalName();
-                $upload = $file->move('uploads/images/banners', $nameFile);
+                $nameFile = $file->getClientOriginalName(); //lấy tên file
+                $upload = $file->move('uploads/images/banners', $nameFile);//trả về đường dẫn file đấy
             }
         }
        
@@ -52,7 +53,8 @@ class BannerController extends Controller
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => null
             ];
-            $insert = $banner->insertDataBanner($dataInsert);
+            //$insert = $banner->insertDataBanner($dataInsert);
+            $insert = Banner::create($dataInsert); //chèn dữ liệu eloquent orm
             if($insert){
                 Alert::success('Thêm thành công');
                 return redirect()->route('admin.banner');
@@ -67,9 +69,10 @@ class BannerController extends Controller
             return redirect()->route('admin.add.banner');
         }
     }
-    public function editBanner($slug,$id){
-        $id = is_numeric($id) && $id > 0 ? $id : 0;
-        $infoBanner = DB::table('banners')
+    //sửa 
+    public function editBanner($slug,$id){ //get
+        $id = is_numeric($id) && $id > 0 ? $id : 0; 
+        $infoBanner = DB::table('banners') 
                         ->where('id', $id)
                         ->first();
         //dd($infoBanner);
@@ -79,14 +82,16 @@ class BannerController extends Controller
             return view('admin.partials.not-found-page');
         }
     } 
-    public function handleEditBanner(UpdateStoreBannerPost $request)
+    public function handleEditBanner(UpdateStoreBannerPost $request) //post
     {
         $id = $request->id;
         $id = is_numeric($id) && $id > 0 ? $id : 0;
-        $infoBanner = DB::table('banners')
+        $infoBanner = DB::table('banners') //cách 1 querybuider
             ->where('id', $id)
             ->first();
-
+        //dd($infoBanner);
+        //cách 2 orm
+        //$infoBanner = Banner::find($id);
         if($infoBanner) {
             $titleBanner = $request->titleBanner;
             $slugBanner = Str::slug($titleBanner, '-');
@@ -107,7 +112,7 @@ class BannerController extends Controller
             if($uploadPhoto && $newPhoto){
                 // xoa anh cu cap nhap anh moi
                 //unlink(public_path('uploads/images/brands') ."/".$logoBrand);
-                $update = DB::table('banners')
+              /*   $update = DB::table('banners')
                             ->where('id', $id)
                             ->update([
                                 'title' => $titleBanner,
@@ -116,8 +121,16 @@ class BannerController extends Controller
                                 'description' => $desBanner,
                                 'status' => $status,
                                 'updated_at' => date('Y-m-d H:i:s')
-                            ]);
-                           
+                            ]); */
+                $update = Banner::find($id)
+                    ->update([
+                        'title' => $titleBanner,
+                        'slug' => $slugBanner,
+                        'photo' => $newPhoto,
+                        'description' => $desBanner,
+                        'status' => $status,
+                        'updated_at' => date('Y-m-d H:i:s')
+                    ]); 
             } else {
                 // giu nguyen anh cu
                 $update = DB::table('banners')

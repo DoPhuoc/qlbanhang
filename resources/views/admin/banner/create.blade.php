@@ -2,9 +2,6 @@
 @section('content')
     <div class="card">
         <h5 class="card-header">Thêm Banner</h5>
-
-
-
         @if (!empty($errLogo))
             <div class="alert alert-danger">
                 <p>{{ $errLogo }}</p>
@@ -15,7 +12,7 @@
                 @csrf
                 <div class="form-group">
                     <label for="titleBanner" class="col-form-label">Tên Banner (<span class="text-danger">*</span>)</label>
-                    <input id="titleBanner" type="text" name="titleBanner" placeholder="Enter title"
+                    <input id="titleBanner" type="text" name="titleBanner" placeholder="Nhập vào "
                         value="{{ old('titleBanner') }}" class="form-control">
                     @error('titleBanner')
                         <span class="text-danger">{{ $message }}</span>

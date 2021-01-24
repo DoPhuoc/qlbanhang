@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePosts;
+use App\Http\Requests\StoreUpadtePosts;
 use App\Model\Post;
 use Illuminate\Support\Str;
 use App\Model\Tag;
@@ -83,10 +84,11 @@ class PostController extends Controller
         $tags = Tag::where('status',1)->get();
         $catePosts  = PostCategory::where('status',1)->get();
         $posts =Post::find($id);
-       
         return view('admin.posts.edit',compact('tags','catePosts','posts'));
     }
-    public function handleEditPost(StorePosts $request){
+    public function postPosts(Request $request){
+        
+
         $id = $request->id;
         $id = is_numeric($id) && $id > 0 ? $id : 0;
         $infoPosts = DB::table('posts')
@@ -118,7 +120,6 @@ class PostController extends Controller
                     ->update([
                         'title' => $title,
                         'slug' => $slug,
-                       
                         'description' => $description,
                         'quote' =>$quote,
                         'image' => $newPhoto,
@@ -153,9 +154,7 @@ class PostController extends Controller
                 Alert::success('Sửa thất bại');
                 return redirect(route('admin.edit.post'));
                     }  
-                }else{
-                    return view('admin.partials.not-found-page');
-                }         
+            }    
         }
     public function deletePost($id)
     {

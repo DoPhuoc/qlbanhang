@@ -3,8 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
-class StorePosts extends FormRequest
+use Illuminate\Http\Request;
+class StoreUpadtePosts extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,10 +21,12 @@ class StorePosts extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(Request $request)
+
     {
+        $id = $request->id;
         return [
-            'title'=>'required|unique:posts,title',
+            'title'=>'required|unique:posts,title,'.$id,
             'description'=>'required',
             'images'=>'required',
             'quote'=>'required',
@@ -38,7 +40,7 @@ class StorePosts extends FormRequest
         // thong bao loi ra ngoai view
         return [
             'title.required' => 'Trường này không được để trống ',
-            'title.unique'=>'Tên bài viết là duy nhất',
+            'title.unique' => 'Tên bài viết đã tồn tại',
             'description.required' => 'Trường này không được để trống',
             'images.required' => 'Vui lòng nhập ảnh sản phẩm',
             'quote.required'=>'Truong nay khong duoc de trong',

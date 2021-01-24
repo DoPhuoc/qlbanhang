@@ -17,7 +17,7 @@ class Category extends Base
     public function products()
     {
         return $this->hasMany(Product::class)
-            ->where('status', Product::ACTIVE);
+            ->where('status', Product::ACTIVE); 
     }
 
     public function scopeActive(Builder $builder)
