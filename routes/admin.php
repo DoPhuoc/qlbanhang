@@ -5,9 +5,10 @@ Route::group([
     'as' => 'admin.'
 ],function (){
     Route::get('/', 'LoginController@index')
-        //->middleware('is.logined.admin')
+        ->middleware('admin.guest', 'preventBackHistory')
         ->name('login');
-    Route::post('/login','LoginController@login')->name('login.post');
+    Route::post('/login','LoginController@login')
+        ->name('login.post');
     Route::post('/logout', 'LoginController@logout')->name('logout');
 });
 
@@ -71,12 +72,12 @@ Route::group([
     Route::post('/shipping/delete-shipping','ShippingController@deleteShipping')->name('delete.shipping');
 
     /*Post*/
-    Route::get('/post','PostController@index')->name('post');
+    Route::get('/post','PostController@index')->name('posts');
     Route::get('/add-post','PostController@addPost')->name('add.post');
     Route::post('/add-post','PostController@handleAddPost')->name('handle.add.post');
-    Route::get('/post/{slug}~{id}','PostController@editPost')->name('edit.post');
+    Route::get('/post/{slug}~{id}','PostController@editPost')->name('edit.posts');
     Route::post('/post/handle-edit/{id}','PostController@handleEditPost')->name('handle.edit.post');
-    Route::post('/post/delete-post','PostController@deletePost')->name('delete.post');
+    Route::post('/post/delete-post','PostController@deletePost')->name('delete.posts');
 
     /*Tags*/
     Route::get('/tag','TagController@index')->name('tag');
@@ -125,5 +126,6 @@ Route::group([
 
     Route::group(['as' => 'statistic.'], function () {
         Route::get('/sale/{date?}', 'StatisticController@sale')->name('sale');
+        Route::get('/revenue/{date?}', 'StatisticController@reportRevenue')->name('revenue');
     });
 });

@@ -23,7 +23,7 @@ class OrderController extends Controller
     {
         $orders = Bill::with('cart')
             ->where('status', Bill::NEW)
-            ->orderBy('status')
+            ->orderBy('updated_at', 'desc')
             ->latest()
             ->get();
         return view('admin.order.new', ['orders' => $orders]);
@@ -33,7 +33,7 @@ class OrderController extends Controller
     {
         $orders = Bill::with('cart')
             ->where('status', Bill::DELIVERY)
-            ->orderBy('status')
+            ->orderBy('updated_at', 'desc')
             ->latest()
             ->get();
         return view('admin.order.delivery', ['orders' => $orders]);
@@ -43,7 +43,7 @@ class OrderController extends Controller
     {
         $orders = Bill::with('cart')
             ->where('status', Bill::DONE)
-            ->orderBy('status')
+            ->orderBy('updated_at', 'desc')
             ->latest()
             ->get();
         return view('admin.order.done', ['orders' => $orders]);

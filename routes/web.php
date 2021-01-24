@@ -77,4 +77,7 @@ Route::group([
         ->name('ward.list');
     Route::get('/shipping-charge/fee', 'ShippingChargeController@getFee')
         ->name('shipping_charge.get_fee');
+    Route::post('/contact', 'ContactController.php@contact')
+        ->name('contact');
+
 });

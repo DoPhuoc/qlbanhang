@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\UserAddress;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -49,5 +50,10 @@ class User extends Authenticatable
             return false;
         }
         return !!$cart->products()->count();
+    }
+
+    public function address()
+    {
+        return $this->hasMany(UserAddress::class);
     }
 }

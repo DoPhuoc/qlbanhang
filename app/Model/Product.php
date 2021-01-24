@@ -52,7 +52,15 @@ class Product extends Base
         if (!$this->pivot) {
             return 0;
         }
-        return number_format($this->pivot->price * $this->pivot->quantity) . ' ₫';
+        return $this->pivot->price * $this->pivot->quantity - $this->getTotalDiscount();
+    }
+
+    public function getTotalDiscount()
+    {
+        if (!$this->pivot) {
+            return 0;
+        }
+        return $this->pivot->price * $this->pivot->quantity * $this->pivot->discount / 100;
     }
 
     public function getPriceAfterDiscountAttribute()

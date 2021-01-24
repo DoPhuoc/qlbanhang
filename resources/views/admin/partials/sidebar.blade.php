@@ -11,7 +11,7 @@
         <span class="material-icons sidebar-brand-icon ">
             local_fire_department
         </span>
-        <div class="sidebar-brand-text mx-2">FIRE_EXTINGUISHER</div>
+        <div class="sidebar-brand-text mx-2">CÔNG TY PCCC HÙNG ANH</div>
     </a>
 
     <!-- Divider -->
@@ -119,7 +119,9 @@
              data-parent="#statisticCollapse">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item"
-                   href="{{route('admin.statistic.sale')}}">Sản phẩm bán hôm nay</a>
+                   href="{{route('admin.statistic.sale')}}">Sản phẩm bán theo ngày</a>
+                <a class="collapse-item"
+                   href="{{route('admin.statistic.revenue')}}">Doanh thu theo ngày</a>
             </div>
         </div>
     </li>
@@ -188,7 +190,7 @@
              data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Nghiệp vụ:</h6>
-                <a class="collapse-item" href="{{route('admin.post')}}">Bài
+                <a class="collapse-item" href="{{route('admin.posts')}}">Bài
                     viết</a>
                 <a class="collapse-item" href="{{route('admin.add.post')}}">Thêm
                     bài viết</a>
@@ -239,7 +241,7 @@
     <li class="nav-item">
         <a class="nav-link" href="">
             <i class="fas fa-comments fa-chart-area"></i>
-            <span>Comments</span>
+            <span>Bình luận</span>
         </a>
     </li>
 
@@ -248,26 +250,14 @@
     <hr class="sidebar-divider d-none d-md-block">
     <!-- Heading -->
     <div class="sidebar-heading">
-        General Settings
+        Quản lí người dùng
     </div>
-    <li class="nav-item">
-        <a class="nav-link" href="">
-            <i class="fas fa-table"></i>
-            <span>Coupon</span></a>
-    </li>
     <!-- Users -->
     <li class="nav-item">
         <a class="nav-link" href="{{route('admin.users.index')}}">
             <i class="fas fa-users"></i>
             <span>Users</span></a>
     </li>
-    <!-- General settings -->
-    <li class="nav-item">
-        <a class="nav-link" href="">
-            <i class="fas fa-cog"></i>
-            <span>Settings</span></a>
-    </li>
-
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>

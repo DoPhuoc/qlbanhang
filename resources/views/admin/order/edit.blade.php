@@ -14,6 +14,14 @@
                         Khách hàng: <span>{{ $cart->user->name }}</span>
                     </h4>
                     <strong class="d-block mb-2">
+                        Địa chỉ giao hàng:
+                        <span>{{ $bill->shipping_address }}</span>
+                    </strong>
+                    <strong class="d-block mb-2">
+                        Số điện thoại nhận hàng:
+                        <span>{{ $bill->phone }}</span>
+                    </strong>
+                    <strong class="d-block mb-2">
                         Ngày mua:
                         <span>{{ $bill->created_at->format('d/m/Y') }}</span>
                     </strong>
@@ -35,10 +43,11 @@
                         <thead>
                         <tr class="main-hading">
                             <th>PRODUCT</th>
-                            <th class="text-center">NAME</th>
-                            <th class="text-center">UNIT PRICE</th>
-                            <th class="text-center">QUANTITY</th>
-                            <th class="text-right">TOTAL</th>
+                            <th class="text-center">Tên</th>
+                            <th class="text-center">Đơn giá</th>
+                            <th class="text-center">Số lượng</th>
+                            <th class="text-center">Giảm giá</th>
+                            <th class="text-right">Tổng tiền</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -64,9 +73,12 @@
                                 <td class="qty text-center" data-title="Qty">
                                     {{$product->pivot->quantity}}
                                 </td>
+                                <td class="qty text-center" data-title="Qty">
+                                    <span>{{ number_format($product->getTotalDiscount()) }} ₫</span>
+                                </td>
                                 <td class="total-amount text-right"
                                     data-title="Total">
-                                    <span>{{ $product->getTotalPrice() }}</span>
+                                    <span>{{ number_format($product->getTotalPrice()) }} đ</span>
                                 </td>
                             </tr>
                         @empty
@@ -76,12 +88,17 @@
                     </table>
                     <div class="right d-flex justify-content-end">
                         <ul>
-                            <li>Pre
-                                Shipping<span>{{ number_format($cart->subTotal()) }} ₫</span>
+                            <li>Tạm tính<span>{{ number_format($cart->subTotal()) }} ₫</span>
                             </li>
-                            <li>Shipping<span>Free</span></li>
+                            <li>Phí giao hàng
+                                @if($cart->bill->shipping_price)
+                                    <span>{{ number_format($cart->bill->shipping_price) }} ₫</span>
+                                @else
+                                    <span>Free</span>
+                                @endif
+                            </li>
                             <li class="last">You
-                                Pay<span>{{ number_format($cart->subTotal()) }} ₫</span>
+                                Pay<span>{{ number_format($cart->totalPaid()) }} ₫</span>
                             </li>
                         </ul>
                     </div>

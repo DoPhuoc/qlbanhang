@@ -118,37 +118,35 @@
             <div class="row">
                 <div class="col-12">
                     <!-- Total Amount -->
-                        <input type="hidden" name="cart_id"
-                               value="{{ $cart->id }}">
-                        <div class="total-amount">
-                            <div class="row">
-                                <div class="col-lg-8 col-md-5 col-12">
-                                </div>
-                                <div class="col-lg-4 col-md-7 col-12">
-                                    <div class="right">
-                                        <ul>
-                                            <li>Tạm tính<span>{{ number_format($cart->subTotal()) }} ₫</span>
-                                            </li>
-                                            <li class="last">Thành tiền<span>{{ number_format($cart->subTotal()) }} ₫</span>
-                                            </li>
-                                        </ul>
-                                        <div class="button5">
-                                            <button
-                                                type="button"
-                                                @if(!$cart->products->count())
-                                                disabled
-                                                @endif
-                                                id="btnCheckout"
-                                                class="btn">
-                                                Tiến hành đặt hàng
-                                            </button>
-                                            <a href="{{ url()->previous() }}"
-                                               class="btn">Mua thêm sản phâm</a>
-                                        </div>
+                    <input type="hidden" name="cart_id"
+                           value="{{ $cart->id }}">
+                    <div class="total-amount">
+                        <div class="row">
+                            <div class="col-lg-8 col-md-5 col-12">
+                            </div>
+                            <div class="col-lg-4 col-md-7 col-12">
+                                <div class="right">
+                                    <ul>
+                                        <li>Tạm tính<span>{{ number_format($cart->subTotal()) }} ₫</span>
+                                        <li class="last">Thành tiền<span>{{ number_format($cart->subTotal()) }} ₫</span></li>
+                                    </ul>
+                                    <div class="button5">
+                                        <button
+                                            type="button"
+                                            @if(!$cart->products->count())
+                                            disabled
+                                            @endif
+                                            id="btnCheckout"
+                                            class="btn">
+                                            Tiến hành đặt hàng
+                                        </button>
+                                        <a href="{{ url()->previous() }}"
+                                           class="btn">Mua thêm sản phâm</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
                     <!--/ End Total Amount -->
                 </div>
             </div>
@@ -157,15 +155,14 @@
     <!--/ End Shopping Cart -->
     <input type="hidden" id="cartId" value="{{$cart->id}}">
     @include('frontend.modals.checkout')
+    <input type="hidden" value="{{ json_encode($userAddress) }}" id="shippingCharge">
 @endsection
 @push('javascripts')
-    <script src="{{asset('js/shipping_charge.js')}}"></script>
     <script>
         $(document).on('click', '#btnCheckout', function (e) {
             e.preventDefault();
             let cartId = $('#cartId').val();
-            console.log('car', cartId);
-            $('#checkoutForm').append(`<input type="hidden" value="${cartId}" name="cart_id"/>`)
+            $('#checkoutForm').append(`<input type="hidden" value="${ cartId }" name="cart_id"/>`)
             $('#checkoutModal').modal('show');
         });
     </script>

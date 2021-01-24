@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\CartProduct;
+use App\Model\CartProduct;
 use App\Model\Brand;
 use App\Model\Cart;
 use App\Model\Product;

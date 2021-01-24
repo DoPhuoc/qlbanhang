@@ -29,14 +29,14 @@
                                     <div class="single-shorter">
                                         <label>SẮP XẾP :</label>
                                         <select class="order-type">
-                                            <option value="">MẶCĐỊNH</option>
+                                            <option value="">Mặc định</option>
                                             <option value="asc"
                                                     @if(request('order_type') == 'asc') selected @endif>
-                                                GIÁ TĂNG DẦN
+                                                Giá tăng dần
                                             </option>
                                             <option value="desc"
                                                     @if(request('order_type') == 'desc') selected @endif>
-                                                GIÁ GIẢM DẦN
+                                                Giá giảm dần
                                             </option>
                                         </select>
                                     </div>

@@ -55,7 +55,7 @@ class PostController extends Controller
        }
        if($arrImages){
             $imagePost = array_pop($arrImages);
-            $dataInsert = Posts::create([
+            $dataInsert = Post::create([
                 'title' => $title,
                 'slug' => $slug,
                 'description' => $description,

@@ -14,7 +14,8 @@ class Bill extends Model
         'status',
         'cart_id',
         'shipping_address',
-        'phone'
+        'phone',
+        'sub_total'
     ];
 
     const STATUS = [

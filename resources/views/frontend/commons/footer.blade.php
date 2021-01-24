@@ -9,7 +9,7 @@
                         <div class="logo">
                             <a href="{{ route('fr.home') }}">
                                 <img src="{{ asset('frontend/img/logo2.png') }}"
-                                     alt="#">
+                                     alt="#"
                             </a>
                         </div>
                         <div class="is-divider small"></div>

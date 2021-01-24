@@ -57,17 +57,26 @@
                         @enderror
                     </div>
 
+                    <div class="form-group d-inline">
+                        <label for="summary" class="col-form-label">Địa
+                            chỉ</label>
+                        <textarea required name="address" id="" cols="15"
+                                  rows="5">{{ $userAddress->address }}</textarea>
+                    </div>
+
                     <div class="form-group">
                         <label for="status" class="col-form-label">Phí giao
                             hàng</label>
                         <input type="text" disabled id="fee"
                                class="form-control"
+                               value="{{ number_format(optional($shippingCharge)->fee) }} vnđ"
                                name="fee">
                     </div>
 
                     <div class="form-group">
                         <label for="status" class="col-form-label">Số điện thoại nhận hàng</label>
                         <input type="tel" required id="phone"
+                               value="{{ $userAddress->phone }}"
                                class="form-control"
                                name="phone">
                     </div>
@@ -81,6 +90,7 @@
                         <div class="d-flex align-items-center">
                             <input type="radio"
                                    required
+                                   checked
                                    value="{{ \App\Model\PaymentType::DIRECT }}"
                                    name="payment_type">
                             <i class="fa fa-money fa-2x mx-2"
@@ -88,22 +98,6 @@
                             <span
                                 class="ml-2">Thanh toán tiền mặt khi nhận hàng</span>
                         </div>
-                        <div class="d-flex align-items-center">
-                            <input type="radio"
-                                   required
-                                   value="{{ \App\Model\PaymentType::CARD }}"
-                                   name="payment_type">
-                            <i class="fa fa-credit-card fa-2x mx-2"
-                               aria-hidden="true"></i>
-                            <span class="ml-2">Thanh toán bằng thẻ</span>
-                        </div>
-                    </div>
-
-                    <div class="form-group d-inline">
-                        <label for="summary" class="col-form-label">Địa
-                            chỉ</label>
-                        <textarea required name="address" id="" cols="15"
-                                  rows="5"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">

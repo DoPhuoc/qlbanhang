@@ -92,6 +92,8 @@
 <script src="{{asset('frontend/js/easing.js')}}"></script>
 <!-- Active JS -->
 <script src="{{asset('backend/js/select2.min.js')}}"></script>
+
+<script src="{{asset('js/shipping_charge.js')}}"></script>
 <script>
     $(document).on('change', '.pagination', function () {
         refreshPage();

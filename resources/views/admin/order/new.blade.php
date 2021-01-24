@@ -74,7 +74,7 @@
                         </td>
                         <td>{{ $cart->user->name }}</td>
                         <td>{{ $cart->user->email }}</td>
-                        <td>{{ $cart->user->phone }}</td>
+                        <td>{{ $cart->bill->phone }}</td>
                         <td>{{ number_format($cart->subTotal()) }} ₫</td>
                         <td></td>
                         <td>{{ number_format($cart->bill->shipping_price) }} ₫</td>

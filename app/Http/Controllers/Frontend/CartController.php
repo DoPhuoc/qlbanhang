@@ -6,7 +6,11 @@ use App\Model\Bill;
 
 use App\Http\Controllers\Controller;
 use App\Model\Cart;
+use App\Model\District;
 use App\Model\Product;
+use App\Model\Province;
+use App\Model\User;
+use App\Model\Ward;
 use App\Services\ProductService;
 use App\ShippingCharge;
 use App\Traits\InventoryTrait;
@@ -28,10 +32,15 @@ class CartController extends Controller
         $userId = Auth::id();
         $cart = Cart::where('user_id', $userId)
             ->whereDoesntHave('bill')->latest()->first();
+        $userAddress = Auth::user()->address()->where('is_default', true)->first();
+        $userAddress->load('province', 'district', 'ward');
+        $shippingCharge = $userAddress->shippingCharge();
         return view(
             'frontend.cart.index',
             [
-                'cart' => $cart ?? new Cart()
+                'cart' => $cart ?? new Cart(),
+                'userAddress' => $userAddress,
+                'shippingCharge' => $shippingCharge
             ]
         );
     }
@@ -52,19 +61,24 @@ class CartController extends Controller
                 $cart->save();
             }
             $updatedProduct = $cart->products()->where('products.id', $productId)->first();
+            $quantity = request()->quantity ?? 1;
+            if ($product->quantity < $quantity) {
+                Alert::error('Sản phẩm không đủ!');
+                return back();
+            }
             if (!$updatedProduct) {
                 $cart->products()->attach($productId, [
-                    'quantity' => 1,
+                    'quantity' => $quantity,
                     'price' => $product->price,
                     'discount' => $product->discount,
                 ]);
             } else {
                 $cart->products()->updateExistingPivot($productId, [
-                    'quantity' => $updatedProduct->pivot->quantity + 1,
+                    'quantity' => $updatedProduct->pivot->quantity + $quantity,
                     'discount' => $product->discount
                 ]);
             }
-            $product->quantity -= 1;
+            $product->quantity -= $quantity;
             $product->save();
             DB::commit();
         } catch (Exception $exception) {
@@ -156,6 +170,7 @@ class CartController extends Controller
         $bill = new Bill([
             'cart_id' => $cartId,
             'status' => Bill::NEW,
+            'sub_total' => Cart::findOrFail($cartId)->subTotal(),
             'shipping_address' => request()->address,
             'shipping_price' => request()->fee,
             'phone' => request()->phone
@@ -172,14 +187,17 @@ class CartController extends Controller
             ->where('district_id', request()->district_id)
             ->where('ward_id', request()->ward_id)
             ->first();
+        $province = Province::findOrFail(request()->province_id);
+        $district = District::findOrFail(request()->district_id);
+        $ward = Ward::findOrFail(request()->ward_id);
         return view(
             'frontend.cart.bill',
             [
                 'cart' => $cart,
-                'shippingCharge' => $shippingCharge,
-                'fulldAdress' => $shippingCharge->province->name . ' '
-                    . $shippingCharge->district->name . ' '
-                    . $shippingCharge->ward->name . ' ' . request()->address,
+                'shippingCharge' => $shippingCharge ?? new ShippingCharge(),
+                'fulldAdress' => $province->name . ' '
+                    . $district->name . ' '
+                    . $ward->name . ' ' . request()->address,
                 'payment_type' => request()->payment_type,
                 'phone' => request()->phone,
             ]

@@ -103,9 +103,8 @@
                             <!-- Shopping Item -->
                             <div class="shopping-item">
                                 <div class="dropdown-cart-header">
-                                    <span>{{$cart->products->count()}} Items</span>
-                                    <a href="{{ route('fr.cart') }}">View
-                                        Cart</a>
+                                    <span>{{$cart->products->count()}} món đồ</span>
+                                    <a href="{{ route('fr.cart') }}">Xem giỏ hàng</a>
                                 </div>
                                 <ul class="shopping-list">
                                     @forelse($cart->products as $product)
@@ -120,7 +119,7 @@
                                             </h4>
                                             <p class="quantity">{{ $product->pivot->quantity }}
                                                 - <span class="amount">
-                                                  {{ $product->getTotalPrice() }} ₫
+                                                  {{ $product->getTotalPrice() }}
                                                 </span></p>
                                         </li>
                                     @empty
@@ -205,23 +204,12 @@
 
                                             </li>
 
-                                            <li><a href="#">Shop<i
-                                                        class="ti-angle-down"></i><span
-                                                        class="new">New</span></a>
-                                                <ul class="dropdown">
-                                                    <li>
-                                                        <a href="shop-grid.html">Shop
-                                                            Grid</a></li>
-                                                    <li>
-                                                        <a href="{{route('fr.cart')}}">Cart</a>
-                                                    </li>
-                                                    <li><a href="checkout.html">Checkout</a>
-                                                    </li>
-                                                </ul>
+                                            <li>
+                                                <a href="#">BÀI VIẾT</a>
                                             </li>
                                             <li><a href="#">GIỚI THIỆU</a></li>
 
-                                            <li><a href="contact.html">ĐỊA
+                                            <li><a href={{route('fr.contact')}}>ĐỊA
                                                     CHỈ</a></li>
                                         </ul>
                                     </div>

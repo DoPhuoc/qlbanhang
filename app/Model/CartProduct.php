@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Model;
 
 use App\Model\Cart;
 use Illuminate\Database\Eloquent\Relations\Pivot;

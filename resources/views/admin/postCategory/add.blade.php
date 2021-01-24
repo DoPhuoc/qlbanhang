@@ -14,7 +14,7 @@
         @enderror
       </div>
       <div class="form-group">
-        <label for="descCate" class="col-form-label">Mô t</label>
+        <label for="descCate" class="col-form-label">Mô tả</label>
         <textarea class="form-control" type="text" value="{{ old('descCate') }}" name="descCate"></textarea>
         @error('descCate')
         <span class="text-danger">{{ $message }}</span>

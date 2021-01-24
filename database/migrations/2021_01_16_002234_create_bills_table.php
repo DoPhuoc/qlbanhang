@@ -15,6 +15,7 @@ class CreateBillsTable extends Migration
             $table->text('shipping_address');
             $table->bigInteger('shipping_price')->default(0)->nullable();
             $table->tinyInteger('status');
+            $table->double('sub_total')->default(0);
             $table->timestamps();
         });
     }

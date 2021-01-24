@@ -1,8 +1,11 @@
 @extends('admin.admin-layout')
 @section('content')
     <div class="card">
-        <h5 class="card-header">Thống kê sản phẩm bán
-            ngày {{ $selectedDate->format('d/m/Y') }}</h5>
+        <h5 class="card-header">Thống kê sản phẩm bán ngày
+            <input type="date"
+                   value="{{request('date', today()->format('Y-m-d'))}}"
+                   id="data">
+        </h5>
         <div class="card-body">
             <canvas id="myChart" width="100" height="100"></canvas>
         </div>
@@ -16,24 +19,16 @@
 @push('javascripts')
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script>
-        var dynamicColors = function () {
-            let r = Math.floor(Math.random() * 255);
-            let g = Math.floor(Math.random() * 255);
-            let b = Math.floor(Math.random() * 255);
-            return "rgb(" + r + "," + g + "," + b + ")";
-        }
-        let poolColors = function (a) {
-            let pool = [];
-            for (let i = 0; i < a; i++) {
-                pool.push(dynamicColors());
-            }
-            return pool;
-        }
+        $(document).on('change', '#data', function () {
+            let date = $(this).val();
+            let urlSearchParams = new URLSearchParams(window.location.search);
+            urlSearchParams.set('date', date);
+            window.location.search = urlSearchParams.toString();
+        });
         Chart.defaults.global.legend.display = false;
         let ctx = document.getElementById('myChart');
         const labels = JSON.parse($('#labels').val())
         const data = JSON.parse($('#datasetsData').val())
-        console.log(poolColors(labels));
         let myChart = new Chart(ctx, {
             type: 'bar',
             data: {
@@ -41,12 +36,14 @@
                 datasets: [{
                     label: '# of Votes',
                     data: data,
-                    backgroundColor: poolColors(labels.length),
                     borderWidth: 1
                 }]
             },
             options: {
                 scales: {
+                    xAxes: [{
+                        maxBarThickness: 60
+                    }],
                     yAxes: [{
                         ticks: {
                             beginAtZero: true

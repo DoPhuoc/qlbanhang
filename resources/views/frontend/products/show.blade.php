@@ -14,7 +14,8 @@
                                 <ul class="bread-list">
                                     <li>
                                         <a href="{{ route('fr.home') }}">
-                                            Trang chủ<i class="ti-arrow-right"></i>
+                                            Trang chủ<i
+                                                class="ti-arrow-right"></i>
                                         </a>
                                     </li>
                                     <li class="active">
@@ -79,17 +80,22 @@
                                             <p class="price">
                                                 <span class="discount">{{ number_format($product->price_after_discount) }} đ</span>
                                                 @if($product->discount)
-                                                    <s>{{ number_format($product->price) }}đ</s>
+                                                    <s>{{ number_format($product->price) }}
+                                                        đ</s>
                                                 @endif
                                             </p>
 
                                         </div>
                                         <div class="product-buy">
-                                            <div class="d-flex">
+                                            <form class="d-flex"
+                                                  action="{{ route('fr.cart.add_product') }}"
+                                                  method="post">
+                                                @csrf
                                                 <div class="quantity">
                                                     <h6>Quantity :</h6>
                                                     <!-- Input Order -->
-                                                    <div class="input-group">
+                                                    <div
+                                                        class="input-group">
                                                         <div
                                                             class="button minus">
                                                             <button
@@ -102,7 +108,7 @@
                                                             </button>
                                                         </div>
                                                         <input type="text"
-                                                               name="quant[1]"
+                                                               name="quantity"
                                                                class="input-number"
                                                                data-min="1"
                                                                data-max="1000"
@@ -121,28 +127,26 @@
                                                     <!--/ End Input Order -->
                                                 </div>
                                                 <div class="add-to-cart d-flex">
-                                                    <form
-                                                        action="{{ route('fr.cart.add_product') }}"
-                                                        method="post">
-                                                        @csrf
-                                                        <input type="hidden"
-                                                               value="{{ $product->id }}"
-                                                               name="product_id">
-                                                        <button type="submit"
-                                                                class="btn">Add
-                                                            to cart
-                                                        </button>
-                                                    </form>
-                                                    <a href="#" class="btn min"><i
+                                                    <input type="hidden"
+                                                           value="{{ $product->id }}"
+                                                           name="product_id">
+                                                    <button type="submit"
+                                                            class="btn">
+                                                        Chọn mua
+                                                    </button>
+                                                    <a href="#"
+                                                       class="btn min"><i
                                                             class="ti-heart"></i></a>
-                                                    <a href="#" class="btn min"><i
+                                                    <a href="#"
+                                                       class="btn min"><i
                                                             class="fa fa-compress"></i></a>
                                                 </div>
-                                            </div>
-                                            <p class="cat">Category :<a
-                                                    href="#">Clothing</a></p>
-                                            <p class="availability">Availability
-                                                : 180 Products In Stock</p>
+                                            </form>
+                                            <p class="cat">Danh
+                                                mục: {{ $product->category->name}}</p>
+                                            <p class="availability">Số sản phẩm
+                                                còn lại:
+                                                {{ $product->quantity }}</p>
                                         </div>
                                         <!--/ End Product Buy -->
                                     </div>

@@ -63,10 +63,11 @@
 											<button class="btn" type="submit">Login</button>
 											<a href="{{ route('fr.auth.register') }}" class="btn">Register</a>
 										</div>
-										<div class="checkbox">
-											<label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox">Remember me</label>
+										<div class="checkbox d-flex align-items-center">
+                                            <input name="remember" id="2"
+                                                   class="mr-2"
+                                                   type="checkbox"> Remember me
 										</div>
-										<a href="#" class="lost-pass">Lost your password?</a>
 									</div>
 								</div>
 							</form>

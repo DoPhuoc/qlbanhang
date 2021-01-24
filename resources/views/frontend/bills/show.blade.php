@@ -6,6 +6,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
+                    <h3 style="text-align: center">DANH SÁCH ĐƠN HÀNG</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
                     <!-- Shopping Summery -->
                     <table class="table shopping-summery">
                         <thead>

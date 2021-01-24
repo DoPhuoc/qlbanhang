@@ -29,12 +29,13 @@ class PostCategoryController extends Controller
         $dataInsert = PostCategory::create([
             'title' => $title,
             'slug' => $slug,
+            'description' => $descCate,
         ]);
 
         if($dataInsert){
-            $request->session()->flash('success', 'Them thanh cong');
+            $request->session()->flash('success', 'Thêm thành công');
         } else {
-            $request->session()->flash('error', 'Them that bai');
+            $request->session()->flash('error', 'Thêm thất bại');
         }
         return redirect(route('admin.postCategory'));
 

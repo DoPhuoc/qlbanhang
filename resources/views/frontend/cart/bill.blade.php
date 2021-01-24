@@ -108,7 +108,6 @@
     </div>
     <!--/ End Shopping Cart -->
     <input type="hidden" id="cartId" value="{{$cart->id}}">
-    @include('frontend.modals.checkout')
 @endsection
 @push('javascripts')
     <script src="{{asset('js/shipping_charge.js')}}"></script>
