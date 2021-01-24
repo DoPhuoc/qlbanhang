@@ -115,7 +115,12 @@ Route::group([
     Route::post('/review/delete-review','ReviewController@deleteTag')->name('delete.review');
 
     /*Coupon*/
-
+    Route::get('/coupon','CouponController@index')->name('coupon');
+    Route::get('/add-coupon','CouponController@addCoupon')->name('add.coupon');
+    Route::post('/add-coupon','CouponController@postaddCoupon')->name('handle.add.coupon');
+    Route::get('/coupon/{id}','CouponController@geteditCoupon')->name('edit.coupon');
+    Route::post('/coupon/handle-edit/{id}','CouponController@posteditCoupon')->name('handle.edit.coupon');
+    Route::get('/coupon/delete-coupon/{id}','CouponController@deleteCoupon')->name('delete.coupon');
     /*Users*/
     Route::get('/user','UserController@index')->name('users.index');
     Route::get('/add-users','UsersController@addUsers')->name('add.users');

@@ -26,37 +26,19 @@ class Cart extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function subTotal()
+    public function totalMoney()
     {
         $total = 0;
-        $totalDiscount = 0;
         foreach ($this->products as $product) {
-            $totalDiscount += $product->pivot->quantity *
-                $product->pivot->price * ($product->pivot->discount ?? 0)/100;
-            $total += $product->pivot->quantity * $product->pivot->price;
+            $total += $product->pivot->quantity * $product->price;
         }
-        return $total - $totalDiscount;
-    }
-
-    public function totalPaid()
-    {
-        return $this->subTotal() + ($this->bill->shipping_price ?? 0);
-    }
-
-    public function amountAfterFee($fee)
-    {
-        return number_format($this->subTotal() + $fee);
+        return number_format($total);
     }
 
     public function countProducts()
     {
         return $this->products()->sum('cart_products.quantity');
     }
-
-   /*  public function countProducts()
-    {
-        return $this->products()->sum('cart_products.quantity');
-    } */
 
     public function productName(){
         $totalProduct = $this->products->count() ;

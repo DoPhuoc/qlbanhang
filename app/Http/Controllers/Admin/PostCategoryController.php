@@ -4,46 +4,48 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Model\PostCategory;
-use App\Http\Requests\StorePostCategory ;
-use Illuminate\Support\Str;
-use App\Http\Requests\UpdateStorePostCategory;
+use App\Http\Requests\StorePostCategories;
+use App\Model\PostCategories;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+use App\Http\Requests\StoreUpdatePostCategories;
 class PostCategoryController extends Controller
 {
     public function index(){
-        $postCategory = PostCategory::all();
+        $postCategory =PostCategories::latest()->paginate(5);
         return view('admin.postCategory.list',compact('postCategory'));
     }
-    public function addPostCategory()
-    {
+    public function getaddPostCategory(){
+        
         return view('admin.postCategory.add');
     }
-    public function handleAddPostCategory(StorePostCategory $request)
-    {
-        //return $request->all();
+    public function postaddPostCategory(StorePostCategories $request){
         $title = $request->nameCate;
         $slug = Str::slug($title , '-');
         $descCate= $request->descCate;
         $status = $request->status;
-        $dataInsert = PostCategory::create([
+        $dataInsert = PostCategories::create([
             'title' => $title,
             'slug' => $slug,
         ]);
 
         if($dataInsert){
-            $request->session()->flash('success', 'Them thanh cong');
+            Alert::success('Thêm thành công');
+            return redirect()->route('admin.postCategory');
         } else {
-            $request->session()->flash('error', 'Them that bai');
+            Alert::error('Thêm thất bại');
+            return redirect()->route('add.postCategory');
         }
-        return redirect(route('admin.postCategory'));
-
     }
-    public function editPostCategory($id){
-        $postCategory = PostCategory::find($id);
-        return view('admin.postCategory.edit', compact('postCategory'));
+    public function geteditPostCategory($slug,$id){
+        $postCategory = DB::table('post_categories')
+        ->where('id', $id)
+        ->first();
+        return view('admin.postCategory.edit',compact('postCategory'));
     }
-    public function handleEditPostCategory(UpdateStorePostCategory $request){
+    public function posteditPostCategory(StoreUpdatePostCategories $request){
+     
         $title = $request->nameCate;
         $slug = Str::slug($title , '-');
         $descCate= $request->descCate;
@@ -62,33 +64,36 @@ class PostCategoryController extends Controller
         ]);
 
         if($update){
-            $request->session()->flash('success', 'Sua thanh cong');
-
+            Alert::success('Sửa thành công');
+            return redirect()->route('admin.postCategory');
+           
         } else {
-            $request->session()->flash('error', 'Sua that bai');
+            Alert::error('Thêm thất bại');
+            return redirect()->route('admin.edit.postCategory');
         }
-        return redirect(route('admin.postCategory'));
+
     }
     public function deletePostCategory($id)
     {
-        $Category=PostCategory::find($id);
+        $Category= PostCategories::find($id);
         $status=$Category->delete();
         if($Category){
-            request()->session()->flash('success','Xóa thành công');
+            Alert::success('Xóa thành công');
+            return redirect()->route('admin.postCategory');
         }
         else{
-            request()->session()->flash('error','Xóa thất bại');
+            Alert::success('Xóa thất bại');
+            return redirect()->route('admin.postCategory');
         }
-        return redirect()->route('admin.postCategory');
     }
-
-    public function search(Request $request){
+    public function search(Request $request)
+    {   
         $search = $request->get('search');
-        $postCategory = PostCategory::where('title','like','%'.'$search'.'%')
-        ->orderWhere('description','like','%'.$search.'%')
-        ->orderWhere('status','like','%'.$search.'%')
+        $postCategory = PostCategories::where('title','like','%' . $search . '%')
+        ->orWhere('description','like','%' . $search . '%')
+        ->orWhere('status','like','%' . $search . '%')
         ->paginate(5);
-
+       
         return view('admin.postCategory.list',compact('postCategory'));
     }
 }

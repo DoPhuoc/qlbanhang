@@ -8,8 +8,8 @@
          </div>
      </div>
     <div class="card-header py-3">
-      <h4 class="m-0 font-weight-bold text-primary float-left">Danh mục sản phẩm</h4>
-      <a href="{{route('admin.add.category')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Thêm danh mục</a>
+      <h4 class="m-0 font-weight-bold text-primary float-left">Danh mục Mã giảm giá</h4>
+      <a href="" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Thêm danh mục</a>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -17,32 +17,33 @@
           <thead>
             <tr>
               <th>STT</th>
-              <th>Tên danh mục</th>
-              <th>Mô tả</th>
-              <th>Hoạt động</th>
+              <th>Mã code</th>
+              <th>Tình trạng</th>
+              <th>Hành động</th>
             </tr>
           </thead>
-          <tfoot>
-            <tr>
-              <th>STT</th>
-              <th>Tên danh mục</th>
-              <th>Mô tả</th>
-              <th>Hoạt động</th>    
-            </tr>
-          </tfoot>
+     
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Báo và chữa cháy HOCHIKI</td>
+          
+              @foreach($coupons as $key => $item) 
+          </>
+              <td>{{$item->id}}</td>
+              <td>{{$item->code}}</td>
               <td>
-                  Bán các loại sản phẩm hochiki 
+                @if($item->status=='1')
+                <span class="badge badge-success">Hoạt động</span>
+                @else
+                <span class="badge badge-warning">Không hoạt động</span>
+                @endif
               </td>
               <td>
-                <a class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" href="{{route('admin.edit.category',['slug','id'])}}" data-placement="bottom"><i class="fas fa-edit"></i></a>
-                <button class="btn btn-danger btn-sm dltBtn" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                <a class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" href="{{route('admin.edit.coupon',['id' => $item->id])}}" data-placement="bottom"><i class="fas fa-edit"></i></a>
+                <a class="btn btn-danger btn-sm" href="{{route('admin.delete.coupon',['id'=>$item->id])}}" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></a>
         
               </td>
-          </tr>  
+            </tr>  
+              @endforeach
+         
            
           </tbody>
         </table>

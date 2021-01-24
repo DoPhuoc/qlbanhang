@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+//use App\Bill;
 use App\Http\Controllers\Controller;
 use App\Model\Bill;
 use App\Model\Cart;
@@ -10,8 +11,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class OrderController extends Controller
 {
-    public function index()
-    {
+    public function index(){
         $orders = Bill::with('cart')
             ->orderBy('status')
             ->latest()

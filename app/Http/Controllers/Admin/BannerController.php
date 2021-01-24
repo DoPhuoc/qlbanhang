@@ -147,10 +147,10 @@ class BannerController extends Controller
         $banner=Banner::find($id);
         $status=$banner->delete();
         if($banner){
-            request()->session()->flash('success','Banner successfully deleted');
+            request()->session()->flash('success','Xóa thành công ');
         }
         else{
-            request()->session()->flash('error','Error occurred while deleting banner');
+            request()->session()->flash('error','Xóa thất bại');
         }
         return redirect()->route('admin.banner');  
     }

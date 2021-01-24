@@ -4,23 +4,22 @@
 <div class="card">
     <h5 class="card-header">Sửa bài viết</h5>
     <div class="card-body">
-      <form method="post" action="{{route('admin.handle.edit.posts')}}" enctype="multipart/form-data">
+      <form method="post" action="{{route('admin.handle.edit.post',['id' => $posts->id])}}" enctype="multipart/form-data">
         @csrf
-      
         <div class="form-group">
           <label for="title" class="col-form-label">Tiêu đề <span class="text-danger">*</span></label>
-          <input id="title" type="text" name="title" placeholder="Enter title"  value="" class="form-control">
+          <input id="title" type="text" name="title" placeholder="Enter title"  value="{{ $posts->title }}" class="form-control">
           @error('title')
           <span class="text-danger">{{ $message }}</span>
           @enderror
         </div>
-
         <div class="form-group">
           <label for="catePost" class="col-form-label">Tên danh mục</label>
           <select name="catePost" class="form-control">
             <option value="">--Select any category--</option>
             @foreach($catePosts as $key=>$data)
-            <option value="{{$data->id}}">{{$data->title}}</option>
+            <option value="{{$data->title}}"
+              {{$data->title == $posts->post_cat_id ? 'selected' : ''}}>{{$data->title}}</option>
             @endforeach
             </select>
         </div>
@@ -29,8 +28,8 @@
         @enderror
         
         <div class="form-group">
-          <label for="quote" class="col-form-label">Quote</label>
-          <textarea class="form-control" id="quote" name="quote">{{old('quote')}}</textarea>
+          <label for="quote" class="col-form-label">Trích dẫn</label>
+          <textarea class="form-control" id="quote" name="quote">{{$posts->quote}}</textarea>
           @error('quote')
           <span class="text-danger">{{$message}}</span>
           @enderror
@@ -41,7 +40,8 @@
           <select name="tagPost" class="form-control">
             <option>
               @foreach($tags  as $key=>$data)
-              <option value='{{$data->id}}'>{{$data->title}}</option>
+              <option value="{{$data->title}}"
+                {{$data->title ==$posts->post_tag_id ? 'selected' : ''}}>{{$data->title}}</option>
               @endforeach </option>
             </select>
         </div>
@@ -50,11 +50,21 @@
         @enderror
 
         <div class="form-group">
-    
-            <label for="description" class="col-form-label">Mô tả</label>
-            <textarea class="form-control" id="description" name="description"></textarea>
-        
+            <label for="summary" class="col-form-label">Mô tả tóm tắt</label>
+            <textarea class="form-control" id="summary" name="summary">
+              {!!$posts->summary!!}
+            </textarea>
           </div>
+          @error('summary')
+        <span class="text-danger">{{ $message }}</span>
+        @enderror
+
+        <div class="form-group">
+            <label for="description" class="col-form-label">Mô tả</label>
+            <textarea class="form-control" id="description" name="description">
+              {!!$posts->description!!}
+            </textarea>
+        </div>
           @error('description')
         <span class="text-danger">{{ $message }}</span>
         @enderror
@@ -67,13 +77,15 @@
                   name="imagePost"
                   id="imagePost"></div>
               </div>
+              <img src="{{asset('uploads/images/posts')}}/{{$posts->image}}" class="img-fluid img-thumbnail">
           </div>
+        
         </div>
         <div class="form-group">
           <label for="status" class="col-form-label">Status <span class="text-danger">*</span></label>
           <select name="status" class="form-control">
-              <option value="1">Hoạt động</option>
-              <option value="0">Không hoạt động</option>
+            <option value="1" {{$posts->status == 1 ? 'selected' : ''}}>Hoạt động</option>
+            <option value="0" {{$posts->status == 0 ? 'selected' : ''}}>Không hoạt động</option>
           </select>
           @error('status')
           <span class="text-danger">{{ $message }}</span>

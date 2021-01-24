@@ -26,8 +26,8 @@ class EditCategories extends FormRequest
         $id = $request->id;
         $id = is_numeric($id) && $id > 0 ? $id : 0;
         return [
-            'nameCate' => 'required|max:100|unique:categories,name,'.$id,
-            'descCate' => 'required',
+            'nameCate' => 'unique:categories,name,'.$id,
+            'descCate' => 'required'
         ];
     }
     public function messages()

@@ -268,10 +268,52 @@
             <span>Settings</span></a>
     </li>
 
-    <!-- Sidebar Toggler (Sidebar) -->
-    <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-    </div>
+{{--    <!-- Comments -->
+  <li class="nav-item">
+    <a class="nav-link" href="">
+        <i class="fas fa-comments fa-chart-area"></i>
+        <span>Comments</span>
+    </a>
+  </li>  --}}
+
+
+<!-- Divider -->
+<hr class="sidebar-divider d-none d-md-block">
+ <!-- Heading -->
+<div class="sidebar-heading">
+    General Settings
+</div>
+
+<li class="nav-item">
+  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#couponCollapse" aria-expanded="true" aria-controls="tagCollapse">
+      <i class="fas fa-tags fa-folder"></i>
+      <span>Coupon</span>
+  </a>
+  <div id="couponCollapse" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+      <h6 class="collapse-header">Tag Options:</h6>
+      <a class="collapse-item" href="{{route('admin.coupon')}}">Danh mục Mã giảm giá</a>
+      <a class="collapse-item" href="{{route('admin.add.coupon')}}">Thêm mã giảm giá</a>
+      </div>
+  </div>
+</li>
+ <!-- Users -->
+ <li class="nav-item">
+    <a class="nav-link" href="{{route('admin.users.index')}}">
+        <i class="fas fa-users"></i>
+        <span>Users</span></a>
+</li>
+ <!-- General settings -->
+ <li class="nav-item">
+    <a class="nav-link" href="">
+        <i class="fas fa-cog"></i>
+        <span>Settings</span></a>
+</li>
+
+<!-- Sidebar Toggler (Sidebar) -->
+<div class="text-center d-none d-md-inline">
+  <button class="rounded-circle border-0" id="sidebarToggle"></button>
+</div>
 
 
 </ul>

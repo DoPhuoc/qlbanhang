@@ -6,7 +6,6 @@
     <div class="card-body">
       <form method="post" action="{{route('admin.handle.add.post')}}" enctype="multipart/form-data">
         @csrf
-
         <div class="form-group">
           <label for="title" class="col-form-label">Tiêu đề <span class="text-danger">*</span></label>
           <input id="title" type="text" name="title" placeholder="Enter title"  value="" class="form-control">
@@ -14,7 +13,6 @@
           <span class="text-danger">{{ $message }}</span>
           @enderror
         </div>
-
         <div class="form-group">
           <label for="catePost" class="col-form-label">Tên danh mục</label>
           <select name="catePost" class="form-control">
@@ -29,7 +27,7 @@
         @enderror
 
         <div class="form-group">
-          <label for="quote" class="col-form-label">Quote</label>
+          <label for="quote" class="col-form-label">Trích dẫn</label>
           <textarea class="form-control" id="quote" name="quote">{{old('quote')}}</textarea>
           @error('quote')
           <span class="text-danger">{{$message}}</span>
@@ -84,6 +82,8 @@
            <button class="btn btn-success" type="submit">Cập nhập </button>
         </div>
       </form>
+
+    
 
     </div>
 </div>

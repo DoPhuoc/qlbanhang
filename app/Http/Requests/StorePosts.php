@@ -25,6 +25,7 @@ class StorePosts extends FormRequest
     {
         return [
             'title'=>'required',
+            'summary'=>'required',
             'description'=>'required',
             'images'=>'required',
             'quote'=>'required',
@@ -38,9 +39,10 @@ class StorePosts extends FormRequest
         // thong bao loi ra ngoai view
         return [
             'title.required' => 'Trường này không được để trống ',
+            'summary.required' =>'Trường này không được để trống',
             'description.required' => 'Trường này không được để trống',
             'images.required' => 'Vui lòng nhập ảnh sản phẩm',
-            'quote.required'=>'Truong nay khong duoc de trong',
+            'quote.required'=>'Trường này không được để trống',
             'post_tag_id'=>'Trường này không được để trống',
             'post_cat_id'=>'Trường này không được để trống',
             'status.required' => 'Trường này không được để trống'

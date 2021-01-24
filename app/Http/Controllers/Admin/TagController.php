@@ -5,22 +5,23 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Model\PostCategory;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreTagPost;
-use App\Model\Tag;
+use App\Http\Requests\StoreTag;
 use Illuminate\Support\Str;
+use App\Model\Tag;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
-use App\Http\Requests\UpdateStoreTagPost;
+use App\Http\Requests\StoreUpdateTag;
 class TagController extends Controller
 {
     public function index(){
-        $tag = Tag::all();
-        return view('admin.tags.list',compact('tag'));
+        $tags=Tag::latest()->paginate(3);
+        return view('admin.tags.list')->with('tags',$tags);
     }
-    public function addTag(){
+    public function getaddTag(){
+
         return view('admin.tags.add');
     }
-    public function handleAddTag(StoreTagPost $request){
-        //return $request->all();
+    public function postaddTag(StoreTag $request){
         $titleTag = $request->titleTag;
         $slug = Str::slug($titleTag , '-');
         $descTag = $request->descTag;
@@ -35,19 +36,21 @@ class TagController extends Controller
         ]);
         //dd($dataInsert);
         if($dataInsert){
-            $request->session()->flash('success', 'Thêm thành công');
+            Alert::success('Thêm thành công');
+            return redirect()->route('admin.tag');
+           
         } else {
-            $request->session()->flash('error', 'Thêm thất bại');
-        }
-        return redirect(route('admin.tag'));
+            Alert::error('Thêm thất bại');
+            return redirect()->route('admin.add.tag');
+        }    
     }
-    public function editTag($slug,$id){
+    public function geteditTag($slug,$id){
         $tag = DB::table('tags')
                         ->where('id', $id)
                         ->first();
         return view('admin.tags.edit',compact('tag'));
     }
-    public function handleEditTag(UpdateStoreTagPost $request){
+    public function posteditTag(StoreUpdateTag $request){
         $id = $request->id;
         $id = is_numeric($id) && $id > 0 ? $id : 0;
         $titleTag = $request->titleTag;
@@ -64,35 +67,38 @@ class TagController extends Controller
                         'created_at' => date('Y-m-d H:i:s'),
                         'updated_at' => null
                     ]);
-
         if($update){
-            $request->session()->flash('success', 'Sửa thành công');
-
+            Alert::success('Sửa thành công');
+            return redirect()->route('admin.tag');
+           
         } else {
-            $request->session()->flash('error', 'Sửa thất bại');
-
-        }
-        return redirect(route('admin.tag'));
+            Alert::error('Sửa thất bại');
+            return redirect()->route('admin.edit.tag');
+        }    
     }
     public function deleteTag($id)
     {
         $tag=Tag::find($id);
         $status=$tag->delete();
         if($tag){
-            request()->session()->flash('success','Xoa thanh cong');
-        }
-        else{
-            request()->session()->flash('error','Xoa that bai');
-        }
-        return redirect()->route('admin.tag');
+            Alert::success('Xóa thành công');
+            return redirect()->route('admin.tag');
+           
+        } else {
+            Alert::error('Xóa thất bại');
+            return redirect()->route('admin.tag');
+        }     
     }
-    public function search(Request $request){
+    public function search(Request $request)
+    {   
+     
         $search = $request->get('search');
-        $tags = Tag::where('title','like','%'.'$search'.'%')
-            ->orWhere('description','like','%'.$search.'%')
-            ->orWhere('status','like','%'.$search.'%')
-            ->paginate(5);
-
+        $tags = Tag::where('title','like',
+        '%' . $search . '%')
+        ->orWhere('description','like','%' . $search . '%')
+        ->orWhere('status','like','%' . $search . '%')
+        ->paginate(5);
+        
         return view('admin.tags.list',compact('tags'));
     }
 }
