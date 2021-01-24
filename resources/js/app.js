@@ -8,6 +8,13 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+$(document).on('click', '.delete-btn', function (e) {
+    e.preventDefault();
+    if (confirm('Bạn có chắc chắn muốn xóa ?')) {
+        $(this).closest('form').submit();
+    }
+});
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

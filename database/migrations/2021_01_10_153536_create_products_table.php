@@ -26,7 +26,7 @@ class CreateProductsTable extends Migration
             $table->integer('quantity');
             $table->double('price');
             $table->tinyInteger('status')->default(1);
-            $table->double('sale_off')->nullable();
+            $table->double('discount')->nullable();
             $table->dateTime('created_at')->nullable();
             $table->dateTime('updated_at')->nullable();
         });

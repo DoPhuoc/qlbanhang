@@ -17,22 +17,27 @@
                                 <div class="shop-shorter">
                                     <div class="single-shorter">
                                         <label>Show :</label>
-                                        <select>
-                                            <option selected="selected">09
-                                            </option>
-                                            <option>15</option>
-                                            CartController.php                       <option>25</option>
-                                            <option>30</option>
+                                        <select class="pagination">
+                                            @foreach(config('pagination') as $pagination)
+                                                <option
+                                                    @if(request('pagination') == $pagination) selected="selected" @endif>
+                                                    {{ $pagination }}
+                                                </option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="single-shorter">
                                         <label>SẮP XẾP :</label>
-                                        <select>
-                                            <option selected="selected">MẶC
-                                                ĐỊNH
+                                        <select class="order-type">
+                                            <option value="">MẶCĐỊNH</option>
+                                            <option value="asc"
+                                                    @if(request('order_type') == 'asc') selected @endif>
+                                                GIÁ TĂNG DẦN
                                             </option>
-                                            <option>GIÁ TĂNG DẦN</option>
-                                            <option>GIÁ GIẢM DẦN</option>
+                                            <option value="desc"
+                                                    @if(request('order_type') == 'desc') selected @endif>
+                                                GIÁ GIẢM DẦN
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
@@ -40,16 +45,13 @@
                                     <li class="active"><a href="shop-grid.html"><i
                                                 class="fa fa-th-large"></i></a>
                                     </li>
-                                    <li><a href="shop-list.html"><i
-                                                class="fa fa-th-list"></i></a>
-                                    </li>
                                 </ul>
                             </div>
                             <!--/ End Shop Top -->
                         </div>
                     </div>
                     <div class="row">
-                        @foreach($newProduct as $key => $product)
+                        @foreach($newProducts as $key => $product)
                             <div class="col-lg-4 col-md-6 col-12">
                                 @include('frontend.products.components.single', ['product' => $product])
                             </div>
@@ -59,7 +61,7 @@
             </div>
         </div>
     </section>
-
+    <input type="hidden" value="{{ url()->current() }}" id="currentUrl">
 @endsection
 @push('stylesheets')
     <script type='text/javascript'
@@ -108,3 +110,4 @@
         }
     </style>
 @endpush
+

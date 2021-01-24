@@ -59,7 +59,7 @@
                                             href="#">{{$product->name}}</a></p>
                                 </td>
                                 <td class="price text-center"
-                                    data-title="Price"><span>{{$product->price}} VND</span>
+                                    data-title="Price"><span>{{$product->price}} ₫</span>
                                 </td>
                                 <td class="qty text-center" data-title="Qty">
                                     {{$product->pivot->quantity}}
@@ -77,11 +77,11 @@
                     <div class="right d-flex justify-content-end">
                         <ul>
                             <li>Pre
-                                Shipping<span>{{ $cart->totalMoney() }} VND</span>
+                                Shipping<span>{{ number_format($cart->subTotal()) }} ₫</span>
                             </li>
                             <li>Shipping<span>Free</span></li>
                             <li class="last">You
-                                Pay<span>{{ $cart->totalMoney() }} VND</span>
+                                Pay<span>{{ number_format($cart->subTotal()) }} ₫</span>
                             </li>
                         </ul>
                     </div>

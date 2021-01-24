@@ -21,7 +21,7 @@ class Product extends Base
         'quantity',
         'price',
         'status',
-        'sale_off',
+        'discount',
         'code_product',
         'created_at',
         'updated_at'
@@ -52,6 +52,11 @@ class Product extends Base
         if (!$this->pivot) {
             return 0;
         }
-        return number_format($this->pivot->price * $this->pivot->quantity)  . ' VND';
+        return number_format($this->pivot->price * $this->pivot->quantity) . ' ₫';
+    }
+
+    public function getPriceAfterDiscountAttribute()
+    {
+        return $this->price - $this->price * $this->discount / 100;
     }
 }

@@ -14,7 +14,7 @@
                                 <ul class="bread-list">
                                     <li>
                                         <a href="{{ route('fr.home') }}">
-                                            Home<i class="ti-arrow-right"></i>
+                                            Trang chủ<i class="ti-arrow-right"></i>
                                         </a>
                                     </li>
                                     <li class="active">
@@ -74,10 +74,13 @@
                                                 </ul>
                                                 <a href="#"
                                                    class="total-review">(102)
-                                                    Review</a>
+                                                    Đánh giá</a>
                                             </div>
-                                            <p class="price"><span
-                                                    class="discount">$70.00</span><s>$80.00</s>
+                                            <p class="price">
+                                                <span class="discount">{{ number_format($product->price_after_discount) }} đ</span>
+                                                @if($product->discount)
+                                                    <s>{{ number_format($product->price) }}đ</s>
+                                                @endif
                                             </p>
 
                                         </div>

@@ -75,16 +75,16 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="sale_off" class="col-form-label">Mã giảm
+                    <label for="discount" class="col-form-label">Giảm
                         giá(%)</label>
-                    <input id="sale_off"
+                    <input id="discount"
                            type="number"
-                           name="sale_off"
+                           name="discount"
                            min="0" max="100"
                            placeholder="Enter sale"
-                           value="{{ old('sale_off') }}"
+                           value="{{ old('discount') }}"
                            class="form-control">
-                    @error('sale_off')
+                    @error('discount')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
@@ -102,10 +102,9 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="bestSelling">Tình trạng (*)</label>
+                    <label for="bestSelling">Hot Sale (*)</label>
                     <select class="form-control" name="bestSelling"
                             id="bestSelling">
-
                             <option value="0"
                                     @if(old('bestSelling') == \App\Model\Product::NOT_BEST_SELLING) selected @endif>
                                 No

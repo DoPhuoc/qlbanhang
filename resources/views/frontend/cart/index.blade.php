@@ -36,7 +36,7 @@
                                     <p class="product-name"><a
                                             href="#">{{$product->name}}</a></p>
                                 </td>
-                                <td class="price" data-title="Price"><span>{{$product->price}} VND</span>
+                                <td class="price" data-title="Price"><span>{{$product->price}} ₫</span>
                                 </td>
                                 <td class="qty" data-title="Qty">
                                     <!-- Input Order -->
@@ -118,64 +118,55 @@
             <div class="row">
                 <div class="col-12">
                     <!-- Total Amount -->
-                    <form action="{{ route('fr.cart.checkout') }}"
-                          method="post">
-                        @csrf
                         <input type="hidden" name="cart_id"
                                value="{{ $cart->id }}">
                         <div class="total-amount">
                             <div class="row">
                                 <div class="col-lg-8 col-md-5 col-12">
-                                    <div class="left">
-                                        <div class="coupon">
-                                            <form action="#" target="_blank">
-                                                <input name="Coupon"
-                                                       placeholder="Enter Your Coupon">
-                                                <button class="btn">Apply
-                                                </button>
-                                            </form>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label class="checkbox-inline"
-                                                   for="2"><input name="news"
-                                                                  id="2"
-                                                                  type="checkbox">
-                                                Shipping (+10$)</label>
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="col-lg-4 col-md-7 col-12">
                                     <div class="right">
                                         <ul>
-                                            <li>Cart Subtotal<span>{{ $cart->totalMoney() }} VND</span>
+                                            <li>Tạm tính<span>{{ number_format($cart->subTotal()) }} ₫</span>
                                             </li>
-                                            <li>Shipping<span>Free</span></li>
-                                            <li>You Save<span>$20.00</span></li>
-                                            <li class="last">You
-                                                Pay<span>{{ $cart->totalMoney() }} VND</span>
+                                            <li class="last">Thành tiền<span>{{ number_format($cart->subTotal()) }} ₫</span>
                                             </li>
                                         </ul>
                                         <div class="button5">
-                                            <button type="submit"
-                                                    @if(!$cart->products->count())
-                                                    disabled
-                                                    @endif
-                                                    class="btn">
-                                                Checkout
+                                            <button
+                                                type="button"
+                                                @if(!$cart->products->count())
+                                                disabled
+                                                @endif
+                                                id="btnCheckout"
+                                                class="btn">
+                                                Tiến hành đặt hàng
                                             </button>
                                             <a href="{{ url()->previous() }}"
-                                               class="btn">Continue
-                                                shopping</a>
+                                               class="btn">Mua thêm sản phâm</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </form>
                     <!--/ End Total Amount -->
                 </div>
             </div>
         </div>
     </div>
     <!--/ End Shopping Cart -->
+    <input type="hidden" id="cartId" value="{{$cart->id}}">
+    @include('frontend.modals.checkout')
 @endsection
+@push('javascripts')
+    <script src="{{asset('js/shipping_charge.js')}}"></script>
+    <script>
+        $(document).on('click', '#btnCheckout', function (e) {
+            e.preventDefault();
+            let cartId = $('#cartId').val();
+            console.log('car', cartId);
+            $('#checkoutForm').append(`<input type="hidden" value="${cartId}" name="cart_id"/>`)
+            $('#checkoutModal').modal('show');
+        });
+    </script>
+@endpush

@@ -79,9 +79,9 @@
                         <td>{{ $cart->user->name }}</td>
                         <td>{{ $cart->user->email }}</td>
                         <td>{{ $cart->user->phone }}</td>
-                        <td>{{ $cart->totalMoney() }} VND</td>
+                        <td>{{ number_format($cart->subTotal()) }} ₫</td>
                         <td></td>
-                        <td>0 VND</td>
+                        <td>0 ₫</td>
                         <td>Thanh toán Khi nhận hàng</td>
                         <td>{!! $order->status_label !!}</td>
                         <td class="text-center">

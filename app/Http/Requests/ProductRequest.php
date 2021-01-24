@@ -20,7 +20,7 @@ class ProductRequest extends FormRequest
             'name.required' => 'Tên sản phẩm không được trống',
             'name.unique' => 'Tên sản phẩm đã tồn tại',
             'name.max' => 'Tên sản phẩm không vượt quá  :max ký tự',
-            'sale_off.digits_between' => 'Giá trị không hợp lệ',
+            'discount.digits_between' => 'Giá trị không hợp lệ',
             'price.required' => 'Giá sản phẩm không được trống',
             'price.numeric' => 'Giá trị không hợp lệ',
             'price.digits_between' => 'Giá trị không hợp lệ',

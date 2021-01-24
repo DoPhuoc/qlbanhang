@@ -17,31 +17,33 @@
                                 <div class="shop-shorter">
                                     <div class="single-shorter">
                                         <label>Show :</label>
-                                        <select>
-                                            <option selected="selected">09
-                                            </option>
-                                            <option>15</option>
-                                            <option>25</option>
-                                            <option>30</option>
+                                        <select class="pagination">
+                                            @foreach(config('pagination') as $pagination)
+                                                <option
+                                                    @if(request('pagination') == $pagination) selected="selected" @endif>
+                                                    {{ $pagination }}
+                                                </option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="single-shorter">
                                         <label>SẮP XẾP :</label>
-                                        <select>
-                                            <option selected="selected">MẶC
-                                                ĐỊNH
+                                        <select class="order-type">
+                                            <option value="">MẶCĐỊNH</option>
+                                            <option value="asc"
+                                                    @if(request('order_type') == 'asc') selected @endif>
+                                                GIÁ TĂNG DẦN
                                             </option>
-                                            <option>GIÁ TĂNG DẦN</option>
-                                            <option>GIÁ GIẢM DẦN</option>
+                                            <option value="desc"
+                                                    @if(request('order_type') == 'desc') selected @endif>
+                                                GIÁ GIẢM DẦN
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
                                 <ul class="view-mode">
                                     <li class="active"><a href="shop-grid.html"><i
                                                 class="fa fa-th-large"></i></a>
-                                    </li>
-                                    <li><a href="shop-list.html"><i
-                                                class="fa fa-th-list"></i></a>
                                     </li>
                                 </ul>
                             </div>

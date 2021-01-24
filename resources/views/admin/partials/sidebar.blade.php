@@ -136,8 +136,8 @@
              data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Shipping Options:</h6>
-                <a class="collapse-item" href="{{route('admin.shipping')}}">Shipping</a>
-                <a class="collapse-item" href="{{route('admin.add.shipping')}}">Thêm
+                <a class="collapse-item" href="{{route('admin.shipping_charge.index')}}">Shipping</a>
+                <a class="collapse-item" href="{{route('admin.shipping_charge.create')}}">Thêm
                     Shipping</a>
             </div>
         </div>

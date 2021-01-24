@@ -13,10 +13,12 @@ class Bill extends Model
         'shipping_price',
         'status',
         'cart_id',
+        'shipping_address',
+        'phone'
     ];
 
     const STATUS = [
-        self::NEW => '<strong class="text-success">Mới</strong>',
+        self::NEW => '<strong class="text-success">Tiếp nhận đơn hàng</strong>',
         self::DELIVERY => '<strong class="text-warning">Đang giao hàng</strong>',
         self::DONE => '<strong>Hoàn thành</strong>'
     ];

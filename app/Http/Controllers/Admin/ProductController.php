@@ -94,10 +94,10 @@ class ProductController extends Controller
         $isUpdated = $product->update($data);
         if ($isUpdated) {
             Alert::success('Cập nhật thành công');
-            return redirect()->route('admin.list.index');
+            return redirect()->route('admin.product.index');
         } else {
             Alert::error('Cập nhật thất bại');
-            return redirect()->route('admin.add.product');
+            return redirect()->back();
         }
     }
 

@@ -11,18 +11,23 @@
 
     <link rel="icon" type="image/png" href="images/favicon.png">
     <!-- Web Font -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
+        rel="stylesheet">
 
     <!-- StyleSheet -->
 
     <!-- Bootstrap -->
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/bootstrap.css')}}">
     <!-- Magnific Popup -->
-    <link rel="stylesheet" href="{{asset('frontend/css/magnific-popup.min.css')}}">
+    <link rel="stylesheet"
+          href="{{asset('frontend/css/magnific-popup.min.css')}}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{asset('frontend/css/font-awesome.css')}}">
     <!-- Fancybox -->
-    <link rel="stylesheet" href="{{asset('frontend/css/jquery.fancybox.min.css')}}">
+    <link rel="stylesheet"
+          href="{{asset('frontend/css/jquery.fancybox.min.css')}}">
     <!-- Themify Icons -->
     <link rel="stylesheet" href="{{asset('frontend/css/themify-icons.css')}}">
     <!-- Nice Select CSS -->
@@ -53,6 +58,7 @@
 @include('frontend.commons.footer')
 @include('sweetalert::alert')
 <!-- jQuery Plugins -->
+<script src="{{asset('js/app.js')}}"></script>
 <script src="{{asset('frontend/js/jquery.min.js')}}"></script>
 <script src="{{asset('frontend/js/jquery-migrate-3.0.0.js')}}"></script>
 <script src="{{asset('frontend/js/jquery-ui.min.js')}}"></script>
@@ -61,7 +67,6 @@
 <!-- Bootstrap JS -->
 <script src="{{asset('frontend/js/bootstrap.min.js')}}"></script>
 <!-- Color JS -->
-<script src="{{asset('frontend/js/colors.js')}}"></script>
 <!-- Slicknav JS -->
 <script src="{{asset('frontend/js/slicknav.min.js')}}"></script>
 <!-- Owl Carousel JS -->
@@ -76,6 +81,7 @@
 {{--<script src="{{asset('frontend/js/nicesellect.js')}}"></script>--}}
 <!-- Flex Slider JS -->
 <script src="{{asset('frontend/js/flex-slider.js')}}"></script>
+<script src="{{asset('frontend/js/nice-select/js/jquery.nice-select.js')}}"></script>
 <!-- ScrollUp JS -->
 <script src="{{asset('frontend/js/scrollup.js')}}"></script>
 <!-- Onepage Nav JS -->
@@ -85,11 +91,30 @@
 <!-- Easing JS -->
 <script src="{{asset('frontend/js/easing.js')}}"></script>
 <!-- Active JS -->
-<script src="{{asset('frontend/js/active.js')}}"></script>
+<script src="{{asset('backend/js/select2.min.js')}}"></script>
+<script>
+    $(document).on('change', '.pagination', function () {
+        refreshPage();
+    });
+    $(document).on('change', '.order-type', function () {
+        refreshPage();
+    });
 
-
+    function refreshPage() {
+        const pagination = $('.pagination').find('option:selected').val();
+        const orderBy = $('.order-type').find('option:selected').val();
+        let url = $('#currentUrl').val();
+        let searchParams = new URLSearchParams(window.location.search)
+        if (pagination) {
+            searchParams.set('pagination', pagination)
+        }
+        if (orderBy) {
+            searchParams.set('order_type', orderBy);
+        }
+        window.location.search = searchParams.toString()
+    }
+</script>
 @stack('javascripts')
-
 </body>
 </html>
 

@@ -52,7 +52,7 @@
                 <div class="col-lg-2 col-md-2 col-12">
                     <!-- Logo -->
                     <div class="logo">
-                        <a href="index.html"><img
+                        <a href="{{ route('fr.home') }}"><img
                                 src="{{asset('uploads/images/banners/logo.png')}}"
                                 alt="logo"></a>
                     </div>
@@ -80,7 +80,8 @@
                         <div class="search-bar">
                             <form role="search" method="GET" id="searchform" action="{{route('fr.searchproduct')}}">
                                 <input name="search"
-                                       placeholder="Search Name of Products Here....."
+                                       value="{{ request('search') }}"
+                                       placeholder="Tìm kiếm sản phẩm....."
                                        type="search">
                                 <button class="btnn"><i class="ti-search"></i>
                                 </button>
@@ -119,7 +120,7 @@
                                             </h4>
                                             <p class="quantity">{{ $product->pivot->quantity }}
                                                 - <span class="amount">
-                                                  {{ $product->getTotalPrice() }} VND
+                                                  {{ $product->getTotalPrice() }} ₫
                                                 </span></p>
                                         </li>
                                     @empty
@@ -130,7 +131,7 @@
                                     <div class="total">
                                         <span>Total</span>
                                         <span
-                                            class="total-amount">{{ $cart->totalMoney() }} VND</span>
+                                            class="total-amount">{{ number_format($cart->subTotal()) }} ₫</span>
                                     </div>
                                     <form
                                         action="{{ route('fr.cart.checkout') }}"
@@ -138,12 +139,6 @@
                                         @csrf
                                         <input type="hidden" name="cart_id"
                                                value="{{ $cart->id }}">
-                                        <button type="submit"
-                                                @if(!$cart->products->count())
-                                                disabled
-                                                @endif
-                                                class="btn animate">Checkout
-                                        </button>
                                     </form>
                                 </div>
                             </div>

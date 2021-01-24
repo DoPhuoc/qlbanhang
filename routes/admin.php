@@ -56,9 +56,16 @@ Route::group([
     Route::post('/category/delete-category','CategoryController@deleteCaegory')->name('delete.category');
 
     /*Shipping*/
-    Route::get('/shipping','ShippingController@index')->name('shipping');
-    Route::get('/add-shipping','ShippingController@addShipping')->name('add.shipping');
-    Route::post('/add-shipping','ShippingController@handleShipping')->name('handle.add.shipping');
+    Route::get('/shipping','ShippingChargeController@index')->name('shipping_charge.index');
+    Route::get('/shipping/create','ShippingChargeController@create')->name('shipping_charge.create');
+    Route::post('/shipping/store','ShippingChargeController@store')->name('shipping_charge.store');
+    Route::get('/shipping/edit/{shippingCharge}','ShippingChargeController@edit')
+        ->name('shipping_charge.edit');
+    Route::post('/shipping/update/{shippingCharge}','ShippingChargeController@update')
+        ->name('shipping_charge.update');
+    Route::delete('/shipping/{shippingCharge}','ShippingChargeController@destroy')
+        ->name('shipping_charge.destroy');
+
     Route::get('/shipping/{slug}~{id}','ShippingController@editShipping')->name('edit.shipping');
     Route::post('/shipping/handle-edit/{id}','ShippingController@handleEditShipping')->name('handle.edit.shipping');
     Route::post('/shipping/delete-shipping','ShippingController@deleteShipping')->name('delete.shipping');

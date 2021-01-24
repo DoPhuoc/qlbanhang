@@ -22,11 +22,11 @@ Route::group([
 ], function () {
     Route::get('/category/{slug}~{id}', 'ProductController@getProductsBelongCategory')
         ->name('category.product');
+    Route::get('/brand/{slug}~{id}', 'ProductController@getProductsBelongBrand')
+        ->name('brand.product');
     Route::get('/{slug}~{id}', 'ProductController@show')
         ->name('product.show');
     Route::get('/', 'FrontendController@index')->name('home');
-    Route::get('/brand/{slug}', 'BrandController@getProductBelongBrand')
-        ->name('brand.product');
     Route::get('/bill', 'BillController@show')
         ->name('bill');
     Route::get('/bill/detail/{id}', 'BillController@showDetail')
@@ -51,6 +51,9 @@ Route::group([
     Route::post('/cart/checkout', 'CartController@checkout')
         ->middleware('auth')
         ->name('cart.checkout');
+    Route::post('cart/overview-bill', 'CartController@overviewBill')
+        ->middleware('can:bill')
+        ->name('cart.overview_bill');
     Route::get('/check-out', 'CheckoutController@index')->name('check.out');
     Route::get('/register', 'RegisterController@index')->name('register');
     Route::group(['namespace' => 'Auth', 'as' => 'auth.'], function () {
@@ -65,4 +68,13 @@ Route::group([
         Route::post('/register', 'RegisterController@register')
             ->name('register');
     });
+
+    Route::get('/provinces', 'ProvinceController@list')
+        ->name('province.list');
+    Route::get('/districts', 'DistrictController@list')
+        ->name('district.list');
+    Route::get('/wards', 'WardController@list')
+        ->name('ward.list');
+    Route::get('/shipping-charge/fee', 'ShippingChargeController@getFee')
+        ->name('shipping_charge.get_fee');
 });

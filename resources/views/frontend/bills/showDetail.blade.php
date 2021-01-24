@@ -1,4 +1,3 @@
-
 @extends('frontend.frontend-layout')
 
 @section('content')
@@ -16,34 +15,46 @@
                             <th class="text-center">Số lượng</th>
                             <th class="text-center">Giảm giá</th>
                             <th class="text-center">Thành tiền</th>
-{{--                            <th class="text-center">Trạng thái đơn hàng</th>--}}
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($cart->products as $product)
                             <tr>
-                                    <td class="product-id" data-title="id">
-                                        {{ $product->name}}
-                                    </td>
                                 <td class="product-id" data-title="id">
-                                    {{ $product->price}}
+                                    {{ $product->name}}
                                 </td>
-                                <td class="product-id" data-title="id">
-                                    {{ $product->quantity}}
+                                <td class="text-center" data-title="id">
+                                    {{ $product->pivot->price}} ₫
                                 </td>
-                                <td class="product-id" data-title="id">
-                                    {{ $product->sale_off}}%
+                                <td class="text-center" data-title="id">
+                                    {{ $product->pivot->quantity}}
+                                </td>
+                                <td class="text-center" data-title="id">
+                                    {{ $product->pivot->discount}}%
                                 </td>
                                 <td class="price" data-title="Price">
-                                    {{$cart->totalMoney()}}
+                                    {{number_format($cart->subTotal())}} ₫
                                 </td>
 
                             </tr>
                         </tbody>
                         @endforeach
-                        <tfoot><tr><td colspan="4"><span>Tạm tính</span></td><td>{{$cart->totalMoney()}} VND</td></tr>
-                        <tr><td colspan="4"><span>Phí vận chuyển</span></td><td>25.000 ₫</td></tr>
-                        <tr><td colspan="4"><span>Tổng cộng</span></td><td><span class="sum">252.000 ₫</span></td></tr>
+                        <tfoot>
+                        <tr>
+                            <td colspan="4"><span>Tạm tính</span></td>
+                            <td>{{number_format($cart->subTotal())}} ₫</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"><span>Phí vận chuyển</span></td>
+                            <td>{{ number_format($cart->bill->shipping_price) }}
+                                ₫
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"><span>Tổng cộng</span></td>
+                            <td><span class="sum">{{ $cart->amountAfterFee($cart->bill->shipping_price) }} ₫</span>
+                            </td>
+                        </tr>
                         </tfoot>
 
 

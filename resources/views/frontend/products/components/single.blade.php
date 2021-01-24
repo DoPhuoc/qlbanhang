@@ -40,10 +40,15 @@
     </div>
     <div class="product-content">
         <h3>
-            <a href="product-details.html">{{$product->name}}</a>
+            <a href="{{ route('fr.product.show', ['slug' => $product->slug, 'id' => $product->id]) }}">
+                {{$product->name}}
+            </a>
         </h3>
         <div class="product-price">
-            <span>{{number_format($product->price).''.'VNĐ'}}</span>
+            <span>{{number_format($product->price)}} đ</span>
         </div>
     </div>
 </div>
+@push('javascripts')
+    <script src="{{asset('frontend/js/active.js')}}"></script>
+@endpush

@@ -49,7 +49,7 @@
                     <th>Danh mục</th>
                     <th>Thương hiệu</th>
                     <th>Tên sản phẩm</th>
-                    <th width="50%">Ảnh sản phẩm</th>
+                    <th width="20%">Ảnh sản phẩm</th>
                     <th width="10%">Số lượng</th>
                     <th width="10%">Giá sản phẩm</th>
                     <th width="10%">Giảm giá</th>
@@ -65,7 +65,7 @@
                     <th>Danh mục</th>
                     <th>Thương hiệu</th>
                     <th>Tên sản phẩm</th>
-                    <th width="50%">Ảnh sản phẩm</th>
+                    <th width="20%">Ảnh sản phẩm</th>
                     <th width="10%">Số lượng</th>
                     <th width="10%">Giá sản phẩm</th>
                     <th width="10%">Giảm giá</th>
@@ -84,14 +84,14 @@
                         <td>{{$product->name}}</td>
                         <td>
                             <img class="img-fluid zoom "
-                                 style="max-width:100%"
+                                 style="width: 75px"
                                  src="{{asset('uploads/images/products')}}/{{$product->image}}">
                         </td>
                         <td>
                             {{$product->quantity}}
                         </td>
                         <td>{{number_format($product->price).''.'VNĐ'}}</td>
-                        <td>{{$product->sale_off}}</td>
+                        <td>{{$product->discount}}</td>
                         <td>
                             {!! $product->status_label !!}
                         </td>

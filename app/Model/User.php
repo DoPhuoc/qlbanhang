@@ -36,4 +36,18 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
+
+    public function isHaveItemsInCurrentCart()
+    {
+        $cart = $this->carts()->whereDoesntHave('bill')->first();
+        if (!$cart) {
+            return false;
+        }
+        return !!$cart->products()->count();
+    }
 }
