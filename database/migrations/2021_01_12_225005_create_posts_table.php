@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreatePostsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
@@ -18,11 +13,10 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->longText('description')->nullable();
-            $table->text('quote')->nullable();//trích dẫn
+            $table->text('quote')->nullable();
             $table->string('image')->nullable();
             $table->tinyInteger('status')->default(1);
-            $table->string('post_cat_id')->nullable();
-            $table->string('post_tag_id')->nullable();
+            $table->string('post_category_id')->nullable();
             $table->timestamps();
         });
     }

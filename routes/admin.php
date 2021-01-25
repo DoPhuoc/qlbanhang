@@ -9,14 +9,15 @@ Route::group([
         ->name('login');
     Route::post('/login','LoginController@login')
         ->name('login.post');
-    Route::post('/logout', 'LoginController@logout')->name('logout');
+    Route::post('/logout', 'LoginController@logout')
+        ->name('logout');
 });
 
 Route::group([
     'prefix' => 'admin',
     'as' => 'admin.',
     'namespace' => 'Admin',
-    'middleware' => ['web','check.login.admin']
+    'middleware' => ['check.login.admin', 'preventBackHistory']
 
 ],function (){
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
@@ -41,12 +42,14 @@ Route::group([
 
 
     /*Banner*/
-    Route::get('/banner','BannerController@index')->name('banner');
-    Route::get('/add-banner','BannerController@addBanner')->name('add.banner');
-    Route::post('/add-banner','BannerController@handleBanner')->name('handle.add.banner');
-    Route::get('/banner/{slug}~{id}','BannerController@editBanner')->name('edit.banner');
-    Route::post('/banner/handle-edit/{id}','BannerController@handleEditBanner')->name('handle.edit.banner');
-    Route::post('/banner/delete-banner','BannerController@deleteBanner')->name('delete.banner');
+    Route::group(['as' => 'banner.', 'prefix' => 'banner'], function () {
+        Route::get('/','BannerController@index')->name('index');
+        Route::get('/create','BannerController@create')->name('create');
+        Route::post('/store','BannerController@store')->name('store');
+        Route::get('/edit/{banner}','BannerController@edit')->name('edit');
+        Route::post('/update/{banner}','BannerController@update')->name('update');
+        Route::delete('/{banner}','BannerController@destroy')->name('destroy');
+    });
 
     /*Category*/
     Route::get('/category','CategoryController@index')->name('category');
@@ -72,31 +75,36 @@ Route::group([
     Route::post('/shipping/delete-shipping','ShippingController@deleteShipping')->name('delete.shipping');
 
     /*Post*/
-    Route::get('/post','PostController@index')->name('posts');
-    Route::get('/add-post','PostController@addPost')->name('add.post');
-    Route::post('/add-post','PostController@handleAddPost')->name('handle.add.post');
-    Route::get('/post/{slug}~{id}','PostController@editPost')->name('edit.posts');
-    Route::post('/post/handle-edit/{id}','PostController@handleEditPost')->name('handle.edit.post');
-    Route::post('/post/delete-post','PostController@deletePost')->name('delete.posts');
+    Route::group(['as' => 'post.', 'prefix' => 'post'], function () {
+        Route::get('/','PostController@index')->name('index');
+        Route::get('/create','PostController@create')->name('create');
+        Route::post('/store','PostController@store')->name('store');
+        Route::get('/edit/{post}','PostController@edit')->name('edit');
+        Route::post('/edit/{post}','PostController@update')->name('update');
+        Route::delete('/{post}','PostController@destroy')->name('destroy');
+    });
 
     /*Tags*/
-    Route::get('/tag','TagController@index')->name('tag');
-    Route::get('/add-tag','TagController@addTag')->name('add.tag');
-    Route::post('/add-tag','TagController@handleAddTag')->name('handle.add.tag');
-    Route::get('/tag/{slug}~{id}','TagController@editTag')->name('edit.tag');
-    Route::post('/tag/handle-edit/{id}','TagController@handleEditTag')->name('handle.edit.tag');
-    Route::get('/tag/delete-post/{id}','TagController@deleteTag')->name('delete.tag');
-    Route::get('/tag/delete-post/{id}','TagController@deleteTag')->name('delete.tag');
-    Route::get('/tag/search','TagController@search')->name('search.tag');
+    Route::group(['as' => 'tag.', 'prefix' => 'tag'], function () {
+        Route::get('/','TagController@index')->name('index');
+        Route::get('/create','TagController@create')->name('create');
+        Route::post('/store','TagController@store')->name('store');
+        Route::get('/edit/{tag}','TagController@edit')->name('edit');
+        Route::post('/edit/{tag}','TagController@update')->name('update');
+        Route::delete('/{tag}','TagController@destroy')->name('destroy');
+        Route::post('/search','TagController@search')->name('search');
+    });
 
     /*PostCategory*/
-    Route::get('/postCategory','PostCategoryController@index')->name('postCategory');
-    Route::get('/add-postCategory','PostCategoryController@addPostCategory')->name('add.postCategory');
-    Route::post('/add-postCategory','PostCategoryController@handleAddPostCategory')->name('handle.add.postCategory');
-    Route::get('/postCategory/{slug}~{id}','PostCategoryController@editPostCategory')->name('edit.postCategory');
-    Route::post('/postCategory/handle-edit/{id}','PostCategoryController@handleEditPostCategory')->name('handle.edit.postCategory');
-    Route::post('/postCategory/delete-post','PostCategoryController@deletePostCategory')->name('delete.postCategory');
-    Route::post('/postCategory/search','PostCategoryController@search')->name('search.postCategory');
+    Route::group(['as' => 'post_category.', 'prefix' => 'post-category'], function () {
+        Route::get('/','PostCategoryController@index')->name('index');
+        Route::get('/create','PostCategoryController@create')->name('create');
+        Route::post('/store','PostCategoryController@store')->name('store');
+        Route::get('/edit/{postCategory}','PostCategoryController@edit')->name('edit');
+        Route::post('/edit/{postCategory}','PostCategoryController@update')->name('update');
+        Route::delete('/{postCategory}','PostCategoryController@destroy')->name('destroy');
+        Route::post('/search','PostCategoryController@search')->name('search');
+    });
     /*Order*/
     Route::post('/order/{bill}','OrderController@update')->name('order.update');
     Route::get('/order','OrderController@getNewOrders')->name('order.new');

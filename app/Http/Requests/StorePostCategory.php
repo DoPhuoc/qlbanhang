@@ -6,35 +6,25 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StorePostCategory extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
     public function authorize()
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
     public function rules()
     {
         return [
-            'nameCate' => 'required|max:100|unique:post_categories,title',
-            'descCate' => 'required'
+            'title' => 'required|max:100|unique:post_categories,title',
+            'description' => 'required'
         ];
     }
     public function messages()
     {
         return [
-            'nameCate.required' => 'Tên danh mục không được để trống',
-            'nameCate.max' => 'Tên danh mục không lớn hơn :max ký tự',
-            'nameCate.unique' => 'Ten danh mục đã tồn tại',
-            'descCate.required'=>"Trường này không được để trông",
+            'title.required' => 'Tên danh mục không được để trống',
+            'title.max' => 'Tên danh mục không lớn hơn :max ký tự',
+            'title.unique' => 'Ten danh mục đã tồn tại',
+            'description.required'=>"Trường này không được để trông",
         ];
     }
 }

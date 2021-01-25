@@ -5,91 +5,73 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\PostCategory;
-use App\Http\Requests\StorePostCategory ;
+use App\Http\Requests\StorePostCategory;
 use Illuminate\Support\Str;
 use App\Http\Requests\UpdateStorePostCategory;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
+
 class PostCategoryController extends Controller
 {
-    public function index(){
-        $postCategory = PostCategory::all();
-        return view('admin.postCategory.list',compact('postCategory'));
-    }
-    public function addPostCategory()
+    public function index()
     {
-        return view('admin.postCategory.add');
+        $postCategories = PostCategory::all();
+        return view('admin.post_categories.index', compact('postCategories'));
     }
-    public function handleAddPostCategory(StorePostCategory $request)
-    {
-        //return $request->all();
-        $title = $request->nameCate;
-        $slug = Str::slug($title , '-');
-        $descCate= $request->descCate;
-        $status = $request->status;
-        $dataInsert = PostCategory::create([
-            'title' => $title,
-            'slug' => $slug,
-            'description' => $descCate,
-        ]);
 
-        if($dataInsert){
-            $request->session()->flash('success', 'Thêm thành công');
+    public function create()
+    {
+        return view('admin.post_categories.create');
+    }
+
+    public function store(StorePostCategory $request)
+    {
+        $data = request()->all();
+        $data['slug'] = Str::slug($request->title);
+        if (PostCategory::create($data)) {
+            Alert::success('Thành công!');
         } else {
-            $request->session()->flash('error', 'Thêm thất bại');
+            Alert::error('Thất bại!');
         }
-        return redirect(route('admin.postCategory'));
+        return redirect()->route('admin.post_category.index');
 
     }
-    public function editPostCategory($id){
-        $postCategory = PostCategory::find($id);
-        return view('admin.postCategory.edit', compact('postCategory'));
-    }
-    public function handleEditPostCategory(UpdateStorePostCategory $request){
-        $title = $request->nameCate;
-        $slug = Str::slug($title , '-');
-        $descCate= $request->descCate;
-        $status = $request->status;
-        $id = $request->hddIDCategory;
-        $id = is_numeric($id) && $id > 0 ? $id : 0;
-        $update = DB::table('post_categories')
-            ->where('id', $id)
-            ->update([
-            'title' => $title,
-            'slug' => $slug,
-            'description' => $descCate,
-            'status' => $status,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => null
-        ]);
 
-        if($update){
-            $request->session()->flash('success', 'Sua thanh cong');
-
-        } else {
-            $request->session()->flash('error', 'Sua that bai');
-        }
-        return redirect(route('admin.postCategory'));
-    }
-    public function deletePostCategory($id)
+    public function edit(Request $request, PostCategory $postCategory)
     {
-        $Category=PostCategory::find($id);
-        $status=$Category->delete();
-        if($Category){
-            request()->session()->flash('success','Xóa thành công');
-        }
-        else{
-            request()->session()->flash('error','Xóa thất bại');
-        }
-        return redirect()->route('admin.postCategory');
+        return view('admin.post_categories.edit', compact('postCategory'));
     }
 
-    public function search(Request $request){
+    public function update(UpdateStorePostCategory $request, PostCategory $postCategory)
+    {
+        $data = request()->all();
+        $data['slug'] = Str::slug($request->title);
+        if ($postCategory->update($data)) {
+            Alert::success('Thành công!');
+        } else {
+            Alert::error('Thất bại!');
+        }
+        return redirect()->route('admin.post_category.index');
+    }
+
+    public function destroy(PostCategory $postCategory)
+    {
+        if ($postCategory->delete()) {
+            Alert::success('Thành công!');
+        } else {
+            Alert::error('Thất bại!');
+        }
+        return redirect()->route('admin.post_category.index');
+    }
+
+    public function search(Request $request)
+    {
         $search = $request->get('search');
-        $postCategory = PostCategory::where('title','like','%'.'$search'.'%')
-        ->orderWhere('description','like','%'.$search.'%')
-        ->orderWhere('status','like','%'.$search.'%')
-        ->paginate(5);
+        $postCategory = PostCategory::where('title', 'like', '%' . '$search' . '%')
+            ->orderWhere('description', 'like', '%' . $search . '%')
+            ->orderWhere('status', 'like', '%' . $search . '%')
+            ->paginate(5);
 
-        return view('admin.postCategory.list',compact('postCategory'));
+        return view('admin.postCategory.list', compact('postCategory'));
     }
 }

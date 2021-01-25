@@ -20,13 +20,13 @@ class CategoryController extends Controller
         return view('admin.category.add');
     }
     public function handleCategory(StoreCategoriesPost $request){
-        $name = $request->nameCate;
+        $name = $request->title;
         $slug = Str::slug($name, '-');
-        $descCate= $request->descCate;
+        $description= $request->description;
         $dataInsert = Category::create([
             'name' => $name,
             'slug' => $slug,
-            'description' => $descCate,
+            'description' => $description,
             'status' => 1,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => null
@@ -53,9 +53,9 @@ class CategoryController extends Controller
         return $request->all();
         $id = $request->id;
         $id = is_numeric($id) && $id > 0 ? $id : 0;
-        $name = $request->nameCate;
+        $name = $request->title;
         $slug = Str::slug($name, '-');
-        $description = $request->descCate;
+        $description = $request->description;
         $status= $request->status;
         $update = DB::table('categories')
                     ->where('id', $id)

@@ -24,17 +24,17 @@ class StoreCategoriesPost extends FormRequest
     public function rules()
     {
         return [
-            'nameCate' => 'required|max:100|unique:categories,name',
-            'descCate' => 'required'
+            'title' => 'required|max:100|unique:categories,name',
+            'description' => 'required'
         ];
     }
     public function messages()
     {
         return [
-            'nameCate.required' => 'Tên danh mục không được để trống',
-            'nameCate.max' => 'Tên danh mục không lớn hơn :max ký tự',
-            'nameCate.unique' => 'Ten danh mục đã tồn tại',
-            'descCate.required'=>"Trường này không được để trông",
+            'title.required' => 'Tên danh mục không được để trống',
+            'title.max' => 'Tên danh mục không lớn hơn :max ký tự',
+            'title.unique' => 'Ten danh mục đã tồn tại',
+            'description.required'=>"Trường này không được để trông",
         ];
     }
 }

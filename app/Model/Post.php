@@ -4,17 +4,26 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Post extends Base
 {
     protected $table = 'posts';
-    protected $fillable=['title','slug','description','quote','image','status','post_cat_id','post_tag_id'];
+    protected $fillable = ['title', 'slug', 'description', 'quote', 'image', 'status', 'post_category_id'];
+
     public function tags()
     {
-        return $this->belongsTo('App\Model\Tag','post_tag_id', 'title');
+        return $this->belongsToMany(Tag::class);
     }
 
     public function postCategory()
     {
-        return $this->belongsTo('App\Model\PostCategory','post_cat_id', 'title');
+        return $this->belongsTo(PostCategory::class);
+    }
+
+    public function getTagLabelsAttribute()
+    {
+        return implode($this->tags->map(function ($tag) {
+            $route = route('admin.tag.edit', $tag->id);
+            return "<a class='btn btn-sm btn-outline-info m-2' href='$route'>$tag->title</a>";
+        })->toArray());
     }
 }

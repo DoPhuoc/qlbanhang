@@ -24,17 +24,17 @@ class StoreTagPost extends FormRequest
     public function rules()
     {
         return [
-            'titleTag' => 'required|max:100|unique:tags,title',
-            'descTag' => 'required'
+            'title' => 'required|max:100|unique:tags,title',
+            'description' => 'required'
         ];
     }
     public function messages()
     {
         return [
-            'titleTag.required' => 'Tên tag không được để trống',
-            'titleTag.max' => 'Tên tag không lớn hơn :max ký tự',
-            'titleTag.unique' => 'Tên Tag đã tồn tại',
-            'descTag.required'=>"Trường này không được để trống",
+            'title.required' => 'Tên tag không được để trống',
+            'title.max' => 'Tên tag không lớn hơn :max ký tự',
+            'title.unique' => 'Tên Tag đã tồn tại',
+            'description.required'=>"Trường này không được để trống",
         ];
     }
 }

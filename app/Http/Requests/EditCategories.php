@@ -26,17 +26,17 @@ class EditCategories extends FormRequest
         $id = $request->id;
         $id = is_numeric($id) && $id > 0 ? $id : 0;
         return [
-            'nameCate' => 'required|max:100|unique:categories,name,'.$id,
-            'descCate' => 'required',
+            'title' => 'required|max:100|unique:categories,name,'.$id,
+            'description' => 'required',
         ];
     }
     public function messages()
     {
         return [
-            'nameCate.required' => 'Tên danh mục không được để trống',
-            'nameCate.max' => 'Tên danh mục không lớn hơn :max ký tự',
-            'nameCate.unique' => 'Ten danh mục đã tồn tại, vui lòng nhập lại ',
-            'descCate.required'=>"Trường này không được để trông",
+            'title.required' => 'Tên danh mục không được để trống',
+            'title.max' => 'Tên danh mục không lớn hơn :max ký tự',
+            'title.unique' => 'Ten danh mục đã tồn tại, vui lòng nhập lại ',
+            'description.required'=>"Trường này không được để trông",
         ];
     }
 }

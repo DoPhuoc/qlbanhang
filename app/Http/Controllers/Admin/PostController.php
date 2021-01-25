@@ -3,94 +3,116 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdatePost;
 use Illuminate\Http\Request;
-use App\Http\Requests\StorePosts;
+use App\Http\Requests\StorePost;
 use App\Model\Post;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Model\Tag;
 use App\Model\PostCategory;
+use RealRashid\SweetAlert\Facades\Alert;
+
 class PostController extends Controller
 {
-    public function index(){
-        $posts=Post::orderBy('id')->paginate(10);
-        return view('admin.posts.list',compact('posts'));
-    }
-    public function addpost(){
-        $tags = Tag::where('status',1)->get();
-        $catePosts  = PostCategory::where('status',1)->get();
-        //dd($catePosts);
-        return view('admin.posts.add',compact('tags','catePosts'));
-
-    }
-    public function handleAddPost(StorePosts $request)
+    public function index()
     {
-        $title = $request->title;
-        $slug = Str::slug($title, '-');
-        $description = $request->description;
-        $quote=$request->quote;
-        $status = $request->status;
-        $tagPost = $request->tagPost;//Tag::where('id',$request->tagPost)->get();
-        //dd($tagPost);
-        //dd($tagPost[0]);
-
-        $catePost = $request->catePost;#PostCategory::where('id',$request->catePost)->get('title');
-
-        //$abc  = PostCategory::where('id',$catePost)->get('title');
-
-       $arrImages = [];
-       //thuc hien upload file
-       //kiem tra xem nguoi co chon file ko
-       if($request->hasFile('images')){
-           //Lay thong tin cua file
-           $image = $request->file('images');
-
-           foreach ($image as $key => $i) {
-               //lay ra duoc ten file va duong dan luu tam thoi file
-               if($i->isValid()){
-                   $nameImage = $i->getClientOriginalName();
-                   $i->move('uploads/images/posts',$nameImage);
-                   $arrImages[] = $nameImage;
-               }
-           }
-       }
-       if($arrImages){
-            $imagePost = array_pop($arrImages);
-            $dataInsert = Post::create([
-                'title' => $title,
-                'slug' => $slug,
-                'description' => $description,
-                'quote' =>$quote,
-                'image' => $imagePost,
-                'status' => $status,
-                'post_cat_id'=> $catePost,
-                'post_tag_id'=>$tagPost,
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => null
-                ]);
-       }
-
-    //dd($dataInsert);
-    if($dataInsert){
-        $request->session()->flash('success', 'Them thanh cong');
-    } else {
-        $request->session()->flash('error', 'Them that bai');
-    }
-    return redirect(route('admin.posts'));
+        $posts = Post::query();
+        $searchKeyword = request()->search;
+        if ($searchKeyword) {
+            $posts->where('title', 'like', "%$searchKeyword%");
+        }
+        $posts = $posts->orderBy('updated_at', 'desc')->paginate(10);
+        return view('admin.posts.index', compact('posts'));
     }
 
-    public function editPost(){
-        return view('admin.posts.edit');
-    }
-    public function deletePost($id)
+    public function create()
     {
-        $posts=Posts::find($id);
-        $status=$posts->delete();
-        if($posts){
-            request()->session()->flash('success','Xoa thanh cong');
+        $tags = Tag::where('status', Tag::ACTIVE)->get();
+        $postCategories = PostCategory::where('status', PostCategory::ACTIVE)->get();
+        return view('admin.posts.create', compact('tags', 'postCategories'));
+
+    }
+
+    public function store(StorePost $request)
+    {
+        DB::beginTransaction();
+        try {
+            $data = $request->all();
+            $data['slug'] = Str::slug(request()->title);
+            $arrImages = [];
+            if ($request->hasFile('images')) {
+                $image = $request->file('images');
+                foreach ($image as $key => $i) {
+                    if ($i->isValid()) {
+                        $nameImage = $i->getClientOriginalName();
+                        $i->move('uploads/images/posts', $nameImage);
+                        $arrImages[] = $nameImage;
+                    }
+                }
+            }
+            if ($arrImages) {
+                $data['image'] = array_pop($arrImages);
+            }
+            $post = Post::create($data);
+            $post->tags()->sync($data['tag_ids']);
+            DB::commit();
+            Alert::success('Thành công!');
+        } catch (\Exception $exception) {
+            Alert::error('Thất bại!');
+            DB::rollBack();
         }
-        else{
-            request()->session()->flash('error','Xoa that bai');
+        return redirect()->route('admin.post.index');
+    }
+
+    public function edit(Request $request, Post $post)
+    {
+        $tags = Tag::where('status', Tag::ACTIVE)->get();
+        $postCategories = PostCategory::where('status', PostCategory::ACTIVE)->get();
+        return view(
+            'admin.posts.edit',
+            compact('post', 'tags', 'postCategories')
+        );
+    }
+
+    public function update(UpdatePost $request, Post $post)
+    {
+        DB::beginTransaction();
+        try {
+            $data = $request->all();
+            $data['slug'] = Str::slug(request()->title);
+            $arrImages = [];
+            if ($request->hasFile('images')) {
+                $image = $request->file('images');
+                foreach ($image as $key => $i) {
+                    if ($i->isValid()) {
+                        $nameImage = $i->getClientOriginalName();
+                        $i->move('uploads/images/posts', $nameImage);
+                        $arrImages[] = $nameImage;
+                    }
+                }
+            }
+            if ($arrImages) {
+                $data['image'] = array_pop($arrImages);
+            }
+            $post->update($data);
+            $post->tags()->sync($data['tag_ids']);
+            DB::commit();
+            Alert::success('Thành công!');
+        } catch (\Exception $exception) {
+            Alert::error('Thất bại!');
+            DB::rollBack();
         }
-        return redirect()->route('admin.posts');
+        return redirect()->route('admin.post.index');
+    }
+
+    public function destroy(Post $post)
+    {
+        if ($post->delete()) {
+            Alert::success('Thành công!');
+        } else {
+            Alert::error('Thất bại!');
+        }
+        return redirect()->route('admin.post.index');
     }
 }

@@ -24,17 +24,17 @@ class StoreBannerPost extends FormRequest
     public function rules()
     {
         return [
-            'titleBanner'=> 'required|unique:banners,title|max:100|min:3',
+            'title'=> 'required|unique:banners,title|max:100|min:3',
             'photoBanner' => 'required|mimes:jpeg,bmp,png,jpg'
         ];
     }
     public function messages()
     {
         return [
-            'titleBanner.required' => 'Tên banner không được để trống',
-            'titleBanner.unique' => 'Tên banner đã tồn tại, vui lòng chọn tên khác',
-            'titleBanner.max' => 'Tên banner không vượt quá :max ký tự',
-            'titleBanner.min' => 'Tên banner phải nhiều hơn :min ký tự',
+            'title.required' => 'Tên banner không được để trống',
+            'title.unique' => 'Tên banner đã tồn tại, vui lòng chọn tên khác',
+            'title.max' => 'Tên banner không vượt quá :max ký tự',
+            'title.min' => 'Tên banner phải nhiều hơn :min ký tự',
             'photoBanner.required' => 'Trường này không được để trống',
             'photoBanner.mimes' => 'Định dạng banner là ảnh: jpeg,bmp,png,jpg'
         ];

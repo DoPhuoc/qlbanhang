@@ -34,8 +34,8 @@
              data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Banner Options:</h6>
-                <a class="collapse-item" href="{{route('admin.banner')}}">Banners</a>
-                <a class="collapse-item" href="{{route('admin.add.banner')}}">Thêm
+                <a class="collapse-item" href="{{route('admin.banner.index')}}">Banners</a>
+                <a class="collapse-item" href="{{route('admin.banner.create')}}">Thêm
                     Banners</a>
             </div>
         </div>
@@ -190,9 +190,9 @@
              data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Nghiệp vụ:</h6>
-                <a class="collapse-item" href="{{route('admin.posts')}}">Bài
+                <a class="collapse-item" href="{{route('admin.post.index')}}">Bài
                     viết</a>
-                <a class="collapse-item" href="{{route('admin.add.post')}}">Thêm
+                <a class="collapse-item" href="{{route('admin.post.create')}}">Thêm
                     bài viết</a>
             </div>
         </div>
@@ -210,10 +210,10 @@
              aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Nghiệp vụ:</h6>
-                <a class="collapse-item" href="{{route('admin.postCategory')}}">Danh
+                <a class="collapse-item" href="{{route('admin.post_category.index')}}">Danh
                     mục</a>
                 <a class="collapse-item"
-                   href="{{route('admin.add.postCategory')}}">Thêm danh mục</a>
+                   href="{{route('admin.post_category.create')}}">Thêm danh mục</a>
             </div>
         </div>
     </li>
@@ -230,9 +230,8 @@
              data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Tag Options:</h6>
-                <a class="collapse-item" href="{{route('admin.tag')}}">Tag</a>
-                <a class="collapse-item" href="{{route('admin.add.tag')}}">Thêm
-                    Tag</a>
+                <a class="collapse-item" href="{{route('admin.tag.index')}}">Tag</a>
+                <a class="collapse-item" href="{{route('admin.tag.create')}}">Thêm Tag</a>
             </div>
         </div>
     </li>

@@ -4,14 +4,14 @@
     <div class="card">
         <h5 class="card-header">Thêm bài viết</h5>
         <div class="card-body">
-            <form method="post" action="{{route('admin.post.edit', $post->id)}}"
+            <form method="post" action="{{route('admin.post.store')}}"
                   enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="title" class="col-form-label">Tiêu đề <span
                             class="text-danger">*</span></label>
                     <input id="title" type="text" name="title"
-                           placeholder="Enter title" value="{{ old('title', $post->title) }}"
+                           placeholder="Enter title" value="{{ old('title') }}"
                            class="form-control">
                     @error('title')
                     <span class="text-danger">{{ $message }}</span>
@@ -25,9 +25,8 @@
                         <option value="">--Select any category--</option>
                         @foreach($postCategories as $key=>$postCategory)
                             <option value="{{$postCategory->id}}"
-                                    @if(old('category_id', $post->post_category_id) == $postCategory->id) selected @endif>
-                                {{$postCategory->title}}
-                            </option>
+                                    @if(old('category_id') == $postCategory->id) selected @endif
+                            >{{$postCategory->title}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -38,7 +37,7 @@
                 <div class="form-group">
                     <label for="quote" class="col-form-label">Quote</label>
                     <textarea class="form-control" id="quote"
-                              name="quote">{{old('quote', $post->quote)}}</textarea>
+                              name="quote">{{old('quote')}}</textarea>
                     @error('quote')
                     <span class="text-danger">{{$message}}</span>
                     @enderror
@@ -51,8 +50,8 @@
                             multiple="multiple">
                         @foreach($tags as $key => $tag)
                             <option
-                                @if(in_array($tag->id, old('tag_ids', $post->tags->pluck('id')->toArray() ?? [])))
-                                selected
+                                @if(in_array($tag->id, old('tag_ids', [])))
+                                    selected
                                 @endif
                                 value="{{$tag->id}}">{{$tag->title}}</option>
                         @endforeach
@@ -66,7 +65,7 @@
                     <label for="description" class="col-form-label">Mô
                         tả</label>
                     <textarea class="form-control" id="description"
-                              name="description">{{ old('description', $post->description) }}</textarea>
+                              name="description">{{ old('description') }}</textarea>
                 </div>
                 @error('description')
                 <span class="text-danger">{{ $message }}</span>
@@ -89,7 +88,7 @@
                     <select name="status" class="form-control">
                         @foreach(\App\Model\Post::STATUS as $key => $status)
                             <option value="{{ $key }}"
-                                    @if(old('status', $post->status) == $key) selected @endif>
+                                    @if(old('status', \App\Model\Post::ACTIVE) == $key) selected @endif>
                                 {{ $status }}
                             </option>
                         @endforeach
