@@ -25,7 +25,7 @@
                         <option value="">--Select any category--</option>
                         @foreach($postCategories as $key=>$postCategory)
                             <option value="{{$postCategory->id}}"
-                                    @if(old('category_id') == $postCategory->id) selected @endif
+                                    @if(old('post_category_id') == $postCategory->id) selected @endif
                             >{{$postCategory->title}}</option>
                         @endforeach
                     </select>

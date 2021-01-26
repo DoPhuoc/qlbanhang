@@ -2,7 +2,7 @@
     <!-- Single Widget -->
     <div class="single-widget category">
 
-        <h3 class="title">DANH MỤC</h3>
+        <h3 class="title">DANH MỤC SẢN PHẨM</h3>
         @foreach($categories as $category)
             <ul class="categor-list">
                 <li>

@@ -38,7 +38,7 @@
                                 </td>
 
                                 <td class="total-amount" data-title="Total">
-                                    {{number_format($cart->subTotal())}} ₫
+                                    {{number_format($cart->totalPaid())}} ₫
                                 </td>
                                 <td class="status text-center" data-title="status_order">
                                     {!! $cart->bill->status_label !!}

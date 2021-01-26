@@ -63,9 +63,6 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <h5>Thông tin giao hàng</h5>
-                                </div>
-                                <div class="col-12">
                                     <div class="form-group">
                                         <label>Số điện thoại</label>
                                         <input type="tel" name="phone"

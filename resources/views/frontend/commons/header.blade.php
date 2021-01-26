@@ -189,11 +189,10 @@
                                 <div class="navbar-collapse">
                                     <div class="nav-inner">
                                         <ul class="nav main-menu menu navbar-nav">
-                                            <li class="active"><a
-                                                    href="{{route('fr.home')}}">TRANG
-                                                    CHỦ</a></li>
-                                            <li><a href="#">DANH MỤC</a>
-
+                                            <li class="{{ request()->is('/') ? 'active' : '' }}">
+                                                <a href="{{route('fr.home')}}">TRANG CHỦ</a>
+                                            </li>
+                                            <li class="{{ request()->is('category/*') ? 'active' : '' }}"><a href="#">DANH MỤC</a>
                                                 <ul class="dropdown">
                                                     @foreach($categories as $category)
                                                         <li>
@@ -201,16 +200,21 @@
                                                         </li>
                                                     @endforeach
                                                 </ul>
-
                                             </li>
 
-                                            <li>
-                                                <a href="#">BÀI VIẾT</a>
+                                            <li class="{{ request()->is('post') ? 'active' : '' }}">
+                                                <a href="{{ route('fr.post.index') }}">
+                                                    BÀI VIẾT
+                                                </a>
                                             </li>
-                                            <li><a href="#">GIỚI THIỆU</a></li>
+                                            <li class="{{ request()->is('about') ? 'active' : '' }}">
+                                                <a href="{{ route('fr.about.index') }}">GIỚI THIỆU</a>
+                                            </li>
 
-                                            <li><a href={{route('fr.contact')}}>ĐỊA
-                                                    CHỈ</a></li>
+                                            <li class="{{ request()->is('contact') ? 'active' : '' }}">
+                                                <a href={{route('fr.contact.index')}}>
+                                                    ĐỊA CHỈ</a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>

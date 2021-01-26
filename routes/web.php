@@ -22,6 +22,10 @@ Route::group([
 ], function () {
     Route::get('/category/{slug}~{id}', 'ProductController@getProductsBelongCategory')
         ->name('category.product');
+    Route::get('/post', 'PostController@index')
+        ->name('post.index');
+    Route::get('/post/{slug}~{id}', 'PostController@show')
+        ->name('post.show');
     Route::get('/brand/{slug}~{id}', 'ProductController@getProductsBelongBrand')
         ->name('brand.product');
     Route::get('/{slug}~{id}', 'ProductController@show')
@@ -77,7 +81,11 @@ Route::group([
         ->name('ward.list');
     Route::get('/shipping-charge/fee', 'ShippingChargeController@getFee')
         ->name('shipping_charge.get_fee');
-    Route::post('/contact', 'ContactController.php@contact')
-        ->name('contact');
+    Route::get('/contact', 'ContactController@contact')
+        ->name('contact.index');
+    Route::post('/contact', 'ContactController@send')
+        ->name('contact.send');
+    Route::get('/about', 'AboutController@index')
+        ->name('about.index');
 
 });

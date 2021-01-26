@@ -52,7 +52,7 @@
                         </tr>
                         <tr>
                             <td colspan="4"><span>Tổng cộng</span></td>
-                            <td><span class="sum">{{ $cart->amountAfterFee($cart->bill->shipping_price) }} ₫</span>
+                            <td><span class="sum">{{ number_format($cart->totalPaid()) }} ₫</span>
                             </td>
                         </tr>
                         </tfoot>
