@@ -24,7 +24,7 @@ class Post extends Base
     {
         return implode($this->tags->map(function ($tag) {
             $route = route('admin.tag.edit', $tag->id);
-            return "<a class='text-white btn btn-sm btn-outline-info m-2' href='$route'>$tag->title</a>";
+            return "<a class='btn btn-sm btn-outline-info m-2' href='$route'>$tag->title</a>";
         })->toArray());
     }
 

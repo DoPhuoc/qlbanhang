@@ -30,13 +30,12 @@
                 <div class="col-lg-4 col-md-6 col-12">
                     <!-- Single Widget -->
                     <div class="single-footer links">
-                        <h4>Information</h4>
+                        <h4>Thông tin</h4>
                         <ul>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Faq</a></li>
-                            <li><a href="#">Terms & Conditions</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">Help</a></li>
+                            <li><a href="#">Về chúng tôi</a></li>
+                            <li><a href="#">Điều khoản và điều kiện</a></li>
+                            <li><a href="#">Liên hệ</a></li>
+                            <li><a href="#">Trợ giúp</a></li>
                         </ul>
                     </div>
                     <!-- End Single Widget -->
@@ -44,13 +43,13 @@
                 <div class="col-lg-4 col-md-6 col-12">
                     <!-- Single Widget -->
                     <div class="single-footer links">
-                        <h4>Customer Service</h4>
+                        <h4>Dịch vụ khách hàng</h4>
                         <ul>
-                            <li><a href="#">Payment Methods</a></li>
-                            <li><a href="#">Money-back</a></li>
-                            <li><a href="#">Returns</a></li>
-                            <li><a href="#">Shipping</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Phương thức thanh toán</a></li>
+                            <li><a href="#">Hoàn tiền</a></li>
+                            <li><a href="#">Đổi hàng</a></li>
+                            <li><a href="#">Giao hàng</a></li>
+                            <li><a href="#">Chính sách</a></li>
                         </ul>
                     </div>
                     <!-- End Single Widget -->

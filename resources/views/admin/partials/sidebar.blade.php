@@ -132,24 +132,24 @@
            data-target="#shippingCollapse" aria-expanded="true"
            aria-controls="shippingCollapse">
             <i class="fas fa-truck"></i>
-            <span>Shipping</span>
+            <span>Giao hàng</span>
         </a>
         <div id="shippingCollapse" class="collapse" aria-labelledby="headingTwo"
              data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Shipping Options:</h6>
-                <a class="collapse-item" href="{{route('admin.shipping_charge.index')}}">Shipping</a>
-                <a class="collapse-item" href="{{route('admin.shipping_charge.create')}}">Thêm
-                    Shipping</a>
+                <h6 class="collapse-header">Lựa chọn:</h6>
+                <a class="collapse-item" href="{{route('admin.shipping_charge.index')}}">Địa điểm giao hàng</a>
+                <a class="collapse-item" href="{{route('admin.shipping_charge.create')}}">
+                    Thêm nơi giao hàng</a>
             </div>
         </div>
         <div id="shippingCollapse" class="collapse" aria-labelledby="headingTwo"
              data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Orders:</h6>
+                <h6 class="collapse-header">Đơn hàng:</h6>
                 <a class="collapse-item"
-                   href="{{route('admin.order.delivery')}}">On going</a>
-                <a class="collapse-item" href="{{route('admin.order.done')}}">Done</a>
+                   href="{{route('admin.order.delivery')}}">Đang giao</a>
+                <a class="collapse-item" href="{{route('admin.order.done')}}">Đã hoàn thành</a>
             </div>
         </div>
     </li>
@@ -190,10 +190,9 @@
              data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Nghiệp vụ:</h6>
-                <a class="collapse-item" href="{{route('admin.post.index')}}">Bài
-                    viết</a>
-                <a class="collapse-item" href="{{route('admin.post.create')}}">Thêm
-                    bài viết</a>
+                <a class="collapse-item" href="{{route('admin.post.index')}}">
+                    Bài viết</a>
+                <a class="collapse-item" href="{{route('admin.post.create')}}">Thêm bài viết</a>
             </div>
         </div>
     </li>
