@@ -52,13 +52,14 @@ Route::group([
     });
 
     /*Category*/
-    Route::get('/category','CategoryController@index')->name('category');
-    Route::get('/add-category','CategoryController@addCategory')->name('add.category');
-    Route::post('/add-category','CategoryController@handleCategory')->name('handle.add.category');
-    Route::get('/category/{slug}~{id}','CategoryController@editCategory')->name('edit.category');
-    Route::post('/category/handle-edit','CategoryController@handleEditCategory')->name('handle.edit.category');
-    Route::post('/category/delete-category','CategoryController@deleteCaegory')->name('delete.category');
-
+    Route::group(['as' => 'category.', 'prefix' => 'category'], function () {
+        Route::get('/category', 'CategoryController@index')->name('index');
+        Route::get('/add-category', 'CategoryController@create')->name('create');
+        Route::post('/add-category', 'CategoryController@store')->name('store');
+        Route::get('/category/{slug}~{id}', 'CategoryController@edit')->name('edit');
+        Route::post('/category/handle-edit', 'CategoryController@update')->name('update');
+        Route::delete('/{category}', 'CategoryController@destroy')->name('destroy');
+    });
     /*Shipping*/
     Route::get('/shipping','ShippingChargeController@index')->name('shipping_charge.index');
     Route::get('/shipping/create','ShippingChargeController@create')->name('shipping_charge.create');

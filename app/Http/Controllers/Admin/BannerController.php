@@ -27,7 +27,6 @@ class BannerController extends Controller
 
     public function store(BannerPost $request)
     {
-        $data = $request->all();
         $data['slug'] = Str::slug($data['title']);
         $upload = false;
         $nameFile = null;

@@ -81,9 +81,9 @@
              data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Nghiệp vụ:</h6>
-                <a class="collapse-item" href="{{route('admin.category')}}">Danh
+                <a class="collapse-item" href="{{route('admin.category.index')}}">Danh
                     mục </a>
-                <a class="collapse-item" href="{{route('admin.add.category')}}">Thêm
+                <a class="collapse-item" href="{{route('admin.category.create')}}">Thêm
                     danh mục </a>
             </div>
         </div>

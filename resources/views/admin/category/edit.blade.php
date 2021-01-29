@@ -4,7 +4,7 @@
 <div class="card">
     <h5 class="card-header">Sửa danh mục </h5>
     <div class="card-body">
-      <form method="post" action="{{route('admin.handle.edit.category',['id' => $categories->id])}}">
+      <form method="post" action="{{route('admin.category.update',['id' => $categories->id])}}">
         @csrf
         <div class="form-group">
 

@@ -9,17 +9,19 @@ use App\Http\Requests\StoreCategoriesPost;
 use App\Http\Requests\EditCategories;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
+
 class CategoryController extends Controller
 {
     public function index(){
         $categories= Category::orderBy('id')->paginate(5);
         return view('admin.category.list',compact('categories'));
     }
-    public function addCategory(){
+    public function create(){
 
-        return view('admin.category.add');
+        return view('admin.category.create');
     }
-    public function handleCategory(StoreCategoriesPost $request){
+    public function store(StoreCategoriesPost $request){
         $name = $request->title;
         $slug = Str::slug($name, '-');
         $description= $request->description;
@@ -33,13 +35,13 @@ class CategoryController extends Controller
         ]);
 
         if($dataInsert){
-            $request->session()->flash('success', 'Add success');
+            $request->session()->flash('success', 'Thêm mới thành công');
         } else {
-            $request->session()->flash('error', 'Add Fail');
+            $request->session()->flash('error', 'Thêm mới thất bại');
         }
-        return redirect(route('admin.category'));
+        return redirect(route('admin.category.index'));
     }
-    public function editCategory($slug,$id){
+    public function edit($slug,$id){
         $categories = DB::table('categories')
                         ->where('id', $id)
                         ->first();
@@ -49,8 +51,7 @@ class CategoryController extends Controller
             abort(404);
         }
     }
-    public function handleEditCategory(EditCategories $request ){
-        return $request->all();
+    public function update(EditCategories $request ){
         $id = $request->id;
         $id = is_numeric($id) && $id > 0 ? $id : 0;
         $name = $request->title;
@@ -75,6 +76,15 @@ class CategoryController extends Controller
             $request->session()->flash('error', 'Add Fail');
 
         }
-        return redirect(route('admin.category'));
+        return redirect(route('admin.category.index'));
     }
+        public function destroy(Category $category){
+            if ($category->delete()) {
+                Alert::success('Thành công!');
+            } else {
+                Alert::error('Thất bại!');
+            }
+            return redirect()->route('admin.category.index');
+
+        }
 }

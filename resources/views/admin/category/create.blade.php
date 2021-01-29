@@ -4,7 +4,7 @@
 <div class="card">
     <h5 class="card-header">Thêm danh mục</h5>
     <div class="card-body">
-      <form method="post" action="{{ route('admin.handle.add.category')}}">
+      <form method="post" action="{{ route('admin.category.store')}}">
         @csrf
         <div class="form-group">
           <label for="title" class="col-form-label">Title <span class="text-danger">*</span></label>

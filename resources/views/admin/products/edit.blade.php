@@ -102,20 +102,6 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="bestSelling">Tình trạng (*)</label>
-                    <select class="form-control" name="bestSelling"
-                            id="bestSelling">
-                        <option value="0"
-                                @if(old('bestSelling', $product->best_selling) == \App\Model\Product::NOT_BEST_SELLING) selected @endif>
-                            No
-                        </option>
-                        <option value="1"
-                                @if(old('bestSelling', $product->best_selling) == \App\Model\Product::BEST_SELLING) selected @endif>
-                            Yes
-                        </option>
-                    </select>
-                </div>
-                <div class="form-group">
                     <label for="quantity">Số lượng <span
                             class="text-danger">*</span></label>
                     <input id="quantity" type="number"
