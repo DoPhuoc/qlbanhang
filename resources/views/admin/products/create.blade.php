@@ -11,7 +11,7 @@
                         <span class="text-danger">*</span></label>
                     <input id="product_id" type="text"
                            name="product_id"
-                           placeholder="Enter title"
+                           placeholder="Nhập mã sản phẩm"
                            value="{{ old('product_id') }}"
                            class="form-control">
                     @error('product_id')
@@ -26,7 +26,7 @@
                     <input id="name"
                            type="text"
                            name="name"
-                           placeholder="Enter product name"
+                           placeholder="Nhập tên sản phẩm"
                            value="{{ old('name') }}"
                            class="form-control">
                     @error('name')
@@ -48,7 +48,7 @@
                             class="text-danger">*</span></label>
                     <select name="category_id" id="category_id"
                             class="form-control">
-                        <option value="">--Select any category--</option>
+                        <option value="">--Lựa chọn danh mục--</option>
                         @foreach($categories as $key => $item)
                             <option value="{{$item->id}}"
                                     @if(old('category_id') == $item->id) selected @endif>
@@ -66,7 +66,7 @@
                     </label>
                     <input id="price"
                            type="number" name="price"
-                           placeholder="Enter price"
+                           placeholder="Nhập giá sản phẩm"
                            value="{{ old('price') }}"
                            class="form-control">
                     @error('price')
@@ -81,7 +81,7 @@
                            type="number"
                            name="discount"
                            min="0" max="100"
-                           placeholder="Enter sale"
+                           placeholder="Nhập % giảm giá"
                            value="{{ old('discount') }}"
                            class="form-control">
                     @error('discount')
@@ -92,7 +92,7 @@
                     <label for="brand_id">Tên Thương hiệu <span
                             class="text-danger">*</span></label>
                     <select name="brand_id" class="form-control">
-                        <option value="">--Select Brand--</option>
+                        <option value="">--Lựa chọn thương hiệu--</option>
                         @foreach($brands as $brand)
                             <option value="{{$brand->id}}"
                                     @if(old('brand_id') == $brand->id) selected @endif>
@@ -107,7 +107,7 @@
                     <input id="quantity" type="number"
                            name="quantity"
                            min="0"
-                           placeholder="Enter quantity"
+                           placeholder="Nhập số lượng sản phẩm"
                            value="{{ old('quantity') }}"
                            class="form-control">
                     @error('quantity')

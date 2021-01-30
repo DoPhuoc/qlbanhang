@@ -26,7 +26,7 @@
                     <input id="name"
                            type="text"
                            name="name"
-                           placeholder="Enter product name"
+                           placeholder="Tên sản phẩm"
                            value="{{ old('name', $product->name) }}"
                            class="form-control">
                     @error('name')

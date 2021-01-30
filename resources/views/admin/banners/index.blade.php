@@ -59,7 +59,7 @@
                         <th>STT</th>
                         <th>Tên</th>
                         <th width="50%">Ảnh</th>
-                        <th>Tráng thái</th>
+                        <th>Trạng th</th>
                         <th width="20%">Hành động</th>
                     </tr>
                     </thead>
