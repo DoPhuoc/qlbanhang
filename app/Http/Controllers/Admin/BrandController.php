@@ -70,10 +70,15 @@ class BrandController extends Controller
 
     public function destroy(Brand $brand)
     {
-        if ($brand->delete()) {
+        if($brand->products()->count())
+        {
+            Alert::error('Bạn không được phép xóa');
+        }
+        else if ($brand->delete()) {
             Alert::success('Xóa thành công!');
-        } else {
-            Alert::error('Xóa không thành công!');
+        }
+        else {
+                Alert::error('Xóa không thành công!');
         }
         return redirect()->route('admin.brand.index');
     }

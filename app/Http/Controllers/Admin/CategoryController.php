@@ -79,7 +79,11 @@ class CategoryController extends Controller
         return redirect(route('admin.category.index'));
     }
         public function destroy(Category $category){
-            if ($category->delete()) {
+            if($category->products()->count())
+            {
+                Alert::error('Bạn không được phép xóa');
+            }
+            else if ($category->delete()) {
                 Alert::success('Xóa thành công!');
             } else {
                 Alert::error('Xóa không thành công');
