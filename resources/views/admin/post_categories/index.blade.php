@@ -26,11 +26,11 @@
         </div>
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary float-left">Danh mục
-                Bài viết </h6>
+                bài viết </h6>
             <a href="{{route('admin.post_category.create')}}"
                class="btn btn-primary btn-sm float-right" data-toggle="tooltip"
                data-placement="bottom" title="Add User"><i
-                    class="fas fa-plus"></i> Thêm bài viết</a>
+                    class="fas fa-plus"></i> Thêm danh mục bài viết</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -41,7 +41,7 @@
                         <th>STT</th>
                         <th>Tên danh mục</th>
                         <th>Mô tả</th>
-                        <th>Trạng thai</th>
+                        <th>Trạng thái</th>
                         <th>Hành động</th>
                     </tr>
                     </thead>

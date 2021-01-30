@@ -2,10 +2,7 @@
     <div class="product-img">
         <a href="{{ route('fr.post.show', ['slug' => $post->slug, 'id' => $post->id]) }}">
             <img class="default-img"
-                 src="{{asset('uploads/images/products')}}/{{$post->image}}"
-                 alt="#">
-            <img class="hover-img"
-                 src="{{asset('uploads/images/products')}}/{{$post->image}}"
+                 src="{{asset('uploads/images/posts')}}/{{$post->image}}"
                  alt="#">
         </a>
 

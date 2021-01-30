@@ -2,17 +2,38 @@
 @section('content')
 <!-- DataTales Example -->
  <div class="card shadow mb-4">
-     <div class="row">
-         <div class="col-md-12">
+     <div class="card-header py-3">
+         <div class="row">
+             <div class="col-md-4">
+                 <h4 class="m-0 font-weight-bold text-primary float-left">Danh sách danh mục</h4>
+             </div>
 
+             <div class="col-md-4">
+                 <div>
+                     <form role="search" method="GET" id="searchform" action="{{route('admin.category.search')}}">
+                         <div class="input-group">
+                             <input type="text" class="form-control bg-light border small js-keyword-brand"
+                                    placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" name="search" value="">
+                             <div class="input-group-append">
+                                 <button class="btn btn-primary js-search-brand" type="submit" value="">
+                                     <i class="fas fa-search fa-sm"></i>
+                                 </button>
+                             </div>
+                         </div>
+                     </form>
+
+                 </div>
+             </div>
+             <div class="col-md-4 ">
+                 <a href="{{ route('admin.category.create') }}"
+                    class="d-none d-sm-inline-block btn btn-primary shadow-sm float-right" data-toggle="tooltip"
+                    data-placement="bottom" title="Thêm banner"><i
+                         class="fas fa-plus-circle fa-sm text-white-50"></i>  Thêm </a>
+             </div>
          </div>
      </div>
-    <div class="card-header py-3">
-      <h4 class="m-0 font-weight-bold text-primary float-left">Danh mục sản phẩm</h4>
-      <a href="{{route('admin.category.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Thêm danh mục</a>
-    </div>
 
-    @if(session('success'))
+ @if(session('success'))
     <div class="alert alert-success alert-dismissable fade show">
            <button class="close" data-dismiss="alert" aria-label="Close">×</button>
            {{session('success')}}
@@ -91,7 +112,7 @@
         </table>
         <span style="float:right"></span>
                {{-- Hien thi phan trang --}}
-               {{ $categories->links() }}
+{{--               {{ $categories->links() }}--}}
       </div>
     </div>
 </div>

@@ -62,9 +62,9 @@
              data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Nghiệp vụ:</h6>
-                <a class="collapse-item" href="{{route('admin.brand')}}">Thương
+                <a class="collapse-item" href="{{route('admin.brand.index')}}">Thương
                     hiệu</a>
-                <a class="collapse-item" href="{{route('admin.add.brand')}}">Thêm
+                <a class="collapse-item" href="{{route('admin.brand.create')}}">Thêm
                     Thương hiệu</a>
             </div>
         </div>
@@ -102,7 +102,7 @@
                 <h6 class="collapse-header">Nghiệp vụ :</h6>
                 <a class="collapse-item"
                    href="{{route('admin.product.index')}}">Sản phẩm </a>
-                <a class="collapse-item" href="{{route('admin.add.product')}}">Thêm
+                <a class="collapse-item" href="{{route('admin.product.create')}}">Thêm
                     sản phẩm</a>
             </div>
         </div>

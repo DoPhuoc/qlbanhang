@@ -26,14 +26,14 @@ class ProductController extends Controller
                 });
         }
         $products = $products->latest()->paginate(10);
-        return view('admin.products.list')->with('products', $products);
+        return view('admin.products.index')->with('products', $products);
     }
 
     public function create()
     {
         $categories = Category::where('status', Category::ACTIVE)->get();
         $brands = Brand::where('status', Category::ACTIVE)->get();
-        return view('admin.products.add', compact('categories', 'brands'));
+        return view('admin.products.create', compact('categories', 'brands'));
     }
 
     public function store(StoreProductRequest $request)
@@ -56,7 +56,7 @@ class ProductController extends Controller
             return redirect()->route('admin.product.index');
         } else {
             Alert::error('Thêm thất bại');
-            return redirect()->route('admin.add.product');
+            return redirect()->route('admin.product.store');
         }
     }
 
@@ -76,7 +76,6 @@ class ProductController extends Controller
 
     public function update(UpdateProductRequest $request, Product $product)
     {
-
         $data = $request->all();
         $imageName = '';
         if ($request->hasFile('images')) {
@@ -112,4 +111,12 @@ class ProductController extends Controller
         Alert::success('Xóa thành công');
         return back();
     }
+
+    public function search()
+    {
+        $products = Product::where('name', 'like', '%' . request()->search . '%')
+            ->get();
+        return view('admin.products.index')->with('products', $products);
+    }
+
 }

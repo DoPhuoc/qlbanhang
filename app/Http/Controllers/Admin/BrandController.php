@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 use voku\helper\AntiXSS;
 use App\Http\Requests\StoreBrandPost;
 use Illuminate\Support\Str;
@@ -12,23 +13,20 @@ use App\Http\Requests\UpdateStoreBrandPost;
 use App\Model\Brand;
 class BrandController extends Controller
 {
-    const LIMITED_ROW =5; 
+    const LIMITED_ROW =5;
     public function index(Request $request, AntiXSS $antiXSS)
     {
         $data =[];
         $data['listBrands'] = DB::table('brands')
         ->paginate(self::LIMITED_ROW);
-       
-      
         return view('admin.brand.list',$data);
     }
-    public function addBrand()
+    public function create()
     {
-        return view('admin.brand.add');
+        return view('admin.brand.create');
     }
-    public function handleAddBrand(StoreBrandPost $request,AntiXSS $xss)
+    public function store(StoreBrandPost $request,AntiXSS $xss)
     {
-        //dd($request->all());
         $nameBrand = $request->nameBrand;
         $nameBrand = $xss->xss_clean($nameBrand);
         $slug =Str::slug($nameBrand,'-');
@@ -42,81 +40,49 @@ class BrandController extends Controller
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => null
          ]);
- 
+
          if($insert){
              $request->session()->flash('success', 'Add successful');
-             return redirect(route('admin.brand'));
+             return redirect(route('admin.brand.index'));
          } else {
              $request->session()->flash('error', 'Add fail');
-             return redirect(route('admin.add.brand'));
+             return redirect(route('admin.brand.create'));
          }
     }
-    public function editBrand(Request $request)
+    public function edit(Request $request, Brand $brand)
     {
-        $id = $request->id;
-        $id = is_numeric($id) && $id > 0 ? $id : 0;
-        $infoBrand = DB::table('brands')
-                        ->where('id', $id)
-                        ->first();
-        //$infoBrand = json_decode(json_encode($infoBrand), true);
-    
-        if($infoBrand){
-            $message = $request->session()->get('brand');
-            return view('admin.brand.edit', compact('id', 'infoBrand', 'message'));
-        } else {
-            abort(404);
-        } 
-        
+        return view('admin.brand.edit', compact('brand'));
     }
-    public function handleUpdate(UpdateStoreBrandPost $request)
+    public function update(UpdateStoreBrandPost $request,Brand $brand)
     {
-        $name = $request->nameBrand;
-        $slug = Str::slug($name, '-');
-        $des = $request->descBrand;
-        $status= $request->status;
-        $id = $request->hddIdBrand;
-        $id = is_numeric($id) && $id > 0 ? $id : 0;
-        $update = DB::table('brands')
-                    ->where('id', $id)
-                    ->update([
-                        'name' => $name,
-                        'slug' => $slug,
-                        'description' => $des,
-                        'status' => $status,
-                        'updated_at' => date('Y-m-d H:i:s')
-                    ]);
-        if($update){
-            $request->session()->flash('success', 'Update success');
-            return redirect(route('admin.brand'));
-        } else {
-            $request->session()->flash('error', 'Update fail');
-            return redirect(route('admin.edit.brand',['slug'=>$slug,'id' =>$id]));
+        $data = $request->all();
+        $data['slug'] = Str::slug($data['nameBrand']);
+        if ($brand->update($data)) {
+            Alert::success('Cập nhật thành công!');
+            return redirect()->route('admin.brand.index');
         }
+        Alert::error('Cập nhật hất bại!');
+        dd($brand->id);
+        return redirect()->route('admin.brand.edit',$brand->id);
 
-    } 
-    
-    public function deleteBrand(Request $request)
-    {
-        if($request->ajax()){
-            // check la request ajax
-            $idBrand = $request->id;
-            $idBrand = (is_numeric($idBrand) && $idBrand > 0) ? $idBrand : 0;
 
-            $status = $request->status;
-            $status = $status === '0' || $status === '1' ? $status : '';
-
-            if($idBrand != 0 && $status !== ''){
-                $update = DB::table('brands')
-                    ->where('id', $idBrand)
-                    ->update(['status' => $status]);
-                if($update){
-                    echo 'ok';
-                } else {
-                    echo 'fail';
-                }
-            } else {
-                echo 'err';
-            }
-        }
     }
+
+    public function destroy(Brand $brand)
+    {
+        if ($brand->delete()) {
+            Alert::success('Xóa thành công!');
+        } else {
+            Alert::error('Xóa không thành công!');
+        }
+        return redirect()->route('admin.brand.index');
+    }
+
+    public function search()
+    {
+        $listBrands = Brand::where('name', 'like', '%' . request()->search . '%')
+            ->get();
+        return view('admin.brand.list')->with('listBrands', $listBrands);
+    }
+
 }

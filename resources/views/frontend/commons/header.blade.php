@@ -159,29 +159,6 @@
         <div class="container">
             <div class="cat-nav-head">
                 <div class="row">
-                    {{--    <div class="col-lg-3">
-                          <div class="all-category">
-                              <h3 class="cat-heading"><i class="fa fa-bars" aria-hidden="true"></i>Danh mục</h3>
-                              <ul class="main-category">
-                                  <li><a href="#">Báo cháy HOCHIKI <i class="fa fa-angle-right" ></i></a>
-                                      <ul class="sub-category dropdown">
-                                          <li><a href="#"> TRUNG TÂM BÁO CHÁY ĐỊA CHỈ HOCHIKI</a></li>
-                                          <li><a href="#"> TRUNG TÂM BÁO CHÁY ĐỊA CHỈ HOCHIKI</a></li>
-                                          <li><a href="#"> TRUNG TÂM BÁO CHÁY ĐỊA CHỈ HOCHIKI</a></li>
-                                          <li><a href="#"> TRUNG TÂM BÁO CHÁY ĐỊA CHỈ HOCHIKI</a></li>
-                                          <li><a href="#"> TRUNG TÂM BÁO CHÁY ĐỊA CHỈ HOCHIKI</a></li>
-                                          <li><a href="#"> TRUNG TÂM BÁO CHÁY ĐỊA CHỈ HOCHIKI</a></li>
-                                      </ul>
-                                  </li>
-                                  <li><a href="#">Báo cháy HOCHIKI</a></li>
-                                  <li><a href="#">Báo cháy HOCHIKI</a></li>
-                                  <li><a href="#">Báo cháy HOCHIKI</a></li>
-                                  <li><a href="#">Báo cháy HOCHIKI</a></li>
-                                  <li><a href="#">Báo cháy HOCHIKI</a></li>
-                                  <li><a href="#">Báo cháy HOCHIKI</a></li>
-                              </ul>
-                          </div>
-                      </div>  --}}
                     <div class="col-lg-9 col-12">
                         <div class="menu-area">
                             <!-- Main Menu -->

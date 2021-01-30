@@ -10,27 +10,12 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
-                            <div class="bread-inner">
-                                <ul class="bread-list">
-                                    <li>
-                                        <a href="{{ route('fr.post.index') }}">
-                                            Bài viết<i
-                                                class="ti-arrow-right"></i>
-                                        </a>
-                                    </li>
-                                    <li class="active">
-                                        <a href="{{ route('fr.post.show', ['slug' => $post->slug, 'id' => $post->id]) }}">
-                                            {{ $post->title }}
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+                            <h3>{{$post->title}}</h3>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- End Breadcrumbs -->
-
             <!-- Shop Single -->
             <section class="shop single section">
                 <div class="container">
@@ -44,7 +29,7 @@
                                                 <li data-thumb="images/bx-slider1.jpg"
                                                     rel="adjustX:10, adjustY:">
                                                     <img class="hover-img"
-                                                         src="{{ asset('/uploads/images/products/' . $post->image) }}"
+                                                         src="{{ asset('/uploads/images/posts/' . $post->image) }}"
                                                          alt="#">
                                                 </li>
                                             </ul>

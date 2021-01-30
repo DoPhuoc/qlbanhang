@@ -27,6 +27,8 @@ class BannerController extends Controller
 
     public function store(BannerPost $request)
     {
+        $data = $request->all();
+
         $data['slug'] = Str::slug($data['title']);
         $upload = false;
         $nameFile = null;
@@ -74,20 +76,27 @@ class BannerController extends Controller
 
         }
         if ($banner->update($data)) {
-            Alert::success('Thành công!');
+            Alert::success('Cập nhật thành công!');
             return redirect()->route('admin.banner.index');
         }
-        Alert::error('Thất bại!');
+        Alert::error('Cập nhật hất bại!');
         return redirect()->route('admin.banner.edit', $banner->id);
     }
 
     public function destroy(Banner $banner)
     {
         if ($banner->delete()) {
-            Alert::success('Thành công!');
+            Alert::success('Xóa thành công!');
         } else {
-            Alert::error('Thất bại!');
+            Alert::error('Xoá không thành công!');
         }
         return redirect()->route('admin.banner.index');
+    }
+
+    public function search()
+    {
+        $banners = Banner::where('title', 'like', '%' . request()->search . '%')
+            ->get();
+        return view('admin.banners.index')->with('banners', $banners);
     }
 }

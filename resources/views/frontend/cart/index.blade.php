@@ -10,11 +10,11 @@
                     <table class="table shopping-summery">
                         <thead>
                         <tr class="main-hading">
-                            <th>PRODUCT</th>
-                            <th>NAME</th>
-                            <th class="text-center">UNIT PRICE</th>
-                            <th class="text-center">QUANTITY</th>
-                            <th class="text-center">TOTAL</th>
+                            <th>Sản phẩm</th>
+                            <th>Tên</th>
+                            <th class="text-center">Giá tiền</th>
+                            <th class="text-center">Số lượng</th>
+                            <th class="text-center">Tổng tiền</th>
                             <th class="text-center"><i
                                     class="ti-trash remove-icon"></i></th>
                         </tr>

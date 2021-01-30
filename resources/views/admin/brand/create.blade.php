@@ -7,15 +7,15 @@
 
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Thêm thương hiệu</h1>
-            <a href="{{route('admin.brand')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-list fa-sm text-white-50"></i> Danh sách thương hiệu</a>
+            <a href="{{route('admin.brand.index')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-list fa-sm text-white-50"></i> Danh sách thương hiệu</a>
         </div>
-        
+
         </div>
         <!-- Content Row -->
         <div class="card-body">
         <div class="row">
             <div class="col-12 col-sm-12 col-lg-12 col-xl-12 col-md-12 mb-4">
-    
+
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -25,13 +25,13 @@
                         </ul>
                     </div>
                 @endif
-    
+
                 @if(!empty($message))
                 <div class="alert alert-danger">
                     {{ $message }}
                 </div>
                 @endif
-                <form action="{{route('admin.handle.add.brand')}}" method="post">
+                <form action="{{route('admin.brand.store')}}" method="post">
                     @csrf
                     <div class="form-group">
                         <label for="nameBrand">Tên thương hiệu</label>
@@ -41,13 +41,20 @@
                         <label for="descBrand">Mô tả</label>
                         <textarea class="form-control" id="descBrand" name="descBrand" rows="8"></textarea>
                     </div>
-                    <button class="btn btn-primary" type="submit"> Submit </button>
+{{--                    <div class="form-group">--}}
+{{--                        <label for="status">Trạng thái</label>--}}
+{{--                        <select name="status" id="status" class="form-control">--}}
+{{--                            <option value="1" {{$brand->status == 1 ? 'selected' : ''}}>Hoạt động</option>--}}
+{{--                            <option value="0" {{$brand->status == 0 ? 'selected' : ''}}>Không hoạt động</option>--}}
+{{--                        </select>--}}
+{{--                    </div>--}}
+                    <button class="btn btn-primary" type="submit"> Lưu</button>
                 </form>
             </div>
         </div>
         </div>
     </div>
- 
 
-   
+
+
 @endsection

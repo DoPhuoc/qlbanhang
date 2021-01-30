@@ -70,21 +70,28 @@ class CategoryController extends Controller
                     ]);
 
         if($update){
-            $request->session()->flash('success', 'Add success');
+            $request->session()->flash('success', 'Thêm mới thành công');
 
         } else {
-            $request->session()->flash('error', 'Add Fail');
+            $request->session()->flash('error', 'Thêm mới không thành công');
 
         }
         return redirect(route('admin.category.index'));
     }
         public function destroy(Category $category){
             if ($category->delete()) {
-                Alert::success('Thành công!');
+                Alert::success('Xóa thành công!');
             } else {
-                Alert::error('Thất bại!');
+                Alert::error('Xóa không thành công');
             }
             return redirect()->route('admin.category.index');
 
         }
+
+    public function search()
+    {
+        $categories = Category::where('name', 'like', '%' . request()->search . '%')
+            ->get();
+        return view('admin.category.list')->with('categories', $categories);
+    }
 }

@@ -22,35 +22,38 @@ Route::group([
 ],function (){
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
-    Route::get('/list-brands', 'BrandController@index')->name('brand');
-    Route::get('/brand/add-brand', 'BrandController@addBrand')->name('add.brand');
-    Route::post('/brand/handle-add', 'BrandController@handleAddBrand')->name('handle.add.brand');
-    Route::get('/brand/{slug}~{id}','BrandController@editBrand')->name('edit.brand');
-    Route::post('/brand/update-brand','BrandController@handleUpdate')->name('update.brand');
-    Route::post('brand/delete-brand', 'BrandController@deleteBrand')->name('delete.brand');
-    Route::get('brand/search','BrandController@search')->name('search.brand');
-
-    /*Product*/
-    Route::get('/product','ProductController@index')->name('product.index');
-    Route::get('/add-product', 'ProductController@create')->name('add.product');
-    Route::post('/add-product', 'ProductController@store')->name('handle.add.product');
-    Route::delete('/product/{product}', 'ProductController@destroy')->name('product.destroy');
-    Route::get('/product/{product}', 'ProductController@edit')->name('product.edit');
-    Route::post('/product/{product}', 'ProductController@update')->name('product.update');
-    Route::post('/product/handle-edit/{id}', 'ProductController@handleEditproduct')
-        ->name('handle.edit.product');
-
-
     /*Banner*/
-    Route::group(['as' => 'banner.', 'prefix' => 'banner'], function () {
+    Route::group(['as' => 'banner.', 'prefix' => 'banner'], function (){
         Route::get('/','BannerController@index')->name('index');
         Route::get('/create','BannerController@create')->name('create');
         Route::post('/store','BannerController@store')->name('store');
         Route::get('/edit/{banner}','BannerController@edit')->name('edit');
         Route::post('/update/{banner}','BannerController@update')->name('update');
         Route::delete('/{banner}','BannerController@destroy')->name('destroy');
+        Route::get('/search', 'BannerController@search')->name('search');
     });
 
+    Route::group(['as' => 'brand.', 'prefix' => 'brand'], function () {
+        Route::get('/', 'BrandController@index')->name('index');
+        Route::get('/create', 'BrandController@create')->name('create');
+        Route::post('/store', 'BrandController@store')->name('store');
+        Route::get('/edit/{brand}', 'BrandController@edit')->name('edit');
+        Route::post('/update/{brand}', 'BrandController@update')->name('update');
+        Route::delete('/{brand}', 'BrandController@destroy')->name('destroy');
+        Route::get('/search', 'BrandController@search')->name('search');
+    });
+    /*Product*/
+    Route::group(['as' => 'product.', 'prefix' => 'product'], function () {
+        Route::get('/', 'ProductController@index')->name('index');
+        Route::get('/create', 'ProductController@create')->name('create');
+        Route::post('/store', 'ProductController@store')->name('store');
+        Route::get('/edit/{product}', 'ProductController@edit')->name('edit');
+        Route::post('/product/{product}', 'ProductController@update')->name('product.update');
+        Route::post('update/{product}', 'ProductController@update')
+            ->name('update');
+        Route::delete('/{product}', 'ProductController@destroy')->name('destroy');
+        Route::get('/search', 'ProductController@search')->name('search');
+    });
     /*Category*/
     Route::group(['as' => 'category.', 'prefix' => 'category'], function () {
         Route::get('/category', 'CategoryController@index')->name('index');
@@ -59,6 +62,7 @@ Route::group([
         Route::get('/category/{slug}~{id}', 'CategoryController@edit')->name('edit');
         Route::post('/category/handle-edit', 'CategoryController@update')->name('update');
         Route::delete('/{category}', 'CategoryController@destroy')->name('destroy');
+        Route::get('/search', 'CategoryController@search')->name('search');
     });
     /*Shipping*/
     Route::get('/shipping','ShippingChargeController@index')->name('shipping_charge.index');

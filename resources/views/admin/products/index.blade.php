@@ -10,14 +10,14 @@
                         Danh sách sản phẩm</h4>
                 </div>
                 <div class="col-md-4">
-                    <form method="{{ route('admin.product.index') }}">
+                    <form method="{{ route('admin.product.search') }}">
                         <div class="input-group">
                             <input type="text"
                                    name="search_keyword"
                                    class="form-control bg-light border small js-keyword-brand"
                                    placeholder="Search for..."
                                    aria-label="Search"
-                                   aria-describedby="basic-addon2" value="">
+                                   aria-describedby="basic-addon2" name="search" value="">
                             <div class="input-group-append">
                                 <button class="btn btn-primary js-search-brand"
                                         type="submit">
@@ -29,10 +29,10 @@
 
                 </div>
                 <div class="col-md-4 ">
-                    <a href="{{route('admin.add.product')}}"
+                    <a href="{{route('admin.product.create')}}"
                        class="d-none d-sm-inline-block btn btn-primary shadow-sm float-right"
                        data-toggle="tooltip"
-                       data-placement="bottom" title="Add User"><i
+                       data-placement="bottom" title="Thêm sản phẩm"><i
                             class="fas fa-plus-circle fa-sm text-white-50"></i>
                         Thêm sản phẩm</a>
                 </div>

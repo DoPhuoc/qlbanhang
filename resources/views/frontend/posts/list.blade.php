@@ -29,7 +29,7 @@
                                     <div class="single-shorter">
                                         <label>SẮP XẾP :</label>
                                         <select class="order-type">
-                                            <option value="">MẶCĐỊNH</option>
+                                            <option value="">MẶC ĐỊNH</option>
                                             <option value="asc"
                                                     @if(request('order_type') == 'asc') selected @endif>
                                                 GIÁ TĂNG DẦN

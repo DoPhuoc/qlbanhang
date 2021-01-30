@@ -31,12 +31,6 @@
                            placeholder="Enter title" value="{{old("title", $banner->title)}}"
                            class="form-control">
                 </div>
-
-                <div class="form-group">
-                    <label for="description" class="col-form-label">Mô tả</label>
-                    <textarea class="form-control" id="description" name="description"
-                              value="">{!! old('description', $banner->description) !!}</textarea>
-                </div>
                 <div class="form-group">
                     <label for="photoBanner">Ảnh Banner</label>
                     <input type="file" id="photoBanner" name="photoBanner"
@@ -58,8 +52,8 @@
                     </select>
                 </div>
                 <div class="form-group mb-3">
-                    <button type="reset" class="btn btn-warning">Reset</button>
-                    <button class="btn btn-success" type="submit">Submit
+                    <button type="reset" class="btn btn-warning">Quay lại</button>
+                    <button class="btn btn-success" type="submit">Lưu
                     </button>
                 </div>
             </form>

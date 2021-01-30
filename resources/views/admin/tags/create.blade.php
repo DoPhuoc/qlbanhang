@@ -8,7 +8,7 @@
         @csrf
         <div class="form-group">
           <label for="title" class="col-form-label"> Tên tag<span class="text-danger">*</span></label>
-          <input id="title" type="text" name="title" placeholder="Enter title"  value="{{ old('title') }}" class="form-control">
+          <input id="title" type="text" name="title" placeholder="Nhập tên tag"  value="{{ old('title') }}" class="form-control">
         @error('title')
         <span class="text-danger">{{ $message }}</span>
         @enderror

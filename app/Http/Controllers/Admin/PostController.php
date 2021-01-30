@@ -18,6 +18,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::query();
+
         $searchKeyword = request()->search;
         if ($searchKeyword) {
             $posts->where('title', 'like', "%$searchKeyword%");

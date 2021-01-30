@@ -30,9 +30,9 @@ class TagController extends Controller
         $data = $request->all();
         $data['slug'] = Str::slug(request()->title);
         if (Tag::create($data)) {
-            Alert::success('Thành công!');
+            Alert::success('Thêm mới thành công!');
         } else {
-            Alert::error('Thất bại!');
+            Alert::error('Thêm mới không thành công!');
         }
         return redirect()->route('admin.tag.index');
     }
@@ -47,9 +47,9 @@ class TagController extends Controller
         $data = $request->all();
         $data['slug'] = Str::slug(request()->title);
         if ($tag->update($data)) {
-            Alert::success('Thành công!');
+            Alert::success('Cập nhật thành công!');
         } else {
-            Alert::error('Thất bại!');
+            Alert::error('Chưa cập nhật được!');
         }
         return redirect()->route('admin.tag.index');
     }
@@ -57,9 +57,9 @@ class TagController extends Controller
     public function destroy(Tag $tag)
     {
         if ($tag->delete()) {
-            Alert::success('Thành công!');
+            Alert::success('Xóa thành công!');
         } else {
-            Alert::error('Thất bại!');
+            Alert::error('Xóa không thành công!');
         }
         return redirect()->route('admin.tag.index');
     }

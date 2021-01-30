@@ -46,7 +46,7 @@
                     </form>
                 </div>
                 <div class="col-md-4">
-                    <a href="{{ route('admin.tag.index') }}"
+                    <a href="{{ route('admin.tag.create') }}"
                        class="d-none d-sm-inline-block btn btn-primary shadow-sm float-right"><i
                             class="fas fa-plus-circle fa-sm text-white-50"></i>
                         Thêm</a>

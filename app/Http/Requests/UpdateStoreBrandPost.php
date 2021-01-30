@@ -24,22 +24,21 @@ class UpdateStoreBrandPost extends FormRequest
      */
     public function rules(Request $request)
     {
-        $id = $request->hddIdBrand;
         return [
-            'nameBrand' => 'required|max:100|unique:brands,name,'.$id,
+            'nameBrand' => 'required|max:100|unique:brands,name,'.request()->brand->id,
             'descBrand' => 'required'
         ];
 
     }
 
-    
+
     public function messages()
     {
         return [
-            'nameBrand.required' => 'Ten thuong hieu khong duoc trong',
-            'nameBrand.max' => 'Ten thuong hieu khong vuot qua :max ky tu',
-            'nameBrand.unique' => 'Ten thuong hieu da ton tai',
-            'descBrand.required' => 'Mieu ta ve thuong hieu khong duoc trong'
+            'nameBrand.required' => 'Tên thương hiệu không được để trống',
+            'nameBrand.max' => 'Tên thương hiệu không vượt quá :max kí tự',
+            'nameBrand.unique' => 'Tên thương hiệu đã tồn tại',
+
         ];
     }
 }

@@ -3,7 +3,7 @@
     <div class="card">
         <h5 class="card-header">Thêm sản phẩm</h5>
         <div class="card-body">
-            <form method="post" action="{{ route('admin.handle.add.product')}}"
+            <form method="post" action="{{ route('admin.product.store')}}"
                   enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">

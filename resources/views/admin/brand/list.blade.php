@@ -8,13 +8,12 @@
                 </div>
 
                 <div class="col-md-4">
-                    <form>
+                    <form role="search" method="GET" id="searchform" action="{{route('admin.brand.search')}}">
                         <div class="input-group">
-
                             <input type="text" class="form-control bg-light border small js-keyword-brand"
-                                placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" value="">
+                                placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" name="search" value="">
                             <div class="input-group-append">
-                                <button class="btn btn-primary js-search-brand" type="button" value="">
+                                <button class="btn btn-primary js-search-brand" type="submit"  value="">
                                     <i class="fas fa-search fa-sm"></i>
                                 </button>
                             </div>
@@ -23,30 +22,15 @@
 
                 </div>
                 <div class="col-md-4 ">
-                    <a href="{{ route('admin.add.brand') }}"
+                    <a href="{{ route('admin.brand.create')}}"
                         class="d-none d-sm-inline-block btn btn-primary shadow-sm float-right" data-toggle="tooltip"
-                        data-placement="bottom" title="Add User"><i
+                        data-placement="bottom" title="Thêm thương hiệu"><i
                         class="fas fa-plus-circle fa-sm text-white-50"></i>  Thêm thương hiệu</a>
              </div>
             </div>
         </div>
         <!--table-->
 
-
-        @if(session('success'))
-        <div class="alert alert-success alert-dismissable fade show">
-               <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-               {{session('success')}}
-           </div>
-       @endif
-
-
-       @if(session('error'))
-           <div class="alert alert-danger alert-dismissable fade show">
-               <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-               {{session('error')}}
-           </div>
-       @endif
         <div class="card-body">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
@@ -72,7 +56,7 @@
                         <tr>
                             <td>{{ $item->id }}</td>
                             <td>
-                                <a href="{{ route('admin.edit.brand', ['slug' => $item->slug, 'id' => $item->id]) }}">
+                                <a href="{{ route('admin.brand.edit', ['brand' => $item->id]) }}">
                                     {{ $item->name }}
                                 </a>
                             </td>
@@ -81,22 +65,32 @@
                                {{--   {{ $item->status == 1 ? 'Hoạt động' : 'Không hoạt động' }}  --}}
 
                                 @if($item->status== 1)
-                                <span class="badge badge-success">Hoat dong</span>
+                                <span class="badge badge-success">Hoạt đông</span>
                                 @else
-                                <span class="badge badge-warning">khong hoat dong</span>
+                                <span class="badge badge-warning">Ngừng hoạt động</span>
                                 @endif
                             </td>
                             <td>
-                                <a href="{{ route('admin.edit.brand', ['slug' => $item->slug, 'id' => $item->id]) }}"
-                                    class="btn btn-info"><i class="fas fa-user-edit fa-1x"></i></a>
-
-                                @if ($item->status == 1)
-                                    <button data-status="0" id="{{ $item->id }}" class="btn btn-danger js-delete-brand"><i
-                                            class="fas fa-lock"></i> </button>
-                                @else
-                                    <button data-status="1" id="{{ $item->id }}" class="btn btn-primary js-delete-brand"><i
-                                            class="fas fa-unlock-alt"></i></button>
-                                @endif
+                                <a href="{{route('admin.brand.edit', $item->id)}}"
+                                   class="btn btn-primary btn-sm float-left mr-1"
+                                   style="height:30px; width:30px;border-radius:50%"
+                                   data-toggle="tooltip" title="edit"
+                                   data-placement="bottom"><i
+                                        class="fas fa-edit"></i></a>
+                                <form
+                                    action="{{route('admin.brand.destroy',$item->id)}}"
+                                    method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="btn btn-danger btn-sm"
+                                            style="height:30px; width:30px;border-radius:50%"
+                                            type="submit"
+                                            data-toggle="tooltip"
+                                            data-placement="bottom"
+                                            title="Delete"><i
+                                            class="fas fa-trash-alt"></i>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
@@ -104,7 +98,7 @@
             </table>
             <div class="text-center">
                 {{-- Hien thi phan trang --}}
-                {{ $listBrands->appends(request()->query())->links() }}
+{{--                {{ $listBrands->appends(request()->query())->links() }}--}}
             </div>
 
         </div>
@@ -113,8 +107,8 @@
 @endsection
 @push('javascripts')
   <script type="text/javascript">
-    var urlAjax = "{{ route('admin.delete.brand') }}";
-   
+    var urlAjax = "{{ route('admin.brand.destroy',['brand=> $item->id']) }}";
+
 </script>
     <script type="text/javascript" src="{{ asset('backend/js/admin-brands.js') }}"></script>
 

@@ -7,8 +7,8 @@
     <form method="post" action="{{ route('admin.post_category.store')}}">
       @csrf
       <div class="form-group">
-        <label for="title" class="col-form-label">Title <span class="text-danger">*</span></label>
-        <input id="title" type="text" name="title"   value="{{ old('title') }}" placeholder="Enter title"  value="" class="form-control">
+        <label for="title" class="col-form-label"> Tên danh mục bài viết <span class="text-danger">*</span></label>
+        <input id="title" type="text" name="title"   value="{{ old('title') }}" placeholder="Nhập vào tên danh mục"  value="" class="form-control">
         @error('title')
         <span class="text-danger">{{ $message }}</span>
         @enderror
@@ -21,7 +21,7 @@
         @enderror
       </div>
       <div class="form-group">
-        <label for="status" class="col-form-label">Status <span class="text-danger">*</span></label>
+        <label for="status" class="col-form-label"> Trạng thái <span class="text-danger">*</span></label>
         <select name="status" class="form-control">
             @foreach(\App\Model\PostCategory::STATUS as $key => $status)
                 <option value="{{ $key }}"

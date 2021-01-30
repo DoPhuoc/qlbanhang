@@ -29,9 +29,9 @@ class PostCategoryController extends Controller
         $data = request()->all();
         $data['slug'] = Str::slug($request->title);
         if (PostCategory::create($data)) {
-            Alert::success('Thành công!');
+            Alert::success(' Thêm mới thành công!');
         } else {
-            Alert::error('Thất bại!');
+            Alert::error('Thêm mới thất bại!');
         }
         return redirect()->route('admin.post_category.index');
 
@@ -57,9 +57,9 @@ class PostCategoryController extends Controller
     public function destroy(PostCategory $postCategory)
     {
         if ($postCategory->delete()) {
-            Alert::success('Thành công!');
+            Alert::success('Xóa thành công!');
         } else {
-            Alert::error('Thất bại!');
+            Alert::error('Xóa không thành công!');
         }
         return redirect()->route('admin.post_category.index');
     }
