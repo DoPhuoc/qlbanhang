@@ -48,17 +48,6 @@
             @endforeach
         </ul>
     </div>
-    <div class="single-widget category">
-        <h3 class="title">Danh mục bài viết</h3>
-        <ul class="categor-list">
-            @foreach($posts as $post)
-                <li>
-                    <a href="{{ route('fr.postcategory.product',['id' => $post->id]) }}">
-                        {{$post->title}}
-                    </a>
-                </li>
-            @endforeach
-        </ul>
-    </div>
+
     <!--/ End Single Widget -->
 </div>
