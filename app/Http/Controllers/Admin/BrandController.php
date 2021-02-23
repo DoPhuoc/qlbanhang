@@ -13,7 +13,7 @@ use App\Http\Requests\UpdateStoreBrandPost;
 use App\Model\Brand;
 class BrandController extends Controller
 {
-    const LIMITED_ROW =5;
+    const LIMITED_ROW =3;
     public function index(Request $request, AntiXSS $antiXSS)
     {
         $data =[];
@@ -40,13 +40,13 @@ class BrandController extends Controller
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => null
          ]);
-
+         
          if($insert){
-             $request->session()->flash('success', 'Add successful');
-             return redirect(route('admin.brand.index'));
+            Alert::success('Cập nhật thành công!');
+            return redirect(route('admin.brand.index'));
          } else {
-             $request->session()->flash('error', 'Add fail');
-             return redirect(route('admin.brand.create'));
+            Alert::error('Cập nhật thất bại!');
+            return redirect(route('admin.brand.create'));
          }
     }
     public function edit(Request $request, Brand $brand)
@@ -55,16 +55,23 @@ class BrandController extends Controller
     }
     public function update(UpdateStoreBrandPost $request,Brand $brand)
     {
-        $data = $request->all();
-        $data['slug'] = Str::slug($data['nameBrand']);
-        if ($brand->update($data)) {
+        $nameBrand = $request->nameBrand;
+        $descBrand = $request->descBrand;
+        $slug =Str::slug($nameBrand,'-');
+        $status = $request->status;
+        if ($brand->update([
+            'name' => $nameBrand,
+            'slug' => $slug,
+            'description' => $descBrand,
+            'status' => $status,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => null
+        ])) {
             Alert::success('Cập nhật thành công!');
             return redirect()->route('admin.brand.index');
         }
-        Alert::error('Cập nhật hất bại!');
-        dd($brand->id);
+        Alert::error('Cập nhật thất bại!');
         return redirect()->route('admin.brand.edit',$brand->id);
-
 
     }
 
@@ -86,7 +93,7 @@ class BrandController extends Controller
     public function search()
     {
         $listBrands = Brand::where('name', 'like', '%' . request()->search . '%')
-            ->get();
+        ->paginate(self::LIMITED_ROW);
         return view('admin.brand.list')->with('listBrands', $listBrands);
     }
 

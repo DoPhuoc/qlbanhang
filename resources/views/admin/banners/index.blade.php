@@ -110,7 +110,10 @@
                     @endforeach
                     </tbody>
                 </table>
-
+                <div class="text-center">
+                    {{-- Hien thi phan trang --}}
+                   {{ $banners->links() }}
+                </div>
             </div>
         </div>
     </div>

@@ -87,7 +87,7 @@
                                      style="width: 250px"
                                      src="{{asset('uploads/images/posts')}}/{{$post->image}}">
                             </td>
-                            <td>{!! $post->description !!}</td>
+                            <td>{!! $post->summary !!}</td>
                             <td>{!! $post->status_label !!}</td>
                             <td>
                                 <a class="btn btn-primary btn-sm float-left mr-1"
@@ -118,7 +118,9 @@
                     @endforeach
                     </tbody>
                 </table>
-                <span style="float:right"></span>
+                <span style="float:right">
+                    {{$posts->links() }}
+                </span>
 
             </div>
         </div>

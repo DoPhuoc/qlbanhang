@@ -95,7 +95,7 @@ class CategoryController extends Controller
     public function search()
     {
         $categories = Category::where('name', 'like', '%' . request()->search . '%')
-            ->get();
+            ->paginate(5);
         return view('admin.category.list')->with('categories', $categories);
     }
 }

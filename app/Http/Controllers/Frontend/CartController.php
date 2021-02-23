@@ -32,6 +32,8 @@ class CartController extends Controller
         $userId = Auth::id();
         $cart = Cart::where('user_id', $userId)
             ->whereDoesntHave('bill')->latest()->first();
+
+          
         $userAddress = Auth::user()->address()->where('is_default', true)->first();
         $userAddress->load('province', 'district', 'ward');
         $shippingCharge = $userAddress->shippingCharge();

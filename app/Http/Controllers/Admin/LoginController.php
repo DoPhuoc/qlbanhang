@@ -12,7 +12,8 @@ class LoginController extends Controller
 {
     public function index(Request $request)
     {
-        return view('admin.login.index');
+        $msgErr = $request->session()->get('errAdminLogin');
+        return view('admin.login.index',compact('msgErr'));
     }
     public function login(LoginPost $request, AntiXSS $antiXSS)
     {
@@ -40,7 +41,7 @@ class LoginController extends Controller
             return redirect()->route('admin.dashboard');
         } else {
             // tao ra session thong bao loi - khi refresh lai trang se mat thong bao loi
-            $request->session()->flash('errAdminLogin', 'Username or password invalid');
+            $request->session()->flash('errAdminLogin', 'Username hoặc password không hợp lệ');
             // quay lai dung form login
             return redirect()->route('admin.login');
         }

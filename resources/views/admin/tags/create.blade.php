@@ -30,11 +30,13 @@
           <select name="status" class="form-control">
               @foreach(\App\Model\Tag::STATUS as $key => $status)
                   <option value="{{ $key }}"
-                          @if(old('status') == $key) selected @endif>
+                          @if(old('status',App\Model\Tag::ACTIVE) == $key) selected @endif>
                       {{ $status }}
                   </option>
               @endforeach
+              
           </select>
+          
         </div>
         <div class="form-group mb-3">
           <button type="reset" class="btn btn-warning">Quay lại</button>

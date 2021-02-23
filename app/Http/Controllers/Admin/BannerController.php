@@ -16,7 +16,7 @@ class BannerController extends Controller
 {
     public function index()
     {
-        $banner = Banner::orderBy('id')->paginate(10);
+        $banner = Banner::orderBy('id')->paginate(3);
         return view('admin.banners.index')->with('banners', $banner);
     }
 
@@ -96,7 +96,7 @@ class BannerController extends Controller
     public function search()
     {
         $banners = Banner::where('title', 'like', '%' . request()->search . '%')
-            ->get();
+            ->paginate(5);
         return view('admin.banners.index')->with('banners', $banners);
     }
 }

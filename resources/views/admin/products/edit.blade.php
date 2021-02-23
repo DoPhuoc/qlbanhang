@@ -44,6 +44,16 @@
                     @enderror
                 </div>
                 <div class="form-group">
+                    <label for="summary"
+                           class="col-form-label">Mô tả vắn tắt</label>
+                    <textarea class="form-control"
+                              id="summary"
+                              name="summary">{{ old('summary', $product->summary) }}</textarea>
+                    @error('summary')
+                    <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="form-group">
                     <label for="category_id">Tên danh mục <span
                             class="text-danger">*</span></label>
                     <select name="category_id" id="category_id"
@@ -166,14 +176,14 @@
     <script>
         $(document).ready(function () {
             $('#summary').summernote({
-                placeholder: "Write short description.....",
+                placeholder: "Viết mô tả.....",
                 tabsize: 2,
                 height: 120
             });
         });
         $(document).ready(function () {
             $('#description').summernote({
-                placeholder: "Write detail description.....",
+                placeholder: "Viết mô tả.....",
                 tabsize: 2,
                 height: 150
             });

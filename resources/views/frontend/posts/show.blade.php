@@ -1,7 +1,22 @@
 @extends('frontend.frontend-layout')
 @section('title', 'ban hang')
 @section('content')
-
+<!-- Breadcrumbs -->
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="bread-inner">
+                    <ul class="bread-list">
+                        <li><a href="{{route('fr.home')}}">Trang chủ<i class="ti-arrow-right"></i></a></li>
+                        <li class="active"><a href="{{route('fr.post.index')}}">{{$post->title}}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{--  <!-- End Breadcrumbs -->
     <!-- Product Style -->
     <!-- Breadcrumbs -->
     <div class="row">
@@ -15,7 +30,7 @@
                     </div>
                 </div>
             </div>
-            <!-- End Breadcrumbs -->
+            <!-- End Breadcrumbs -->  --}}
             <!-- Shop Single -->
             <section class="shop single section">
                 <div class="container">
@@ -23,6 +38,12 @@
                         <div class="col-12">
                             <div class="row">
                                 <div class="col-12">
+                                    <div class="product-des">
+                                        <div class="short">
+                                            <h2>{{ $post->title }}</h2>
+                                            <p class="date"><i class="fa fa-calendar" aria-hidden="true"></i> {{$post->created_at->format('d M, Y. D')}}
+                                        </div>
+                                    </div>
                                     <div class="product-gallery">
                                         <div class="flexslider-thumbnails">
                                             <ul>
@@ -35,12 +56,15 @@
                                             </ul>
                                         </div>
                                     </div>
+
                                 </div>
                                 <div class="col-12">
-                                    <div class="product-des">
-                                        <div class="short">
-                                            <h4>{{ $post->title }}</h4>
-                                        </div>
+                                   
+                                    <div class="content">
+                                        @if($post->quote)
+                                        <blockquote style="font-size:20px"> <i class="fa fa-quote-left"></i> {!! ($post->quote) !!}</blockquote>
+                                        @endif
+                                        
                                     </div>
                                 </div>
                             </div>

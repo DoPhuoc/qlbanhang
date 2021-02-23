@@ -91,15 +91,16 @@
         }
 
         #Gslider .carousel-inner .carousel-caption h1 {
-            font-size: 50px;
+            font-size: 30px;
             font-weight: bold;
             line-height: 100%;
             color: #F7941D;
+            text-transform: uppercase;
         }
 
         #Gslider .carousel-inner .carousel-caption p {
             font-size: 18px;
-            color: black;
+            color:white;
             margin: 28px 0 28px 0;
         }
 

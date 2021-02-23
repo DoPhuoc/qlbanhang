@@ -22,6 +22,8 @@ Route::group([
 ], function () {
     Route::get('/category/{slug}~{id}', 'ProductController@getProductsBelongCategory')
         ->name('category.product');
+    Route::get('/postcategory/{id}', 'PostController@getPostssBelongCategory')
+        ->name('postcategory.product');
     Route::get('/post', 'PostController@index')
         ->name('post.index');
     Route::get('/post/{slug}~{id}', 'PostController@show')
@@ -30,6 +32,12 @@ Route::group([
         ->name('brand.product');
     Route::get('/{slug}~{id}', 'ProductController@show')
         ->name('product.show');
+    Route::post('/product/increase', 'ProductController@increaseProduct')
+        ->middleware('auth')
+        ->name('product.increase_product');
+    Route::post('/product/decrease', 'ProductController@decreaseProduct')
+        ->middleware('auth')
+        ->name('product.decrease_product');
     Route::get('/', 'FrontendController@index')->name('home');
     Route::get('/bill', 'BillController@show')
         ->name('bill');

@@ -10,7 +10,7 @@
         </a>
 
         <div class="button-head">
-            <div class="product-action">
+            {{-- <div class="product-action">
                 <a data-toggle="modal"
                    data-target="#exampleModal"
                    title="Quick View"
@@ -20,7 +20,7 @@
                         class=" ti-heart "></i><span>Add to Wishlist</span></a>
                 <a title="Compare" href="#"><i
                         class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
-            </div>
+            </div> --}}
             <div class="product-action-2">
                 <form
                     action="{{ route('fr.cart.add_product') }}"
@@ -29,10 +29,10 @@
                     <input type="hidden"
                            value="{{ $product->id }}"
                            name="product_id">
-                    <button class="bg-transparent border-0"
+                    <button class="bg-transparent border-0 "
                         title="Add to cart"
                         type="submit">
-                        Add to cart
+                        Mua sản phẩm
                     </button>
                 </form>
             </div>
@@ -49,6 +49,20 @@
         </div>
     </div>
 </div>
+@push('stylesheets')
+    <style>
+    .default-img{
+        width:278px;
+        height:388px;
+        object-fit: contain;
+    }
+    .hover-img{
+        width:278px;
+        height:388px;
+        object-fit: contain;
+    }
+    </style>
+@endpush
 @push('javascripts')
     <script src="{{asset('frontend/js/active.js')}}"></script>
 @endpush

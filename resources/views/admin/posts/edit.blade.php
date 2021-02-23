@@ -71,6 +71,17 @@
                 @error('description')
                 <span class="text-danger">{{ $message }}</span>
                 @enderror
+
+                <div class="form-group">
+                    <label for="summary"
+                           class="col-form-label">Mô tả vắn tắt</label>
+                    <textarea class="form-control"
+                              id="summary"
+                              name="summary">{{ old('summary',$post->summary)}}</textarea>
+                    @error('summary')
+                    <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
                 <div class="row border p-2">
                     <div class="col">
                         <div class="input-field">

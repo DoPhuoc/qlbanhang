@@ -112,7 +112,7 @@
         </table>
         <span style="float:right"></span>
                {{-- Hien thi phan trang --}}
-{{--               {{ $categories->links() }}--}}
+              {{ $categories->links() }}
       </div>
     </div>
 </div>

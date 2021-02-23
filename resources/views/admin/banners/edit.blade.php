@@ -41,6 +41,13 @@
                         class="img-fluid img-thumbnail">
                 </div>
                 <div class="form-group">
+                    <label for="description" class="col-form-label">Mô tả</label>
+                    <textarea class="form-control" type="text" value="" name="description">{{ old('description', $banner->description) }}</textarea>
+                    @error('description')
+                    <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="form-group">
                     <label for="status" class="col-form-label">Hoạt động(<span class="text-danger">*</span>)</label>
                     <select name="status" class="form-control">
                         @foreach(\App\Model\Banner::STATUS as $key => $status)

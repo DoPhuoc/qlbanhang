@@ -25,7 +25,7 @@
         <select name="status" class="form-control">
             @foreach(\App\Model\PostCategory::STATUS as $key => $status)
                 <option value="{{ $key }}"
-                        @if(old('status') == $key) selected @endif>
+                        @if(old('status',\App\Model\PostCategory::ACTIVE) == $key) selected @endif>
                     {{ $status }}
                 </option>
             @endforeach

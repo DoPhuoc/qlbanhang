@@ -115,11 +115,13 @@
                             </td>
                         </tr>
                     @endforeach
-
+                    
 
                     </tbody>
                 </table>
-                <span style="float:right"></span>
+                <span style="float:right">
+                    {{$tags->links()}} 
+                </span>
 
             </div>
         </div>

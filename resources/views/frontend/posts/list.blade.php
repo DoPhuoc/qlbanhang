@@ -2,6 +2,54 @@
 @section('title', 'PCCC')
 
 @section('content')
+<!-- Breadcrumbs -->
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="bread-inner">
+                    <ul class="bread-list">
+                        <li><a href="{{route('fr.home')}}">Trang chủ<i class="ti-arrow-right"></i></a></li>
+                        <li class="active"><a href="{{route('fr.post.index')}}">Bài viết</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Breadcrumbs -->
+    
+<!-- Start Blog Single -->
+<section class="blog-single shop-blog grid section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-12">
+                <div class="row">
+                  
+                    @foreach($posts as $key => $post)
+                    <div class="col-lg-6 col-md-6 col-12">
+                        @include('frontend.posts.components.single', ['post' => $post])
+                    </div>
+                    @endforeach
+                    <div class="col-12">
+                        <!-- Pagination -->
+                                {{$posts->links()}}
+                         
+                        <!--/ End Pagination -->
+                    </div>
+                    
+                </div>
+            </div>
+           
+            <div class="col-lg-4 col-12">
+                @include('frontend.commons.sidebar')
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{{--  <!--/ End Blog Single -->
     @include('frontend.commons.banner')
     <section class="product-area shop-sidebar shop section">
         <div class="container">
@@ -60,7 +108,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>  --}}
 @endsection
 @push('stylesheets')
     <script type='text/javascript'
@@ -91,20 +139,24 @@
         }
 
         #Gslider .carousel-inner .carousel-caption h1 {
-            font-size: 50px;
+            font-size: 30px;
             font-weight: bold;
             line-height: 100%;
             color: #F7941D;
+            text-transform: uppercase;
         }
 
         #Gslider .carousel-inner .carousel-caption p {
             font-size: 18px;
-            color: black;
+            color: white;
             margin: 28px 0 28px 0;
         }
 
         #Gslider .carousel-indicators {
             bottom: 70px;
         }
+        .pagination{
+                display:inline-flex;
+            }   
     </style>
 @endpush

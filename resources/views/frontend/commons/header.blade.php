@@ -53,7 +53,7 @@
                     <!-- Logo -->
                     <div class="logo">
                         <a href="{{ route('fr.home') }}"><img
-                                src="{{asset('uploads/images/banners/logo.png')}}"
+                                src="{{asset('uploads/images/banners/pccchn21.png')}}"
                                 alt="logo"></a>
                     </div>
                     <!--/ End Logo -->

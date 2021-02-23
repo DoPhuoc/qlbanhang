@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             $table->string('name',180);
             $table->string('slug',200);
             $table->longText('description');
+            $table->text('summary');
             $table->string('image',200);
             $table->tinyInteger('best_selling')->nullable();
             $table->integer('quantity');

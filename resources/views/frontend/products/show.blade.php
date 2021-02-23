@@ -55,28 +55,7 @@
                                     <div class="product-des">
                                         <div class="short">
                                             <h4>{{ $product->name }}</h4>
-                                            <div class="rating-main">
-                                                <ul class="rating">
-                                                    <li>
-                                                        <i class="fa fa-star"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="fa fa-star"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="fa fa-star"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="fa fa-star-half-o"></i>
-                                                    </li>
-                                                    <li class="dark"><i
-                                                            class="fa fa-star-o"></i>
-                                                    </li>
-                                                </ul>
-                                                <a href="#"
-                                                   class="total-review">(102)
-                                                    Đánh giá</a>
-                                            </div>
+                                            <p>{!!$product->summary !!}</p>
                                             <p class="price">
                                                 <span class="discount">{{ number_format($product->price_after_discount) }} đ</span>
                                                 @if($product->discount)
@@ -96,7 +75,7 @@
                                                     <!-- Input Order -->
                                                     <div
                                                         class="input-group">
-                                                        <div
+                                                     {{--     <div
                                                             class="button minus">
                                                             <button
                                                                 type="button"
@@ -106,14 +85,14 @@
                                                                 data-field="quant[1]">
                                                                 <i class="ti-minus"></i>
                                                             </button>
-                                                        </div>
-                                                        <input type="text"
+                                                        </div>  --}}
+                                                         <input type="text"
                                                                name="quantity"
                                                                class="input-number"
                                                                data-min="1"
                                                                data-max="1000"
-                                                               value="1">
-                                                        <div
+                                                               value="1"> 
+                                                      {{--    <div
                                                             class="button plus">
                                                             <button
                                                                 type="button"
@@ -122,7 +101,7 @@
                                                                 data-field="quant[1]">
                                                                 <i class="ti-plus"></i>
                                                             </button>
-                                                        </div>
+                                                        </div>  --}}
                                                     </div>
                                                     <!--/ End Input Order -->
                                                 </div>
@@ -163,7 +142,7 @@
                                                         class="nav-link active"
                                                         data-toggle="tab"
                                                         href="#description"
-                                                        role="tab">Description</a>
+                                                        role="tab">Mô tả</a>
                                                 </li>
                                                 <li class="nav-item"><a
                                                         class="nav-link"

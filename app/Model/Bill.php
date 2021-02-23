@@ -61,4 +61,11 @@ class Bill extends Model
     {
         return $this->status == self::DONE;
     }
+    public static function countActiveOrder(){
+        $data=Bill::count();
+        if($data){
+            return $data;
+        }
+        return 0;
+    }
 }
