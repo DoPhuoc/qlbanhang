@@ -75,8 +75,9 @@
                                    style="height:30px; width:30px;border-radius:50%"
                                    data-toggle="tooltip" title="edit"
                                    href="{{route('admin.shipping_charge.edit', $shippingCharge->id)}}"
-                                   data-placement="bottom"><i
-                                        class="fas fa-edit"></i></a>
+                                   data-placement="bottom">
+                                    <i class="fas fa-edit"></i>
+                                </a>
                                 <form action="{{ route('admin.shipping_charge.destroy', $shippingCharge->id) }}" method="post">
                                     @method('delete')
                                     @csrf

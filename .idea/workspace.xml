@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="839161cd-1e65-46ea-811d-005a32118e43" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/views/frontend/posts/commentsDisplay.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/CategoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/BrandController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/BrandController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/EditCategories.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/EditCategories.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Model/Post.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/Post.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/shipping/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/shipping/list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/frontend/posts/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/posts/show.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,8 +173,8 @@
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/Http/Controllers/Admin" />
-      <recent name="$PROJECT_DIR$/app/Http/Controllers/Frontend" />
       <recent name="$PROJECT_DIR$/app/Model" />
+      <recent name="$PROJECT_DIR$/app/Http/Controllers/Frontend" />
     </key>
   </component>
   <component name="RunManager">
@@ -215,7 +220,26 @@
       <workItem from="1611973779912" duration="16258000" />
       <workItem from="1611994289610" duration="43000" />
       <workItem from="1611995743851" duration="3711000" />
-      <workItem from="1612002474547" duration="1204000" />
+      <workItem from="1612002474547" duration="1615000" />
+      <workItem from="1613555919432" duration="6000" />
+      <workItem from="1613636926699" duration="4000" />
+      <workItem from="1613636954499" duration="3223000" />
+      <workItem from="1613699449733" duration="1199000" />
+      <workItem from="1613721798394" duration="2103000" />
+      <workItem from="1613751043834" duration="653000" />
+      <workItem from="1613806313786" duration="5222000" />
+      <workItem from="1613872387911" duration="847000" />
+      <workItem from="1613878252624" duration="4538000" />
+      <workItem from="1613914908735" duration="597000" />
+      <workItem from="1613922509311" duration="600000" />
+      <workItem from="1613958561394" duration="599000" />
+      <workItem from="1613975303824" duration="1216000" />
+      <workItem from="1614045988102" duration="1202000" />
+      <workItem from="1614064733697" duration="1213000" />
+      <workItem from="1614100480036" duration="1634000" />
+      <workItem from="1614129629569" duration="9752000" />
+      <workItem from="1614174292650" duration="15008000" />
+      <workItem from="1614213605251" duration="887000" />
     </task>
     <servers />
   </component>
@@ -276,6 +300,16 @@
           <url>file://$PROJECT_DIR$/resources/views/admin/category/list.blade.php</url>
           <line>4</line>
           <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/frontend/posts/show.blade.php</url>
+          <line>19</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/frontend/posts/show.blade.php</url>
+          <line>6</line>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -70,6 +70,7 @@ class BrandController extends Controller
 
     public function destroy(Brand $brand)
     {
+        dd($brand->products()->toSql());
         if($brand->products()->count())
         {
             Alert::error('Bạn không được phép xóa');

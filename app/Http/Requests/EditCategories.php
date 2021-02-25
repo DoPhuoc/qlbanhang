@@ -30,7 +30,7 @@ class EditCategories extends FormRequest
             'description' => 'required',
         ];
     }
-    public function messages()
+    public function messanges()
     {
         return [
             'title.required' => 'Tên danh mục không được để trống',

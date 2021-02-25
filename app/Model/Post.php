@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Model;
-
+use App\Model\Comment;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Base
@@ -43,5 +43,10 @@ class Post extends Base
             return $this->quote;
         }
         return substr($this->quote, 0, self::MAX_WORD) . '...';
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class)->whereNull('parent_id');
     }
 }

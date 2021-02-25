@@ -64,4 +64,23 @@
             <!--/ End Shop Single -->
         </div>
     </div>
+    <div class="row">
+        <h4>Display Comments</h4>
+
+        @include('frontend.posts.commentsDisplay', ['comments' => $post->comments, 'post_id' => $post->id])
+
+        <hr />
+        <h4>Add comment</h4>
+        <form method="post" action="">
+            @csrf
+            <div class="form-group">
+                <textarea class="form-control" name=body></textarea>
+                <input type=hidden name=post_id value="{{ $post->id }}" />
+            </div>
+            <div class="form-group">
+                <input type=submit class="btn btn-success" value="Add Comment" />
+            </div>
+        </form>
+    </div>
+
 @endsection
