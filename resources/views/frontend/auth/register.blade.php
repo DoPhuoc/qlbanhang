@@ -22,7 +22,8 @@
                                         </label>
                                         <input type="text" name="name"
                                                placeholder=""
-                                               required="required">
+                                               required="required"
+                                               value="{{old('name')}}">
                                         @error('name')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -33,6 +34,7 @@
                                         <label> Email <span>*</span></label>
                                         <input type="text" name="email"
                                                placeholder=""
+                                               value="{{old('email')}}"
                                                required="required">
                                         @error('email')
                                         <span class="text-danger">{{ $message }}</span>
@@ -47,6 +49,7 @@
                                         </label>
                                         <input type="password" name="password"
                                                placeholder=""
+                                               value="{{old('password')}}"
                                                required="required">
                                         @error('password')
                                         <span class="text-danger">{{ $message }}</span>
@@ -72,6 +75,7 @@
                                         <label>Số điện thoại</label>
                                         <input type="tel" name="phone"
                                                placeholder=""
+                                               value="{{old('phone')}}"
                                                required="required">
                                         @error('phone')
                                         <span class="text-danger">{{ $message }}</span>
@@ -86,6 +90,7 @@
                                                 class="text-danger">*</span></label>
                                         <select name="province_id"
                                                 required
+                                                value="{{old('province_id')}}"
                                                 class="form-control province-select2-js">
                                         </select>
                                         @error('province_id')
@@ -102,6 +107,7 @@
                                                 class="text-danger">*</span></label>
                                         <select name="district_id"
                                                 required
+                                                value="{{old('district_id')}}"
                                                 class="form-control district-select2-js">
                                         </select>
                                         @error('district_id')
@@ -118,6 +124,7 @@
                                                 class="text-danger">*</span></label>
                                         <select name="ward_id"
                                                 required
+                                                value="{{old('ward_id')}}"
                                                 class="form-control ward-select2-js">
                                         </select>
                                         @error('ward_id')

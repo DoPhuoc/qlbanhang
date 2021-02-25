@@ -38,7 +38,6 @@ class UpdateStoreBrandPost extends FormRequest
             'nameBrand.required' => 'Tên thương hiệu không được để trống',
             'nameBrand.max' => 'Tên thương hiệu không vượt quá :max kí tự',
             'nameBrand.unique' => 'Tên thương hiệu đã tồn tại',
-
         ];
     }
 }

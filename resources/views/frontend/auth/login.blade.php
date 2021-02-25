@@ -38,6 +38,7 @@
 											<input type="email"
                                                    class="@error('email') is-invalid @enderror"
                                                    name="email"
+                                                   value="{{old('email')}}"
                                                    placeholder=""
                                                    required="required">
                                             @error('email')
@@ -52,6 +53,7 @@
                                                    name="password"
                                                    class="@error('password') is-invalid @enderror"
                                                    placeholder=""
+                                                   value="{{old('password')}}"
                                                    required="required">
                                             @error('password')
                                             <span class="text-danger">{{ $message }}</span>

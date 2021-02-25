@@ -29,6 +29,7 @@ class Product extends Base
     ];
     const BEST_SELLING = 1;
     const NOT_BEST_SELLING = 0;
+    const OUT_OF_STOCK_WARNING_POINT = 5;
 
     public function brand()
     {

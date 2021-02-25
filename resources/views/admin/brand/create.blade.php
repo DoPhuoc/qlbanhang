@@ -19,7 +19,7 @@
                     @csrf
                     <div class="form-group">
                         <label for="nameBrand">Tên thương hiệu</label>
-                        <input class="form-control" value="{{old('nameBrand')}}" type="text" id="nameBrand" name="nameBrand" 
+                        <input class="form-control" value="{{old('nameBrand')}}" type="text" id="nameBrand" name="nameBrand"
                          />
                         @error('nameBrand')
                         <span class="text-danger">{{ $message }}</span>
@@ -32,13 +32,6 @@
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-{{--                    <div class="form-group">--}}
-{{--                        <label for="status">Trạng thái</label>--}}
-{{--                        <select name="status" id="status" class="form-control">--}}
-{{--                            <option value="1" {{$brand->status == 1 ? 'selected' : ''}}>Hoạt động</option>--}}
-{{--                            <option value="0" {{$brand->status == 0 ? 'selected' : ''}}>Không hoạt động</option>--}}
-{{--                        </select>--}}
-{{--                    </div>--}}
                     <button class="btn btn-primary" type="submit"> Lưu</button>
                 </form>
             </div>

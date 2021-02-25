@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Model\Cart;
+use App\Model\Product;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -18,11 +19,11 @@ class StatisticController extends Controller
         } else {
             $selectedDate = today();
         }
-      
+
         $carts = Cart::with('products.category')
             ->whereHas('bill', function ($query) use ($selectedDate) {
                 $query->whereDate('created_at', $selectedDate);
-            })->take(10)->get();
+            })->get();
         $statistics = [];
         foreach ($carts as $cart) {
             foreach ($cart->products as $product) {
@@ -91,6 +92,24 @@ class StatisticController extends Controller
             [
                 'labels' => $labels,
                 'revenues' => array_values($revenues)
+            ]
+        );
+    }
+
+    public function warningProduct()
+    {
+        $products = Product::where('quantity', '<=', Product::OUT_OF_STOCK_WARNING_POINT)
+            ->pluck('quantity', 'name')
+            ->toArray();
+        $label = array_keys($products);
+        $datasetsData = array_values($products);
+        return view(
+            'admin.statistics.warning-product',
+            [
+                'chartData' => [
+                    'label' => $label,
+                    'datasetsData' => $datasetsData
+                ]
             ]
         );
     }

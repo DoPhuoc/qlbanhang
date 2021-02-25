@@ -67,7 +67,7 @@ Route::group([
         ->middleware('can:bill')
         ->name('cart.overview_bill');
     Route::get('/check-out', 'CheckoutController@index')->name('check.out');
-    Route::get('/register', 'RegisterController@index')->name('register');
+    Route::get('/register', 'RegisterController@index')->name('reegisgister');
     Route::group(['namespace' => 'Auth', 'as' => 'auth.'], function () {
         Route::get('/login', 'LoginController@showLoginForm')
             ->name('login');

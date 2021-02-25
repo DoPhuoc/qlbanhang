@@ -34,7 +34,7 @@ class StoreCategoriesPost extends FormRequest
             'title.required' => 'Tên danh mục không được để trống',
             'title.max' => 'Tên danh mục không lớn hơn :max ký tự',
             'title.unique' => 'Ten danh mục đã tồn tại',
-            'description.required'=>"Trường này không được để trông",
+            'description.required'=>"Trường này không được để tr",
         ];
     }
 }

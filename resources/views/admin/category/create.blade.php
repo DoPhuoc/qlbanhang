@@ -7,7 +7,7 @@
       <form method="post" action="{{ route('admin.category.store')}}">
         @csrf
         <div class="form-group">
-          <label for="title" class="col-form-label">Tên tiêu đề<span class="text-danger">*</span></label>
+          <label for="title" class="col-form-label">Tên danh mục<span class="text-danger">*</span></label>
           <input id="title" type="text" name="title"   value="{{ old('title') }}" placeholder="Nhập vào danh mục"  value="" class="form-control">
           @error('title')
           <span class="text-danger">{{ $message }}</span>
@@ -22,16 +22,6 @@
           @enderror
         </div>
 
-
-
-        <div class="form-group">
-          <label for="status" class="col-form-label">Trạng thái <span class="text-danger">*</span></label>
-          <select name="status" class="form-control">
-              <option value="1">Hoạt động</option>
-              <option value="0">Không hoạt động</option>
-          </select>
-
-        </div>
         <div class="form-group mb-3">
           <button type="reset" class="btn btn-warning">Quay lại</button>
            <button class="btn btn-success" type="submit">Cập nhập </button>

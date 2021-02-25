@@ -28,7 +28,7 @@
                  <a href="{{ route('admin.category.create') }}"
                     class="d-none d-sm-inline-block btn btn-primary shadow-sm float-right" data-toggle="tooltip"
                     data-placement="bottom" title="Thêm banner"><i
-                         class="fas fa-plus-circle fa-sm text-white-50"></i>  Thêm </a>
+                         class="fas fa-plus-circle fa-sm text-white-50"></i> Thêm</a>
              </div>
          </div>
      </div>
@@ -73,7 +73,7 @@
               @foreach($categories as $category)
               <tr>
               <td>{{$category->id}}</td>
-              <td>  <a href="{{ route('admin.category.edit', ['slug' =>  $category->slug, 'id' =>  $category->id]) }}">
+              <td>  <a href="{{ route('admin.category.edit',  $category->id) }}">
                 {{ $category->name }}
                     </a>
               </td>
@@ -88,7 +88,7 @@
                 @endif
               </td>
               <td>
-                <a class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" href="{{route('admin.category.edit',['slug' =>  $category->slug, 'id' =>  $category->id])}}" data-placement="bottom"><i class="fas fa-edit"></i></a>
+                <a class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom" href="{{route('admin.category.edit',$category->id)}}"><i class="fas fa-edit"></i></a>
                   <form
                       action="{{route('admin.category.destroy',$category->id)}}"
                       method="post">

@@ -37,6 +37,10 @@
                                     <i class="ti-power-off"></i><a
                                         href="{{ route('fr.auth.login') }}">Login</a>
                                 </li>
+                                    <li>
+                                        <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                        <a href="{{ route('fr.auth.register') }}">Register</a>
+                                    </li>
                             @endguest
                         </ul>
                     </div>

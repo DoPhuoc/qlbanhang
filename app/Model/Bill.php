@@ -2,7 +2,11 @@
 
 namespace App\Model;
 
+use App\Mail\Inquiry;
+use App\Mail\OrderMail;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Mail;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class Bill extends Model
 {
@@ -42,14 +46,16 @@ class Bill extends Model
         return $this->created_at->format('d/m/Y H:i');
     }
 
-    public static function sendDeliveryEmail()
+    public static function sendDeliveryEmail(Bill $bill)
     {
-
+        Mail::to(config('mail.address'))
+            ->send(new OrderMail('Giao hàng PCCC', $bill));
     }
 
-    public static function sendDoneEmail()
+    public static function sendDoneEmail(Bill $bill)
     {
-
+        Mail::to(config('mail.address'))
+            ->send(new OrderMail('Hoàn thành đơn hàng PCCC', $bill));
     }
 
     public function isDelivery()

@@ -24,7 +24,7 @@ class ContactController extends Controller
         $inquiryPersonEmail = request()->email;
         $message = request()->message;
         if ($message && $inquiryPersonName && $inquiryPersonEmail) {
-            Mail::to(config('mail.from.address'))
+            Mail::to(config('mail.address'))
                 ->send(new Inquiry($inquiryPersonName, $inquiryPersonEmail, $message));
             Alert::success('Gửi contact thành công!!');
         }else{

@@ -62,7 +62,6 @@
                             </td>
                             <td>{!! $item->description !!}</td>
                             <td>
-                               {{--   {{ $item->status == 1 ? 'Hoạt động' : 'Không hoạt động' }}  --}}
 
                                 @if($item->status== 1)
                                 <span class="badge badge-success">Hoạt động</span>

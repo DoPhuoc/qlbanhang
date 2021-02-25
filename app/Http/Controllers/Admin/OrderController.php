@@ -57,14 +57,21 @@ class OrderController extends Controller
     public function update(Request $request, Bill $bill)
     {
         $status = request()->status;
+        $isInvalidUpdateStatus = $bill->status == Bill::NEW && $status == Bill::DONE;
+        if ($isInvalidUpdateStatus) {
+            Alert::error('Đơn hàng chưa được vận chuyển!');
+            return back();
+        }
         $bill->status = $status;
         $bill->update();
         if ($status == Bill::DELIVERY) {
-            Bill::sendDeliveryEmail();
+            Bill::sendDeliveryEmail($bill);
             Alert::success('Đơn hàng đang được vận chuyển!!');
+            return redirect()->route('admin.order.delivery');
         } elseif ($status == Bill::DONE) {
+            Bill::sendDoneEmail($bill);
             Alert::success('Hoàn thành đơn hàng!!');
-            Bill::sendDoneEmail();
+            return redirect()->route('admin.order.done');
         }
         return redirect()->route('admin.order.new');
     }

@@ -56,11 +56,11 @@ Route::group([
     });
     /*Category*/
     Route::group(['as' => 'category.', 'prefix' => 'category'], function () {
-        Route::get('/category', 'CategoryController@index')->name('index');
-        Route::get('/add-category', 'CategoryController@create')->name('create');
-        Route::post('/add-category', 'CategoryController@store')->name('store');
-        Route::get('/category/{slug}~{id}', 'CategoryController@edit')->name('edit');
-        Route::post('/category/handle-edit', 'CategoryController@update')->name('update');
+        Route::get('/', 'CategoryController@index')->name('index');
+        Route::get('/create', 'CategoryController@create')->name('create');
+        Route::post('/create', 'CategoryController@store')->name('store');
+        Route::get('/edit/{category}', 'CategoryController@edit')->name('edit');
+        Route::post('/update/{category}', 'CategoryController@update')->name('update');
         Route::delete('/{category}', 'CategoryController@destroy')->name('destroy');
         Route::get('/search', 'CategoryController@search')->name('search');
     });
@@ -140,5 +140,6 @@ Route::group([
     Route::group(['as' => 'statistic.'], function () {
         Route::get('/sale/{date?}', 'StatisticController@sale')->name('sale');
         Route::get('/revenue/{date?}', 'StatisticController@reportRevenue')->name('revenue');
+        Route::get('/warning-product', 'StatisticController@warningProduct')->name('warning_product');
     });
 });

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateStoreBrandPost;
 use Illuminate\Http\Request;
 use App\Model\Category;
 use App\Http\Requests\StoreCategoriesPost;
@@ -41,41 +42,28 @@ class CategoryController extends Controller
         }
         return redirect(route('admin.category.index'));
     }
-    public function edit($slug,$id){
-        $categories = DB::table('categories')
-                        ->where('id', $id)
-                        ->first();
-        if($categories){
-            return view('admin.category.edit', compact('id', 'categories'));
-        } else {
-            abort(404);
-        }
+    public function edit(Request $request, Category $category){
+        return view('admin.category.edit', compact('category'));
     }
-    public function update(EditCategories $request ){
-        $id = $request->id;
-        $id = is_numeric($id) && $id > 0 ? $id : 0;
+    public function update(EditCategories $request,Category $category ){
         $name = $request->title;
         $slug = Str::slug($name, '-');
         $description = $request->description;
         $status= $request->status;
-        $update = DB::table('categories')
-                    ->where('id', $id)
-                    ->update([
+        if ($category->update([
                         'name' => $name,
                         'slug' => $slug,
                         'description' => $description,
-                        'status' => 1,
+                        'status' => $status,
                         'created_at' => date('Y-m-d H:i:s'),
                         'updated_at' => null
-                    ]);
-
-        if($update){
-            $request->session()->flash('success', 'Thêm mới thành công');
-
-        } else {
-            $request->session()->flash('error', 'Thêm mới không thành công');
-
+        ])) {
+            Alert::success('Cập nhật thành công!');
+            return redirect()->route('admin.brand.index');
         }
+//        Alert::error('Cập nhật thất bại!');
+//        return redirect()->route('admin.brand.edit',$category->id);
+
         return redirect(route('admin.category.index'));
     }
         public function destroy(Category $category){

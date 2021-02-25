@@ -23,12 +23,16 @@ class EditCategories extends FormRequest
      */
     public function rules(Request $request )
     {
-        $id = $request->id;
-        $id = is_numeric($id) && $id > 0 ? $id : 0;
         return [
-            'title' => 'required|max:100|unique:categories,name,'.$id,
+            'title' => 'required|max:100|unique:categories,name,'.request()->category->id,
             'description' => 'required',
         ];
+//        $id = $request->id;
+//        $id = is_numeric($id) && $id > 0 ? $id : 0;
+//        return [
+//            'title' => 'required|max:100|unique:categories,name,'.$id,
+//            'description' => 'required',
+//        ];
     }
     public function messanges()
     {
