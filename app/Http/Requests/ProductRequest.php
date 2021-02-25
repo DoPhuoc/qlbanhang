@@ -31,6 +31,8 @@ class ProductRequest extends FormRequest
             'brand_id.required' => 'Hãy chọn thương hiệu sản phẩm',
             'brand_id.numeric' => 'ID thương hiệu sản phẩm phải là số',
             'images.required' => 'Vui lòng nhập ảnh sản phẩm',
+            'summary.required' => 'Mô tả vắn tắt không được để trống',
+            'description.required' => 'Mô tả không được để trống'
         ];
     }
 }

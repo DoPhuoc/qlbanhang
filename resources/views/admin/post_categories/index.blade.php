@@ -25,13 +25,51 @@
             </div>
         </div>
         <div class="card-header py-3">
+            <div class="row">
+                <div class="col-md-4">
+                    <h4 class="m-0 font-weight-bold text-primary float-left">
+                        Danh mục bài viết</h4>
+                </div>
+
+                <div class="col-md-4">
+                    <form action="{{ route('admin.post_category.search') }}" method="get">
+                        @csrf
+                        <div class="input-group">
+                            <input type="text"
+                                   class="form-control bg-light border small js-keyword-brand"
+                                   placeholder="Search for..."
+                                   name="search"
+                                   aria-label="Search"
+                                   aria-describedby="basic-addon2"
+                                   value="{{ request('search') }}">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary js-search-brand"
+                                        type="submit">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="col-md-4 ">
+                    <a href="{{route('admin.post_category.create')}}"
+                       class="d-none d-sm-inline-block btn btn-primary shadow-sm float-right"
+                       data-toggle="tooltip"
+                       data-placement="bottom" title="Add User"><i
+                            class="fas fa-plus"></i> Thêm danh mục </a>
+                </div>
+            </div>
+        </div>
+
+       {{--  <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary float-left">Danh mục
                 bài viết </h6>
             <a href="{{route('admin.post_category.create')}}"
                class="btn btn-primary btn-sm float-right" data-toggle="tooltip"
                data-placement="bottom" title="Add User"><i
                     class="fas fa-plus"></i> Thêm danh mục bài viết</a>
-        </div>
+        </div> --}}
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="banner-dataTable"
@@ -99,7 +137,9 @@
                     @endforeach
                     </tbody>
                 </table>
-                <span style="float:right"></span>
+                <span style="float:right">
+                    {{$postCategories->links() }}
+                </span>
 
             </div>
         </div>

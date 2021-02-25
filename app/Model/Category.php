@@ -24,4 +24,11 @@ class Category extends Base
     {
         return $builder->where('status', self::ACTIVE);
     }
+    public static function countActiveCategory(){
+        $data=Category::where('status',self::ACTIVE)->count();
+        if($data){
+            return $data;
+        }
+        return 0;
+    }
 }

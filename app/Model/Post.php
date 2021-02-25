@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Base
 {
     protected $table = 'posts';
-    protected $fillable = ['title', 'slug', 'description', 'quote', 'image', 'status', 'post_category_id'];
+    protected $fillable = ['title', 'slug', 'description', 'quote', 'image', 'status', 'post_category_id','summary'];
     const MAX_WORD = 90;
 
     public function tags()
@@ -22,7 +22,8 @@ class Post extends Base
 
     public function getTagLabelsAttribute()
     {
-        return implode($this->tags->map(function ($tag) {
+        return implode($this->tags->map(function ($tag) 
+        {
             $route = route('admin.tag.edit', $tag->id);
             return "<a class='btn btn-sm btn-outline-info m-2' href='$route'>$tag->title</a>";
         })->toArray());
@@ -39,10 +40,17 @@ class Post extends Base
 
     public function getBriefQuoteAttribute()
     {
-        if (str_word_count($this->quote) < self::MAX_WORD) {
-            return $this->quote;
+        if (str_word_count($this->summary) < self::MAX_WORD) {
+            return $this->summary;
         }
-        return substr($this->quote, 0, self::MAX_WORD) . '...';
+        return substr($this->summary, 0, self::MAX_WORD) . '...';
+    }
+    public static function countActivePost(){
+        $data=Post::where('status','1')->count();
+        if($data){
+            return $data;
+        }
+        return 0;
     }
 
     public function comments()

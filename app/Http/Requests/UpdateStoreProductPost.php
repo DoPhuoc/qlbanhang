@@ -33,6 +33,7 @@ class UpdateStoreProductPost extends FormRequest
             'category_id' => 'required|numeric',
             'brand_id' => 'required|numeric',
             'images' => 'required',
+            
         ];
     }
     public function messages()

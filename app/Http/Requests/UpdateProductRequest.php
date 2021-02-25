@@ -14,6 +14,8 @@ class UpdateProductRequest extends ProductRequest
             'quantity' => 'required | numeric',
             'category_id' => 'required | numeric',
             'brand_id' => 'required | numeric',
+            'summary' => 'required',
+            'description' => 'required'
         ];
     }
 }

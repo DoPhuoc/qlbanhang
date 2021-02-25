@@ -7,9 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Brand extends Base
 {
     protected $table = 'brands';
-
     protected $fillable = [
-        'name'
+        'name','slug','description','photo','status'
     ];
 
     public function products()

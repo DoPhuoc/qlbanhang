@@ -18,6 +18,7 @@ class StatisticController extends Controller
         } else {
             $selectedDate = today();
         }
+      
         $carts = Cart::with('products.category')
             ->whereHas('bill', function ($query) use ($selectedDate) {
                 $query->whereDate('created_at', $selectedDate);
@@ -69,10 +70,9 @@ class StatisticController extends Controller
             ->whereBetween('bills.created_at', [$fromDate, $toDate])
             ->select(
                 DB::raw('DATE_FORMAT(bills.created_at, "%d/%m/%Y") as created_at'),
-                DB::raw('sum(bills.sub_total+bills.shipping_price) as total')
+                DB::raw('sum(bills.sub_total+IFNULL(bills.shipping_price, 0)) as total')
             )->pluck('total', 'created_at')
             ->toArray();
-
         $period = new \DatePeriod(
             $fromDate,
             new \DateInterval('P1D'),

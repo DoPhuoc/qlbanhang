@@ -40,6 +40,7 @@
         </div>
         <!--table-->
         <div class="card-body">
+            <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%"
                    cellspacing="0">
                 <thead>
@@ -50,11 +51,11 @@
                     <th>Thương hiệu</th>
                     <th>Tên sản phẩm</th>
                     <th width="20%">Ảnh sản phẩm</th>
-                    <th width="10%">Số lượng</th>
-                    <th width="10%">Giá sản phẩm</th>
-                    <th width="10%">Giảm giá</th>
-                    <th width="10%">Trạng thái</th>
-                    <th width="10%">Mô tả</th>
+                    <th >Số lượng</th>
+                    <th >Giá sản phẩm</th>
+                    <th >Giảm giá</th>
+                    <th >Trạng thái</th>
+                    <th width="50%">Mô tả</th>
                     <th colspan="2" width="20%">Hành động</th>
                 </tr>
                 </thead>
@@ -66,11 +67,11 @@
                     <th>Thương hiệu</th>
                     <th>Tên sản phẩm</th>
                     <th width="20%">Ảnh sản phẩm</th>
-                    <th width="10%">Số lượng</th>
-                    <th width="10%">Giá sản phẩm</th>
-                    <th width="10%">Giảm giá</th>
-                    <th width="10%">Trạng thái</th>
-                    <th width="10%">Mô tả</th>
+                    <th >Số lượng</th>
+                    <th>Giá sản phẩm</th>
+                    <th >Giảm giá</th>
+                    <th >Trạng thái</th>
+                    <th width="50%">Mô tả</th>
                     <th colspan="2" width="20%">Hành động</th>
                 </tr>
                 </tfoot>
@@ -83,8 +84,8 @@
                         <td>{{$product->brand->name}}</td>
                         <td>{{$product->name}}</td>
                         <td>
-                            <img class="img-fluid zoom "
-                                 style="width: 75px"
+                            <img class="img-fluid zoom w-20 "
+                                 style="width: 100px"
                                  src="{{asset('uploads/images/products')}}/{{$product->image}}">
                         </td>
                         <td>
@@ -95,7 +96,7 @@
                         <td>
                             {!! $product->status_label !!}
                         </td>
-                        <td>{!! $product->description !!}</td>
+                        <td>{!! $product->summary !!}</td>
                         <td>
                             <a class="btn btn-primary btn-sm float-left mr-1"
                                style="height:30px; width:30px;border-radius:50%"
@@ -123,7 +124,7 @@
                     </tr>
                 @endforeach
             </table>
-
+        </div>
         </div>
 
     </div>

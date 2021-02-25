@@ -35,7 +35,7 @@
                 @enderror
 
                 <div class="form-group">
-                    <label for="quote" class="col-form-label">Quote</label>
+                    <label for="quote" class="col-form-label">Trích dẫn</label>
                     <textarea class="form-control" id="quote"
                               name="quote">{{old('quote')}}</textarea>
                     @error('quote')
@@ -68,6 +68,18 @@
                               name="description">{{ old('description') }}</textarea>
                 </div>
                 @error('description')
+                <span class="text-danger">{{ $message }}</span>
+                @enderror
+
+                <div class="form-group">
+                    <label for="summary"
+                           class="col-form-label">Mô tả vắn tắt</label>
+                    <textarea class="form-control"
+                              id="summary"
+                              name="summary">{{ old('summary')}}</textarea>
+                    
+                </div>
+                @error('summary')
                 <span class="text-danger">{{ $message }}</span>
                 @enderror
                 <div class="row border p-2">

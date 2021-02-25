@@ -13,6 +13,7 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->longText('description')->nullable();
+            $table->text('summary');
             $table->text('quote')->nullable();
             $table->string('image')->nullable();
             $table->tinyInteger('status')->default(1);

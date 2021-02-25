@@ -97,7 +97,7 @@ Route::group([
         Route::get('/edit/{tag}','TagController@edit')->name('edit');
         Route::post('/edit/{tag}','TagController@update')->name('update');
         Route::delete('/{tag}','TagController@destroy')->name('destroy');
-        Route::post('/search','TagController@search')->name('search');
+        Route::get('/search','TagController@search')->name('search');
     });
 
     /*PostCategory*/
@@ -108,7 +108,7 @@ Route::group([
         Route::get('/edit/{postCategory}','PostCategoryController@edit')->name('edit');
         Route::post('/edit/{postCategory}','PostCategoryController@update')->name('update');
         Route::delete('/{postCategory}','PostCategoryController@destroy')->name('destroy');
-        Route::post('/search','PostCategoryController@search')->name('search');
+        Route::get('/search','PostCategoryController@search')->name('search');
     });
     /*Order*/
     Route::post('/order/{bill}','OrderController@update')->name('order.update');

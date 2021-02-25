@@ -15,7 +15,7 @@ class PostCategoryController extends Controller
 {
     public function index()
     {
-        $postCategories = PostCategory::all();
+        $postCategories = PostCategory::orderBy('id')->paginate(3);
         return view('admin.post_categories.index', compact('postCategories'));
     }
 
@@ -64,14 +64,11 @@ class PostCategoryController extends Controller
         return redirect()->route('admin.post_category.index');
     }
 
-    public function search(Request $request)
+    public function search()
     {
-        $search = $request->get('search');
-        $postCategory = PostCategory::where('title', 'like', '%' . '$search' . '%')
-            ->orderWhere('description', 'like', '%' . $search . '%')
-            ->orderWhere('status', 'like', '%' . $search . '%')
+        $postCategories = PostCategory::where('title', 'like', '%' . request()->search . '%')
+            ->orWhere('description', 'like', '%' . request()->search . '%')
             ->paginate(5);
-
-        return view('admin.postCategory.list', compact('postCategory'));
+        return view('admin.post_categories.index', compact('postCategories'));
     }
 }

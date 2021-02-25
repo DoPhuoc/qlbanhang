@@ -16,7 +16,7 @@ class TagController extends Controller
 {
     public function index()
     {
-        $tags = Tag::all();
+        $tags = Tag::orderBy('id','DESC')->paginate(5);;
         return view('admin.tags.index', compact('tags'));
     }
 
@@ -69,9 +69,8 @@ class TagController extends Controller
         $search = $request->get('search');
         $tags = Tag::where('title', 'like', '%' . '$search' . '%')
             ->orWhere('description', 'like', '%' . $search . '%')
-            ->orWhere('status', 'like', '%' . $search . '%')
             ->paginate(5);
 
-        return view('admin.tags.list', compact('tags'));
+        return view('admin.tags.index', compact('tags'));
     }
 }

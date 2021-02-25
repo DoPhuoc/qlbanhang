@@ -6,11 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Mail\Inquiry;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ContactController extends Controller
 {
     public function contact(){
+        if(!Auth::user()) {
+            return redirect()->route('fr.auth.login');
+        }
         return view('frontend.contact');
     }
 

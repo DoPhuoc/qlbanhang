@@ -48,5 +48,6 @@
             @endforeach
         </ul>
     </div>
+
     <!--/ End Single Widget -->
 </div>

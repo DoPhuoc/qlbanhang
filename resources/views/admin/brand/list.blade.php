@@ -65,7 +65,7 @@
                                {{--   {{ $item->status == 1 ? 'Hoạt động' : 'Không hoạt động' }}  --}}
 
                                 @if($item->status== 1)
-                                <span class="badge badge-success">Hoạt đông</span>
+                                <span class="badge badge-success">Hoạt động</span>
                                 @else
                                 <span class="badge badge-warning">Ngừng hoạt động</span>
                                 @endif
@@ -98,7 +98,7 @@
             </table>
             <div class="text-center">
                 {{-- Hien thi phan trang --}}
-{{--                {{ $listBrands->appends(request()->query())->links() }}--}}
+               {{ $listBrands->links() }}
             </div>
 
         </div>

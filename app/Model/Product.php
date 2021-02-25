@@ -24,7 +24,8 @@ class Product extends Base
         'discount',
         'code_product',
         'created_at',
-        'updated_at'
+        'updated_at',
+        'summary'
     ];
     const BEST_SELLING = 1;
     const NOT_BEST_SELLING = 0;
@@ -67,4 +68,13 @@ class Product extends Base
     {
         return $this->price - $this->price * $this->discount / 100;
     }
+
+    public static function countActiveProduct(){
+        $data=Product::where('status','1')->count();
+        if($data){
+            return $data;
+        }
+        return 0;
+    }
+
 }

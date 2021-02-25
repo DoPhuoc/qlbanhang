@@ -15,6 +15,8 @@ class StoreProductRequest extends ProductRequest
             'category_id' => 'required|numeric',
             'brand_id' => 'required|numeric',
             'images' => 'required',
+            'summary' => 'required',
+            'description' => 'required'
         ];
     }
 }
