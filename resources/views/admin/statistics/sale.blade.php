@@ -7,7 +7,7 @@
                    id="date">
         </h5>
         <div class="card-body">
-            <canvas id="myChart" width="100" height="100"></canvas>
+            <canvas id="myChart" width="300" height="100"></canvas>
         </div>
         <input type="hidden" value="{{ json_encode($chartData['label']) }}"
                id="labels">
@@ -18,6 +18,7 @@
 @endsection
 @push('javascripts')
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  
     <script>
         $(document).on('change', '#date', function () {
             let date = $(this).val();
@@ -25,7 +26,6 @@
             urlSearchParams.set('date', date);
             window.location.search = urlSearchParams.toString();
         });
-        Chart.defaults.global.legend.display = false;
         let ctx = document.getElementById('myChart');
         const labels = JSON.parse($('#labels').val())
         const data = JSON.parse($('#datasetsData').val())
@@ -34,24 +34,45 @@
             data: {
                 labels: labels,
                 datasets: [{
-                    label: '# of Votes',
+                    label: 'số lượng sản phẩm bán được',
                     data: data,
-                    borderWidth: 1
+                    borderWidth: 1,
+                    backgroundColor:[
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 206, 86, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(255, 159, 64, 0.6)',
+                        'rgba(255, 99, 132, 0.6)'
+                      ],
+                    borderColor: 'rgba(0, 128, 128, 0.7)',
+                   
                 }]
             },
             options: {
                 scales: {
                     xAxes: [{
-                        maxBarThickness: 60
+                        maxBarThickness: 50
                     }],
                     yAxes: [{
                         ticks: {
                             beginAtZero: true
+                        
                         }
                     }]
-                }
+                },
+                title:{
+                    display:true,
+                    text:'Biểu đồ thống kê số lượng sản phẩm bán theo ngày ',
+                    fontSize:25
+                  },
+               
+                
             }
+            
         });
 
     </script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 @endpush

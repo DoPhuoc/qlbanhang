@@ -49,14 +49,13 @@
                     <th>Mã sản phẩm</th>
                     <th>Danh mục</th>
                     <th>Thương hiệu</th>
-                    <th>Tên sản phẩm</th>
-                    <th width="20%">Ảnh sản phẩm</th>
-                    <th >Số lượng</th>
-                    <th >Giá sản phẩm</th>
-                    <th >Giảm giá</th>
-                    <th >Trạng thái</th>
-                    <th width="50%">Mô tả</th>
-                    <th colspan="2" width="20%">Hành động</th>
+                    <th width="40%">Tên sản phẩm</th>
+                    <th width="40%">Ảnh sản phẩm</th>
+                    <th>Số lượng</th>
+                    <th>Giá sản phẩm</th>
+                    <th>Giảm giá</th>
+                    <th>Trạng thái</th>
+                    <th  >Hành động</th>
                 </tr>
                 </thead>
                 <tfoot>
@@ -65,14 +64,13 @@
                     <th>Mã sản phẩm</th>
                     <th>Danh mục</th>
                     <th>Thương hiệu</th>
-                    <th>Tên sản phẩm</th>
-                    <th width="20%">Ảnh sản phẩm</th>
-                    <th >Số lượng</th>
+                    <th width="40%">Tên sản phẩm</th>
+                    <th width="40%">Ảnh sản phẩm</th>
+                    <th>Số lượng</th>
                     <th>Giá sản phẩm</th>
-                    <th >Giảm giá</th>
-                    <th >Trạng thái</th>
-                    <th width="50%">Mô tả</th>
-                    <th colspan="2" width="20%">Hành động</th>
+                    <th>Giảm giá</th>
+                    <th>Trạng thái</th>
+                    <th >Hành động</th>
                 </tr>
                 </tfoot>
 
@@ -92,11 +90,11 @@
                             {{$product->quantity}}
                         </td>
                         <td>{{number_format($product->price).''.'VNĐ'}}</td>
-                        <td>{{$product->discount}}</td>
+                        <td>{{$product->discount}}% </td>
                         <td>
                             {!! $product->status_label !!}
                         </td>
-                        <td>{!! $product->summary !!}</td>
+                        {{-- <td >{!! $product->summary !!}</td> --}}
                         <td>
                             <a class="btn btn-primary btn-sm float-left mr-1"
                                style="height:30px; width:30px;border-radius:50%"
@@ -124,6 +122,10 @@
                     </tr>
                 @endforeach
             </table>
+            <span style="float:right">
+                {{$products->links() }}
+            </span>
+
         </div>
         </div>
 

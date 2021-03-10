@@ -38,8 +38,11 @@
                     <img
                         style="width: 200px"
                         src="{{asset('uploads/images/banners')}}/{{$banner->photo}}"
-                        class="img-fluid img-thumbnail">
+                        class="img-fluid img-thumbnail">     
                 </div>
+                @error('photoBanner')
+                <span class="text-danger">{{ $message }}</span>
+                 @enderror
                 <div class="form-group">
                     <label for="description" class="col-form-label">Mô tả</label>
                     <textarea class="form-control" type="text" value="" name="description">{{ old('description', $banner->description) }}</textarea>

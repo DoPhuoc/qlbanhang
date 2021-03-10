@@ -43,6 +43,7 @@ class CategoryController extends Controller
         return redirect(route('admin.category.index'));
     }
     public function edit(Request $request, Category $category){
+        //lấy dữ liệu ứng với đối tượng Category truyền tham số $category
         return view('admin.category.edit', compact('category'));
     }
     public function update(EditCategories $request,Category $category ){

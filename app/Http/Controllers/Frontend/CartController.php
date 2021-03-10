@@ -74,6 +74,7 @@ class CartController extends Controller
                     'price' => $product->price,
                     'discount' => $product->discount,
                 ]);
+                
             } else {
                 $cart->products()->updateExistingPivot($productId, [
                     'quantity' => $updatedProduct->pivot->quantity + $quantity,

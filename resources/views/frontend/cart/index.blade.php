@@ -36,7 +36,9 @@
                                     <p class="product-name"><a
                                             href="#">{{$product->name}}</a></p>
                                 </td>
-                                <td class="price" data-title="Price"><span>{{$product->price}} ₫</span>
+                                <td class="price" data-title="Price">{{-- <span>{{number_format($product->price)}} ₫</span> --}}
+                                    <span class="discount">{{ number_format($product->price_after_discount) }} đ</span>
+                                 
                                 </td>
                                 <td class="qty" data-title="Qty">
                                     <!-- Input Order -->
@@ -86,7 +88,7 @@
                                     <!--/ End Input Order -->
                                 </td>
                                 <td class="total-amount" data-title="Total">
-                                    <span>{{ $product->getTotalPrice() }}</span>
+                                    <span>{{ number_format($product->getTotalPrice()) }}</span>
                                 </td>
                                 <td class="action" data-title="Remove">
                                     <form
@@ -140,7 +142,7 @@
                                             class="btn">
                                             Tiến hành đặt hàng
                                         </button>
-                                        <a href="{{ url()->previous() }}"
+                                        <a href="{{route('fr.home')}}"
                                            class="btn">Mua thêm sản phâm</a>
                                     </div>
                                 </div>

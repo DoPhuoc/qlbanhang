@@ -78,18 +78,19 @@
         }
 
         #Gslider .carousel-inner {
-            height: 550px;
+            display: block;
+            height: 514px;
         }
 
         #Gslider .carousel-inner img {
-
-            width: 100%;
+            display: block;
+            width: 100% !important;
             opacity: .8;
 
         }
 
         #Gslider .carousel-inner .carousel-caption {
-            bottom: 100px;
+            bottom: 20%;
         }
 
         #Gslider .carousel-inner .carousel-caption h1 {

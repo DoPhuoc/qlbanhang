@@ -122,6 +122,8 @@
                    href="{{route('admin.statistic.sale')}}">Sản phẩm bán theo ngày</a>
                 <a class="collapse-item"
                    href="{{route('admin.statistic.revenue')}}">Doanh thu theo ngày</a>
+                <a class="collapse-item"
+                   href="{{route('admin.statistic.warning_product')}}">Thống kê sắp hết hàng</a>
             </div>
         </div>
     </li>
@@ -163,11 +165,11 @@
     </li>
 
     <!-- Reviews -->
-    <li class="nav-item">
+{{--      <li class="nav-item">
         <a class="nav-link" href="{{route('admin.review')}}">
             <i class="fas fa-comments"></i>
             <span>Đánh giá sản phẩm </span></a>
-    </li>
+    </li>  --}}
 
 
     <!-- Divider -->
@@ -236,12 +238,12 @@
     </li>
 
     <!-- Comments -->
-    <li class="nav-item">
+{{--      <li class="nav-item">
         <a class="nav-link" href="">
             <i class="fas fa-comments fa-chart-area"></i>
             <span>Bình luận</span>
         </a>
-    </li>
+    </li>  --}}
 
 
     <!-- Divider -->

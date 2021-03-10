@@ -85,7 +85,7 @@ class ProductController extends Controller
                 $image->move('uploads/images/products', $imageName);
             }
         }
-        unset($data['images']);
+        unset($data['images']); 
         if ($imageName) {
             $data['image'] = $imageName;
         }
@@ -112,11 +112,11 @@ class ProductController extends Controller
         return back();
     }
 
-    public function search()
+   /*  public function search()
     {
         $products = Product::where('name', 'like', '%' . request()->search . '%')
             ->get();
         return view('admin.products.index')->with('products', $products);
-    }
+    } */
 
 }

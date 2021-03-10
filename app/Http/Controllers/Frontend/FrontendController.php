@@ -16,9 +16,11 @@ class FrontendController extends Controller
         $yesterday = date('Y-m-d H:i:s', strtotime('-30days'));
         $pagination = request()->pagination ?? config('app.pagination');
         $orderType = request()->order_type ?? '';
+        //khong để mặc định
         $newProducts = DB::table('products')
             ->where('status', Product::ACTIVE)
             ->whereBetween('created_at', [$yesterday, $today]);
+        
         if ($orderType) {
             $newProducts->orderBy('price', $orderType);
         }

@@ -54,6 +54,8 @@
                     </select>
                 </div>
                 <button class="btn btn-primary" type="submit"> Cập nhật </button>
+                <button type="reset" class="btn btn-warning">Quay lại
+                </button>
             </form>
         </div>
     </div>

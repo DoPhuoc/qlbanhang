@@ -18,6 +18,7 @@ class UpdateStoreBannerPost extends FormRequest
         return [
             'title' => 'required|max:100|unique:banners,title,'.request()->banner->id,
             'status' => 'required',
+            'photoBanner.mimes' => 'Định dạng banner là ảnh: jpeg,bmp,png,jpg'
         ];
     }
 
@@ -28,6 +29,7 @@ class UpdateStoreBannerPost extends FormRequest
             'title.unique' => 'Tên banner đã tồn tại, vui lòng chọn tên khác',
             'title.max' => 'Tên banner không vượt quá :max ký tự',
             'status.required' => 'Vui lòng chọn banner khác',
+            'photoBanner.mimes' => 'Định dạng banner là ảnh: jpeg,bmp,png,jpg'
         ];
     }
 

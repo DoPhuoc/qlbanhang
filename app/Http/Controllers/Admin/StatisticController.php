@@ -74,11 +74,13 @@ class StatisticController extends Controller
                 DB::raw('sum(bills.sub_total+IFNULL(bills.shipping_price, 0)) as total')
             )->pluck('total', 'created_at')
             ->toArray();
+       
         $period = new \DatePeriod(
             $fromDate,
             new \DateInterval('P1D'),
             $toDate
         );
+        
         $labels = [];
         $revenues = [];
         foreach ($period as $key => $value) {
@@ -87,6 +89,7 @@ class StatisticController extends Controller
             $revenues["$value"] = 0;
         }
         $revenues = array_merge($revenues, $report);
+       
         return view(
             'admin.statistics.revenue',
             [

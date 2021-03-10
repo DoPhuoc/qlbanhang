@@ -40,8 +40,8 @@
                                 <div class="col-12">
                                     <div class="product-des">
                                         <div class="short">
-                                            <h2>{{ $post->title }}</h2>
-                                            <p class="date"><i class="fa fa-calendar" aria-hidden="true"></i> {{$post->created_at->format('d M, Y. D')}}
+                                            <h2 class="title1">{{ $post->title }}</h2>
+                                            <p class="date"><i class="fa fa-calendar" aria-hidden="true"></i> {{$post->created_at->format(' d-m-Y')}}
                                         </div>
                                     </div>
                                     <div class="product-gallery">
@@ -62,19 +62,17 @@
                                    
                                     <div class="content">
                                         @if($post->quote)
-                                        <blockquote style="font-size:20px"> <i class="fa fa-quote-left"></i> {!! ($post->quote) !!}</blockquote>
+                                        <blockquote style="font-size:20px"> <i class="fa fa-quote-left"></i> {!! ($post->brief_quote) !!}</blockquote>
+                                        
                                         @endif
                                         
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="product-info">
+                          
                                         {!! $post->description !!}
-                                    </div>
-                                </div>
-                            </div>
+                                 
+                            
                             <div class="row mt-4">
                                 <div class="col-12">
                                     Tags:
@@ -88,7 +86,7 @@
             <!--/ End Shop Single -->
         </div>
     </div>
-    <div class="row">
+{{--      <div class="row">
         <h4>Display Comments</h4>
 
         @include('frontend.posts.commentsDisplay', ['comments' => $post->comments, 'post_id' => $post->id])
@@ -106,5 +104,18 @@
             </div>
         </form>
     </div>
-
+  --}}
 @endsection
+@push('stylesheets')
+    <style>
+        .content{
+            margin-top:20px;
+        }
+        .date{
+            margin-top:5px;
+        }
+       .title1{
+           text-transform: uppercase;
+       }
+    </style>
+@endpush

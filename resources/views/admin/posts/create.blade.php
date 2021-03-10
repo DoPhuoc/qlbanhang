@@ -95,7 +95,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="status" class="col-form-label">Status <span
+                    <label for="status" class="col-form-label">Trạng thái <span
                             class="text-danger">*</span></label>
                     <select name="status" class="form-control">
                         @foreach(\App\Model\Post::STATUS as $key => $status)

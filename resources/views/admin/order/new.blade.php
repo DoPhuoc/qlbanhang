@@ -40,7 +40,7 @@
                     <th width="10%">Email</th>
                     <th width="10%">Phone</th>
                     <th width="10%">Tạm tính</th>
-                    <th width="10%">Ghi chú</th>
+                   {{--  <th width="10%">Ghi chú</th> --}}
                     <th>Phí ship</th>
                     <th>Tổng tiền</th>
                     <th width="10%">Phương thức thanh toán</th>
@@ -56,7 +56,7 @@
                     <th width="10%">Phone</th>
                     <th width="10%">Tạm tính</th>
                     <th width="10%">Ghi chú</th>
-                    <th>Phí ship</th>
+                  {{--   <th>Phí ship</th> --}}
                     <th>Tổng tiền</th>
                     <th width="10%">Phương thức thanh toán</th>
                     <th width="10%">Trạng thái</th>
@@ -77,7 +77,7 @@
                         <td>{{ $cart->user->email }}</td>
                         <td>{{ $cart->bill->phone }}</td>
                         <td>{{ number_format($cart->subTotal()) }} ₫</td>
-                        <td></td>
+                      {{--   <td></td> --}}
                         <td>{{ number_format($cart->bill->shipping_price) }} ₫</td>
                         <td>{{ number_format($cart->totalPaid()) }} ₫</td>
                         <td>Thanh toán Khi nhận hàng</td>

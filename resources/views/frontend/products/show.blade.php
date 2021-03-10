@@ -66,38 +66,33 @@
 
                                         </div>
                                         <div class="product-buy">
-                                            <form class="d-flex"
+                                            <form class="d-fl"
                                                   action="{{ route('fr.cart.add_product') }}"
                                                   method="post">
                                                 @csrf
-                                                <div class="quantity">
-                                                    <h6>Quantity :</h6>
+                                                
+                                                <div class="input-group">
+                                                    <h5>Số lượng :</h5>
                                                     <!-- Input Order -->
-                                                    <div
-                                                        class="input-group">
-                                                         <input type="text"
+                                                    <div class=" input-number ">
+                                                         <input type="number"
                                                                name="quantity"
-                                                               class="input-number"
                                                                data-min="1"
                                                                data-max="1000"
                                                                value="1">
                                                     </div>
                                                     <!--/ End Input Order -->
                                                 </div>
-                                                <div class="add-to-cart d-flex">
+                                            
+                                                <div class=" d-flex">
                                                     <input type="hidden"
                                                            value="{{ $product->id }}"
                                                            name="product_id">
                                                     <button type="submit"
-                                                            class="btn">
+                                                            class=" add-to-cart btn">
                                                         Chọn mua
                                                     </button>
-                                                    <a href="#"
-                                                       class="btn min"><i
-                                                            class="ti-heart"></i></a>
-                                                    <a href="#"
-                                                       class="btn min"><i
-                                                            class="fa fa-compress"></i></a>
+                                                    
                                                 </div>
                                             </form>
                                             <p class="cat">Danh
@@ -151,7 +146,7 @@
                                                 </div>
                                             </div>
                                             <!--/ End Description Tab -->
-                                            <!-- Reviews Tab -->
+{{--                                              <!-- Reviews Tab -->
                                             <div class="tab-pane fade"
                                                  id="reviews" role="tabpanel">
                                                 <div
@@ -390,7 +385,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!--/ End Reviews Tab -->
+                                            <!--/ End Reviews Tab -->  --}}
                                         </div>
                                     </div>
                                 </div>
@@ -405,3 +400,16 @@
         </div>
     </div>
 @endsection
+
+@push('stylesheets')
+    <style>
+        .input-number {
+            margin-left:10px ;
+        }
+         .add-to-cart{
+            margin-top:10px;
+            display: block;
+         }
+          
+    </style>
+@endpush

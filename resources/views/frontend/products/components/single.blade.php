@@ -45,7 +45,20 @@
             </a>
         </h3>
         <div class="product-price">
-            <span>{{number_format($product->price)}} đ</span>
+         {{--    <span class="old">{{number_format($product->price)}} đ</span> --}}
+            @php 
+            $after_discount=($product->price-($product->price*$product->discount)/100)
+            @endphp
+            <span>{{number_format($after_discount)}} đ</span>
+            @if($product->discount)
+            <s>{{ number_format($product->price) }}
+                đ</s>
+            @endif 
+          {{--   <span class="discount">{{ number_format($product->price_after_discount) }} đ</span>
+            @if($product->discount)
+                <s>{{ number_format($product->price) }}
+                    đ</s>
+            @endif --}}
         </div>
     </div>
 </div>

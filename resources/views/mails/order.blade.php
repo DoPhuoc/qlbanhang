@@ -101,7 +101,7 @@
                 </tr>
                 <tr>
                     <td colspan="6">
-                        You Pay {{ number_format($cart->totalPaid()) }} ₫
+                        Thanh toán {{ number_format($cart->totalPaid()) }} ₫
                     </td>
                 </tr>
                 </tfoot>

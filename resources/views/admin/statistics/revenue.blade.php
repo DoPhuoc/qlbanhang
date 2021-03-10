@@ -19,7 +19,7 @@
             </div>
         </h5>
         <div class="card-body">
-            <canvas id="myChart" width="100" height="100"></canvas>
+            <canvas id="myChart" width="300" height="100"></canvas>
         </div>
         <input type="hidden" value="{{ json_encode($labels) }}"
                id="labels">
@@ -30,6 +30,8 @@
 @endsection
 @push('javascripts')
     <script>
+     
+     
         $('.input-daterange input').each(function() {
             $(this).datepicker({
                 autoclose: true,
@@ -51,13 +53,15 @@
 
         const chartOptions = {
             legend: {
-                display: true,
+                display: false,
                 position: 'top',
                 labels: {
                     boxWidth: 80,
                     fontColor: 'black'
                 }
-            }
+            },
+        
+         
         };
         const chart = new Chart($('#myChart'), {
             type: 'line',

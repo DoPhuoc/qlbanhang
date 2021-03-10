@@ -33,6 +33,8 @@
                         @enderror
                     </div>
                     <button class="btn btn-primary" type="submit"> Lưu</button>
+                    <button type="reset" class="btn btn-warning">Quay lại
+                    </button>
                 </form>
             </div>
         </div>

@@ -113,6 +113,22 @@
                                 <ul class="shopping-list">
                                     @forelse($cart->products as $product)
                                         <li>
+                                                    {{--  <form
+                                                action="{{ route('fr.cart.delete_product') }}"
+                                                method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <input type="hidden"
+                                                    name="cart_id"
+                                                    value="{{ $cart->id }}">
+                                                <input type="hidden"
+                                                    name="product_id"
+                                                    value="{{ $product->id }}">
+                                                <button type="submit"
+                                                        class="bg-transparent border-0">
+                                                        <i class="fa fa-remove"></i>
+                                                </button>
+                                            </form>  --}}
                                             <a class="cart-img" href="{{ route('fr.product.show',
                                         ['slug' => $product->slug, 'id' => $product->id]) }}"><img
                                                     src="{{ $product->image_full_path }}"

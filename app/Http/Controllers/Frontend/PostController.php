@@ -13,16 +13,6 @@ class PostController extends Controller
 {
     public function index()
     {
-        $today = date('Y-m-d H:i:s');
-        $yesterday = date('Y-m-d H:i:s', strtotime('-30days'));
-       /*  $pagination = request()->pagination ?? config('app.pagination');
-        $orderType = request()->order_type ?? '';
-        $posts = Post::where('status', Product::ACTIVE)
-            ->whereBetween('created_at', [$yesterday, $today]);
-        if ($orderType) {
-            $posts->orderBy('price', $orderType);
-        }
-        $posts = $posts->paginate($pagination); */
         $posts =Post::where('status', Product::ACTIVE)->paginate(5);
         return view('frontend.posts.list', compact('posts'));
     }

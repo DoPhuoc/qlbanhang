@@ -13,7 +13,7 @@ use App\Http\Requests\UpdateStoreBrandPost;
 use App\Model\Brand;
 class BrandController extends Controller
 {
-    const LIMITED_ROW =3;
+    const LIMITED_ROW =5;
     public function index(Request $request, AntiXSS $antiXSS)
     {
         $data =[];
@@ -77,7 +77,6 @@ class BrandController extends Controller
 
     public function destroy(Brand $brand)
     {
-        dd($brand->products()->toSql());
         if($brand->products()->count())
         {
             Alert::error('Bạn không được phép xóa');

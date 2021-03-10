@@ -3,7 +3,7 @@
     <div class="card">
         <h5 class="card-header">Sản phẩm sắp hết hàng</h5>
         <div class="card-body">
-            <canvas id="myChart" width="100" height="100"></canvas>
+            <canvas id="myChart" width="300" height="100"></canvas>
         </div>
         <input type="hidden" value="{{ json_encode($chartData['label']) }}"
                id="labels">
@@ -15,7 +15,7 @@
 @push('javascripts')
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script>
-        Chart.defaults.global.legend.display = false;
+    
         let ctx = document.getElementById('myChart');
         const labels = JSON.parse($('#labels').val())
         const data = JSON.parse($('#datasetsData').val())
@@ -24,9 +24,11 @@
             data: {
                 labels: labels,
                 datasets: [{
-                    label: '# of Votes',
+                    label: '# Số lượng',
                     data: data,
                     borderWidth: 1
+                  
+                   
                 }]
             },
             options: {
@@ -39,9 +41,14 @@
                             beginAtZero: true
                         }
                     }]
-                }
+                },
+                title:{
+                    display:true,
+                    text:'Biểu đồ thống kê sản phẩm sắp hết hàng ',
+                    fontSize:25
+                  },
+                
             }
         });
-
     </script>
 @endpush

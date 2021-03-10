@@ -22,7 +22,7 @@ class UpdateStorePostCategory extends FormRequest
     {
         return [
             'title.required' =>'Tên danh mục không được để trống',
-            'title.unique' => 'Ten danh muc bai viet da ton tai, vui long chon ten khac',
+            'title.unique' => 'Tên danh mục đã tồn tại vui lòng chọn tên khác',
             'description.required'=>"Trường này không được để trông",
         ];
     }

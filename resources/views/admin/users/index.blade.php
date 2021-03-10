@@ -18,10 +18,8 @@
                         <th>STT</th>
                         <th>Tên</th>
                         <th>Email</th>
-                        <th>Ảnh</th>
-                        <th>Ngày sinh</th>
-                        <th>Giới tính</th>
-                        <th>Tình trạng</th>
+                        <th>Thời gian</th>
+                   
                     </tr>
                     </thead>
                     <tbody>
@@ -30,10 +28,8 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
-                        <td><img src="#"/></td>
-                        <td>06/02/2000</td>
-                        <td>Nữ</td>
-                        <td>Hoạt động</td>
+                        <td>{{ $user->created_at->format('d/m/Y')}}</</td>
+                
                     </tr>
                     @endforeach
                     </tbody>

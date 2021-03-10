@@ -36,7 +36,7 @@
                 @enderror
 
                 <div class="form-group">
-                    <label for="quote" class="col-form-label">Quote</label>
+                    <label for="quote" class="col-form-label">Trích dẫn</label>
                     <textarea class="form-control" id="quote"
                               name="quote">{{old('quote', $post->quote)}}</textarea>
                     @error('quote')
@@ -95,7 +95,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="status" class="col-form-label">Status <span
+                    <label for="status" class="col-form-label">Trạng thái<span
                             class="text-danger">*</span></label>
                     <select name="status" class="form-control">
                         @foreach(\App\Model\Post::STATUS as $key => $status)
